@@ -73,7 +73,23 @@ header{display:flex;justify-content:space-between;align-items:center;padding:20p
 <script>
 function showSignup(){document.getElementById('loginBox').classList.add('hidden');document.getElementById('signupBox').classList.remove('hidden');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
 function showLogin(){document.getElementById('signupBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden');}
-function login(){document.getElementById('loginMsg').innerText='جاري تسجيل الدخول...'}
+
+function login(){
+  let email = document.getElementById('loginEmail').value.trim();
+  let pass = document.getElementById('loginPass').value.trim();
+  let msg = document.getElementById('loginMsg');
+  if(!email || !pass){ msg.style.color='red'; msg.innerText='اكتب الإيميل وكلمة المرور'; return; }
+  msg.style.color='green'; msg.innerText='تم الدخول بنجاح... بيحولك للوحة التحكم';
+  // حفظ انك دخلت
+  localStorage.setItem('farag_logged', email);
+  // لو فيه حساب متسجل قبل كده، اتاكد منه، ولو مفيش اقبله كأول دخول
+  let saved = JSON.parse(localStorage.getItem('farag_user') || 'null');
+  if(saved && saved.email === email && saved.pass !== pass){
+    msg.style.color='red'; msg.innerText='كلمة المرور غلط'; return;
+  }
+  setTimeout(function(){ window.location.href='dashboard.html'; }, 800);
+}
+
 function signup(){
   let n=document.getElementById('signupName').value;
   let e=document.getElementById('signupEmail').value;
@@ -84,7 +100,6 @@ function signup(){
   setTimeout(showLogin,1500);
 }
 
-// إظهار إنشاء حساب للأدمن فقط
 let clicks = 0;
 document.getElementById('logo').addEventListener('click', function(){
   clicks++;
