@@ -21,15 +21,21 @@ body{background:#0f172a;color:#fff}
 .grid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
 .box{background:#fff;color:#0f172a;padding:22px;border-radius:18px}
 .box h3{margin-bottom:14px}
-.box input,.box textarea{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;outline:none;text-align:right}
+.box input,.box textarea,.box select{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;outline:none;text-align:right}
 .box textarea{height:90px;resize:none}
 .btn{width:100%;padding:13px;background:#0f172a;color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
 .btn-blue{background:#3b82f6}
+.btn-green{background:#25D366}
+.btn-orange{background:#ea580c}
 .contact{display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:10px 12px;border-radius:10px;margin-bottom:8px;font-size:14px}
 .contact button{background:#ef4444;color:#fff;border:none;padding:5px 10px;border-radius:8px;cursor:pointer}
 .history{margin-top:16px}
 .hist-item{background:#f1f5f9;padding:12px;border-radius:10px;margin-bottom:8px;font-size:14px;line-height:1.6}
-.hist-item b{color:#0f172a}
+.channel{display:flex;gap:8px;margin-bottom:12px}
+.channel label{flex:1;text-align:center;background:#f1f5f9;padding:10px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:700;border:2px solid transparent}
+.channel input{display:none}
+.channel input:checked + span{color:#3b82f6}
+.channel label:has(input:checked){border-color:#3b82f6;background:#eff6ff}
 @media(max-width:800px){.grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -41,7 +47,7 @@ body{background:#0f172a;color:#fff}
 
 <div class="container">
 <div class="welcome">أهلاً بيك يا <span id="userName">فرج</span> 👋</div>
-<p class="sub">دي لوحة التحكم بتاعتك، من هنا هتبعت وتدير كل حاجة.</p>
+<p class="sub">الإرسال الحقيقي اشتغل دلوقتي - واتساب وإيميل.</p>
 
 <div class="stats">
 <div class="stat"><h2 id="cContacts">0</h2><p>جهة اتصال</p></div>
@@ -51,11 +57,19 @@ body{background:#0f172a;color:#fff}
 
 <div class="grid">
 <div class="box">
-<h3>📤 إرسال رسالة جماعية</h3>
-<input type="text" id="msgTitle" placeholder="عنوان الرسالة (اختياري)">
+<h3>📤 إرسال رسالة حقيقية</h3>
+<input type="text" id="msgTitle" placeholder="عنوان الرسالة (للإيميل)">
 <textarea id="msgText" placeholder="اكتب رسالتك هنا..."></textarea>
-<input type="text" id="msgTo" placeholder="ابعت لمين؟ اكتب رقم أو إيميل، أو سيبه فاضي للكل">
-<button class="btn btn-blue" onclick="sendMsg()">إرسال الآن 🚀</button>
+
+<div class="channel">
+<label><input type="radio" name="ch" value="whatsapp" checked><span>💬 واتساب</span></label>
+<label><input type="radio" name="ch" value="email"><span>📧 إيميل</span></label>
+<label><input type="radio" name="ch" value="both"><span>🔁 الاتنين</span></label>
+</div>
+
+<input type="text" id="msgTo" placeholder="ابعت لمين؟ اكتب رقم واتساب زي 01012345678 أو إيميل">
+<button class="btn btn-blue" onclick="sendReal()">إرسال حقيقي الآن 🚀</button>
+<button class="btn btn-green" style="margin-top:8px" onclick="sendToAllWhatsapp()">إرسال للكل على واتساب (واحد ورا واحد)</button>
 <p id="sendMsg" style="text-align:center;margin-top:10px;color:green;font-size:13px"></p>
 <div class="history" id="history"></div>
 </div>
@@ -63,8 +77,9 @@ body{background:#0f172a;color:#fff}
 <div class="box">
 <h3>👥 جهات الاتصال</h3>
 <input type="text" id="contactName" placeholder="اسم جهة الاتصال">
-<input type="text" id="contactInfo" placeholder="رقم أو إيميل">
+<input type="text" id="contactInfo" placeholder="رقم واتساب أو إيميل - مثال: 01012345678">
 <button class="btn" onclick="addContact()">+ إضافة جهة اتصال</button>
+<p style="font-size:12px;color:#64748b;text-align:center;margin-top:8px">للواتساب اكتب الرقم بكود الدولة من غير + ومن غير مسافات<br>مثال مصر: 201012345678</p>
 <div id="contactsList" style="margin-top:14px"></div>
 </div>
 </div>
@@ -75,26 +90,34 @@ let user = localStorage.getItem('farag_logged') || '';
 document.getElementById('userEmail').innerText = user;
 let savedUser = JSON.parse(localStorage.getItem('farag_user') || 'null');
 if(savedUser && savedUser.name) document.getElementById('userName').innerText = savedUser.name.split(' ')[0];
-
 if(!user){ window.location.href='index.html'; }
 
 let contacts = JSON.parse(localStorage.getItem('farag_contacts') || '[]');
 let sent = JSON.parse(localStorage.getItem('farag_sent') || '[]');
 
+function cleanPhone(p){
+  p = p.replace(/[^0-9]/g,'');
+  if(p.startsWith('0')) p = '20' + p.substring(1);
+  if(p.startsWith('20')==false && p.length==11) p='20'+p;
+  return p;
+}
+function isEmail(s){ return s.includes('@'); }
+
 function render(){
   document.getElementById('cContacts').innerText = contacts.length;
   document.getElementById('cSent').innerText = sent.length;
   let cl = document.getElementById('contactsList');
-  cl.innerHTML = contacts.length ? '' : '<p style="text-align:center;color:#94a3b8;font-size:13px">لسه مفيش جهات اتصال، ضيف أول واحد</p>';
+  cl.innerHTML = contacts.length ? '' : '<p style="text-align:center;color:#94a3b8;font-size:13px">لسه مفيش جهات اتصال</p>';
   contacts.forEach((c,i)=>{
-    cl.innerHTML += `<div class="contact"><span><b>${c.name}</b> - ${c.info}</span><button onclick="delContact(${i})">حذف</button></div>`;
+    cl.innerHTML += `<div class="contact"><span><b>${c.name}</b> - ${c.info}</span><div><button style="background:#25D366;margin-left:4px" onclick="sendOne(${i},'whatsapp')">واتساب</button><button style="background:#ea580c;margin-left:4px" onclick="sendOne(${i},'email')">إيميل</button><button onclick="delContact(${i})">حذف</button></div></div>`;
   });
   let h = document.getElementById('history');
   h.innerHTML = sent.length ? '<h3 style="font-size:15px;margin-bottom:8px">📋 آخر الرسايل</h3>' : '';
   sent.slice().reverse().forEach(s=>{
-    h.innerHTML += `<div class="hist-item"><b>${s.title || 'رسالة'}</b><br>${s.text}<br><small style="color:#64748b">إلى: ${s.to || 'الكل'} - ${s.time}</small></div>`;
+    h.innerHTML += `<div class="hist-item"><b>${s.title || 'رسالة'}</b> - ${s.channel}<br>${s.text}<br><small style="color:#64748b">إلى: ${s.to || 'الكل'} - ${s.time}</small></div>`;
   });
 }
+
 function addContact(){
   let n=document.getElementById('contactName').value.trim();
   let info=document.getElementById('contactInfo').value.trim();
@@ -105,17 +128,63 @@ function addContact(){
   render();
 }
 function delContact(i){ contacts.splice(i,1); localStorage.setItem('farag_contacts',JSON.stringify(contacts)); render(); }
-function sendMsg(){
-  let t=document.getElementById('msgText').value.trim();
-  let title=document.getElementById('msgTitle').value.trim();
-  let to=document.getElementById('msgTo').value.trim();
-  if(!t){alert('اكتب الرسالة الأول');return;}
-  sent.push({title:title,text:t,to:to,time:new Date().toLocaleString('ar-EG')});
+
+function saveSent(title,text,to,channel){
+  sent.push({title:title,text:text,to:to,channel:channel,time:new Date().toLocaleString('ar-EG')});
   localStorage.setItem('farag_sent',JSON.stringify(sent));
-  document.getElementById('msgText').value='';document.getElementById('msgTitle').value='';document.getElementById('msgTo').value='';
-  document.getElementById('sendMsg').innerText='تم الإرسال بنجاح ✅ - وصلت لـ '+(contacts.length||'الكل');
   render();
 }
+
+function openWhatsapp(phone, text){
+  let url = 'https://wa.me/' + cleanPhone(phone) + '?text=' + encodeURIComponent(text);
+  window.open(url,'_blank');
+}
+function openEmail(email, subject, body){
+  let url = 'mailto:'+email+'?subject='+encodeURIComponent(subject||'')+'&body='+encodeURIComponent(body);
+  window.location.href = url;
+}
+
+function sendReal(){
+  let title=document.getElementById('msgTitle').value.trim();
+  let text=document.getElementById('msgText').value.trim();
+  let to=document.getElementById('msgTo').value.trim();
+  let ch=document.querySelector('input[name="ch"]:checked').value;
+  if(!text){alert('اكتب الرسالة الأول');return;}
+  if(!to){alert('اكتب رقم أو إيميل اللي هتبعتله');return;}
+
+  if(ch=='whatsapp' || ch=='both'){
+    if(isEmail(to)){ alert('ده إيميل مش رقم، اختار إيميل'); }
+    else { openWhatsapp(to, (title?title+'\n\n':'')+text); saveSent(title,text,to,'واتساب'); }
+  }
+  if(ch=='email' || ch=='both'){
+    if(!isEmail(to)){ if(ch=='email') alert('اكتب إيميل صح'); }
+    else { openEmail(to,title,text); saveSent(title,text,to,'إيميل'); }
+  }
+  document.getElementById('sendMsg').innerText='اتفتح التطبيق الحقيقي ✅ - دوس إرسال هناك';
+}
+
+function sendOne(i, channel){
+  let text=document.getElementById('msgText').value.trim() || 'أهلاً بيك من Farag Platform';
+  let title=document.getElementById('msgTitle').value.trim();
+  let c=contacts[i];
+  if(channel=='whatsapp'){ openWhatsapp(c.info, (title?title+'\n\n':'')+text); saveSent(title,text,c.info,'واتساب'); }
+  else { openEmail(c.info,title,text); saveSent(title,text,c.info,'إيميل'); }
+}
+
+function sendToAllWhatsapp(){
+  let text=document.getElementById('msgText').value.trim();
+  let title=document.getElementById('msgTitle').value.trim();
+  if(!text){alert('اكتب الرسالة الأول');return;}
+  if(!contacts.length){alert('مفيش جهات اتصال');return;}
+  let phones = contacts.filter(c=>!isEmail(c.info));
+  if(!phones.length){alert('مفيش أرقام واتساب في جهات الاتصال');return;}
+  alert('هيفتح واتساب واحد ورا واحد لـ '+phones.length+' رقم. دوس إرسال في كل واحد.');
+  phones.forEach((c,idx)=>{
+    setTimeout(()=>{ openWhatsapp(c.info,(title?title+'\n\n':'')+text); }, idx*1500);
+  });
+  saveSent(title,text,'الكل ('+phones.length+')','واتساب جماعي');
+}
+
 function logout(){localStorage.removeItem('farag_logged');window.location.href='index.html';}
 render();
 </script>
