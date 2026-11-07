@@ -3,113 +3,155 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farag Platform - الوصول إلى الملايين</title>
+<title>Farag - ChatBot AI</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
-body{background:#0f172a;color:#fff}
-.container{max-width:1100px;margin:auto;padding:20px}
-header{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
-.logo{font-size:24px;font-weight:900;cursor:pointer;user-select:none} .logo span{color:#3b82f6}
-.btn{padding:12px 24px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
-.btn-blue{background:#3b82f6;color:#fff}
-.btn-white{background:#fff;color:#0f172a}
-.hero{text-align:center;padding:70px 20px 40px}
-.hero h1{font-size:52px;line-height:1.2;font-weight:900}
-.hero h1 span{color:#3b82f6}
-.hero p{color:#94a3b8;font-size:18px;margin:20px auto;max-width:650px;line-height:1.7}
-.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:40px 0}
-.card{background:#1e293b;padding:24px;border-radius:16px;text-align:right}
-.card h3{margin-bottom:10px;font-size:17px}
-.card p{color:#94a3b8;font-size:14px;line-height:1.6}
-.auth-box{background:#fff;color:#0f172a;max-width:420px;margin:30px auto;padding:28px;border-radius:20px}
-.auth-box h2{text-align:center;margin-bottom:20px}
-.auth-box input{width:100%;padding:13px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;text-align:right;outline:none}
-.auth-box button{width:100%;padding:13px;background:#0f172a;color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
-.switch{text-align:center;margin-top:14px;font-size:14px;color:#64748b;cursor:pointer}
-.switch b{color:#3b82f6}
-.hidden{display:none}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+  body{display:flex;background:#f1f3f8;color:#1e293b}
+  /* Sidebar */
+  .sidebar{width:260px;background:#fff;height:100vh;position:fixed;right:0;top:0;border-left:1px solid #e2e8f0;padding:16px;overflow-y:auto}
+  .logo{font-size:32px;font-weight:900;line-height:0.8}
+  .logo span{font-size:12px;color:#64748b;display:block;font-weight:600}
+  .logo b{color:#111}
+  .menu{margin-top:24px}
+  .menu h4{font-size:11px;color:#94a3b8;letter-spacing:1px;margin:20px 0 10px}
+  .menu a{display:flex;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#1e293b;font-size:14px;cursor:pointer}
+  .menu a:hover,.menu a.active{background:#eff6ff;color:#2563eb}
+  /* Main */
+  .main{margin-right:260px;flex:1;padding:0 20px 20px;width:calc(100% - 260px)}
+  .topbar{background:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .card{background:#fff;padding:18px;border-radius:14px;border-right:4px solid #22c55e;text-align:left}
+  .card h2{font-size:28px}
+  .grid{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-top:14px}
+  .box{background:#fff;padding:18px;border-radius:14px}
+  .btn{background:#16a34a;color:#fff;border:0;padding:10px 16px;border-radius:8px;cursor:pointer;width:100%;font-weight:700}
+  .btn-dark{background:#1e3a5f}
+  .page{display:none}
+  .page.active{display:block}
+  /* Social Posting Tabs */
+  .tabs{display:flex;gap:8px;margin:16px 0}
+  .tabs button{padding:10px 18px;border:1px solid #e2e8f0;background:#fff;border-radius:20px;cursor:pointer}
+  .tabs button.active{background:#7c3aed;color:#fff}
+  .tab-content{display:none;background:#fff;padding:20px;border-radius:14px}
+  .tab-content.active{display:block}
+  input,textarea,select{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin:8px 0}
+  @media(max-width:900px){.sidebar{display:none}.main{margin:0;width:100%}.cards{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<div class="container">
-<header>
-<div class="logo" id="logo">🐱 Farag <span>Platform</span></div>
-<div><button class="btn btn-white" onclick="showLogin()">تسجيل الدخول</button></div>
-</header>
 
-<div class="hero">
-<h1>الوصول إلى الملايين.<br><span>على نطاق واسع.</span></h1>
-<p>منصة الرسائل الجماعية المصممة لجمهور ضخم وخطوط نقل بيانات على مستوى المؤسسات</p>
-<button class="btn btn-blue" onclick="showLogin()">تسجيل الدخول</button>
+<div class="sidebar">
+  <div class="logo"><span>ChatBot AI</span><b>farag</b></div>
+  <div class="menu">
+    <a onclick="showPage('dashboard',this)" class="active">📊 Dashboard</a>
+    <h4>INTEGRATIONS</h4>
+    <a onclick="showPage('facebook',this)">📘 Facebook & Instagram</a>
+    <a>🔌 API channels</a>
+    <h4>COMMENT FEATURE</h4>
+    <a>💬 Comment growth tools</a>
+    <a>📈 Comment Analytics</a>
+    <a>🚫 Page Restrictions</a>
+    <h4>MESSENGER TOOLS</h4>
+    <a onclick="showPage('broadcast',this)">📣 Broadcasting</a>
+    <a>🤖 Bot manager</a>
+    <a>👥 Subscriber Manager</a>
+    <h4>MEDIA & CONTENT</h4>
+    <a onclick="showPage('social',this)">🖼️ Social Posting</a>
+    <a onclick="showPage('media',this)">🎬 Media Library</a>
+  </div>
 </div>
 
-<div class="features">
-<div class="card"><h3>👥 إدارة ملايين جهات الاتصال بسهولة</h3><p>نظم جمهورك كله في مكان واحد بدون أي تعقيد.</p></div>
-<div class="card"><h3>⚡ توصيل سريع للغاية بكميات كبيرة</h3><p>مهما كان حجمها، رسائلك بتوصل في ثواني.</p></div>
-<div class="card"><h3>🎯 الاستهداف الدقيق عبر جماهير واسعة</h3><p>وصل للشخص الصح في الوقت الصح.</p></div>
-<div class="card"><h3>🛡️ بنية تحتية موثوقة</h3><p>مصممة لتحقيق إنتاجية عالية واستقرار دائم.</p></div>
+<div class="main">
+  <div class="topbar">
+    <div><b>Yoka Karam ▼</b></div>
+    <div>AR 🌙 👤 فرج ▼</div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="page active">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px">
+      <h1>AI Sales Agent 👤</h1>
+      <button class="btn" style="width:auto">✨ جهّز صفحة جديدة</button>
+    </div>
+    <div class="cards">
+      <div class="card"><h2>0</h2><p>مفيش حد مستنيك ✓</p></div>
+      <div class="card" style="border-color:#3b82f6"><h2>0</h2><p>أسئلة البوت ماعرفش يجاوبها 💬</p></div>
+      <div class="card" style="border-color:#f59e0b"><h2>0</h2><p>عملاء جداد النهارده • 0 تجربة 👥</p></div>
+      <div class="card" style="border-color:#ef4444"><h2>0</h2><p>💰 اشتروا النهارده</p></div>
+    </div>
+    <div class="grid">
+      <div class="box"><h3>🔔 Telegram <span style="background:#fee2e2;padding:4px 8px;border-radius:8px;font-size:12px">مش مربوط</span></h3><p style="margin:12px 0;color:#64748b">اربط عشان يوصلك أي عميل مستنيك وتقرير كل يوم.</p><button class="btn">🔗 اربط في تانية</button><p style="font-size:12px;margin-top:8px">◀ بوت خاص بيك (متقدم)</p></div>
+      <div class="box"><h3>📄 صفحاتك (0)</h3><p style="text-align:center;margin:20px 0;color:#64748b">لسه مفيش صفحة عليها المساعد.</p><div style="text-align:center"><button class="btn btn-dark" style="width:auto">✨ جهّز أول صفحة</button></div></div>
+      <div class="box"><h3>📊 شيت العملاء</h3><p style="margin:12px 0;color:#64748b">كل عملائك في جدول: الاسم، الموبايل، المطلوب، اشترى ولا لأ.</p><button class="btn" style="background:#fff;color:#16a34a;border:1px solid #16a34a;width:auto">Google Sheets 🔗</button> <button class="btn btn-dark" style="width:auto">⬇ تحميل Excel</button></div>
+      <div class="box"><h3>➕ صفحات تانية من غير مساعد (60)</h3><p style="color:#64748b">دوس عشان تفتح القايمة</p></div>
+    </div>
+  </div>
+
+  <!-- SOCIAL POSTING -->
+  <div id="social" class="page">
+    <h1 style="margin-top:16px">Social Posting</h1>
+    <div class="tabs">
+      <button class="active" onclick="showTab('create',this)">Create New Post</button>
+      <button onclick="showTab('smart',this)">Smart Post</button>
+      <button onclick="showTab('scheduled',this)">Scheduled Jobs</button>
+    </div>
+    <div id="create" class="tab-content active">
+      <h3>انشئ بوست جديد</h3>
+      <textarea id="postText" rows="4" placeholder="اكتب البوست هنا..."></textarea>
+      <select><option>اختر الصفحة - Facebook</option><option>Instagram</option></select>
+      <input type="file" id="postMedia">
+      <button class="btn" onclick="publishPost()">نشر الآن 🚀</button>
+      <p id="postResult" style="margin-top:10px;color:green"></p>
+    </div>
+    <div id="smart" class="tab-content">
+      <h3>Smart Post - AI</h3>
+      <input id="smartTopic" placeholder="اكتب موضوع البوست، والـ AI هيكتبه...">
+      <button class="btn" style="background:#7c3aed" onclick="generateSmart()">ولّد بالـ AI ✨</button>
+      <p id="smartResult" style="margin-top:12px;background:#f8fafc;padding:12px;border-radius:10px"></p>
+    </div>
+    <div id="scheduled" class="tab-content">
+      <h3>Scheduled Jobs</h3>
+      <input type="datetime-local" id="schedTime">
+      <button class="btn btn-dark" onclick="schedulePost()">جدولة ⏰</button>
+      <ul id="jobsList" style="margin-top:12px"></ul>
+    </div>
+  </div>
+
+  <!-- MEDIA / BROADCAST PLACEHOLDER -->
+  <div id="media" class="page"><h1 style="margin-top:16px">Media Library</h1><div class="box" style="margin-top:12px"><p>Drag & drop videos here - MP4 • WEBM • MOV • AVI • MKV • Max 10GB</p><input type="file" accept="video/*" multiple onchange="alert('تم رفع '+this.files.length+' فيديو - دي نسخة تجريبية، الربط الحقيقي في الخطوة الجاية')"></div></div>
+  <div id="broadcast" class="page"><h1 style="margin-top:16px">Broadcasting</h1><div class="box" style="margin-top:12px"><textarea placeholder="رسالة البرودكاست..."></textarea><button class="btn" onclick="alert('تم إرسال البرودكاست - تجريبي')">إرسال للكل</button></div></div>
+  <div id="facebook" class="page"><h1 style="margin-top:16px">Facebook & Instagram</h1><div class="box" style="margin-top:12px"><button class="btn" style="background:#1877f2" onclick="alert('هنا هنربط Facebook Login API')">ربط فيسبوك</button></div></div>
 </div>
 
-<div class="auth-box" id="loginBox">
-<h2>مرحباً بعودتك</h2>
-<input type="email" id="loginEmail" placeholder="البريد الإلكتروني" value="timothytylor420@gmail.com">
-<input type="password" id="loginPass" placeholder="كلمة المرور">
-<button onclick="login()">تسجيل الدخول</button>
-<div class="switch hidden" id="signupLink" onclick="showSignup()">معندكش حساب؟ <b>إنشاء حساب جديد</b></div>
-<p id="loginMsg" style="text-align:center;margin-top:10px;color:red;font-size:13px"></p>
-</div>
-
-<div class="auth-box hidden" id="signupBox">
-<h2>إنشاء حساب جديد</h2>
-<input type="text" id="signupName" placeholder="الاسم بالكامل">
-<input type="email" id="signupEmail" placeholder="البريد الإلكتروني">
-<input type="password" id="signupPass" placeholder="كلمة المرور">
-<button onclick="signup()">إنشاء الحساب</button>
-<div class="switch" onclick="showLogin()">عندك حساب؟ <b>تسجيل الدخول</b></div>
-<p id="signupMsg" style="text-align:center;margin-top:10px;color:green;font-size:13px"></p>
-</div>
-
-</div>
 <script>
-function showSignup(){document.getElementById('loginBox').classList.add('hidden');document.getElementById('signupBox').classList.remove('hidden');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
-function showLogin(){document.getElementById('signupBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden');}
-
-function login(){
-  let email = document.getElementById('loginEmail').value.trim();
-  let pass = document.getElementById('loginPass').value.trim();
-  let msg = document.getElementById('loginMsg');
-  if(!email || !pass){ msg.style.color='red'; msg.innerText='اكتب الإيميل وكلمة المرور'; return; }
-  msg.style.color='green'; msg.innerText='تم الدخول بنجاح... بيحولك للوحة التحكم';
-  // حفظ انك دخلت
-  localStorage.setItem('farag_logged', email);
-  // لو فيه حساب متسجل قبل كده، اتاكد منه، ولو مفيش اقبله كأول دخول
-  let saved = JSON.parse(localStorage.getItem('farag_user') || 'null');
-  if(saved && saved.email === email && saved.pass !== pass){
-    msg.style.color='red'; msg.innerText='كلمة المرور غلط'; return;
-  }
-  setTimeout(function(){ window.location.href='dashboard.html'; }, 800);
+function showPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
+  if(el) el.classList.add('active');
 }
-
-function signup(){
-  let n=document.getElementById('signupName').value;
-  let e=document.getElementById('signupEmail').value;
-  let p=document.getElementById('signupPass').value;
-  if(!n||!e||!p){document.getElementById('signupMsg').innerText='املى كل البيانات';return;}
-  localStorage.setItem('farag_user',JSON.stringify({name:n,email:e,pass:p}));
-  document.getElementById('signupMsg').innerText='تم إنشاء الحساب بنجاح! تقدر تسجل دخول دلوقتي';
-  setTimeout(showLogin,1500);
+function showTab(id,el){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
 }
-
-let clicks = 0;
-document.getElementById('logo').addEventListener('click', function(){
-  clicks++;
-  if(clicks >= 5){
-    document.getElementById('signupLink').classList.remove('hidden');
-    alert('وضع الأدمن اتفتح - تقدر تعمل حساب جديد دلوقتي');
-  }
-});
-if(window.location.search.includes('admin=farag123')){
-  document.getElementById('signupLink').classList.remove('hidden');
+function publishPost(){
+  const txt=document.getElementById('postText').value;
+  if(!txt) return alert('اكتب البوست الأول');
+  document.getElementById('postResult').innerText='✅ تم نشر البوست: '+txt+' (تجريبي - الربط مع فيسبوك API في الخطوة الجاية)';
+}
+function generateSmart(){
+  const topic=document.getElementById('smartTopic').value||'منتجك';
+  document.getElementById('smartResult').innerText='🤖 بوست مقترح عن '+topic+': "عرض خاص النهارده بس! اطلب دلوقتي قبل ما يخلص 🔥" - ده تجريبي، هنربط OpenAI بعدين';
+}
+let jobs=[];
+function schedulePost(){
+  const t=document.getElementById('schedTime').value;
+  if(!t) return alert('اختار الوقت');
+  jobs.push(t);
+  document.getElementById('jobsList').innerHTML=jobs.map(j=>'<li>⏰ '+j+'</li>').join('');
+  alert('تمت الجدولة!');
 }
 </script>
 </body>
