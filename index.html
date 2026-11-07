@@ -1,89 +1,101 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farag Platform</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farag Platform - الوصول إلى الملايين</title>
 <style>
-*{box-sizing:border-box;font-family:Tahoma}body{margin:0;background:#0f172a;color:#fff}
-.container{display:flex;min-height:100vh}.right{flex:1;padding:40px;display:flex;flex-direction:column;justify-content:center}
-.left{flex:1;background:#fff;color:#111;padding:40px;display:flex;align-items:center;justify-content:center}
-.card{width:100%;max-width:420px}input,textarea,select{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:10px}
-.btn{width:100%;padding:13px;border:0;border-radius:10px;background:#0f172a;color:#fff;font-weight:bold;cursor:pointer;margin-top:8px}
-.btn-blue{background:#2563eb}.btn-green{background:#16a34a}.btn-ghost{background:#f1f5f9;color:#111}
-#msg{margin-top:10px;font-weight:bold;text-align:center}
-#adminBox{display:none;background:#f8fafc;color:#111;min-height:100vh;width:100%}
-.topbar{background:#0f172a;color:#fff;padding:16px 22px;display:flex;justify-content:space-between}
-.tabs{display:flex;gap:8px;padding:14px 22px;background:#fff;flex-wrap:wrap}.tab{padding:10px 16px;border-radius:20px;border:1px solid #ddd;background:#f1f5f9;cursor:pointer}.tab.active{background:#0f172a;color:#fff}
-.content{padding:20px;max-width:1000px;margin:auto}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.stat,.box{background:#fff;border:1px solid #eee;border-radius:14px;padding:16px;margin-bottom:16px}.stat b{font-size:28px;display:block}
-.list-item{background:#f8fafc;border:1px solid #eee;padding:12px;border-radius:10px;margin:8px 0}.small{color:#64748b;font-size:13px}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+body{background:#0f172a;color:#fff}
+.container{max-width:1100px;margin:auto;padding:20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-size:24px;font-weight:900;cursor:pointer;user-select:none} .logo span{color:#3b82f6}
+.btn{padding:12px 24px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+.btn-blue{background:#3b82f6;color:#fff}
+.btn-white{background:#fff;color:#0f172a}
+.hero{text-align:center;padding:70px 20px 40px}
+.hero h1{font-size:52px;line-height:1.2;font-weight:900}
+.hero h1 span{color:#3b82f6}
+.hero p{color:#94a3b8;font-size:18px;margin:20px auto;max-width:650px;line-height:1.7}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:40px 0}
+.card{background:#1e293b;padding:24px;border-radius:16px;text-align:right}
+.card h3{margin-bottom:10px;font-size:17px}
+.card p{color:#94a3b8;font-size:14px;line-height:1.6}
+.auth-box{background:#fff;color:#0f172a;max-width:420px;margin:30px auto;padding:28px;border-radius:20px}
+.auth-box h2{text-align:center;margin-bottom:20px}
+.auth-box input{width:100%;padding:13px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;text-align:right;outline:none}
+.auth-box button{width:100%;padding:13px;background:#0f172a;color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
+.switch{text-align:center;margin-top:14px;font-size:14px;color:#64748b;cursor:pointer}
+.switch b{color:#3b82f6}
+.hidden{display:none}
 </style>
 </head>
 <body>
-<div id="loginBox" class="container">
-<div class="right"><h1>Farag Platform 🐱</h1><h2>منصة خاصة وآمنة.<br><span style="color:#60a5fa">بإدارة كاملة.</span></h2><p>نشر - إرسال - رد تلقائي</p></div>
-<div class="left"><div class="card"><h1 style="text-align:center">مرحباً بعودتك</h1>
-<input id="loginEmail" type="email" placeholder="ايميلك" value="timothytylor420@gmail.com">
-<input id="loginPass" type="password" placeholder="كلمة المرور">
-<button class="btn" onclick="login()">تسجيل الدخول</button><div id="msg"></div>
-</div></div>
+<div class="container">
+<header>
+<div class="logo" id="logo">🐱 Farag <span>Platform</span></div>
+<div><button class="btn btn-white" onclick="showLogin()">تسجيل الدخول</button></div>
+</header>
+
+<div class="hero">
+<h1>الوصول إلى الملايين.<br><span>على نطاق واسع.</span></h1>
+<p>منصة الرسائل الجماعية المصممة لجمهور ضخم وخطوط نقل بيانات على مستوى المؤسسات</p>
+<button class="btn btn-blue" onclick="showLogin()">تسجيل الدخول</button>
 </div>
-<div id="adminBox">
-<div class="topbar"><b>🐱 Farag - لوحة التحكم</b><div><span id="userEmail"></span> <button onclick="hideAdmin()" style="padding:8px 14px;border-radius:8px;border:0;cursor:pointer">خروج</button></div></div>
-<div class="tabs">
-<div class="tab active" onclick="showTab('home',this)">🏠 الرئيسية</div>
-<div class="tab" onclick="showTab('publish',this)">📣 حملات النشر</div>
-<div class="tab" onclick="showTab('send',this)">✉️ حملات الإرسال</div>
-<div class="tab" onclick="showTab('auto',this)">🤖 رد تلقائي</div>
-<div class="tab" onclick="showTab('users',this)">👥 المستخدمين</div>
+
+<div class="features">
+<div class="card"><h3>👥 إدارة ملايين جهات الاتصال بسهولة</h3><p>نظم جمهورك كله في مكان واحد بدون أي تعقيد.</p></div>
+<div class="card"><h3>⚡ توصيل سريع للغاية بكميات كبيرة</h3><p>مهما كان حجمها، رسائلك بتوصل في ثواني.</p></div>
+<div class="card"><h3>🎯 الاستهداف الدقيق عبر جماهير واسعة</h3><p>وصل للشخص الصح في الوقت الصح.</p></div>
+<div class="card"><h3>🛡️ بنية تحتية موثوقة</h3><p>مصممة لتحقيق إنتاجية عالية واستقرار دائم.</p></div>
 </div>
-<div class="content">
-<div id="tab-home"><div class="grid">
-<div class="stat">📣 نشر<b id="cPublish">0</b></div><div class="stat">✉️ إرسال<b id="cSend">0</b></div>
-<div class="stat">🤖 رد تلقائي<b id="cAuto">0</b></div><div class="stat">👥 مستخدمين<b id="cUsers">1</b></div>
-</div><div class="box"><h3>ابدأ</h3><button class="btn btn-blue" onclick="goPublish()">+ حملة نشر</button><button class="btn btn-green" onclick="goSend()">+ حملة إرسال</button><button class="btn" onclick="goAuto()">+ رد تلقائي</button></div></div>
-<div id="tab-publish" style="display:none"><div class="box"><h3>📣 حملة نشر</h3>
-<input id="pubName" placeholder="اسم الحملة"><textarea id="pubText" placeholder="نص البوست"></textarea>
-<select id="pubPlatform"><option>فيسبوك - صفحة</option><option>فيسبوك - جروب</option><option>انستجرام</option><option>كل المنصات</option></select>
-<input id="pubTime" type="datetime-local"><button class="btn btn-blue" onclick="addPublish()">نشر / جدولة</button></div>
-<div class="box"><h3>الحملات</h3><div id="publishList"></div></div></div>
-<div id="tab-send" style="display:none"><div class="box"><h3>✉️ حملة إرسال ماسنجر</h3>
-<input id="sendName" placeholder="اسم الحملة"><textarea id="sendText" placeholder="رسالة الماسنجر"></textarea>
-<textarea id="sendTo" placeholder="المستلمين - كل واحد في سطر"></textarea>
-<button class="btn btn-green" onclick="addSend()">ابدأ الإرسال</button></div>
-<div class="box"><h3>الحملات</h3><div id="sendList"></div></div></div>
-<div id="tab-auto" style="display:none"><div class="box"><h3>🤖 رد تلقائي على الكومنتات</h3>
-<input id="autoKey" placeholder="الكلمة: سعر - مهتم - تفاصيل">
-<textarea id="autoReply" placeholder="الرد في الكومنت"></textarea>
-<textarea id="autoDM" placeholder="رسالة الماسنجر"></textarea>
-<label><input type="checkbox" id="autoOn" checked> تفعيل</label>
-<button class="btn" onclick="addAuto()">حفظ القاعدة</button></div>
-<div class="box"><h3>القواعد</h3><div id="autoList"></div></div>
-<div class="box"><h3>🧪 جرب</h3><input id="testComment" placeholder="اكتب كومنت: كام السعر؟"><button class="btn btn-ghost" onclick="testAuto()">جرب</button><div id="testResult"></div></div></div>
-<div id="tab-users" style="display:none"><div class="box"><h3>إنشاء حساب</h3>
-<input id="newEmail" placeholder="الايميل"><input id="newName" placeholder="الاسم"><input id="newPass" placeholder="كلمة المرور">
-<button class="btn btn-green" onclick="createUser()">إنشاء</button><div id="userMsg"></div></div>
-<div class="box"><h3>المستخدمين</h3><div id="usersList"></div></div></div>
-</div></div>
+
+<div class="auth-box" id="loginBox">
+<h2>مرحباً بعودتك</h2>
+<input type="email" id="loginEmail" placeholder="البريد الإلكتروني" value="timothytylor420@gmail.com">
+<input type="password" id="loginPass" placeholder="كلمة المرور">
+<button onclick="login()">تسجيل الدخول</button>
+<div class="switch hidden" id="signupLink" onclick="showSignup()">معندكش حساب؟ <b>إنشاء حساب جديد</b></div>
+<p id="loginMsg" style="text-align:center;margin-top:10px;color:red;font-size:13px"></p>
+</div>
+
+<div class="auth-box hidden" id="signupBox">
+<h2>إنشاء حساب جديد</h2>
+<input type="text" id="signupName" placeholder="الاسم بالكامل">
+<input type="email" id="signupEmail" placeholder="البريد الإلكتروني">
+<input type="password" id="signupPass" placeholder="كلمة المرور">
+<button onclick="signup()">إنشاء الحساب</button>
+<div class="switch" onclick="showLogin()">عندك حساب؟ <b>تسجيل الدخول</b></div>
+<p id="signupMsg" style="text-align:center;margin-top:10px;color:green;font-size:13px"></p>
+</div>
+
+</div>
 <script>
-let publishes=JSON.parse(localStorage.getItem('f_pub')||'[]'),sends=JSON.parse(localStorage.getItem('f_send')||'[]'),autos=JSON.parse(localStorage.getItem('f_auto')||'[]'),users=JSON.parse(localStorage.getItem('f_users')||'[]');
-function login(){var e=document.getElementById('loginEmail').value.trim(),p=document.getElementById('loginPass').value.trim(),m=document.getElementById('msg');if(!e||!p){m.textContent='اكتب الايميل والباسورد';m.style.color='red';return;}localStorage.setItem('f_user',e);m.textContent='تم الدخول بنجاح...';m.style.color='green';setTimeout(showAdmin,500);}
-function showAdmin(){document.getElementById('loginBox').style.display='none';document.getElementById('adminBox').style.display='block';document.getElementById('userEmail').textContent=localStorage.getItem('f_user');render();}
-function hideAdmin(){localStorage.removeItem('f_user');document.getElementById('adminBox').style.display='none';document.getElementById('loginBox').style.display='flex';}
-function showTab(id,el){['home','publish','send','auto','users'].forEach(t=>document.getElementById('tab-'+t).style.display=t===id?'block':'none');document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));el.classList.add('active');}
-function goPublish(){document.querySelectorAll('.tab')[1].click();}function goSend(){document.querySelectorAll('.tab')[2].click();}function goAuto(){document.querySelectorAll('.tab')[3].click();}
-function save(){localStorage.setItem('f_pub',JSON.stringify(publishes));localStorage.setItem('f_send',JSON.stringify(sends));localStorage.setItem('f_auto',JSON.stringify(autos));localStorage.setItem('f_users',JSON.stringify(users));render();}
-function addPublish(){var t=document.getElementById('pubText').value;if(!t)return alert('اكتب نص البوست');publishes.unshift({name:document.getElementById('pubName').value||'حملة',text:t,platform:document.getElementById('pubPlatform').value,time:document.getElementById('pubTime').value||'الآن'});save();alert('تم حفظ حملة النشر ✅');}
-function addSend(){var t=document.getElementById('sendText').value,to=document.getElementById('sendTo').value.split('\n').filter(x=>x.trim());if(!t||!to.length)return alert('اكتب الرسالة والمستلمين');sends.unshift({name:document.getElementById('sendName').value||'حملة إرسال',text:t,count:to.length});save();alert('تم تجهيز الإرسال لـ '+to.length+' شخص ✅');}
-function addAuto(){var k=document.getElementById('autoKey').value.trim();if(!k)return alert('اكتب الكلمة');autos.unshift({key:k,reply:document.getElementById('autoReply').value,dm:document.getElementById('autoDM').value,on:document.getElementById('autoOn').checked});save();alert('تم حفظ الرد التلقائي ✅');}
-function testAuto(){var c=document.getElementById('testComment').value,f=autos.find(a=>a.on&&c.includes(a.key));document.getElementById('testResult').innerHTML=f?'<p style="color:green">✅ هيرد: '+f.reply+'<br>ماسنجر: '+f.dm+'</p>':'<p style="color:red">❌ مفيش قاعدة مطابقة</p>';}
-function createUser(){var e=document.getElementById('newEmail').value;if(!e)return alert('اكتب الايميل');users.unshift({email:e,name:document.getElementById('newName').value||e});save();document.getElementById('userMsg').textContent='تم الإنشاء ✅';}
-function render(){document.getElementById('cPublish').textContent=publishes.length;document.getElementById('cSend').textContent=sends.length;document.getElementById('cAuto').textContent=autos.filter(a=>a.on).length;document.getElementById('cUsers').textContent=users.length+1;
-document.getElementById('publishList').innerHTML=publishes.map(p=>'<div class="list-item"><b>'+p.name+'</b><div>'+p.text+'</div><div class="small">'+p.platform+' - '+p.time+'</div></div>').join('')||'لسه مفيش';
-document.getElementById('sendList').innerHTML=sends.map(s=>'<div class="list-item"><b>'+s.name+'</b><div>'+s.text+'</div><div class="small">'+s.count+' مستلم</div></div>').join('')||'لسه مفيش';
-document.getElementById('autoList').innerHTML=autos.map(a=>'<div class="list-item"><b>لو فيه: '+a.key+'</b><div>كومنت: '+a.reply+'</div><div>ماسنجر: '+a.dm+'</div></div>').join('')||'لسه مفيش';
-document.getElementById('usersList').innerHTML=users.map(u=>'<div class="list-item">'+u.name+' - '+u.email+'</div>').join('')||'حسابك بس';}
-if(localStorage.getItem('f_user')) showAdmin();
+function showSignup(){document.getElementById('loginBox').classList.add('hidden');document.getElementById('signupBox').classList.remove('hidden');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
+function showLogin(){document.getElementById('signupBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden');}
+function login(){document.getElementById('loginMsg').innerText='جاري تسجيل الدخول...'}
+function signup(){
+  let n=document.getElementById('signupName').value;
+  let e=document.getElementById('signupEmail').value;
+  let p=document.getElementById('signupPass').value;
+  if(!n||!e||!p){document.getElementById('signupMsg').innerText='املى كل البيانات';return;}
+  localStorage.setItem('farag_user',JSON.stringify({name:n,email:e,pass:p}));
+  document.getElementById('signupMsg').innerText='تم إنشاء الحساب بنجاح! تقدر تسجل دخول دلوقتي';
+  setTimeout(showLogin,1500);
+}
+
+// إظهار إنشاء حساب للأدمن فقط
+let clicks = 0;
+document.getElementById('logo').addEventListener('click', function(){
+  clicks++;
+  if(clicks >= 5){
+    document.getElementById('signupLink').classList.remove('hidden');
+    alert('وضع الأدمن اتفتح - تقدر تعمل حساب جديد دلوقتي');
+  }
+});
+if(window.location.search.includes('admin=farag123')){
+  document.getElementById('signupLink').classList.remove('hidden');
+}
 </script>
 </body>
 </html>
