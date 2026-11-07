@@ -1,9 +1,12 @@
 {
   "name": "farag-worker",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "type": "module",
   "main": "worker.js",
   "scripts": {
     "start": "node worker.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
   }
 }
