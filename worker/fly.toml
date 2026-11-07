@@ -2,7 +2,7 @@ app = "farag-platform"
 primary_region = "fra"
 
 [build]
-  dockerfile = "worker/Dockerfile"
+  dockerfile = "Dockerfile"
 
 [[vm]]
   size = "shared-cpu-1x"
