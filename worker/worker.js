@@ -1,93 +1,101 @@
-// worker.js - Farag Platform V2 Worker
-// بيشتغل على Fly.io - بيسحب من الطابور ويبعت واتساب
+// worker.js - Farag Platform Worker - بيبعت ماسنجر من queue_jobs
+import { createClient } from '@supabase/supabase-js';
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const WHATSAPP_TOKEN = process.env.WHATSAPP_TOKEN;
-const PHONE_NUMBER_ID = process.env.PHONE_NUMBER_ID;
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_KEY;
+const PAGE_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 if (!SUPABASE_URL || !SUPABASE_KEY) {
-  console.log('❌ ناقص SUPABASE_URL أو SUPABASE_SERVICE_ROLE_KEY');
+  console.log('❌ ناقص SUPABASE_URL او SUPABASE_SERVICE_ROLE_KEY في Secrets');
+  process.exit(1);
+}
+if (!PAGE_TOKEN) {
+  console.log('❌ ناقص PAGE_ACCESS_TOKEN في Secrets');
   process.exit(1);
 }
 
-async function supabaseFetch(path, options = {}) {
-  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
-    ...options,
-    headers: {
-      'apikey': SUPABASE_KEY,
-      'Authorization': `Bearer ${SUPABASE_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': 'return=representation',
-      ...(options.headers || {}),
-    },
-  });
-  const text = await res.text();
-  try { return JSON.parse(text); } catch { return text; }
-}
+const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-async function sendWhatsApp(to, body) {
-  if (!WHATSAPP_TOKEN || !PHONE_NUMBER_ID) {
-    console.log('⚠️ مفيش WHATSAPP_TOKEN - هعمل سكيب للارسال لـ', to);
-    return { skipped: true };
-  }
-  const res = await fetch(`https://graph.facebook.com/v21.0/${PHONE_NUMBER_ID}/messages`, {
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+async function sendMessenger(psid, text) {
+  const url = `https://graph.facebook.com/v21.0/me/messages?access_token=${PAGE_TOKEN}`;
+  const res = await fetch(url, {
     method: 'POST',
-    headers: {
-      'Authorization': `Bearer ${WHATSAPP_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      messaging_product: 'whatsapp',
-      to: to,
-      type: 'text',
-      text: { body: body },
-    }),
+      recipient: { id: psid },
+      message: { text: text }
+    })
   });
   const data = await res.json();
+  if (!res.ok) {
+    throw new Error(JSON.stringify(data));
+  }
   return data;
 }
 
-async function processQueue() {
+async function processOneJob() {
+  // هات أقدم شغلانة لسه pending
+  const { data: jobs, error } = await supabase
+    .from('queue_jobs')
+    .select('*')
+    .eq('status', 'pending')
+    .order('created_at', { ascending: true })
+    .limit(1);
+
+  if (error) {
+    console.log('❌ خطأ في قراءة queue_jobs:', error.message);
+    return false;
+  }
+  if (!jobs || jobs.length === 0) return false;
+
+  const job = jobs[0];
+  console.log(`📩 شغلانة جديدة: ${job.id} - نوعها: ${job.job_type}`);
+
+  // اقفل عليها عشان مفيش worker تاني ياخدها
+  await supabase.from('queue_jobs').update({ status: 'processing' }).eq('id', job.id);
+
   try {
-    // هات رسالة واحدة pending من الطابور
-    const rows = await supabaseFetch(
-      `messages_queue?status=eq.pending&order=created_at.asc&limit=1`
-    );
+    const payload = job.payload || {};
+    const psid = payload.psid || payload.recipient_id || payload.sender_id;
+    let text = payload.text || payload.message || '';
 
-    if (!Array.isArray(rows) || rows.length === 0) {
-      return; // مفيش حاجة
-    }
+    // لو مفيش نص، حط الرسالة الافتراضية
+    if (!text) text = 'يا محمد صل على النبي';
 
-    const job = rows[0];
-    console.log('📤 ببعت رسالة لـ:', job.to_number, 'ID:', job.id);
+    if (!psid) throw new Error('مفيش psid في الشغلانة');
 
-    // علم عليها انها بتتبعت
-    await supabaseFetch(`messages_queue?id=eq.${job.id}`, {
-      method: 'PATCH',
-      body: JSON.stringify({ status: 'processing', updated_at: new Date().toISOString() }),
-    });
+    await sendMessenger(psid, text);
+    console.log(`✅ اتبعت لـ ${psid}: ${text}`);
 
-    const result = await sendWhatsApp(job.to_number, job.body || job.message || 'مرحبا');
-
-    if (result?.error) {
-      console.log('❌ فشل الارسال:', result.error.message);
-      await supabaseFetch(`messages_queue?id=eq.${job.id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({ status: 'failed', error: result.error.message, updated_at: new Date().toISOString() }),
-      });
-    } else {
-      console.log('✅ اتبعتت:', job.id);
-      await supabaseFetch(`messages_queue?id=eq.${job.id}`, {
-        method: 'PATCH',
-        body: JSON.stringify({ status: 'sent', sent_at: new Date().toISOString(), updated_at: new Date().toISOString() }),
-      });
-    }
-  } catch (e) {
-    console.log('❌ خطأ في الـ Worker:', e.message);
+    await supabase.from('queue_jobs').update({ status: 'done' }).eq('id', job.id);
+    return true;
+  } catch (err) {
+    console.log(`❌ فشل في الشغلانة ${job.id}:`, err.message);
+    await supabase.from('queue_jobs').update({ status: 'failed', error: err.message }).eq('id', job.id);
+    return true;
   }
 }
 
-console.log('🚀 Worker V2 شغال... بيcheck كل 5 ثواني');
-setInterval(processQueue, 5000);
-processQueue();
+async function main() {
+  console.log('🚀 Worker started - يا محمد صل على النبي');
+  console.log('⏳ مستني شغلانات من queue_jobs...');
+  while (true) {
+    try {
+      const didWork = await processOneJob();
+      if (didWork) {
+        // 1 في الثانية عشان ماسنجر ميعملش بلوك
+        await sleep(1000);
+      } else {
+        // مفيش شغل، ريح 2 ثانية
+        await sleep(2000);
+      }
+    } catch (e) {
+      console.log('❌ خطأ عام:', e.message);
+      await sleep(2000);
+    }
+  }
+}
+
+main();
