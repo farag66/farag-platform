@@ -3,105 +3,92 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farag Platform - تسجيل الدخول</title>
+<title>Farag Platform - الوصول إلى الملايين</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
-body{height:100vh;overflow:hidden}
+body{background:#0f172a;color:#fff;height:100vh;overflow:hidden}
 .main{display:flex;height:100vh;flex-direction:row-reverse}
-/* الشمال - الازرق */
-.left{width:50%;background:linear-gradient(160deg,#0a1a4d 0%,#122a7a 40%,#1e6fd9 100%);color:#fff;padding:50px 45px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden}
-.left::before{content:'';position:absolute;width:450px;height:450px;background:rgba(255,255,255,0.07);border-radius:50%;top:-150px;right:-100px}
-.left::after{content:'';position:absolute;width:300px;height:300px;background:rgba(255,255,255,0.08);border-radius:50%;bottom:-100px;left:-80px}
-.logo{font-size:32px;font-weight:900;margin-bottom:40px;position:relative;z-index:2;cursor:pointer;user-select:none}
-.logo span{color:#fff}
-.left h1{font-size:38px;line-height:1.35;font-weight:900;position:relative;z-index:2}
-.left h1 mark{background:#1e5eff;color:#fff;padding:2px 10px;border-radius:4px}
-.left p.desc{color:#cbd5e1;font-size:15px;line-height:1.8;margin:18px 0 32px;position:relative;z-index:2}
-.feat{display:flex;align-items:center;gap:12px;margin-bottom:16px;font-size:15px;font-weight:600;position:relative;z-index:2}
-.feat i{font-style:normal;font-size:18px}
-/* اليمين - الابيض */
-.right{width:50%;background:#f8fafc;display:flex;align-items:center;justify-content:center;padding:30px}
-.box{width:100%;max-width:380px}
-.box h2{font-size:28px;margin-bottom:8px;color:#0f172a}
-.box p.sub{color:#64748b;font-size:14px;margin-bottom:28px}
-label{display:block;font-size:13px;font-weight:700;color:#334155;margin-bottom:8px}
-label a{float:left;color:#2563eb;text-decoration:none;font-weight:600}
-.input{position:relative;margin-bottom:18px}
-.input input{width:100%;padding:13px 42px 13px 14px;border:1px solid #e2e8f0;border-radius:10px;outline:none;font-size:14px;background:#fff;text-align:right}
-.input input:focus{border-color:#2563eb}
-.input span{position:absolute;right:13px;top:13px;color:#94a3b8}
-.eye{position:absolute;left:12px;top:12px;cursor:pointer;color:#94a3b8}
-.btn{width:100%;padding:14px;background:#0666f6;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;box-shadow:0 8px 20px rgba(6,102,246,.3)}
-.btn:hover{background:#0557d1}
-.switch{text-align:center;margin-top:16px;font-size:13px;color:#64748b;cursor:pointer}
-.switch b{color:#2563eb}
+/* الشمال - نفس الشكل القديم */
+.left{width:58%;padding:20px 40px;display:flex;flex-direction:column}
+.logo{font-size:24px;font-weight:900;cursor:pointer;user-select:none;padding:10px 0} .logo span{color:#3b82f6}
+.hero{text-align:center;padding:40px 20px 20px}
+.hero h1{font-size:52px;line-height:1.2;font-weight:900}
+.hero h1 span{color:#3b82f6}
+.hero p{color:#94a3b8;font-size:18px;margin:20px auto;max-width:650px;line-height:1.7}
+.features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.card{background:#1e293b;padding:24px;border-radius:16px;text-align:right}
+.card h3{margin-bottom:10px;font-size:17px}
+.card p{color:#94a3b8;font-size:14px;line-height:1.6}
+/* اليمين - نفس بوكس الدخول القديم بس على ابيض */
+.right{width:42%;background:#fff;color:#0f172a;display:flex;align-items:center;justify-content:center;padding:30px}
+.auth-box{width:100%;max-width:380px}
+.auth-box h2{text-align:center;margin-bottom:20px;font-size:26px}
+.auth-box input{width:100%;padding:13px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;text-align:right;outline:none}
+.auth-box button{width:100%;padding:13px;background:#0f172a;color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
+.switch{text-align:center;margin-top:14px;font-size:14px;color:#64748b;cursor:pointer}
+.switch b{color:#3b82f6}
 .hidden{display:none}
-#msg{text-align:center;margin-top:12px;font-size:13px;color:red}
-#msg2{text-align:center;margin-top:12px;font-size:13px;color:green}
-@media(max-width:800px){body{overflow:auto}.main{flex-direction:column;height:auto}.left,.right{width:100%}.left{padding:35px 25px}.right{padding:35px 20px}}
+@media(max-width:800px){body{overflow:auto;height:auto}.main{flex-direction:column;height:auto}.left,.right{width:100%}.hero h1{font-size:38px}.features{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="main">
-  <!-- الشمال الازرق -->
+  <!-- الشمال -->
   <div class="left">
     <div class="logo" id="logo">🐱 Farag <span>Platform</span></div>
-    <h1><mark>الوصول إلى الملايين.</mark><br><mark>على نطاق واسع.</mark></h1>
-    <p class="desc">منصة الرسائل الجماعية المصممة لجمهور ضخم وخطوط نقل بيانات على مستوى المؤسسات</p>
-    <div class="feat"><i>🗄️</i> إدارة ملايين جهات الاتصال بسهولة</div>
-    <div class="feat"><i>✈️</i> توصيل سريع للغاية بكميات كبيرة مهما كان حجمها</div>
-    <div class="feat"><i>👥</i> الاستهداف الدقيق عبر جماهير واسعة</div>
-    <div class="feat"><i>🛡️</i> بنية تحتية موثوقة مصممة لتحقيق إنتاجية عالية</div>
+    <div class="hero">
+      <h1>الوصول إلى الملايين.<br><span>على نطاق واسع.</span></h1>
+      <p>منصة الرسائل الجماعية المصممة لجمهور ضخم وخطوط نقل بيانات على مستوى المؤسسات</p>
+    </div>
+    <div class="features">
+      <div class="card"><h3>👥 إدارة ملايين جهات الاتصال بسهولة</h3><p>نظم جمهورك كله في مكان واحد بدون أي تعقيد.</p></div>
+      <div class="card"><h3>⚡ توصيل سريع للغاية بكميات كبيرة</h3><p>مهما كان حجمها، رسائلك بتوصل في ثواني.</p></div>
+      <div class="card"><h3>🎯 الاستهداف الدقيق عبر جماهير واسعة</h3><p>وصل للشخص الصح في الوقت الصح.</p></div>
+      <div class="card"><h3>🛡️ بنية تحتية موثوقة</h3><p>مصممة لتحقيق إنتاجية عالية واستقرار دائم.</p></div>
+    </div>
   </div>
 
-  <!-- اليمين الابيض -->
+  <!-- اليمين -->
   <div class="right">
-    <div class="box" id="loginBox">
-      <h2>تسجيل الدخول</h2>
-      <p class="sub">أدخل بيانات الاعتماد للوصول إلى حسابك</p>
-      <label>البريد الإلكتروني أو معرف فيسبوك</label>
-      <div class="input"><span>✉️</span><input type="email" id="loginEmail" placeholder="your@email.com" value="timothytylor420@gmail.com"></div>
-      <label>كلمة المرور <a href="#">نسيت كلمة السر؟</a></label>
-      <div class="input"><span>🔒</span><input type="password" id="loginPass" placeholder="••••••••••"><span class="eye" onclick="togglePass()">👁️</span></div>
-      <button class="btn" onclick="login()">تسجيل الدخول ➜</button>
+    <div class="auth-box" id="loginBox">
+      <h2>مرحباً بعودتك</h2>
+      <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" value="timothytylor420@gmail.com">
+      <input type="password" id="loginPass" placeholder="كلمة المرور">
+      <button onclick="login()">تسجيل الدخول</button>
       <div class="switch hidden" id="signupLink" onclick="showSignup()">معندكش حساب؟ <b>إنشاء حساب جديد</b></div>
-      <p id="msg"></p>
+      <p id="loginMsg" style="text-align:center;margin-top:10px;color:red;font-size:13px"></p>
     </div>
-
-    <div class="box hidden" id="signupBox">
+    <div class="auth-box hidden" id="signupBox">
       <h2>إنشاء حساب جديد</h2>
-      <p class="sub">اعمل حساب جديد للمنصة</p>
-      <label>الاسم بالكامل</label>
-      <div class="input"><span>👤</span><input type="text" id="signupName" placeholder="اسمك"></div>
-      <label>البريد الإلكتروني</label>
-      <div class="input"><span>✉️</span><input type="email" id="signupEmail" placeholder="your@email.com"></div>
-      <label>كلمة المرور</label>
-      <div class="input"><span>🔒</span><input type="password" id="signupPass" placeholder="••••••••••"></div>
-      <button class="btn" onclick="signup()">إنشاء الحساب</button>
+      <input type="text" id="signupName" placeholder="الاسم بالكامل">
+      <input type="email" id="signupEmail" placeholder="البريد الإلكتروني">
+      <input type="password" id="signupPass" placeholder="كلمة المرور">
+      <button onclick="signup()">إنشاء الحساب</button>
       <div class="switch" onclick="showLogin()">عندك حساب؟ <b>تسجيل الدخول</b></div>
-      <p id="msg2"></p>
+      <p id="signupMsg" style="text-align:center;margin-top:10px;color:green;font-size:13px"></p>
     </div>
   </div>
 </div>
-
 <script>
-function togglePass(){let i=document.getElementById('loginPass');i.type=i.type==='password'?'text':'password'}
 function showSignup(){document.getElementById('loginBox').classList.add('hidden');document.getElementById('signupBox').classList.remove('hidden')}
 function showLogin(){document.getElementById('signupBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden')}
-function login(){document.getElementById('msg').innerText='جاري تسجيل الدخول...'}
+function login(){document.getElementById('loginMsg').innerText='جاري تسجيل الدخول...'}
 function signup(){
   let n=document.getElementById('signupName').value;
   let e=document.getElementById('signupEmail').value;
   let p=document.getElementById('signupPass').value;
-  if(!n||!e||!p){document.getElementById('msg2').innerText='املى كل البيانات';return;}
+  if(!n||!e||!p){document.getElementById('signupMsg').innerText='املى كل البيانات';return;}
   localStorage.setItem('farag_user',JSON.stringify({name:n,email:e,pass:p}));
-  document.getElementById('msg2').innerText='تم إنشاء الحساب بنجاح!';
+  document.getElementById('signupMsg').innerText='تم إنشاء الحساب بنجاح! تقدر تسجل دخول دلوقتي';
   setTimeout(showLogin,1500);
 }
-let clicks=0;
-document.getElementById('logo').addEventListener('click',function(){
+let clicks = 0;
+document.getElementById('logo').addEventListener('click', function(){
   clicks++;
-  if(clicks>=5){document.getElementById('signupLink').classList.remove('hidden');alert('وضع الأدمن اتفتح - تقدر تعمل حساب جديد دلوقتي')}
+  if(clicks >= 5){
+    document.getElementById('signupLink').classList.remove('hidden');
+    alert('وضع الأدمن اتفتح - تقدر تعمل حساب جديد دلوقتي');
+  }
 });
 if(window.location.search.includes('admin=farag123')){
   document.getElementById('signupLink').classList.remove('hidden');
