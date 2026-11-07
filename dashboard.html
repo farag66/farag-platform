@@ -3,190 +3,156 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لوحة التحكم - Farag Platform</title>
+<title>Farag - ChatBot AI</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
-body{background:#0f172a;color:#fff}
-.top{background:#1e293b;padding:16px 24px;display:flex;justify-content:space-between;align-items:center}
-.top b{font-size:20px}.top b span{color:#3b82f6}
-.top button{background:#ef4444;color:#fff;border:none;padding:9px 16px;border-radius:10px;cursor:pointer;font-weight:700}
-.container{max-width:1100px;margin:auto;padding:24px}
-.welcome{font-size:26px;font-weight:900;margin-bottom:6px}
-.welcome span{color:#3b82f6}
-.sub{color:#94a3b8;margin-bottom:22px}
-.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:22px}
-.stat{background:#1e293b;padding:20px;border-radius:16px;text-align:center}
-.stat h2{font-size:30px;margin-bottom:4px}
-.stat p{color:#94a3b8;font-size:13px}
-.grid{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
-.box{background:#fff;color:#0f172a;padding:22px;border-radius:18px}
-.box h3{margin-bottom:14px}
-.box input,.box textarea,.box select{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;outline:none;text-align:right}
-.box textarea{height:90px;resize:none}
-.btn{width:100%;padding:13px;background:#0f172a;color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
-.btn-blue{background:#3b82f6}
-.btn-green{background:#25D366}
-.btn-orange{background:#ea580c}
-.contact{display:flex;justify-content:space-between;align-items:center;background:#f1f5f9;padding:10px 12px;border-radius:10px;margin-bottom:8px;font-size:14px}
-.contact button{background:#ef4444;color:#fff;border:none;padding:5px 10px;border-radius:8px;cursor:pointer}
-.history{margin-top:16px}
-.hist-item{background:#f1f5f9;padding:12px;border-radius:10px;margin-bottom:8px;font-size:14px;line-height:1.6}
-.channel{display:flex;gap:8px;margin-bottom:12px}
-.channel label{flex:1;text-align:center;background:#f1f5f9;padding:10px;border-radius:10px;cursor:pointer;font-size:13px;font-weight:700;border:2px solid transparent}
-.channel input{display:none}
-.channel input:checked + span{color:#3b82f6}
-.channel label:has(input:checked){border-color:#3b82f6;background:#eff6ff}
-@media(max-width:800px){.grid{grid-template-columns:1fr}}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+  body{display:flex;background:#f1f3f8;color:#1e293b}
+  /* Sidebar */
+  .sidebar{width:260px;background:#fff;height:100vh;position:fixed;right:0;top:0;border-left:1px solid #e2e8f0;padding:16px;overflow-y:auto}
+  .logo{font-size:32px;font-weight:900;line-height:0.8}
+  .logo span{font-size:12px;color:#64748b;display:block;font-weight:600}
+  .logo b{color:#111}
+  .menu{margin-top:24px}
+  .menu h4{font-size:11px;color:#94a3b8;letter-spacing:1px;margin:20px 0 10px}
+  .menu a{display:flex;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#1e293b;font-size:14px;cursor:pointer}
+  .menu a:hover,.menu a.active{background:#eff6ff;color:#2563eb}
+  /* Main */
+  .main{margin-right:260px;flex:1;padding:0 20px 20px;width:calc(100% - 260px)}
+  .topbar{background:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
+  .card{background:#fff;padding:18px;border-radius:14px;border-right:4px solid #22c55e;text-align:left}
+  .card h2{font-size:28px}
+  .grid{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-top:14px}
+  .box{background:#fff;padding:18px;border-radius:14px}
+  .btn{background:#16a34a;color:#fff;border:0;padding:10px 16px;border-radius:8px;cursor:pointer;width:100%;font-weight:700}
+  .btn-dark{background:#1e3a5f}
+  .page{display:none}
+  .page.active{display:block}
+  /* Social Posting Tabs */
+  .tabs{display:flex;gap:8px;margin:16px 0}
+  .tabs button{padding:10px 18px;border:1px solid #e2e8f0;background:#fff;border-radius:20px;cursor:pointer}
+  .tabs button.active{background:#7c3aed;color:#fff}
+  .tab-content{display:none;background:#fff;padding:20px;border-radius:14px}
+  .tab-content.active{display:block}
+  input,textarea,select{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin:8px 0}
+  @media(max-width:900px){.sidebar{display:none}.main{margin:0;width:100%}.cards{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<div class="top">
-<div><b>🐱 Farag <span>Platform</span></b></div>
-<div style="display:flex;gap:10px;align-items:center"><span id="userEmail" style="font-size:13px;color:#cbd5e1"></span><button onclick="logout()">تسجيل الخروج</button></div>
+
+<div class="sidebar">
+  <div class="logo"><span>ChatBot AI</span><b>farag</b></div>
+  <div class="menu">
+    <a onclick="showPage('dashboard',this)" class="active">📊 Dashboard</a>
+    <h4>INTEGRATIONS</h4>
+    <a onclick="showPage('facebook',this)">📘 Facebook & Instagram</a>
+    <a>🔌 API channels</a>
+    <h4>COMMENT FEATURE</h4>
+    <a>💬 Comment growth tools</a>
+    <a>📈 Comment Analytics</a>
+    <a>🚫 Page Restrictions</a>
+    <h4>MESSENGER TOOLS</h4>
+    <a onclick="showPage('broadcast',this)">📣 Broadcasting</a>
+    <a>🤖 Bot manager</a>
+    <a>👥 Subscriber Manager</a>
+    <h4>MEDIA & CONTENT</h4>
+    <a onclick="showPage('social',this)">🖼️ Social Posting</a>
+    <a onclick="showPage('media',this)">🎬 Media Library</a>
+  </div>
 </div>
 
-<div class="container">
-<div class="welcome">أهلاً بيك يا <span id="userName">فرج</span> 👋</div>
-<p class="sub">الإرسال الحقيقي اشتغل دلوقتي - واتساب وإيميل.</p>
+<div class="main">
+  <div class="topbar">
+    <div><b>Yoka Karam ▼</b></div>
+    <div>AR 🌙 👤 فرج ▼</div>
+  </div>
 
-<div class="stats">
-<div class="stat"><h2 id="cContacts">0</h2><p>جهة اتصال</p></div>
-<div class="stat"><h2 id="cSent">0</h2><p>رسالة اتبعتت</p></div>
-<div class="stat"><h2>∞</h2><p>الوصول للملايين</p></div>
-</div>
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="page active">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px">
+      <h1>AI Sales Agent 👤</h1>
+      <button class="btn" style="width:auto">✨ جهّز صفحة جديدة</button>
+    </div>
+    <div class="cards">
+      <div class="card"><h2>0</h2><p>مفيش حد مستنيك ✓</p></div>
+      <div class="card" style="border-color:#3b82f6"><h2>0</h2><p>أسئلة البوت ماعرفش يجاوبها 💬</p></div>
+      <div class="card" style="border-color:#f59e0b"><h2>0</h2><p>عملاء جداد النهارده • 0 تجربة 👥</p></div>
+      <div class="card" style="border-color:#ef4444"><h2>0</h2><p>💰 اشتروا النهارده</p></div>
+    </div>
+    <div class="grid">
+      <div class="box"><h3>🔔 Telegram <span style="background:#fee2e2;padding:4px 8px;border-radius:8px;font-size:12px">مش مربوط</span></h3><p style="margin:12px 0;color:#64748b">اربط عشان يوصلك أي عميل مستنيك وتقرير كل يوم.</p><button class="btn">🔗 اربط في تانية</button><p style="font-size:12px;margin-top:8px">◀ بوت خاص بيك (متقدم)</p></div>
+      <div class="box"><h3>📄 صفحاتك (0)</h3><p style="text-align:center;margin:20px 0;color:#64748b">لسه مفيش صفحة عليها المساعد.</p><div style="text-align:center"><button class="btn btn-dark" style="width:auto">✨ جهّز أول صفحة</button></div></div>
+      <div class="box"><h3>📊 شيت العملاء</h3><p style="margin:12px 0;color:#64748b">كل عملائك في جدول: الاسم، الموبايل، المطلوب، اشترى ولا لأ.</p><button class="btn" style="background:#fff;color:#16a34a;border:1px solid #16a34a;width:auto">Google Sheets 🔗</button> <button class="btn btn-dark" style="width:auto">⬇ تحميل Excel</button></div>
+      <div class="box"><h3>➕ صفحات تانية من غير مساعد (60)</h3><p style="color:#64748b">دوس عشان تفتح القايمة</p></div>
+    </div>
+  </div>
 
-<div class="grid">
-<div class="box">
-<h3>📤 إرسال رسالة حقيقية</h3>
-<input type="text" id="msgTitle" placeholder="عنوان الرسالة (للإيميل)">
-<textarea id="msgText" placeholder="اكتب رسالتك هنا..."></textarea>
+  <!-- SOCIAL POSTING -->
+  <div id="social" class="page">
+    <h1 style="margin-top:16px">Social Posting</h1>
+    <div class="tabs">
+      <button class="active" onclick="showTab('create',this)">Create New Post</button>
+      <button onclick="showTab('smart',this)">Smart Post</button>
+      <button onclick="showTab('scheduled',this)">Scheduled Jobs</button>
+    </div>
+    <div id="create" class="tab-content active">
+      <h3>انشئ بوست جديد</h3>
+      <textarea id="postText" rows="4" placeholder="اكتب البوست هنا..."></textarea>
+      <select><option>اختر الصفحة - Facebook</option><option>Instagram</option></select>
+      <input type="file" id="postMedia">
+      <button class="btn" onclick="publishPost()">نشر الآن 🚀</button>
+      <p id="postResult" style="margin-top:10px;color:green"></p>
+    </div>
+    <div id="smart" class="tab-content">
+      <h3>Smart Post - AI</h3>
+      <input id="smartTopic" placeholder="اكتب موضوع البوست، والـ AI هيكتبه...">
+      <button class="btn" style="background:#7c3aed" onclick="generateSmart()">ولّد بالـ AI ✨</button>
+      <p id="smartResult" style="margin-top:12px;background:#f8fafc;padding:12px;border-radius:10px"></p>
+    </div>
+    <div id="scheduled" class="tab-content">
+      <h3>Scheduled Jobs</h3>
+      <input type="datetime-local" id="schedTime">
+      <button class="btn btn-dark" onclick="schedulePost()">جدولة ⏰</button>
+      <ul id="jobsList" style="margin-top:12px"></ul>
+    </div>
+  </div>
 
-<div class="channel">
-<label><input type="radio" name="ch" value="whatsapp" checked><span>💬 واتساب</span></label>
-<label><input type="radio" name="ch" value="email"><span>📧 إيميل</span></label>
-<label><input type="radio" name="ch" value="both"><span>🔁 الاتنين</span></label>
-</div>
-
-<input type="text" id="msgTo" placeholder="ابعت لمين؟ اكتب رقم واتساب زي 01012345678 أو إيميل">
-<button class="btn btn-blue" onclick="sendReal()">إرسال حقيقي الآن 🚀</button>
-<button class="btn btn-green" style="margin-top:8px" onclick="sendToAllWhatsapp()">إرسال للكل على واتساب (واحد ورا واحد)</button>
-<p id="sendMsg" style="text-align:center;margin-top:10px;color:green;font-size:13px"></p>
-<div class="history" id="history"></div>
-</div>
-
-<div class="box">
-<h3>👥 جهات الاتصال</h3>
-<input type="text" id="contactName" placeholder="اسم جهة الاتصال">
-<input type="text" id="contactInfo" placeholder="رقم واتساب أو إيميل - مثال: 01012345678">
-<button class="btn" onclick="addContact()">+ إضافة جهة اتصال</button>
-<p style="font-size:12px;color:#64748b;text-align:center;margin-top:8px">للواتساب اكتب الرقم بكود الدولة من غير + ومن غير مسافات<br>مثال مصر: 201012345678</p>
-<div id="contactsList" style="margin-top:14px"></div>
-</div>
-</div>
+  <!-- MEDIA / BROADCAST PLACEHOLDER -->
+  <div id="media" class="page"><h1 style="margin-top:16px">Media Library</h1><div class="box" style="margin-top:12px"><p>Drag & drop videos here - MP4 • WEBM • MOV • AVI • MKV • Max 10GB</p><input type="file" accept="video/*" multiple onchange="alert('تم رفع '+this.files.length+' فيديو - دي نسخة تجريبية، الربط الحقيقي في الخطوة الجاية')"></div></div>
+  <div id="broadcast" class="page"><h1 style="margin-top:16px">Broadcasting</h1><div class="box" style="margin-top:12px"><textarea placeholder="رسالة البرودكاست..."></textarea><button class="btn" onclick="alert('تم إرسال البرودكاست - تجريبي')">إرسال للكل</button></div></div>
+  <div id="facebook" class="page"><h1 style="margin-top:16px">Facebook & Instagram</h1><div class="box" style="margin-top:12px"><button class="btn" style="background:#1877f2" onclick="alert('هنا هنربط Facebook Login API')">ربط فيسبوك</button></div></div>
 </div>
 
 <script>
-let user = localStorage.getItem('farag_logged') || '';
-document.getElementById('userEmail').innerText = user;
-let savedUser = JSON.parse(localStorage.getItem('farag_user') || 'null');
-if(savedUser && savedUser.name) document.getElementById('userName').innerText = savedUser.name.split(' ')[0];
-if(!user){ window.location.href='index.html'; }
-
-let contacts = JSON.parse(localStorage.getItem('farag_contacts') || '[]');
-let sent = JSON.parse(localStorage.getItem('farag_sent') || '[]');
-
-function cleanPhone(p){
-  p = p.replace(/[^0-9]/g,'');
-  if(p.startsWith('0')) p = '20' + p.substring(1);
-  if(p.startsWith('20')==false && p.length==11) p='20'+p;
-  return p;
+function showPage(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
+  if(el) el.classList.add('active');
 }
-function isEmail(s){ return s.includes('@'); }
-
-function render(){
-  document.getElementById('cContacts').innerText = contacts.length;
-  document.getElementById('cSent').innerText = sent.length;
-  let cl = document.getElementById('contactsList');
-  cl.innerHTML = contacts.length ? '' : '<p style="text-align:center;color:#94a3b8;font-size:13px">لسه مفيش جهات اتصال</p>';
-  contacts.forEach((c,i)=>{
-    cl.innerHTML += `<div class="contact"><span><b>${c.name}</b> - ${c.info}</span><div><button style="background:#25D366;margin-left:4px" onclick="sendOne(${i},'whatsapp')">واتساب</button><button style="background:#ea580c;margin-left:4px" onclick="sendOne(${i},'email')">إيميل</button><button onclick="delContact(${i})">حذف</button></div></div>`;
-  });
-  let h = document.getElementById('history');
-  h.innerHTML = sent.length ? '<h3 style="font-size:15px;margin-bottom:8px">📋 آخر الرسايل</h3>' : '';
-  sent.slice().reverse().forEach(s=>{
-    h.innerHTML += `<div class="hist-item"><b>${s.title || 'رسالة'}</b> - ${s.channel}<br>${s.text}<br><small style="color:#64748b">إلى: ${s.to || 'الكل'} - ${s.time}</small></div>`;
-  });
+function showTab(id,el){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
 }
-
-function addContact(){
-  let n=document.getElementById('contactName').value.trim();
-  let info=document.getElementById('contactInfo').value.trim();
-  if(!n||!info){alert('اكتب الاسم ورقم/إيميل');return;}
-  contacts.push({name:n,info:info});
-  localStorage.setItem('farag_contacts',JSON.stringify(contacts));
-  document.getElementById('contactName').value='';document.getElementById('contactInfo').value='';
-  render();
+function publishPost(){
+  const txt=document.getElementById('postText').value;
+  if(!txt) return alert('اكتب البوست الأول');
+  document.getElementById('postResult').innerText='✅ تم نشر البوست: '+txt+' (تجريبي - الربط مع فيسبوك API في الخطوة الجاية)';
 }
-function delContact(i){ contacts.splice(i,1); localStorage.setItem('farag_contacts',JSON.stringify(contacts)); render(); }
-
-function saveSent(title,text,to,channel){
-  sent.push({title:title,text:text,to:to,channel:channel,time:new Date().toLocaleString('ar-EG')});
-  localStorage.setItem('farag_sent',JSON.stringify(sent));
-  render();
+function generateSmart(){
+  const topic=document.getElementById('smartTopic').value||'منتجك';
+  document.getElementById('smartResult').innerText='🤖 بوست مقترح عن '+topic+': "عرض خاص النهارده بس! اطلب دلوقتي قبل ما يخلص 🔥" - ده تجريبي، هنربط OpenAI بعدين';
 }
-
-function openWhatsapp(phone, text){
-  let url = 'https://wa.me/' + cleanPhone(phone) + '?text=' + encodeURIComponent(text);
-  window.open(url,'_blank');
+let jobs=[];
+function schedulePost(){
+  const t=document.getElementById('schedTime').value;
+  if(!t) return alert('اختار الوقت');
+  jobs.push(t);
+  document.getElementById('jobsList').innerHTML=jobs.map(j=>'<li>⏰ '+j+'</li>').join('');
+  alert('تمت الجدولة!');
 }
-function openEmail(email, subject, body){
-  let url = 'mailto:'+email+'?subject='+encodeURIComponent(subject||'')+'&body='+encodeURIComponent(body);
-  window.location.href = url;
-}
-
-function sendReal(){
-  let title=document.getElementById('msgTitle').value.trim();
-  let text=document.getElementById('msgText').value.trim();
-  let to=document.getElementById('msgTo').value.trim();
-  let ch=document.querySelector('input[name="ch"]:checked').value;
-  if(!text){alert('اكتب الرسالة الأول');return;}
-  if(!to){alert('اكتب رقم أو إيميل اللي هتبعتله');return;}
-
-  if(ch=='whatsapp' || ch=='both'){
-    if(isEmail(to)){ alert('ده إيميل مش رقم، اختار إيميل'); }
-    else { openWhatsapp(to, (title?title+'\n\n':'')+text); saveSent(title,text,to,'واتساب'); }
-  }
-  if(ch=='email' || ch=='both'){
-    if(!isEmail(to)){ if(ch=='email') alert('اكتب إيميل صح'); }
-    else { openEmail(to,title,text); saveSent(title,text,to,'إيميل'); }
-  }
-  document.getElementById('sendMsg').innerText='اتفتح التطبيق الحقيقي ✅ - دوس إرسال هناك';
-}
-
-function sendOne(i, channel){
-  let text=document.getElementById('msgText').value.trim() || 'أهلاً بيك من Farag Platform';
-  let title=document.getElementById('msgTitle').value.trim();
-  let c=contacts[i];
-  if(channel=='whatsapp'){ openWhatsapp(c.info, (title?title+'\n\n':'')+text); saveSent(title,text,c.info,'واتساب'); }
-  else { openEmail(c.info,title,text); saveSent(title,text,c.info,'إيميل'); }
-}
-
-function sendToAllWhatsapp(){
-  let text=document.getElementById('msgText').value.trim();
-  let title=document.getElementById('msgTitle').value.trim();
-  if(!text){alert('اكتب الرسالة الأول');return;}
-  if(!contacts.length){alert('مفيش جهات اتصال');return;}
-  let phones = contacts.filter(c=>!isEmail(c.info));
-  if(!phones.length){alert('مفيش أرقام واتساب في جهات الاتصال');return;}
-  alert('هيفتح واتساب واحد ورا واحد لـ '+phones.length+' رقم. دوس إرسال في كل واحد.');
-  phones.forEach((c,idx)=>{
-    setTimeout(()=>{ openWhatsapp(c.info,(title?title+'\n\n':'')+text); }, idx*1500);
-  });
-  saveSent(title,text,'الكل ('+phones.length+')','واتساب جماعي');
-}
-
-function logout(){localStorage.removeItem('farag_logged');window.location.href='index.html';}
-render();
 </script>
 </body>
 </html>
