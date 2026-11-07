@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,120 +7,97 @@
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
   body{display:flex;background:#f1f3f8;color:#1e293b}
-  /* Sidebar */
-  .sidebar{width:260px;background:#fff;height:100vh;position:fixed;right:0;top:0;border-left:1px solid #e2e8f0;padding:16px;overflow-y:auto}
-  .logo{font-size:32px;font-weight:900;line-height:0.8}
-  .logo span{font-size:12px;color:#64748b;display:block;font-weight:600}
-  .logo b{color:#111}
-  .menu{margin-top:24px}
-  .menu h4{font-size:11px;color:#94a3b8;letter-spacing:1px;margin:20px 0 10px}
-  .menu a{display:flex;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#1e293b;font-size:14px;cursor:pointer}
-  .menu a:hover,.menu a.active{background:#eff6ff;color:#2563eb}
+  /* Sidebar - شمال زي الأصل */
+  .sidebar{width:260px;background:#fff;height:100vh;position:fixed;left:0;top:0;border-right:1px solid #e2e8f0;padding:16px 16px 16px 18px;overflow-y:auto;z-index:20}
+  .logo{font-size:12px;color:#64748b;font-weight:600;line-height:1}
+  .logo b{display:block;font-size:38px;color:#111;line-height:0.9;letter-spacing:-1px}
+  .menu{margin-top:22px}
+  .menu h4{font-size:11px;color:#94a3b8;letter-spacing:1px;margin:22px 0 8px;font-weight:600}
+  .menu a{display:flex;gap:10px;align-items:center;padding:10px 10px;border-radius:10px;text-decoration:none;color:#1e293b;font-size:14px;cursor:pointer}
+  .menu a.active{background:#eff6ff;color:#2563eb}
+  .menu a:hover{background:#f8fafc}
+  .icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
   /* Main */
-  .main{margin-right:260px;flex:1;padding:0 20px 20px;width:calc(100% - 260px)}
-  .topbar{background:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
-  .card{background:#fff;padding:18px;border-radius:14px;border-right:4px solid #22c55e;text-align:left}
-  .card h2{font-size:28px}
-  .grid{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-top:14px}
+  .main{margin-left:260px;flex:1;width:calc(100% - 260px)}
+  .topbar{background:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10;border-bottom:1px solid #eef2f7}
+  .topbar .left{display:flex;gap:12px;align-items:center}
+  .topbar .right{display:flex;gap:12px;align-items:center}
+  .pill{border:1px solid #cbd5e1;padding:5px 12px;border-radius:8px;font-size:13px}
+  /* Content */
+  .content{padding:20px 22px}
+  .head{display:flex;justify-content:flex-end;align-items:center;gap:12px;direction:rtl}
+  .head h1{font-size:28px;color:#1e3a5f}
+  .head .btn-dark{background:#1e3a5f;color:#fff;border:0;padding:9px 14px;border-radius:8px;font-weight:700;cursor:pointer}
+  /* Cards - بنفس ترتيب الأصل */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px;direction:rtl}
+  .card{background:#fff;padding:18px;border-radius:14px;text-align:right;border-left:4px solid #22c55e}
+  .card:nth-child(2){border-color:#3b82f6}
+  .card:nth-child(3){border-color:#f59e0b}
+  .card:nth-child(4){border-color:#22c55e}
+  .card h2{font-size:30px;text-align:left}
+  .card p{font-size:13px;color:#475569;margin-top:4px;line-height:1.5}
+  /* Grid */
+  .grid{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-top:14px;direction:rtl}
   .box{background:#fff;padding:18px;border-radius:14px}
-  .btn{background:#16a34a;color:#fff;border:0;padding:10px 16px;border-radius:8px;cursor:pointer;width:100%;font-weight:700}
-  .btn-dark{background:#1e3a5f}
+  .box h3{font-size:16px;display:flex;justify-content:space-between;align-items:center}
+  .box p{color:#64748b;font-size:13px;line-height:1.7;margin:12px 0}
+  .btn-green{background:#16a34a;color:#fff;border:0;padding:11px;border-radius:8px;width:100%;font-weight:700;cursor:pointer}
+  .btn-dark2{background:#1e3a5f;color:#fff;border:0;padding:9px 16px;border-radius:8px;font-weight:700;cursor:pointer}
+  .badge{background:#fee2e2;color:#991b1b;padding:4px 8px;border-radius:8px;font-size:12px}
   .page{display:none}
   .page.active{display:block}
-  /* Social Posting Tabs */
-  .tabs{display:flex;gap:8px;margin:16px 0}
-  .tabs button{padding:10px 18px;border:1px solid #e2e8f0;background:#fff;border-radius:20px;cursor:pointer}
-  .tabs button.active{background:#7c3aed;color:#fff}
-  .tab-content{display:none;background:#fff;padding:20px;border-radius:14px}
-  .tab-content.active{display:block}
-  input,textarea,select{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin:8px 0}
-  @media(max-width:900px){.sidebar{display:none}.main{margin:0;width:100%}.cards{grid-template-columns:1fr 1fr}}
+  @media(max-width:900px){.sidebar{display:none}.main{margin:0;width:100%}.cards{grid-template-columns:1fr 1fr}.grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="sidebar">
-  <div class="logo"><span>ChatBot AI</span><b>farag</b></div>
+  <div class="logo">ChatBot AI<b>farag</b></div>
   <div class="menu">
-    <a onclick="showPage('dashboard',this)" class="active">📊 Dashboard</a>
+    <a class="active" onclick="showPage('dashboard',this)"><span class="icon" style="background:#e0e7ff">📊</span> Dashboard</a>
     <h4>INTEGRATIONS</h4>
-    <a onclick="showPage('facebook',this)">📘 Facebook & Instagram</a>
-    <a>🔌 API channels</a>
+    <a onclick="showPage('facebook',this)"><span class="icon" style="background:#e0f2fe">📘</span> Facebook & Instagram</a>
+    <a><span class="icon" style="background:#e0f2fe">🔌</span> API channels</a>
     <h4>COMMENT FEATURE</h4>
-    <a>💬 Comment growth tools</a>
-    <a>📈 Comment Analytics</a>
-    <a>🚫 Page Restrictions</a>
+    <a><span class="icon" style="background:#ede9fe">💬</span> Comment growth tools</a>
+    <a><span class="icon" style="background:#f3e8ff">📈</span> Comment Analytics</a>
+    <a><span class="icon" style="background:#fee2e2">🚫</span> Page Restrictions</a>
     <h4>MESSENGER TOOLS</h4>
-    <a onclick="showPage('broadcast',this)">📣 Broadcasting</a>
-    <a>🤖 Bot manager</a>
-    <a>👥 Subscriber Manager</a>
-    <h4>MEDIA & CONTENT</h4>
-    <a onclick="showPage('social',this)">🖼️ Social Posting</a>
-    <a onclick="showPage('media',this)">🎬 Media Library</a>
+    <a><span class="icon" style="background:#f3e8ff">👥</span> Subscriber Manager</a>
+    <a><span class="icon" style="background:#dcfce7">🔑</span> Token Checker</a>
+    <a><span class="icon" style="background:#dcfce7">👤</span> Migrate</a>
+    <a><span class="icon" style="background:#fce7f3">🤖</span> Bot manager</a>
+    <a onclick="showPage('broadcast',this)"><span class="icon" style="background:#e0f2fe">📣</span> Broadcasting</a>
+    <a><span class="icon" style="background:#e0f2fe">↩️</span> Broadcast Job History</a>
+    <a><span class="icon" style="background:#fee2e2">🚫</span> Blocked Pages</a>
   </div>
 </div>
 
 <div class="main">
   <div class="topbar">
-    <div><b>Yoka Karam ▼</b></div>
-    <div>AR 🌙 👤 فرج ▼</div>
+    <div class="left"><span style="background:#e0f2fe;padding:8px;border-radius:8px">☰</span> <b>🟢 Yoka Karam ▼</b></div>
+    <div class="right"><span class="pill">AR</span> <span>🌙</span> <span>👤 فرج ▼</span></div>
   </div>
 
-  <!-- DASHBOARD -->
-  <div id="dashboard" class="page active">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px">
-      <h1>AI Sales Agent 👤</h1>
-      <button class="btn" style="width:auto">✨ جهّز صفحة جديدة</button>
+  <div class="content">
+    <div id="dashboard" class="page active">
+      <div class="head"><h1>AI Sales Agent 👤</h1><button class="btn-dark">✨ جهّز صفحة جديدة</button></div>
+      <div class="cards">
+        <div class="card"><h2>0</h2><p>💰 اشتروا النهارده</p></div>
+        <div class="card"><h2>0</h2><p>عملاء جداد النهارده • 0 تجربة 👥</p></div>
+        <div class="card"><h2>0</h2><p>أسئلة البوت ماعرفش يجاوبها 🧠</p></div>
+        <div class="card"><h2>✓</h2><p>مفيش حد مستنيك</p></div>
+      </div>
+      <div class="grid">
+        <div class="box" style="direction:rtl"><h3>🔔 Telegram <span class="badge">مش مربوط</span></h3><p>اربط عشان يوصلك أي عميل مستنيك وتقرير كل يوم.</p><button class="btn-green">🔗 اربط في ثانية</button><p style="font-size:12px;text-align:left">◀ بوت خاص بيك (متقدم)</p></div>
+        <div class="box" style="direction:rtl"><h3>📄 صفحاتك (0)</h3><p style="text-align:center;margin:28px 0">لسه مفيش صفحة عليها المساعد.</p><div style="text-align:center"><button class="btn-dark2">✨ جهّز أول صفحة</button></div></div>
+        <div class="box" style="direction:rtl"><h3>📊 شيت العملاء</h3><p>كل عملائك في جدول: الاسم، الموبايل، المطلوب، اشترى ولا لأ.</p><button class="btn-green" style="width:auto;background:#fff;color:#16a34a;border:1px solid #16a34a">Google Sheets 🔗</button> <button class="btn-dark2">⬇ تحميل Excel</button></div>
+        <div class="box" style="direction:rtl"><h3>➕ صفحات تانية من غير مساعد (60)</h3><p>دوس عشان تفتح القايمة</p></div>
+      </div>
     </div>
-    <div class="cards">
-      <div class="card"><h2>0</h2><p>مفيش حد مستنيك ✓</p></div>
-      <div class="card" style="border-color:#3b82f6"><h2>0</h2><p>أسئلة البوت ماعرفش يجاوبها 💬</p></div>
-      <div class="card" style="border-color:#f59e0b"><h2>0</h2><p>عملاء جداد النهارده • 0 تجربة 👥</p></div>
-      <div class="card" style="border-color:#ef4444"><h2>0</h2><p>💰 اشتروا النهارده</p></div>
-    </div>
-    <div class="grid">
-      <div class="box"><h3>🔔 Telegram <span style="background:#fee2e2;padding:4px 8px;border-radius:8px;font-size:12px">مش مربوط</span></h3><p style="margin:12px 0;color:#64748b">اربط عشان يوصلك أي عميل مستنيك وتقرير كل يوم.</p><button class="btn">🔗 اربط في تانية</button><p style="font-size:12px;margin-top:8px">◀ بوت خاص بيك (متقدم)</p></div>
-      <div class="box"><h3>📄 صفحاتك (0)</h3><p style="text-align:center;margin:20px 0;color:#64748b">لسه مفيش صفحة عليها المساعد.</p><div style="text-align:center"><button class="btn btn-dark" style="width:auto">✨ جهّز أول صفحة</button></div></div>
-      <div class="box"><h3>📊 شيت العملاء</h3><p style="margin:12px 0;color:#64748b">كل عملائك في جدول: الاسم، الموبايل، المطلوب، اشترى ولا لأ.</p><button class="btn" style="background:#fff;color:#16a34a;border:1px solid #16a34a;width:auto">Google Sheets 🔗</button> <button class="btn btn-dark" style="width:auto">⬇ تحميل Excel</button></div>
-      <div class="box"><h3>➕ صفحات تانية من غير مساعد (60)</h3><p style="color:#64748b">دوس عشان تفتح القايمة</p></div>
-    </div>
+    <div id="facebook" class="page"><h2>Facebook & Instagram</h2><div class="box" style="margin-top:12px"><button class="btn-green" style="background:#1877f2">ربط فيسبوك</button></div></div>
+    <div id="broadcast" class="page"><h2>Broadcasting</h2><div class="box" style="margin-top:12px"><p>صفحة البرودكاست هتتكمل هنا</p></div></div>
   </div>
-
-  <!-- SOCIAL POSTING -->
-  <div id="social" class="page">
-    <h1 style="margin-top:16px">Social Posting</h1>
-    <div class="tabs">
-      <button class="active" onclick="showTab('create',this)">Create New Post</button>
-      <button onclick="showTab('smart',this)">Smart Post</button>
-      <button onclick="showTab('scheduled',this)">Scheduled Jobs</button>
-    </div>
-    <div id="create" class="tab-content active">
-      <h3>انشئ بوست جديد</h3>
-      <textarea id="postText" rows="4" placeholder="اكتب البوست هنا..."></textarea>
-      <select><option>اختر الصفحة - Facebook</option><option>Instagram</option></select>
-      <input type="file" id="postMedia">
-      <button class="btn" onclick="publishPost()">نشر الآن 🚀</button>
-      <p id="postResult" style="margin-top:10px;color:green"></p>
-    </div>
-    <div id="smart" class="tab-content">
-      <h3>Smart Post - AI</h3>
-      <input id="smartTopic" placeholder="اكتب موضوع البوست، والـ AI هيكتبه...">
-      <button class="btn" style="background:#7c3aed" onclick="generateSmart()">ولّد بالـ AI ✨</button>
-      <p id="smartResult" style="margin-top:12px;background:#f8fafc;padding:12px;border-radius:10px"></p>
-    </div>
-    <div id="scheduled" class="tab-content">
-      <h3>Scheduled Jobs</h3>
-      <input type="datetime-local" id="schedTime">
-      <button class="btn btn-dark" onclick="schedulePost()">جدولة ⏰</button>
-      <ul id="jobsList" style="margin-top:12px"></ul>
-    </div>
-  </div>
-
-  <!-- MEDIA / BROADCAST PLACEHOLDER -->
-  <div id="media" class="page"><h1 style="margin-top:16px">Media Library</h1><div class="box" style="margin-top:12px"><p>Drag & drop videos here - MP4 • WEBM • MOV • AVI • MKV • Max 10GB</p><input type="file" accept="video/*" multiple onchange="alert('تم رفع '+this.files.length+' فيديو - دي نسخة تجريبية، الربط الحقيقي في الخطوة الجاية')"></div></div>
-  <div id="broadcast" class="page"><h1 style="margin-top:16px">Broadcasting</h1><div class="box" style="margin-top:12px"><textarea placeholder="رسالة البرودكاست..."></textarea><button class="btn" onclick="alert('تم إرسال البرودكاست - تجريبي')">إرسال للكل</button></div></div>
-  <div id="facebook" class="page"><h1 style="margin-top:16px">Facebook & Instagram</h1><div class="box" style="margin-top:12px"><button class="btn" style="background:#1877f2" onclick="alert('هنا هنربط Facebook Login API')">ربط فيسبوك</button></div></div>
 </div>
 
 <script>
@@ -129,29 +106,6 @@ function showPage(id,el){
   document.getElementById(id).classList.add('active');
   document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
   if(el) el.classList.add('active');
-}
-function showTab(id,el){
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-}
-function publishPost(){
-  const txt=document.getElementById('postText').value;
-  if(!txt) return alert('اكتب البوست الأول');
-  document.getElementById('postResult').innerText='✅ تم نشر البوست: '+txt+' (تجريبي - الربط مع فيسبوك API في الخطوة الجاية)';
-}
-function generateSmart(){
-  const topic=document.getElementById('smartTopic').value||'منتجك';
-  document.getElementById('smartResult').innerText='🤖 بوست مقترح عن '+topic+': "عرض خاص النهارده بس! اطلب دلوقتي قبل ما يخلص 🔥" - ده تجريبي، هنربط OpenAI بعدين';
-}
-let jobs=[];
-function schedulePost(){
-  const t=document.getElementById('schedTime').value;
-  if(!t) return alert('اختار الوقت');
-  jobs.push(t);
-  document.getElementById('jobsList').innerHTML=jobs.map(j=>'<li>⏰ '+j+'</li>').join('');
-  alert('تمت الجدولة!');
 }
 </script>
 </body>
