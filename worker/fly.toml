@@ -1,13 +1,8 @@
-app = "farag-worker-v2"
+app = "farag-platform"
 primary_region = "fra"
 
 [build]
-  dockerfile = "Dockerfile"
-
-[env]
-  NODE_ENV = "production"
+  dockerfile = "worker/Dockerfile"
 
 [[vm]]
-  cpu_kind = "shared"
-  cpus = 1
-  memory_mb = 256
+  size = "shared-cpu-1x"
