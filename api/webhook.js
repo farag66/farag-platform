@@ -1,9 +1,7 @@
 // api/webhook.js - Farag Platform V2
-// بيستقبل كومنت فيسبوك -> يدوره على المحفز -> يحطه في طابور الصفحة دي بس
-
 const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const VERIFY_TOKEN = process.env.VERIFY_TOKEN || 'farag_v2_verify';
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY;
+const VERIFY_TOKEN = process.env.FB_VERIFY_TOKEN || process.env.VERIFY_TOKEN || 'farag_v2_verify';
 
 async function supabase(table, method = 'GET', body = null, query = '') {
   const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}${query}`, {
@@ -21,7 +19,6 @@ async function supabase(table, method = 'GET', body = null, query = '') {
 }
 
 export default async function handler(req, res) {
-  // 1. فيسبوك بيتحقق من الويب هوك
   if (req.method === 'GET') {
     const mode = req.query['hub.mode'];
     const token = req.query['hub.verify_token'];
@@ -31,41 +28,29 @@ export default async function handler(req, res) {
     }
     return res.status(403).send('Forbidden');
   }
-
-  // 2. استقبال الكومنت
   if (req.method === 'POST') {
     try {
       const body = req.body;
       if (body.object !== 'page') return res.status(200).send('EVENT_RECEIVED');
-
       for (const entry of body.entry || []) {
-        const pageId = entry.id; // facebook_page_id
+        const pageId = entry.id;
         const changes = entry.changes || [];
-
-        // هات الصفحة دي من الداتا بيز
         const pages = await supabase('pages', 'GET', null, `?facebook_page_id=eq.${pageId}&select=id,owner_id,is_active`);
         if (!pages.length || !pages[0].is_active) continue;
         const page = pages[0];
-
         for (const change of changes) {
           if (change.field !== 'feed') continue;
           const val = change.value || {};
           if (val.item !== 'comment' || val.verb !== 'add') continue;
-
           const commentText = (val.message || '').trim();
           const commentId = val.comment_id;
           const postId = val.post_id;
           const senderId = val.from?.id || 'unknown';
           const senderName = val.from?.name || '';
-
-          // هات المحفزات بتاعة الصفحة دي
           const triggers = await supabase('triggers', 'GET', null, `?page_id=eq.${page.id}&is_active=eq.true&select=*`);
-          // شوف انهي محفز مطابق للكومنت
           let matched = triggers.find(t => t.trigger_type === 'comment' && (!t.keyword || commentText.toLowerCase().includes(t.keyword.toLowerCase())));
           if (!matched && triggers.length) matched = triggers.find(t => t.trigger_type === 'comment' && !t.keyword);
           if (!matched) continue;
-
-          // اعمل / هات المشترك
           let subs = await supabase('subscribers', 'GET', null, `?page_id=eq.${page.id}&psid=eq.${senderId}&select=id`);
           let subId;
           if (subs.length) {
@@ -80,8 +65,6 @@ export default async function handler(req, res) {
             });
             subId = created[0]?.id;
           }
-
-          // حطه في الطابور بتاع الصفحة دي بس - ده قلب V2
           await supabase('queue_jobs', 'POST', {
             page_id: page.id,
             owner_id: page.owner_id,
