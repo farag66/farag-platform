@@ -6,72 +6,73 @@
 <title>Farag Platform - الوصول إلى الملايين</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
-body{background:#0f172a;color:#fff;height:100vh;overflow:hidden}
-.main{display:flex;height:100vh;flex-direction:row-reverse}
-/* الشمال - نفس الشكل القديم */
-.left{width:58%;padding:20px 40px;display:flex;flex-direction:column}
-.logo{font-size:24px;font-weight:900;cursor:pointer;user-select:none;padding:10px 0} .logo span{color:#3b82f6}
-.hero{text-align:center;padding:40px 20px 20px}
+body{background:#0f172a;color:#fff}
+.container{max-width:1100px;margin:auto;padding:20px}
+header{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{font-size:24px;font-weight:900;cursor:pointer;user-select:none} .logo span{color:#3b82f6}
+.btn{padding:12px 24px;border-radius:12px;border:none;cursor:pointer;font-weight:700}
+.btn-blue{background:#3b82f6;color:#fff}
+.btn-white{background:#fff;color:#0f172a}
+.hero{text-align:center;padding:70px 20px 40px}
 .hero h1{font-size:52px;line-height:1.2;font-weight:900}
 .hero h1 span{color:#3b82f6}
 .hero p{color:#94a3b8;font-size:18px;margin:20px auto;max-width:650px;line-height:1.7}
-.features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:20px 0}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:40px 0}
 .card{background:#1e293b;padding:24px;border-radius:16px;text-align:right}
 .card h3{margin-bottom:10px;font-size:17px}
 .card p{color:#94a3b8;font-size:14px;line-height:1.6}
-/* اليمين - نفس بوكس الدخول القديم بس على ابيض */
-.right{width:42%;background:#fff;color:#0f172a;display:flex;align-items:center;justify-content:center;padding:30px}
-.auth-box{width:100%;max-width:380px}
-.auth-box h2{text-align:center;margin-bottom:20px;font-size:26px}
+.auth-box{background:#fff;color:#0f172a;max-width:420px;margin:30px auto;padding:28px;border-radius:20px}
+.auth-box h2{text-align:center;margin-bottom:20px}
 .auth-box input{width:100%;padding:13px;border:1px solid #e2e8f0;border-radius:10px;margin-bottom:12px;text-align:right;outline:none}
 .auth-box button{width:100%;padding:13px;background:#0f172a;color:#fff;border:none;border-radius:10px;font-weight:800;cursor:pointer}
 .switch{text-align:center;margin-top:14px;font-size:14px;color:#64748b;cursor:pointer}
 .switch b{color:#3b82f6}
 .hidden{display:none}
-@media(max-width:800px){body{overflow:auto;height:auto}.main{flex-direction:column;height:auto}.left,.right{width:100%}.hero h1{font-size:38px}.features{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<div class="main">
-  <!-- الشمال -->
-  <div class="left">
-    <div class="logo" id="logo">🐱 Farag <span>Platform</span></div>
-    <div class="hero">
-      <h1>الوصول إلى الملايين.<br><span>على نطاق واسع.</span></h1>
-      <p>منصة الرسائل الجماعية المصممة لجمهور ضخم وخطوط نقل بيانات على مستوى المؤسسات</p>
-    </div>
-    <div class="features">
-      <div class="card"><h3>👥 إدارة ملايين جهات الاتصال بسهولة</h3><p>نظم جمهورك كله في مكان واحد بدون أي تعقيد.</p></div>
-      <div class="card"><h3>⚡ توصيل سريع للغاية بكميات كبيرة</h3><p>مهما كان حجمها، رسائلك بتوصل في ثواني.</p></div>
-      <div class="card"><h3>🎯 الاستهداف الدقيق عبر جماهير واسعة</h3><p>وصل للشخص الصح في الوقت الصح.</p></div>
-      <div class="card"><h3>🛡️ بنية تحتية موثوقة</h3><p>مصممة لتحقيق إنتاجية عالية واستقرار دائم.</p></div>
-    </div>
-  </div>
+<div class="container">
+<header>
+<div class="logo" id="logo">🐱 Farag <span>Platform</span></div>
+<div><button class="btn btn-white" onclick="showLogin()">تسجيل الدخول</button></div>
+</header>
 
-  <!-- اليمين -->
-  <div class="right">
-    <div class="auth-box" id="loginBox">
-      <h2>مرحباً بعودتك</h2>
-      <input type="email" id="loginEmail" placeholder="البريد الإلكتروني" value="timothytylor420@gmail.com">
-      <input type="password" id="loginPass" placeholder="كلمة المرور">
-      <button onclick="login()">تسجيل الدخول</button>
-      <div class="switch hidden" id="signupLink" onclick="showSignup()">معندكش حساب؟ <b>إنشاء حساب جديد</b></div>
-      <p id="loginMsg" style="text-align:center;margin-top:10px;color:red;font-size:13px"></p>
-    </div>
-    <div class="auth-box hidden" id="signupBox">
-      <h2>إنشاء حساب جديد</h2>
-      <input type="text" id="signupName" placeholder="الاسم بالكامل">
-      <input type="email" id="signupEmail" placeholder="البريد الإلكتروني">
-      <input type="password" id="signupPass" placeholder="كلمة المرور">
-      <button onclick="signup()">إنشاء الحساب</button>
-      <div class="switch" onclick="showLogin()">عندك حساب؟ <b>تسجيل الدخول</b></div>
-      <p id="signupMsg" style="text-align:center;margin-top:10px;color:green;font-size:13px"></p>
-    </div>
-  </div>
+<div class="hero">
+<h1>الوصول إلى الملايين.<br><span>على نطاق واسع.</span></h1>
+<p>منصة الرسائل الجماعية المصممة لجمهور ضخم وخطوط نقل بيانات على مستوى المؤسسات</p>
+<button class="btn btn-blue" onclick="showLogin()">تسجيل الدخول</button>
+</div>
+
+<div class="features">
+<div class="card"><h3>👥 إدارة ملايين جهات الاتصال بسهولة</h3><p>نظم جمهورك كله في مكان واحد بدون أي تعقيد.</p></div>
+<div class="card"><h3>⚡ توصيل سريع للغاية بكميات كبيرة</h3><p>مهما كان حجمها، رسائلك بتوصل في ثواني.</p></div>
+<div class="card"><h3>🎯 الاستهداف الدقيق عبر جماهير واسعة</h3><p>وصل للشخص الصح في الوقت الصح.</p></div>
+<div class="card"><h3>🛡️ بنية تحتية موثوقة</h3><p>مصممة لتحقيق إنتاجية عالية واستقرار دائم.</p></div>
+</div>
+
+<div class="auth-box" id="loginBox">
+<h2>مرحباً بعودتك</h2>
+<input type="email" id="loginEmail" placeholder="البريد الإلكتروني" value="timothytylor420@gmail.com">
+<input type="password" id="loginPass" placeholder="كلمة المرور">
+<button onclick="login()">تسجيل الدخول</button>
+<div class="switch hidden" id="signupLink" onclick="showSignup()">معندكش حساب؟ <b>إنشاء حساب جديد</b></div>
+<p id="loginMsg" style="text-align:center;margin-top:10px;color:red;font-size:13px"></p>
+</div>
+
+<div class="auth-box hidden" id="signupBox">
+<h2>إنشاء حساب جديد</h2>
+<input type="text" id="signupName" placeholder="الاسم بالكامل">
+<input type="email" id="signupEmail" placeholder="البريد الإلكتروني">
+<input type="password" id="signupPass" placeholder="كلمة المرور">
+<button onclick="signup()">إنشاء الحساب</button>
+<div class="switch" onclick="showLogin()">عندك حساب؟ <b>تسجيل الدخول</b></div>
+<p id="signupMsg" style="text-align:center;margin-top:10px;color:green;font-size:13px"></p>
+</div>
+
 </div>
 <script>
-function showSignup(){document.getElementById('loginBox').classList.add('hidden');document.getElementById('signupBox').classList.remove('hidden')}
-function showLogin(){document.getElementById('signupBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden')}
+function showSignup(){document.getElementById('loginBox').classList.add('hidden');document.getElementById('signupBox').classList.remove('hidden');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})}
+function showLogin(){document.getElementById('signupBox').classList.add('hidden');document.getElementById('loginBox').classList.remove('hidden');}
 function login(){document.getElementById('loginMsg').innerText='جاري تسجيل الدخول...'}
 function signup(){
   let n=document.getElementById('signupName').value;
@@ -82,6 +83,8 @@ function signup(){
   document.getElementById('signupMsg').innerText='تم إنشاء الحساب بنجاح! تقدر تسجل دخول دلوقتي';
   setTimeout(showLogin,1500);
 }
+
+// إظهار إنشاء حساب للأدمن فقط
 let clicks = 0;
 document.getElementById('logo').addEventListener('click', function(){
   clicks++;
