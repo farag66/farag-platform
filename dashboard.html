@@ -8,137 +8,155 @@
 <style>
 body{background:#eef1f6;font-family:Inter,system-ui}
 .card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.06)}
-.progress{display:flex;height:10px;border-radius:99px;overflow:hidden}
+.progress{display:flex;height:10px;border-radius:99px;overflow:hidden;background:#e5e7eb}
 .sidebar{transform:translateX(-100%);transition:.3s}
 .sidebar.open{transform:translateX(0)}
 .side-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;font-size:13px;font-weight:600;color:#334155;cursor:pointer}
 .side-item:hover{background:#f1f5f9}
 .side-item.active{background:#e8f0ff;color:#1d4ed8}
-.side-item.active .ico{background:#2563eb;color:#fff!important}
 .ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .sec{font-size:9px;letter-spacing:2px;font-weight:800;color:#94a3b8;margin:16px 0 8px 10px}
 .overlay{display:none}.overlay.show{display:block}
-.dark body,.dark{background:#0f172a!important}.dark .card{background:#1e293b!important;color:#fff}.dark .text-gray-500{color:#94a3b8!important}.dark .text-gray-900{color:#fff!important}
 </style>
 </head>
 <body>
-
 <!-- TOP BAR -->
 <div class="bg-white shadow-sm sticky top-0 z-40 flex items-center justify-between px-3 py-3">
-  <button onclick="toggleSide()" class="text-2xl px-2">☰</button>
-  <div class="flex items-center gap-2">
-    <span class="bg-sky-50 text-sky-600 text-[11px] font-bold px-2 py-1 rounded-md border border-sky-200">AR</span>
-    <button onclick="document.documentElement.classList.toggle('dark')" class="text-lg">🌙</button>
-    <div class="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-full"><img src="https://i.pravatar.cc/32?img=12" class="w-6 h-6 rounded-full"><span class="text-xs font-bold">فرج ⌄</span></div>
-  </div>
+<button onclick="toggleSide()" class="text-2xl px-2">☰</button>
+<div class="flex items-center gap-2"><span class="bg-sky-50 text-sky-600 text-[11px] font-bold px-2 py-1 rounded-md border border-sky-200">AR</span><button onclick="document.documentElement.classList.toggle('dark')" class="text-lg">🌙</button><div class="flex items-center gap-1 bg-orange-50 px-2 py-1 rounded-full"><img src="https://i.pravatar.cc/32?img=12" class="w-6 h-6 rounded-full"><span class="text-xs font-bold">فرج ⌄</span></div></div>
 </div>
-
-<!-- OVERLAY -->
 <div id="overlay" class="overlay fixed inset-0 bg-black/50 z-40" onclick="toggleSide()"></div>
-
-<!-- SIDEBAR - زي الصورة بالظبط -->
+<!-- SIDEBAR -->
 <div id="sidebar" class="sidebar fixed top-0 left-0 bottom-0 w-[290px] bg-white z-50 overflow-y-auto pb-24 shadow-2xl">
-  <div class="flex items-center gap-2 px-4 pt-4 pb-3">
-    <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-black">C</div>
-    <div class="leading-none"><div class="font-black text-[18px]">marius <span class="text-[9px] bg-blue-100 text-blue-700 px-1 py-0.5 rounded">ChatBot AI</span></div><div class="text-[10px] text-gray-400">Farag Platform</div></div>
-  </div>
-
-  <div class="px-3">
-    <div class="side-item active" onclick="openPage('dashboard',this)"><span class="ico bg-blue-600 text-white">🏠</span> Dashboard</div>
-
-    <div class="sec">INTEGRATIONS</div>
-    <div class="side-item" onclick="openPage('facebook',this)"><span class="ico bg-blue-50 text-blue-600">f</span> Facebook & Instagram</div>
-    <div class="side-item" onclick="openPage('api',this)"><span class="ico bg-sky-50 text-sky-600">🔌</span> API channels</div>
-
-    <div class="sec">COMMENT FEATURE</div>
-    <div class="side-item" onclick="openPage('growth',this)"><span class="ico bg-purple-50 text-purple-600">💬</span> Comment growth tools</div>
-    <div class="side-item" onclick="openPage('analytics',this)"><span class="ico bg-violet-50 text-violet-600">📊</span> Comment Analytics</div>
-    <div class="side-item" onclick="openPage('restrictions',this)"><span class="ico bg-red-50 text-red-500">🚫</span> Page Restrictions</div>
-
-    <div class="sec">MESSENGER TOOLS</div>
-    <div class="side-item" onclick="openPage('subscribers',this)"><span class="ico bg-purple-50 text-purple-600">👥</span> Subscriber Manager</div>
-    <div class="side-item" onclick="openPage('token',this)"><span class="ico bg-green-50 text-green-600">🔑</span> Token Checker</div>
-    <div class="side-item" onclick="openPage('migrate',this)"><span class="ico bg-green-50 text-green-600">✈️</span> Migrate</div>
-    <div class="side-item" onclick="openPage('bot',this)"><span class="ico bg-pink-50 text-pink-600">🤖</span> Bot manager</div>
-    <div class="side-item" onclick="openPage('broadcasting',this)"><span class="ico bg-blue-50 text-blue-600">📢</span> Broadcasting</div>
-    <div class="side-item" onclick="openPage('history',this)"><span class="ico bg-sky-50 text-sky-600">🕒</span> Broadcast Job History</div>
-    <div class="side-item" onclick="openPage('blocked',this)"><span class="ico bg-red-50 text-red-500">🚫</span> Blocked Pages</div>
-    <div class="side-item" onclick="openPage('media',this)"><span class="ico bg-violet-50 text-violet-600">🖼️</span> Media & Content</div>
-
-    <div class="sec">UTILITY MESSAGING</div>
-    <div class="side-item" onclick="openPage('utility',this)"><span class="ico bg-gray-100 text-gray-700">✈️</span> Launch Utility</div>
-
-    <div class="sec">POSTING FEATURE</div>
-    <div class="side-item" onclick="openPage('posting',this)"><span class="ico bg-purple-50 text-purple-600">✦</span> Social Posting</div>
-    <div class="side-item" onclick="openPage('aiagent',this)"><span class="ico bg-green-50 text-green-600">👤</span> AI Sales Agent</div>
-
-    <div class="sec">PAYMENT</div>
-    <div class="side-item" onclick="openPage('payment',this)"><span class="ico bg-yellow-50 text-yellow-600">💰</span> Payment <span class="ml-auto">›</span></div>
-  </div>
-  <button onclick="localStorage.removeItem('farag_current_user');location.href='login.html'" class="mx-3 mt-6 w-[calc(100%-24px)] bg-red-500 text-white py-2.5 rounded-xl font-bold text-sm">Logout</button>
+<div class="flex items-center gap-2 px-4 pt-4 pb-3"><div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center text-white font-black">C</div><div class="leading-none"><div class="font-black text-[18px]">marius <span class="text-[9px] bg-blue-100 text-blue-700 px-1 py-0.5 rounded">ChatBot AI</span></div><div class="text-[10px] text-gray-400">Farag Platform</div></div></div>
+<div class="px-3">
+<div class="side-item active" onclick="openPage('dashboard',this)"><span class="ico bg-blue-600 text-white">🏠</span> Dashboard</div>
+<div class="sec">INTEGRATIONS</div>
+<div class="side-item" onclick="openPage('facebook',this)"><span class="ico bg-blue-50 text-blue-600">f</span> Facebook & Instagram</div>
+<div class="side-item" onclick="openPage('api',this)"><span class="ico bg-sky-50 text-sky-600">🔌</span> API channels</div>
+<div class="sec">COMMENT FEATURE</div>
+<div class="side-item" onclick="openPage('growth',this)"><span class="ico bg-purple-50 text-purple-600">💬</span> Comment growth tools</div>
+<div class="side-item" onclick="openPage('analytics',this)"><span class="ico bg-violet-50 text-violet-600">📊</span> Comment Analytics</div>
+<div class="side-item" onclick="openPage('restrictions',this)"><span class="ico bg-red-50 text-red-500">🚫</span> Page Restrictions</div>
+<div class="sec">MESSENGER TOOLS</div>
+<div class="side-item" onclick="openPage('subscribers',this)"><span class="ico bg-purple-50 text-purple-600">👥</span> Subscriber Manager</div>
+<div class="side-item" onclick="openPage('token',this)"><span class="ico bg-green-50 text-green-600">🔑</span> Token Checker</div>
+<div class="side-item" onclick="openPage('migrate',this)"><span class="ico bg-green-50 text-green-600">✈️</span> Migrate</div>
+<div class="side-item" onclick="openPage('bot',this)"><span class="ico bg-pink-50 text-pink-600">🤖</span> Bot manager</div>
+<div class="side-item" onclick="openPage('broadcasting',this)"><span class="ico bg-blue-50 text-blue-600">📢</span> Broadcasting</div>
+<div class="side-item" onclick="openPage('history',this)"><span class="ico bg-sky-50 text-sky-600">🕒</span> Broadcast Job History</div>
+<div class="side-item" onclick="openPage('blocked',this)"><span class="ico bg-red-50 text-red-500">🚫</span> Blocked Pages</div>
+<div class="side-item" onclick="openPage('media',this)"><span class="ico bg-violet-50 text-violet-600">🖼️</span> Media & Content</div>
+<div class="sec">UTILITY MESSAGING</div>
+<div class="side-item" onclick="openPage('utility',this)"><span class="ico bg-gray-100 text-gray-700">✈️</span> Launch Utility</div>
+<div class="sec">POSTING FEATURE</div>
+<div class="side-item" onclick="openPage('posting',this)"><span class="ico bg-purple-50 text-purple-600">✦</span> Social Posting</div>
+<div class="side-item" onclick="openPage('aiagent',this)"><span class="ico bg-green-50 text-green-600">👤</span> AI Sales Agent</div>
+<div class="sec">PAYMENT</div>
+<div class="side-item" onclick="openPage('payment',this)"><span class="ico bg-yellow-50 text-yellow-600">💰</span> Payment <span class="ml-auto">›</span></div>
+</div>
+<button onclick="localStorage.removeItem('farag_current_user');location.href='login.html'" class="mx-3 mt-6 w-[calc(100%-24px)] bg-red-500 text-white py-2.5 rounded-xl font-bold text-sm">Logout</button>
 </div>
 
 <div class="p-3 md:p-6 max-w-[1100px] mx-auto pb-24">
-  <!-- DASHBOARD CONTENT -->
-  <div id="page-dashboard">
-    <div class="flex items-start justify-between gap-2">
-      <div><h1 class="text-[22px] md:text-[26px] font-black text-gray-900 leading-none">Command Center</h1><p id="todayDate" class="text-gray-500 text-[12px] mt-1">Tuesday, November 10, 2026</p></div>
-      <div class="flex gap-2 shrink-0">
-        <span class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>Live · <span id="liveClock" class="font-mono font-bold">03:42:56 م</span></span>
-        <button onclick="doRefresh()" class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm font-bold">⟳ Refresh</button>
-      </div>
-    </div>
-    <div class="flex items-center gap-2 mt-6 mb-3"><span class="text-purple-600">👥</span><span class="text-[11px] font-black tracking-wider text-gray-500">SUBSCRIBERS</span><div class="flex-1 h-px bg-gray-200"></div></div>
-    <!-- بتاعتنا مصفرة وحقيقية -->
-    <div class="card p-4 md:p-5">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="col-span-2 md:col-span-1"><div class="text-[10px] tracking-wider text-gray-500 font-bold">TOTAL SUBSCRIBERS</div><div class="text-[32px] font-black leading-none mt-1">0</div><div class="flex gap-1.5 mt-2"><span class="bg-blue-50 text-[11px] px-2 py-0.5 rounded-full font-bold">f 0 FB</span><span class="bg-gray-50 text-[11px] px-2 py-0.5 rounded-full font-bold">◎ 0 IG</span></div></div>
-        <div class="bg-[#f8f9fb] rounded-xl p-3"><div class="text-[10px] font-bold text-gray-500">🚩 PAGES</div><div class="text-xl font-black">0</div><div class="text-[11px] mt-1">● 0 Enabled · ● 0 Disabled</div></div>
-        <div class="bg-[#f8f9fb] rounded-xl p-3"><div class="text-[10px] font-bold text-gray-500">TODAY</div><div class="text-xl font-black">0</div><div class="text-[11px] text-gray-500">0 FB · 0 IG</div></div>
-        <div class="bg-[#f8f9fb] rounded-xl p-3"><div class="text-[10px] font-bold text-gray-500">YESTERDAY</div><div class="text-xl font-black">0</div><div class="text-[11px] text-gray-500">New subscribers</div></div>
-      </div>
-      <div class="progress mt-4"><div style="width:0%;background:#22c55e"></div></div>
-      <div class="text-[11px] text-gray-500 mt-2">🟢 Subscribers <b class="text-black">0</b> · 🟡 Ready to migrate <b class="text-black">0</b> · 🔴 Unavailable <b class="text-black">0</b> · ⚪ Scanned leads <b class="text-black">0</b></div>
-    </div>
-    <div class="flex items-center gap-2 mt-6 mb-3"><span>📊</span><span class="text-[11px] font-black tracking-wider text-gray-500">CAMPAIGN OVERVIEW</span><div class="flex-1 h-px bg-gray-200"></div></div>
-    <div class="grid grid-cols-2 gap-3">
-      <div class="card p-4 flex gap-3"><span class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">✈️</span><div><div class="text-[20px] font-black leading-none">0</div><div class="text-[11px] text-gray-500 mt-1">Messages Sent</div></div></div>
-      <div class="card p-4 flex gap-3"><span class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center">💬</span><div><div class="text-[20px] font-black leading-none text-green-600">0</div><div class="text-[11px] text-gray-500 mt-1">Comments Today</div></div></div>
-      <div class="card p-4 flex gap-3"><span class="w-10 h-10 bg-yellow-50 rounded-xl flex items-center justify-center">🚀</span><div><div class="text-[20px] font-black leading-none text-yellow-500">0</div><div class="text-[11px] text-gray-500 mt-1">Running Now</div></div></div>
-      <div class="card p-4 flex gap-3"><span class="w-10 h-10 bg-pink-50 rounded-xl flex items-center justify-center">❗</span><div><div class="text-[20px] font-black leading-none text-pink-600">0</div><div class="text-[11px] text-gray-500 mt-1">Failed Items</div></div></div>
-    </div>
-    <div class="card p-4 mt-3"><div class="font-bold text-sm">📊 7-Day Activity</div><canvas id="lineChart" height="160" class="mt-3"></canvas></div>
-    <div class="card p-4 mt-3"><div class="font-bold text-sm">🕒 Recent Broadcasts</div><div class="text-center text-gray-400 text-[12px] py-6">No campaigns yet - بتاعتنا مصفرة وهتزيد مع شغلك</div></div>
-  </div>
+<div id="page-dashboard">
+<!-- HEADER -->
+<div class="flex items-start justify-between gap-2"><div><h1 class="text-[22px] md:text-[26px] font-black text-gray-900 leading-none">Command Center</h1><p id="todayDate" class="text-gray-500 text-[12px] mt-1">Tuesday, November 10, 2026</p></div><div class="flex gap-2 shrink-0"><span class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>Live · <span id="liveClock" class="font-mono font-bold">03:42:56 م</span></span><button onclick="doRefresh()" class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm font-bold">⟳ Refresh</button></div></div>
 
-  <!-- ANY OTHER PAGE -->
-  <div id="page-other" class="hidden">
-    <div class="card p-6 text-center">
-      <div id="otherIcon" class="text-5xl mb-3">📢</div>
-      <h2 id="otherTitle" class="text-xl font-black">Broadcasting</h2>
-      <p class="text-gray-500 text-sm mt-2">دي التبويبة اللي اخترتها من القايمة الجانبية.<br>ابعتلي سكرين بتاعتها وهنعملها زيها بالظبط وشغالة بجد.</p>
-      <button onclick="openPage('dashboard', document.querySelector('.side-item'))" class="mt-4 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm">← Back to Dashboard</button>
-    </div>
-  </div>
+<!-- SUBSCRIBERS -->
+<div class="flex items-center gap-2 mt-6 mb-3"><span class="text-purple-600">👥</span><span class="text-[11px] font-black tracking-wider text-gray-500">SUBSCRIBERS</span><div class="flex-1 h-px bg-gray-200"></div></div>
+<div class="card p-4 md:p-5">
+<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+<div class="col-span-2 md:col-span-1"><div class="text-[10px] tracking-wider text-gray-500 font-bold">TOTAL SUBSCRIBERS</div><div class="text-[32px] md:text-[36px] font-black leading-none mt-1">0</div><div class="flex gap-1.5 mt-2"><span class="bg-blue-50 text-[11px] px-2 py-0.5 rounded-full font-bold">f &nbsp;0 FB</span><span class="bg-gray-50 text-[11px] px-2 py-0.5 rounded-full font-bold">◎ 0 IG</span></div></div>
+<div class="bg-[#f8f9fb] rounded-xl p-3"><div class="text-[10px] font-bold text-gray-500">🚩 PAGES</div><div class="text-xl font-black">0</div><div class="text-[11px] mt-1"><span class="text-green-600 font-bold">● 0 Enabled</span> · <span class="text-red-500 font-bold">● 0 Disabled</span></div><div class="text-[11px] text-gray-500 mt-1">✅ All pages scanned · 05:10 م</div></div>
+<div class="bg-[#f8f9fb] rounded-xl p-3"><div class="text-[10px] font-bold text-gray-500">TODAY</div><div class="text-xl font-black">0</div><div class="text-[11px] text-gray-500">0 FB · 0 IG</div><div class="bg-gray-100 text-gray-500 text-[11px] font-bold px-2 py-1 rounded-lg mt-2 inline-block">0% vs yesterday</div></div>
+<div class="bg-[#f8f9fb] rounded-xl p-3"><div class="text-[10px] font-bold text-gray-500">YESTERDAY</div><div class="text-xl font-black">0</div><div class="text-[11px] text-gray-500">New subscribers</div></div>
+<div class="hidden md:block"><div class="text-[10px] font-bold text-gray-500">7-DAY GROWTH</div><canvas id="miniChart" height="70"></canvas></div>
+</div>
 </div>
 
-<div class="fixed bottom-5 right-4 flex flex-col gap-3 z-40"><button class="w-12 h-12 bg-violet-600 text-white rounded-full shadow-xl text-xl">✦</button><button class="w-12 h-12 bg-green-500 rounded-full shadow-xl flex items-center justify-center text-2xl">💬</button></div>
+<!-- MIGRATION BAR -->
+<div class="card p-4 mt-3">
+<div class="flex justify-between items-center"><div class="flex items-center gap-2"><span class="w-9 h-9 bg-green-50 rounded-lg flex items-center justify-center">✈️</span><div><span class="text-[22px] font-black">0</span><span class="text-gray-500 text-sm"> / 0</span><div class="text-[11px] text-gray-500">Subscribers — broadcasts go to these only</div></div></div><span class="bg-green-100 text-green-700 text-[11px] font-bold px-2.5 py-1 rounded-full">0% of leads</span></div>
+<div class="progress mt-3"><div style="width:0%;background:#22c55e"></div></div>
+<div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[11px] text-gray-600"><span>🟢 Subscribers <b class="text-black">0</b></span><span>🟡 Ready to migrate <b class="text-black">0</b></span><span>🔴 Unavailable <b class="text-black">0</b></span><span>⚪ Scanned leads <b class="text-black">0</b></span></div>
+</div>
 
+<!-- CAMPAIGN OVERVIEW -->
+<div class="flex items-center gap-2 mt-6 mb-3"><span>📊</span><span class="text-[11px] font-black tracking-wider text-gray-500">CAMPAIGN OVERVIEW</span><div class="flex-1 h-px bg-gray-200"></div></div>
+<div class="grid grid-cols-2 gap-3">
+<div class="card p-4 flex gap-3"><span class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">✈️</span><div><div class="text-[20px] font-black leading-none">0</div><div class="text-[11px] text-gray-500 mt-1">Messages Sent</div><div class="text-[11px] text-gray-500">Broadcast · 30 days</div></div></div>
+<div class="card p-4 flex gap-3"><span class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center">💬</span><div><div class="text-[20px] font-black leading-none text-green-600">0</div><div class="text-[11px] text-gray-500 mt-1">Comments Today</div><div class="text-[11px] font-bold">0% replied</div></div></div>
+<div class="card p-4 flex gap-3"><span class="w-10 h-10 bg-yellow-50 rounded-xl flex items-center justify-center">🚀</span><div><div class="text-[20px] font-black leading-none text-yellow-500">0</div><div class="text-[11px] text-gray-500 mt-1">Running Now</div><div class="text-[11px] text-gray-500">Active campaigns</div></div></div>
+<div class="card p-4 flex gap-3"><span class="w-10 h-10 bg-pink-50 rounded-xl flex items-center justify-center">❗</span><div><div class="text-[20px] font-black leading-none text-pink-600">0</div><div class="text-[11px] text-gray-500 mt-1">Failed Items</div><div class="text-[11px] text-pink-600 font-bold">Tap to retry →</div></div></div>
+</div>
+
+<!-- BROADCAST CAMPAIGNS -->
+<div class="card p-4 mt-3">
+<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-blue-600 rounded-full"></span>Broadcast Campaigns <span class="text-gray-400 font-normal text-xs">(last 30 days)</span></div><a href="#" class="text-blue-600 text-xs font-bold">All campaigns →</a></div>
+<div class="flex gap-5 mt-4">
+<div class="relative w-[110px] h-[110px] shrink-0"><canvas id="donut1"></canvas><div class="absolute inset-0 flex flex-col items-center justify-center"><span class="font-black text-xl leading-none">0</span><span class="text-[10px] text-gray-500">Total</span></div></div>
+<div class="flex-1 text-[13px] space-y-2.5">
+<div class="flex justify-between"><span>🟠 Pending</span><b>0</b></div>
+<div class="flex justify-between"><span>🔵 Processing</span><b>0</b></div>
+<div class="flex justify-between"><span>🟢 Completed</span><b>0</b></div>
+<div class="flex justify-between"><span>🔴 Failed</span><b>0</b></div>
+<div class="flex justify-between border-t pt-2"><span>✈️ Messages Sent</span><b class="text-blue-700">0</b></div>
+</div>
+</div>
+</div>
+
+<!-- COMMENT CAMPAIGNS -->
+<div class="card p-4 mt-3">
+<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-green-600 rounded-full"></span>Comment Campaigns <span class="text-gray-400 font-normal text-xs">(last 30 days)</span></div><a href="#" class="text-green-600 text-xs font-bold">Analytics →</a></div>
+<div class="flex gap-5 mt-4">
+<div class="relative w-[110px] h-[110px] shrink-0"><canvas id="donut2"></canvas><div class="absolute inset-0 flex flex-col items-center justify-center"><span class="font-black text-xl leading-none">0</span><span class="text-[10px] text-gray-500">Campaigns</span></div></div>
+<div class="flex-1 text-[13px] space-y-2.5">
+<div class="flex justify-between"><span>🟠 Pending</span><b>0</b></div>
+<div class="flex justify-between"><span>🔵 Processing</span><b>0</b></div>
+<div class="flex justify-between"><span>🟢 Completed</span><b>0</b></div>
+<div class="flex justify-between border-t pt-2"><span>↩️ Replies Sent</span><b class="text-green-600">0</b></div>
+<div class="flex justify-between"><span>🤖 Active Autoreplies</span><b class="text-purple-600">0</b></div>
+</div>
+</div>
+</div>
+
+<!-- 7-DAY ACTIVITY -->
+<div class="card p-4 mt-3">
+<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-indigo-600 rounded-full"></span>7-Day Activity</div><div class="flex gap-3 text-[11px]"><span class="text-blue-600">— Broadcast</span><span class="text-green-600">— Comments</span></div></div>
+<canvas id="lineChart" height="180" class="mt-3"></canvas>
+</div>
+
+<!-- RECENT ACTIVITY -->
+<div class="flex items-center gap-2 mt-6 mb-3"><span>🕒</span><span class="text-[11px] font-black tracking-wider text-gray-500">RECENT ACTIVITY</span><div class="flex-1 h-px bg-gray-200"></div></div>
+<div class="card overflow-hidden">
+<div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-blue-600 rounded-full"></span>Recent Broadcasts</div><a href="#" class="text-blue-600 text-xs font-bold">View all →</a></div>
+<table class="w-full text-left text-[13px]"><thead class="text-[10px] text-gray-500 border-y bg-gray-50"><tr><th class="px-4 py-2">CAMPAIGN</th><th class="px-4 py-2 text-center">SENT / TOTAL</th><th class="px-4 py-2 text-right">STATUS</th></tr></thead></table>
+<div class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div>
+</div>
+<div class="card overflow-hidden mt-3">
+<div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-green-600 rounded-full"></span>Recent Comment Campaigns</div><a href="#" class="text-green-600 text-xs font-bold">View all →</a></div>
+<table class="w-full text-left text-[13px]"><thead class="text-[10px] text-gray-500 border-y bg-gray-50"><tr><th class="px-4 py-2">CAMPAIGN</th><th class="px-4 py-2 text-center">REPLIES</th><th class="px-4 py-2 text-right">STATUS</th></tr></thead></table>
+<div class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div>
+</div>
+</div>
+
+<!-- OTHER PAGES -->
+<div id="page-other" class="hidden"><div class="card p-6 text-center"><div id="otherIcon" class="text-5xl mb-3">📢</div><h2 id="otherTitle" class="text-xl font-black">Broadcasting</h2><p class="text-gray-500 text-sm mt-2">ابعتلي سكرين بتاعتها وهنعملها زيها بالظبط وشغالة بجد.</p><button onclick="openPage('dashboard', document.querySelector('.side-item'))" class="mt-4 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm">← Back to Dashboard</button></div></div>
+</div>
+<div class="fixed bottom-5 right-4 flex flex-col gap-3 z-40"><button class="w-12 h-12 bg-violet-600 text-white rounded-full shadow-xl text-xl">✦</button><button class="w-12 h-12 bg-green-500 rounded-full shadow-xl flex items-center justify-center text-2xl">💬</button></div>
 <script>
 if(!localStorage.getItem('farag_current_user')) localStorage.setItem('farag_current_user', JSON.stringify({name:'Admin',email:'admin@farag.com',role:'admin'}));
 function toggleSide(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}
 function updateClock(){const d=new Date();document.getElementById('liveClock').textContent=d.toLocaleTimeString('en-EG',{hour:'2-digit',minute:'2-digit',second:'2-digit'});document.getElementById('todayDate').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})}
 setInterval(updateClock,1000);updateClock();
 const titles={facebook:'Facebook & Instagram',api:'API channels',growth:'Comment growth tools',analytics:'Comment Analytics',restrictions:'Page Restrictions',subscribers:'Subscriber Manager',token:'Token Checker',migrate:'Migrate',bot:'Bot manager',broadcasting:'Broadcasting',history:'Broadcast Job History',blocked:'Blocked Pages',media:'Media & Content',utility:'Launch Utility',posting:'Social Posting',aiagent:'AI Sales Agent',payment:'Payment'};
-function openPage(name,el){
-  document.querySelectorAll('.side-item').forEach(x=>x.classList.remove('active'));
-  if(el) el.classList.add('active');
-  if(name==='dashboard'){document.getElementById('page-dashboard').classList.remove('hidden');document.getElementById('page-other').classList.add('hidden')}
-  else{document.getElementById('page-dashboard').classList.add('hidden');document.getElementById('page-other').classList.remove('hidden');document.getElementById('otherTitle').textContent=titles[name]||name;document.getElementById('otherIcon').textContent=el?el.querySelector('.ico').textContent:'📄'}
-  toggleSide();
-}
-new Chart(document.getElementById('lineChart'),{type:'line',data:{labels:['Nov 04','Nov 05','Nov 06','Nov 07','Nov 08','Nov 09','Nov 10'],datasets:[{label:'Broadcast Sent',data:[0,0,0,0,0,0,0],borderColor:'#2563eb',tension:.4},{label:'Comments',data:[0,0,0,0,0,0,0],borderColor:'#22c55e',tension:.4}]},options:{plugins:{legend:{display:false}}}});
-function doRefresh(){alert('تم التحديث ✅ - كل الأرقام 0 لأن لسه مفيش شغل، وهتزيد لوحدها')}
+function openPage(name,el){document.querySelectorAll('.side-item').forEach(x=>x.classList.remove('active'));if(el)el.classList.add('active');if(name==='dashboard'){document.getElementById('page-dashboard').classList.remove('hidden');document.getElementById('page-other').classList.add('hidden')}else{document.getElementById('page-dashboard').classList.add('hidden');document.getElementById('page-other').classList.remove('hidden');document.getElementById('otherTitle').textContent=titles[name]||name;document.getElementById('otherIcon').textContent=el?el.querySelector('.ico').textContent:'📄'}toggleSide()}
+new Chart(document.getElementById('miniChart'),{type:'line',data:{labels:['','','','','','',''],datasets:[{data:[0,[STRIPPED]
+new Chart(document.getElementById('donut1'),{type:'doughnut',data:{labels:['Empty'],[STRIPPED]
+new Chart(document.getElementById('donut2'),{type:'doughnut',data:{labels:['Empty'],[STRIPPED]
+new Chart(document.getElementById('lineChart'),{type:'line',data:{labels:['Nov 04','Nov 05','Nov 06','Nov 07','Nov 08','Nov 09','Nov 10'],datasets:[{label:'Broadcast Sent',data:[0,[STRIPPED]
+function doRefresh(){alert('تم التحديث ✅ - كل الأرقام 0 لأن لسه مفيش شغل')}
 </script>
 </body>
 </html>
