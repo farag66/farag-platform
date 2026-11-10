@@ -1,158 +1,90 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Farag - ChatBot AI</title>
+<title>farag - Command Center</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
-  body{display:flex;background:#f1f3f8;color:#1e293b}
-  /* Sidebar */
-  .sidebar{width:260px;background:#fff;height:100vh;position:fixed;right:0;top:0;border-left:1px solid #e2e8f0;padding:16px;overflow-y:auto}
-  .logo{font-size:32px;font-weight:900;line-height:0.8}
-  .logo span{font-size:12px;color:#64748b;display:block;font-weight:600}
-  .logo b{color:#111}
-  .menu{margin-top:24px}
-  .menu h4{font-size:11px;color:#94a3b8;letter-spacing:1px;margin:20px 0 10px}
-  .menu a{display:flex;gap:10px;padding:10px 12px;border-radius:10px;text-decoration:none;color:#1e293b;font-size:14px;cursor:pointer}
-  .menu a:hover,.menu a.active{background:#eff6ff;color:#2563eb}
-  /* Main */
-  .main{margin-right:260px;flex:1;padding:0 20px 20px;width:calc(100% - 260px)}
-  .topbar{background:#fff;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
-  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}
-  .card{background:#fff;padding:18px;border-radius:14px;border-right:4px solid #22c55e;text-align:left}
-  .card h2{font-size:28px}
-  .grid{display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-top:14px}
-  .box{background:#fff;padding:18px;border-radius:14px}
-  .btn{background:#16a34a;color:#fff;border:0;padding:10px 16px;border-radius:8px;cursor:pointer;width:100%;font-weight:700}
-  .btn-dark{background:#1e3a5f}
-  .page{display:none}
-  .page.active{display:block}
-  /* Social Posting Tabs */
-  .tabs{display:flex;gap:8px;margin:16px 0}
-  .tabs button{padding:10px 18px;border:1px solid #e2e8f0;background:#fff;border-radius:20px;cursor:pointer}
-  .tabs button.active{background:#7c3aed;color:#fff}
-  .tab-content{display:none;background:#fff;padding:20px;border-radius:14px}
-  .tab-content.active{display:block}
-  input,textarea,select{width:100%;padding:12px;border:1px solid #e2e8f0;border-radius:10px;margin:8px 0}
-  @media(max-width:900px){.sidebar{display:none}.main{margin:0;width:100%}.cards{grid-template-columns:1fr 1fr}}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+body{background:#f1f5f9;color:#0f172a;display:flex}
+.sidebar{width:268px;background:#fff;height:100vh;position:fixed;left:0;top:0;border-right:1px solid #e2e8f0;padding:14px;overflow-y:auto;z-index:20}
+.logo{font-size:11px;color:#94a3b8;padding:6px 10px}.logo b{display:block;font-size:38px;color:#000;line-height:.9}
+.menu h4{font-size:11px;color:#94a3b8;margin:20px 0 8px 10px;letter-spacing:1px}
+.menu a{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;font-size:14px;color:#334155;text-decoration:none}
+.menu a.active{background:#eff6ff;color:#2563eb;font-weight:700}
+.main{margin-left:268px;flex:1;width:calc(100% - 268px)}
+.topbar{background:#fff;height:56px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eef2f7;position:sticky;top:0;z-index:10}
+.content{padding:20px;max-width:1300px;margin:0 auto}
+.sec{font-size:11px;letter-spacing:1.5px;color:#64748b;font-weight:800;margin:18px 0 10px;display:flex;align-items:center;gap:8px}
+.card{background:#fff;padding:18px;border-radius:14px;border:1px solid #eef2f7}
+.grid4{display:grid;grid-template-columns:1.4fr 1.1fr 1fr 1fr 1.2fr;gap:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.grid2b{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.small{font-size:11px;color:#64748b;letter-spacing:1px;font-weight:700}
+.big{font-size:34px;font-weight:800;margin:6px 0}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700;background:#f1f5f9}
+.pill-green{background:#dcfce7;color:#166534}.pill-red{background:#fee2e2;color:#991b1b}
+.btn{border:1px solid #e2e8f0;background:#fff;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer}
+.btn-live{color:#16a34a}.btn-live i{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block}
+.bar{height:10px;background:#e2e8f0;border-radius:20px;overflow:hidden;display:flex;margin:14px 0}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#475569}
+.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
+.box{background:#fff;padding:20px;border-radius:14px;border:1px solid #eef2f7;margin-top:14px}
+.flex{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.donut{width:110px;height:110px;border-radius:50%;background:conic-gradient(#e2e8f0 0 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.donut-in{width:82px;height:82px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.row{display:flex;justify-content:space-between;padding:7px 0;font-size:13px;color:#475569}
+.chart-wrap{position:relative;height:180px;margin-top:16px}
+.chart-svg{width:100%;height:100%}
+.empty{text-align:center;color:#94a3b8;padding:28px 0;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:12px;font-size:11px;color:#64748b;letter-spacing:1px;border-bottom:1px solid #eef2f7}
+td{padding:12px;border-bottom:1px solid #f8fafc}
+.fab{position:fixed;right:18px;bottom:90px;width:52px;height:52px;border-radius:50%;background:#8b5cf6;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;z-index:30}
+.fab2{position:fixed;right:18px;bottom:22px;width:52px;height:52px;border-radius:50%;background:#22c55e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;z-index:30}
+@media(max-width:900px){.sidebar{display:none}.main{margin:0;width:100%}.grid4{grid-template-columns:1fr 1fr}.grid2,.grid2b{grid-template-columns:1fr}.big{font-size:28px}}
 </style>
 </head>
 <body>
-
-<div class="sidebar">
-  <div class="logo"><span>ChatBot AI</span><b>farag</b></div>
-  <div class="menu">
-    <a onclick="showPage('dashboard',this)" class="active">📊 Dashboard</a>
-    <h4>INTEGRATIONS</h4>
-    <a onclick="showPage('facebook',this)">📘 Facebook & Instagram</a>
-    <a>🔌 API channels</a>
-    <h4>COMMENT FEATURE</h4>
-    <a>💬 Comment growth tools</a>
-    <a>📈 Comment Analytics</a>
-    <a>🚫 Page Restrictions</a>
-    <h4>MESSENGER TOOLS</h4>
-    <a onclick="showPage('broadcast',this)">📣 Broadcasting</a>
-    <a>🤖 Bot manager</a>
-    <a>👥 Subscriber Manager</a>
-    <h4>MEDIA & CONTENT</h4>
-    <a onclick="showPage('social',this)">🖼️ Social Posting</a>
-    <a onclick="showPage('media',this)">🎬 Media Library</a>
-  </div>
-</div>
-
+<div class="sidebar"><div class="logo">ChatBot AI<b>farag</b></div><div class="menu"><a class="active">📊 Dashboard</a><h4>INTEGRATIONS</h4><a>📘 Facebook & Instagram</a><a>🔌 API channels</a><h4>COMMENT FEATURE</h4><a>💬 Comment growth tools</a><a>📈 Comment Analytics</a><a>🚫 Page Restrictions</a><h4>MESSENGER TOOLS</h4><a>👥 Subscriber Manager</a><a>🔑 Token Checker</a><a>👤 Migrate</a><a>🤖 Bot manager</a><a>📣 Broadcasting</a><a>↩️ Broadcast Job History</a><a>🚫 Blocked Pages</a><a>🎬 Media & Content</a><h4>UTILITY MESSAGING</h4><a>✈️ Launch Utility</a><h4>POSTING FEATURE</h4><a>📝 Social Posting</a><a>🤖 AI Sales Agent</a><h4>PAYMENT</h4><a>💰 Payment ›</a></div></div>
 <div class="main">
-  <div class="topbar">
-    <div><b>Yoka Karam ▼</b></div>
-    <div>AR 🌙 👤 فرج ▼</div>
-  </div>
+<div class="topbar"><div><b>☰</b> &nbsp; <b>🟢 farag@gmail.com</b></div><div>AR 🌙 👤 فرج ▼</div></div>
+<div class="content">
+<div class="flex"><div><h1 style="font-size:26px">Command Center</h1><p style="font-size:13px;color:#64748b;margin-top:4px">Tuesday, November 10, 2026</p></div><div style="display:flex;gap:8px"><button class="btn btn-live"><i></i> Live • 03:42:56 م</button><button class="btn">↻ Refresh</button></div></div>
 
-  <!-- DASHBOARD -->
-  <div id="dashboard" class="page active">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-top:16px">
-      <h1>AI Sales Agent 👤</h1>
-      <button class="btn" style="width:auto">✨ جهّز صفحة جديدة</button>
-    </div>
-    <div class="cards">
-      <div class="card"><h2>0</h2><p>مفيش حد مستنيك ✓</p></div>
-      <div class="card" style="border-color:#3b82f6"><h2>0</h2><p>أسئلة البوت ماعرفش يجاوبها 💬</p></div>
-      <div class="card" style="border-color:#f59e0b"><h2>0</h2><p>عملاء جداد النهارده • 0 تجربة 👥</p></div>
-      <div class="card" style="border-color:#ef4444"><h2>0</h2><p>💰 اشتروا النهارده</p></div>
-    </div>
-    <div class="grid">
-      <div class="box"><h3>🔔 Telegram <span style="background:#fee2e2;padding:4px 8px;border-radius:8px;font-size:12px">مش مربوط</span></h3><p style="margin:12px 0;color:#64748b">اربط عشان يوصلك أي عميل مستنيك وتقرير كل يوم.</p><button class="btn">🔗 اربط في تانية</button><p style="font-size:12px;margin-top:8px">◀ بوت خاص بيك (متقدم)</p></div>
-      <div class="box"><h3>📄 صفحاتك (0)</h3><p style="text-align:center;margin:20px 0;color:#64748b">لسه مفيش صفحة عليها المساعد.</p><div style="text-align:center"><button class="btn btn-dark" style="width:auto">✨ جهّز أول صفحة</button></div></div>
-      <div class="box"><h3>📊 شيت العملاء</h3><p style="margin:12px 0;color:#64748b">كل عملائك في جدول: الاسم، الموبايل، المطلوب، اشترى ولا لأ.</p><button class="btn" style="background:#fff;color:#16a34a;border:1px solid #16a34a;width:auto">Google Sheets 🔗</button> <button class="btn btn-dark" style="width:auto">⬇ تحميل Excel</button></div>
-      <div class="box"><h3>➕ صفحات تانية من غير مساعد (60)</h3><p style="color:#64748b">دوس عشان تفتح القايمة</p></div>
-    </div>
-  </div>
-
-  <!-- SOCIAL POSTING -->
-  <div id="social" class="page">
-    <h1 style="margin-top:16px">Social Posting</h1>
-    <div class="tabs">
-      <button class="active" onclick="showTab('create',this)">Create New Post</button>
-      <button onclick="showTab('smart',this)">Smart Post</button>
-      <button onclick="showTab('scheduled',this)">Scheduled Jobs</button>
-    </div>
-    <div id="create" class="tab-content active">
-      <h3>انشئ بوست جديد</h3>
-      <textarea id="postText" rows="4" placeholder="اكتب البوست هنا..."></textarea>
-      <select><option>اختر الصفحة - Facebook</option><option>Instagram</option></select>
-      <input type="file" id="postMedia">
-      <button class="btn" onclick="publishPost()">نشر الآن 🚀</button>
-      <p id="postResult" style="margin-top:10px;color:green"></p>
-    </div>
-    <div id="smart" class="tab-content">
-      <h3>Smart Post - AI</h3>
-      <input id="smartTopic" placeholder="اكتب موضوع البوست، والـ AI هيكتبه...">
-      <button class="btn" style="background:#7c3aed" onclick="generateSmart()">ولّد بالـ AI ✨</button>
-      <p id="smartResult" style="margin-top:12px;background:#f8fafc;padding:12px;border-radius:10px"></p>
-    </div>
-    <div id="scheduled" class="tab-content">
-      <h3>Scheduled Jobs</h3>
-      <input type="datetime-local" id="schedTime">
-      <button class="btn btn-dark" onclick="schedulePost()">جدولة ⏰</button>
-      <ul id="jobsList" style="margin-top:12px"></ul>
-    </div>
-  </div>
-
-  <!-- MEDIA / BROADCAST PLACEHOLDER -->
-  <div id="media" class="page"><h1 style="margin-top:16px">Media Library</h1><div class="box" style="margin-top:12px"><p>Drag & drop videos here - MP4 • WEBM • MOV • AVI • MKV • Max 10GB</p><input type="file" accept="video/*" multiple onchange="alert('تم رفع '+this.files.length+' فيديو - دي نسخة تجريبية، الربط الحقيقي في الخطوة الجاية')"></div></div>
-  <div id="broadcast" class="page"><h1 style="margin-top:16px">Broadcasting</h1><div class="box" style="margin-top:12px"><textarea placeholder="رسالة البرودكاست..."></textarea><button class="btn" onclick="alert('تم إرسال البرودكاست - تجريبي')">إرسال للكل</button></div></div>
-  <div id="facebook" class="page"><h1 style="margin-top:16px">Facebook & Instagram</h1><div class="box" style="margin-top:12px"><button class="btn" style="background:#1877f2" onclick="alert('هنا هنربط Facebook Login API')">ربط فيسبوك</button></div></div>
+<div class="sec">👥 SUBSCRIBERS</div>
+<div class="grid4">
+<div class="card"><div class="small">TOTAL SUBSCRIBERS</div><div class="big">0</div><div><span class="pill">👥 0 FB</span> <span class="pill">📸 0 IG</span></div></div>
+<div class="card"><div class="small">📌 PAGES</div><div class="big" style="font-size:26px">0</div><p style="font-size:12px;color:#64748b">🟢 <b>0</b> Enabled • 🔴 <b>0</b> Disabled</p><p style="font-size:12px;color:#64748b;margin-top:6px">✅ All pages scanned • 05:10 م</p></div>
+<div class="card"><div class="small">TODAY</div><div class="big" style="font-size:26px">0</div><p style="font-size:12px;color:#64748b">0 FB • 0 IG</p><div class="pill pill-red" style="margin-top:8px">↓ 0% vs yesterday</div></div>
+<div class="card"><div class="small">YESTERDAY</div><div class="big" style="font-size:26px">0</div><p style="font-size:12px;color:#64748b">New subscribers</p></div>
+<div class="card"><div class="small">7-DAY GROWTH</div><svg viewBox="0 0 100 40" style="width:100%;height:50px;margin-top:8px"><path d="M0,35 L20,35 L40,35 L60,35 L80,35 L100,35" fill="none" stroke="#2563eb" stroke-width="2"/></svg></div>
 </div>
 
-<script>
-function showPage(id,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.menu a').forEach(a=>a.classList.remove('active'));
-  if(el) el.classList.add('active');
-}
-function showTab(id,el){
-  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
-  el.classList.add('active');
-}
-function publishPost(){
-  const txt=document.getElementById('postText').value;
-  if(!txt) return alert('اكتب البوست الأول');
-  document.getElementById('postResult').innerText='✅ تم نشر البوست: '+txt+' (تجريبي - الربط مع فيسبوك API في الخطوة الجاية)';
-}
-function generateSmart(){
-  const topic=document.getElementById('smartTopic').value||'منتجك';
-  document.getElementById('smartResult').innerText='🤖 بوست مقترح عن '+topic+': "عرض خاص النهارده بس! اطلب دلوقتي قبل ما يخلص 🔥" - ده تجريبي، هنربط OpenAI بعدين';
-}
-let jobs=[];
-function schedulePost(){
-  const t=document.getElementById('schedTime').value;
-  if(!t) return alert('اختار الوقت');
-  jobs.push(t);
-  document.getElementById('jobsList').innerHTML=jobs.map(j=>'<li>⏰ '+j+'</li>').join('');
-  alert('تمت الجدولة!');
-}
-</script>
+<div class="box"><div class="flex"><div style="display:flex;gap:12px;align-items:center"><div style="width:42px;height:42px;background:#dcfce7;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px">✈️</div><div><div style="font-size:22px;font-weight:800">0 <span style="font-size:14px;color:#64748b;font-weight:400">/ 0</span></div><div style="font-size:12px;color:#64748b">Subscribers — broadcasts go to these only</div></div></div><span class="pill pill-green">0% of leads</span></div>
+<div class="bar"><div style="width:0%;background:#22c55e"></div><div style="width:0%;background:#facc15"></div><div style="width:0%;background:#f43f5e"></div></div>
+<div class="legend"><span><i class="dot" style="background:#22c55e"></i> Subscribers <b>0</b></span><span><i class="dot" style="background:#facc15"></i> Ready to migrate <b>0</b></span><span><i class="dot" style="background:#f43f5e"></i> Unavailable <b>0</b></span><span><i class="dot" style="background:#94a3b8"></i> Scanned leads <b>0</b></span></div></div>
+
+<div class="sec">📊 CAMPAIGN OVERVIEW</div>
+<div class="grid2">
+<div class="card"><div style="display:flex;gap:14px;align-items:center"><div style="width:48px;height:48px;background:#eff6ff;border-radius:12px;display:flex;align-items:center;justify-content:center">✈️</div><div><div class="big" style="margin:0">0</div><div style="font-size:13px;color:#64748b">Messages Sent</div><div style="font-size:12px;color:#64748b">Broadcast • 30 days</div></div></div></div>
+<div class="card"><div style="display:flex;gap:14px;align-items:center"><div style="width:48px;height:48px;background:#f0fdf4;border-radius:12px;display:flex;align-items:center;justify-content:center">💬</div><div><div class="big" style="margin:0;color:#22c55e">0</div><div style="font-size:13px;color:#64748b">Comments Today</div><div style="font-size:12px;color:#64748b"><b>0%</b> replied</div></div></div></div>
+<div class="card"><div style="display:flex;gap:14px;align-items:center"><div style="width:48px;height:48px;background:#fefce8;border-radius:12px;display:flex;align-items:center;justify-content:center">🚀</div><div><div class="big" style="margin:0;color:#eab308">0</div><div style="font-size:13px;color:#64748b">Running Now</div><div style="font-size:12px;color:#64748b">Active campaigns</div></div></div></div>
+<div class="card"><div style="display:flex;gap:14px;align-items:center"><div style="width:48px;height:48px;background:#fef2f2;border-radius:12px;display:flex;align-items:center;justify-content:center">❗</div><div><div class="big" style="margin:0;color:#f43f5e">0</div><div style="font-size:13px;color:#64748b">Failed Items</div><div style="font-size:12px;color:#e11d48">Tap to retry →</div></div></div></div>
+</div>
+
+<div class="grid2b">
+<div class="box" style="margin:0"><div class="flex"><h3>🔵 Broadcast Campaigns <span style="color:#94a3b8;font-weight:400;font-size:12px">(last 30 days)</span></h3><a style="font-size:12px;color:#2563eb">All campaigns →</a></div><div style="display:flex;gap:20px;margin-top:16px;align-items:center"><div class="donut"><div class="donut-in"><b style="font-size:20px">0</b><span style="font-size:11px;color:#64748b">Total</span></div></div><div style="flex:1"><div class="row"><span>🟡 Pending</span><b>0</b></div><div class="row"><span>🔵 Processing</span><b>0</b></div><div class="row"><span>🟢 Completed</span><b>0</b></div><div class="row"><span>🔴 Failed</span><b>0</b></div><div class="row" style="border-top:1px solid #eef2f7"><span>✈️ Messages Sent</span><b style="color:#2563eb">0</b></div></div></div></div>
+<div class="box" style="margin:0"><div class="flex"><h3>🟢 Comment Campaigns <span style="color:#94a3b8;font-weight:400;font-size:12px">(last 30 days)</span></h3><a style="font-size:12px;color:#16a34a">Analytics →</a></div><div style="display:flex;gap:20px;margin-top:16px;align-items:center"><div class="donut"><div class="donut-in"><b style="font-size:20px">0</b><span style="font-size:11px;color:#64748b">Campaigns</span></div></div><div style="flex:1"><div class="row"><span>🟡 Pending</span><b>0</b></div><div class="row"><span>🔵 Processing</span><b>0</b></div><div class="row"><span>🟢 Completed</span><b>0</b></div><div class="row"><span>💬 Replies Sent</span><b style="color:#16a34a">0</b></div><div class="row"><span>🤖 Active Autoreplies</span><b style="color:#7c3aed">0</b></div></div></div></div>
+</div>
+
+<div class="box"><div class="flex"><h3>🔵 7-Day Activity</h3><div style="font-size:12px"><span style="color:#2563eb">— Broadcast</span> &nbsp; <span style="color:#16a34a">— Comments</span></div></div><div class="chart-wrap"><svg class="chart-svg" viewBox="0 0 600 180" preserveAspectRatio="none"><g stroke="#f1f5f9" stroke-width="1"><line x1="0" y1="30" x2="600" y2="30"/><line x1="0" y1="65" x2="600" y2="65"/><line x1="0" y1="100" x2="600" y2="100"/><line x1="0" y1="135" x2="600" y2="135"/></g><line x1="0" y1="170" x2="600" y2="170" stroke="#2563eb" stroke-width="2"/><line x1="0" y1="170" x2="600" y2="170" stroke="#22c55e" stroke-width="2"/><circle cx="0" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="100" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="200" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="300" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="400" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="500" cy="170" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/><circle cx="600" cy="170" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/></svg></div><div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8;margin-top:6px"><span>Nov 04</span><span>Nov 05</span><span>Nov 06</span><span>Nov 07</span><span>Nov 08</span><span>Nov 09</span><span>Nov 10</span></div></div>
+
+<div class="sec">🕒 RECENT ACTIVITY</div>
+<div class="box" style="margin:0"><div class="flex"><h3>🔵 Recent Broadcasts</h3><a style="font-size:12px;color:#2563eb">View all →</a></div><table><thead><tr><th>CAMPAIGN</th><th>SENT / TOTAL</th><th>STATUS</th></tr></thead></table><div class="empty">No broadcasts yet<br><span style="font-size:12px">Your first broadcast will appear here</span></div></div>
+<div class="box"><div class="flex"><h3>🟢 Recent Comment Campaigns</h3><a style="font-size:12px;color:#16a34a">View all →</a></div><table><thead><tr><th>CAMPAIGN</th><th>REPLIES</th><th>STATUS</th></tr></thead></table><div class="empty">No campaigns yet</div></div>
+
+</div></div>
+<div class="fab">✦</div><div class="fab2">💬</div>
 </body>
 </html>
