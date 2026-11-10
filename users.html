@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>إدارة المستخدمين</title><script src="https://cdn.tailwindcss.com"></script><script src="auth.js"></script></head>
+<body class="bg-gray-100 p-6">
+<div class="max-w-lg mx-auto bg-white p-6 rounded-2xl">
+<h1 class="text-xl font-bold mb-4">إنشاء حساب جديد - للمدير فقط</h1>
+<input id="name" placeholder="الاسم" class="w-full border p-3 rounded-xl mb-3">
+<input id="email" placeholder="الإيميل" class="w-full border p-3 rounded-xl mb-3">
+<input id="pass" type="password" placeholder="كلمة السر" class="w-full border p-3 rounded-xl mb-3">
+<button onclick="createUser()" class="w-full bg-green-600 text-white p-3 rounded-xl font-bold">إنشاء الحساب</button>
+<p id="msg" class="text-center mt-3 text-green-600 hidden">تم إنشاء الحساب بنجاح ✅</p>
+<div id="list" class="mt-6"></div>
+<a href="dashboard.html" class="block text-center mt-4 text-blue-600">رجوع للداشبورد</a>
+</div>
+<script>
+const s = JSON.parse(sessionStorage.getItem('farag_session')||'{}');
+if(s.role !== 'admin'){ document.body.innerHTML='<h1 class="text-center p-10">ممنوع - للمدير فقط</h1>'; throw new Error('not admin'); }
+function render(){
+  const users = JSON.parse(localStorage.getItem('farag_users')||'[]');
+  document.getElementById('list').innerHTML = users.map(u=>`<div class="flex justify-between border p-2 rounded-lg mb-2"><span>${u.name} - ${u.email} - ${u.role}</span></div>`).join('');
+}
+function createUser(){
+  const users = JSON.parse(localStorage.getItem('farag_users')||'[]');
+  users.push({name: document.getElementById('name').value, email: document.getElementById('email').value.trim().toLowerCase(), password: btoa(document.getElementById('pass').value), role: 'user'});
+  localStorage.setItem('farag_users', JSON.stringify(users));
+  document.getElementById('msg').classList.remove('hidden'); render();
+}
+render();
+</script>
+</body>
+</html>
