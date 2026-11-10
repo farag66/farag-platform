@@ -1,90 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>farag - Command Center</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
-body{background:#f1f5f9;color:#0f172a;display:flex}
-.sidebar{width:268px;background:#fff;height:100vh;position:fixed;left:0;top:0;border-right:1px solid #e2e8f0;padding:14px;overflow-y:auto;z-index:20}
-.logo{font-size:11px;color:#94a3b8;padding:6px 10px}.logo b{display:block;font-size:38px;color:#000;line-height:.9}
-.menu h4{font-size:11px;color:#94a3b8;margin:20px 0 8px 10px;letter-spacing:1px}
-.menu a{display:flex;gap:10px;align-items:center;padding:10px;border-radius:10px;font-size:14px;color:#334155;text-decoration:none}
-.menu a.active{background:#eff6ff;color:#2563eb;font-weight:700}
-.main{margin-left:268px;flex:1;width:calc(100% - 268px)}
-.topbar{background:#fff;height:56px;padding:0 20px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #eef2f7;position:sticky;top:0;z-index:10}
-.content{padding:20px;max-width:1300px;margin:0 auto}
-.sec{font-size:11px;letter-spacing:1.5px;color:#64748b;font-weight:800;margin:18px 0 10px;display:flex;align-items:center;gap:8px}
-.card{background:#fff;padding:18px;border-radius:14px;border:1px solid #eef2f7}
-.grid4{display:grid;grid-template-columns:1.4fr 1.1fr 1fr 1fr 1.2fr;gap:14px}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.grid2b{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-.small{font-size:11px;color:#64748b;letter-spacing:1px;font-weight:700}
-.big{font-size:34px;font-weight:800;margin:6px 0}
-.pill{display:inline-flex;align-items:center;gap:5px;padding:5px 10px;border-radius:20px;font-size:12px;font-weight:700;background:#f1f5f9}
-.pill-green{background:#dcfce7;color:#166534}.pill-red{background:#fee2e2;color:#991b1b}
-.btn{border:1px solid #e2e8f0;background:#fff;padding:7px 12px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer}
-.btn-live{color:#16a34a}.btn-live i{width:8px;height:8px;background:#22c55e;border-radius:50%;display:inline-block}
-.bar{height:10px;background:#e2e8f0;border-radius:20px;overflow:hidden;display:flex;margin:14px 0}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:#475569}
-.dot{width:9px;height:9px;border-radius:50%;display:inline-block}
-.box{background:#fff;padding:20px;border-radius:14px;border:1px solid #eef2f7;margin-top:14px}
-.flex{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.donut{width:110px;height:110px;border-radius:50%;background:conic-gradient(#e2e8f0 0 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.donut-in{width:82px;height:82px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.row{display:flex;justify-content:space-between;padding:7px 0;font-size:13px;color:#475569}
-.chart-wrap{position:relative;height:180px;margin-top:16px}
-.chart-svg{width:100%;height:100%}
-.empty{text-align:center;color:#94a3b8;padding:28px 0;font-size:14px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{text-align:left;padding:12px;font-size:11px;color:#64748b;letter-spacing:1px;border-bottom:1px solid #eef2f7}
-td{padding:12px;border-bottom:1px solid #f8fafc}
-.fab{position:fixed;right:18px;bottom:90px;width:52px;height:52px;border-radius:50%;background:#8b5cf6;color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px;z-index:30}
-.fab2{position:fixed;right:18px;bottom:22px;width:52px;height:52px;border-radius:50%;background:#22c55e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;z-index:30}
-@media(max-width:900px){.sidebar{display:none}.main{margin:0;width:100%}.grid4{grid-template-columns:1fr 1fr}.grid2,.grid2b{grid-template-columns:1fr}.big{font-size:28px}}
-</style>
+<meta http-equiv="refresh" content="0; url=dashboard.html">
+<script>window.location.href="dashboard.html"</script>
 </head>
 <body>
-<div class="sidebar"><div class="logo">ChatBot AI<b>farag</b></div><div class="menu"><a class="active">📊 Dashboard</a><h4>INTEGRATIONS</h4><a>📘 Facebook & Instagram</a><a>🔌 API channels</a><h4>COMMENT FEATURE</h4><a>💬 Comment growth tools</a><a>📈 Comment Analytics</a><a>🚫 Page Restrictions</a><h4>MESSENGER TOOLS</h4><a>👥 Subscriber Manager</a><a>🔑 Token Checker</a><a>👤 Migrate</a><a>🤖 Bot manager</a><a>📣 Broadcasting</a><a>↩️ Broadcast Job History</a><a>🚫 Blocked Pages</a><a>🎬 Media & Content</a><h4>UTILITY MESSAGING</h4><a>✈️ Launch Utility</a><h4>POSTING FEATURE</h4><a>📝 Social Posting</a><a>🤖 AI Sales Agent</a><h4>PAYMENT</h4><a>💰 Payment ›</a></div></div>
-<div class="main">
-<div class="topbar"><div><b>☰</b> &nbsp; <b>🟢 farag@gmail.com</b></div><div>AR 🌙 👤 فرج ▼</div></div>
-<div class="content">
-<div class="flex"><div><h1 style="font-size:26px">Command Center</h1><p style="font-size:13px;color:#64748b;margin-top:4px">Tuesday, November 10, 2026</p></div><div style="display:flex;gap:8px"><button class="btn btn-live"><i></i> Live • 03:42:56 م</button><button class="btn">↻ Refresh</button></div></div>
-
-<div class="sec">👥 SUBSCRIBERS</div>
-<div class="grid4">
-<div class="card"><div class="small">TOTAL SUBSCRIBERS</div><div class="big">0</div><div><span class="pill">👥 0 FB</span> <span class="pill">📸 0 IG</span></div></div>
-<div class="card"><div class="small">📌 PAGES</div><div class="big" style="font-size:26px">0</div><p style="font-size:12px;color:#64748b">🟢 <b>0</b> Enabled • 🔴 <b>0</b> Disabled</p><p style="font-size:12px;color:#64748b;margin-top:6px">✅ All pages scanned • 05:10 م</p></div>
-<div class="card"><div class="small">TODAY</div><div class="big" style="font-size:26px">0</div><p style="font-size:12px;color:#64748b">0 FB • 0 IG</p><div class="pill pill-red" style="margin-top:8px">↓ 0% vs yesterday</div></div>
-<div class="card"><div class="small">YESTERDAY</div><div class="big" style="font-size:26px">0</div><p style="font-size:12px;color:#64748b">New subscribers</p></div>
-<div class="card"><div class="small">7-DAY GROWTH</div><svg viewBox="0 0 100 40" style="width:100%;height:50px;margin-top:8px"><path d="M0,35 L20,35 L40,35 L60,35 L80,35 L100,35" fill="none" stroke="#2563eb" stroke-width="2"/></svg></div>
-</div>
-
-<div class="box"><div class="flex"><div style="display:flex;gap:12px;align-items:center"><div style="width:42px;height:42px;background:#dcfce7;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px">✈️</div><div><div style="font-size:22px;font-weight:800">0 <span style="font-size:14px;color:#64748b;font-weight:400">/ 0</span></div><div style="font-size:12px;color:#64748b">Subscribers — broadcasts go to these only</div></div></div><span class="pill pill-green">0% of leads</span></div>
-<div class="bar"><div style="width:0%;background:#22c55e"></div><div style="width:0%;background:#facc15"></div><div style="width:0%;background:#f43f5e"></div></div>
-<div class="legend"><span><i class="dot" style="background:#22c55e"></i> Subscribers <b>0</b></span><span><i class="dot" style="background:#facc15"></i> Ready to migrate <b>0</b></span><span><i class="dot" style="background:#f43f5e"></i> Unavailable <b>0</b></span><span><i class="dot" style="background:#94a3b8"></i> Scanned leads <b>0</b></span></div></div>
-
-<div class="sec">📊 CAMPAIGN OVERVIEW</div>
-<div class="grid2">
-<div class="card"><div style="display:flex;gap:14px;align-items:center"><div style="width:48px;height:48px;background:#eff6ff;border-radius:12px;display:flex;align-items:center;justify-content:center">✈️</div><div><div class="big" style="margin:0">0</div><div style="font-size:13px;color:#64748b">Messages Sent</div><div style="font-size:12px;color:#64748b">Broadcast • 30 days</div></div></div></div>
-<div class="card"><div style="display:flex;gap:14px;align-items:center"><div style="width:48px;height:48px;background:#f0fdf4;border-radius:12px;display:flex;align-items:center;justify-content:center">💬</div><div><div class="big" style="margin:0;color:#22c55e">0</div><div style="font-size:13px;color:#64748b">Comments Today</div><div style="font-size:12px;color:#64748b"><b>0%</b> replied</div></div></div></div>
-<div class="card"><div style="display:flex;gap:14px;align-items:center"><div style="width:48px;height:48px;background:#fefce8;border-radius:12px;display:flex;align-items:center;justify-content:center">🚀</div><div><div class="big" style="margin:0;color:#eab308">0</div><div style="font-size:13px;color:#64748b">Running Now</div><div style="font-size:12px;color:#64748b">Active campaigns</div></div></div></div>
-<div class="card"><div style="display:flex;gap:14px;align-items:center"><div style="width:48px;height:48px;background:#fef2f2;border-radius:12px;display:flex;align-items:center;justify-content:center">❗</div><div><div class="big" style="margin:0;color:#f43f5e">0</div><div style="font-size:13px;color:#64748b">Failed Items</div><div style="font-size:12px;color:#e11d48">Tap to retry →</div></div></div></div>
-</div>
-
-<div class="grid2b">
-<div class="box" style="margin:0"><div class="flex"><h3>🔵 Broadcast Campaigns <span style="color:#94a3b8;font-weight:400;font-size:12px">(last 30 days)</span></h3><a style="font-size:12px;color:#2563eb">All campaigns →</a></div><div style="display:flex;gap:20px;margin-top:16px;align-items:center"><div class="donut"><div class="donut-in"><b style="font-size:20px">0</b><span style="font-size:11px;color:#64748b">Total</span></div></div><div style="flex:1"><div class="row"><span>🟡 Pending</span><b>0</b></div><div class="row"><span>🔵 Processing</span><b>0</b></div><div class="row"><span>🟢 Completed</span><b>0</b></div><div class="row"><span>🔴 Failed</span><b>0</b></div><div class="row" style="border-top:1px solid #eef2f7"><span>✈️ Messages Sent</span><b style="color:#2563eb">0</b></div></div></div></div>
-<div class="box" style="margin:0"><div class="flex"><h3>🟢 Comment Campaigns <span style="color:#94a3b8;font-weight:400;font-size:12px">(last 30 days)</span></h3><a style="font-size:12px;color:#16a34a">Analytics →</a></div><div style="display:flex;gap:20px;margin-top:16px;align-items:center"><div class="donut"><div class="donut-in"><b style="font-size:20px">0</b><span style="font-size:11px;color:#64748b">Campaigns</span></div></div><div style="flex:1"><div class="row"><span>🟡 Pending</span><b>0</b></div><div class="row"><span>🔵 Processing</span><b>0</b></div><div class="row"><span>🟢 Completed</span><b>0</b></div><div class="row"><span>💬 Replies Sent</span><b style="color:#16a34a">0</b></div><div class="row"><span>🤖 Active Autoreplies</span><b style="color:#7c3aed">0</b></div></div></div></div>
-</div>
-
-<div class="box"><div class="flex"><h3>🔵 7-Day Activity</h3><div style="font-size:12px"><span style="color:#2563eb">— Broadcast</span> &nbsp; <span style="color:#16a34a">— Comments</span></div></div><div class="chart-wrap"><svg class="chart-svg" viewBox="0 0 600 180" preserveAspectRatio="none"><g stroke="#f1f5f9" stroke-width="1"><line x1="0" y1="30" x2="600" y2="30"/><line x1="0" y1="65" x2="600" y2="65"/><line x1="0" y1="100" x2="600" y2="100"/><line x1="0" y1="135" x2="600" y2="135"/></g><line x1="0" y1="170" x2="600" y2="170" stroke="#2563eb" stroke-width="2"/><line x1="0" y1="170" x2="600" y2="170" stroke="#22c55e" stroke-width="2"/><circle cx="0" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="100" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="200" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="300" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="400" cy="170" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="500" cy="170" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/><circle cx="600" cy="170" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/></svg></div><div style="display:flex;justify-content:space-between;font-size:11px;color:#94a3b8;margin-top:6px"><span>Nov 04</span><span>Nov 05</span><span>Nov 06</span><span>Nov 07</span><span>Nov 08</span><span>Nov 09</span><span>Nov 10</span></div></div>
-
-<div class="sec">🕒 RECENT ACTIVITY</div>
-<div class="box" style="margin:0"><div class="flex"><h3>🔵 Recent Broadcasts</h3><a style="font-size:12px;color:#2563eb">View all →</a></div><table><thead><tr><th>CAMPAIGN</th><th>SENT / TOTAL</th><th>STATUS</th></tr></thead></table><div class="empty">No broadcasts yet<br><span style="font-size:12px">Your first broadcast will appear here</span></div></div>
-<div class="box"><div class="flex"><h3>🟢 Recent Comment Campaigns</h3><a style="font-size:12px;color:#16a34a">View all →</a></div><table><thead><tr><th>CAMPAIGN</th><th>REPLIES</th><th>STATUS</th></tr></thead></table><div class="empty">No campaigns yet</div></div>
-
-</div></div>
-<div class="fab">✦</div><div class="fab2">💬</div>
+<p>جاري فتح الداشبورد...</p>
+<a href="dashboard.html">اضغط هنا لو مفتحش</a>
 </body>
 </html>
