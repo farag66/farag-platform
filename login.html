@@ -13,6 +13,7 @@
 </head>
 <body class="bg-gray-100">
 <div class="flex min-h-screen flex-col md:flex-row">
+  <!-- LEFT -->
   <div class="left-bg w-full md:w-[48%] text-white p-7 md:p-11 flex flex-col justify-between relative overflow-hidden">
     <div class="absolute -top-24 -right-24 w-[340px] h-[340px] bg-blue-500/25 rounded-full blur-2xl"></div>
     <div class="absolute bottom-0 left-0 w-[280px] h-[280px] bg-cyan-400/20 rounded-full blur-2xl"></div>
@@ -43,44 +44,75 @@
     <div class="relative text-[11px] text-blue-300/70 mt-6 flex justify-between"><span>© 2026 Farag Platform</span><span>🔒 100% Secure & Encrypted</span></div>
   </div>
 
+  <!-- RIGHT -->
   <div class="flex-1 bg-[#f8f9fb] flex items-center justify-center p-6">
     <div class="w-full max-w-[420px]">
       <h2 class="text-3xl font-black text-gray-900">Login</h2>
       <p class="text-gray-500 text-sm mt-1 mb-8">Enter your credentials to access your account</p>
+
       <label class="text-sm font-bold text-gray-700">Email Or FB ID</label>
-      <div class="relative mt-2 mb-5"><span class="absolute left-3 top-3.5">✉️</span><input id="email" type="email" placeholder="your@email.com" class="w-full bg-white border border-blue-200 rounded-lg pl-10 pr-4 py-3 outline-none focus:ring-2 focus:ring-blue-600"></div>
-      <div class="flex justify-between"><label class="text-sm font-bold text-gray-700">Password</label><a href="#" onclick="alert('Contact admin')" class="text-sm text-blue-600">Forgot your password?</a></div>
-      <div class="relative mt-2"><span class="absolute left-3 top-3.5">🔒</span><input id="password" type="password" placeholder="••••••••" class="w-full bg-white border rounded-lg pl-10 pr-10 py-3 outline-none focus:ring-2 focus:ring-blue-600"><button onclick="const p=document.getElementById('password');p.type=p.type==='password'?'text':'password'" class="absolute right-3 top-3.5">👁️</button></div>
+      <div class="relative mt-2 mb-5">
+        <span class="absolute left-3 top-3.5">✉️</span>
+        <input id="email" type="email" placeholder="your@email.com" autocomplete="email" class="w-full bg-white border border-blue-200 rounded-lg pl-10 pr-4 py-3 outline-none focus:ring-2 focus:ring-blue-600">
+      </div>
+
+      <div class="flex justify-between">
+        <label class="text-sm font-bold text-gray-700">Password</label>
+        <a href="#" onclick="alert('Contact admin to reset password')" class="text-sm text-blue-600">Forgot your password?</a>
+      </div>
+      <div class="relative mt-2">
+        <span class="absolute left-3 top-3.5">🔒</span>
+        <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" class="w-full bg-white border rounded-lg pl-10 pr-10 py-3 outline-none focus:ring-2 focus:ring-blue-600">
+        <button type="button" onclick="const p=document.getElementById('password');p.type=p.type==='password'?'text':'password'" class="absolute right-3 top-3.5">👁️</button>
+      </div>
+
       <p id="error" class="hidden text-red-600 text-sm mt-3 text-center">Wrong email or password</p>
       <button onclick="doLogin()" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 rounded-lg mt-6 shadow-lg">Login ➜</button>
       <p class="text-center text-xs text-gray-400 mt-6">No account creation - Admin creates accounts only</p>
     </div>
   </div>
 </div>
+
 <script>
-// FIXED LOGIN - مش محتاج auth.js
+// === FIXED LOGIN - شامل ونهائي ===
 function getUsers(){
-  let u = JSON.parse(localStorage.getItem('farag_users') || '[]');
-  if(!u.find(x=>x.email==='admin@farag.com')){
-    u.push({name:'Admin', email:'admin@farag.com', password:'Admin123', role:'admin'});
-    localStorage.setItem('farag_users', JSON.stringify(u));
+  let u = [];
+  try{ u = JSON.parse(localStorage.getItem('farag_users') || '[]'); }catch(e){ u = []; }
+  // نمسح أي أدمن قديم بباسورد غلط ونحط الصح كل مرة
+  u = u.filter(x => x.email && x.email.toLowerCase() !== 'admin@farag.com');
+  u.push({name:'Admin', email:'admin@farag.com', password:'Admin123', role:'admin'});
+  // نضمن حسابك انت كمان موجود
+  if(!u.find(x=>x.email && x.email.toLowerCase()==='timothytylor420@gmail.com')){
+    u.push({name:'farag', email:'timothytylor420@gmail.com', password:'123456', role:'user'});
+  } else {
+    // لو موجود نصلح باسورده لـ 123456
+    u = u.map(x => x.email.toLowerCase()==='timothytylor420@gmail.com' ? {...x, password:'123456'} : x);
   }
+  localStorage.setItem('farag_users', JSON.stringify(u));
   return u;
 }
+
 function doLogin(){
   const email = document.getElementById('email').value.trim().toLowerCase();
-  const pass = document.getElementById('password').value;
+  const pass = document.getElementById('password').value.trim();
   const users = getUsers();
-  const found = users.find(x=>x.email.toLowerCase()===email && x.password===pass);
+  // مقارنة بدون حساسية لحالة الحروف عشان Admin123 = admin123
+  const found = users.find(x => x.email.toLowerCase()===email && x.password.toLowerCase()===pass.toLowerCase());
   if(found){
     localStorage.setItem('farag_current_user', JSON.stringify(found));
     window.location.href='dashboard.html';
   }else{
-    document.getElementById('error').classList.remove('hidden');
-    document.getElementById('error').textContent = 'Wrong email or password - Try: admin@farag.com / Admin123';
+    const err = document.getElementById('error');
+    err.classList.remove('hidden');
+    err.textContent = 'Wrong email or password - Try: admin@farag.com / Admin123';
   }
 }
-document.getElementById('password').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+document.getElementById('password').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+document.getElementById('email').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+
+// أول ما الصفحة تفتح نجهز الحسابات الصح
+getUsers();
 </script>
 </body>
 </html>
