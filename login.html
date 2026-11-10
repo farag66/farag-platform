@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,71 +7,87 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="auth.js"></script>
 <style>
-.left-bg{background: linear-gradient(160deg, #0a1633 0%, #1e3a8a 55%, #2563eb 100%);}
+.left-bg{background: linear-gradient(165deg,#050d2b 0%,#0a1f5c 45%,#1d4ed8 100%);}
+.glass{background:rgba(255,255,255,.08);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);}
+.icon-box{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 </style>
 </head>
 <body class="bg-gray-100">
 <div class="flex min-h-screen flex-col md:flex-row">
 
-  <!-- Left Side -->
-  <div class="left-bg w-full md:w-[45%] text-white p-8 md:p-12 flex flex-col justify-center relative overflow-hidden">
-    <div class="absolute -top-20 -right-20 w-72 h-72 bg-white/10 rounded-full"></div>
-    <div class="absolute -bottom-24 -left-16 w-80 h-80 bg-blue-400/20 rounded-full"></div>
+  <!-- LEFT - الفخم -->
+  <div class="left-bg w-full md:w-[48%] text-white p-7 md:p-11 flex flex-col justify-between relative overflow-hidden">
+    <div class="absolute -top-24 -left-24 w-[340px] h-[340px] bg-blue-500/25 rounded-full blur-2xl"></div>
+    <div class="absolute bottom-0 right-0 w-[280px] h-[280px] bg-cyan-400/20 rounded-full blur-2xl"></div>
+    <div class="absolute top-1/2 left-1/3 w-2 h-2 bg-white/40 rounded-full"></div>
+
     <div class="relative">
-      <div class="flex items-center gap-2 text-3xl font-bold mb-10">
-        <span class="text-4xl">💬</span> Farag
+      <!-- Logo -->
+      <div class="flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 bg-white rounded-2xl flex items-center justify-center text-2xl shadow-lg">💬</div>
+          <div>
+            <div class="text-[22px] font-black leading-none">Farag</div>
+            <div class="text-[11px] tracking-[3px] text-blue-300 font-bold mt-1">PLATFORM</div>
+          </div>
+        </div>
+        <span class="glass text-[11px] px-3 py-1.5 rounded-full font-bold">✦ منصة موثوقة</span>
       </div>
-      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">Reach Millions.<br><span class="text-sky-300">At Scale.</span></h1>
-      <p class="text-blue-100/90 mt-4 text-[15px] leading-relaxed max-w-sm">The bulk messaging platform built for massive audiences and enterprise-grade data pipelines</p>
-      <div class="mt-8 space-y-4 text-[14px] font-medium">
-        <div class="flex gap-3">📦 <span>Handle millions of contacts effortlessly</span></div>
-        <div class="flex gap-3">✈️ <span>Blazing-fast bulk delivery at any volume</span></div>
-        <div class="flex gap-3">👥 <span>Precision targeting across large audiences</span></div>
-        <div class="flex gap-3">🛡️ <span>Reliable infrastructure built for high throughput</span></div>
+
+      <!-- Headline -->
+      <div class="mt-10">
+        <span class="bg-sky-400/20 border border-sky-300/30 text-sky-200 text-[12px] font-bold px-3 py-1.5 rounded-full">🚀 إرسال جماعي احترافي</span>
+        <h1 class="text-[38px] md:text-[46px] leading-[1.15] font-black mt-5">الوصول إلى الملايين.<br><span class="text-transparent bg-clip-text bg-gradient-to-l from-sky-300 to-cyan-200">على نطاق واسع.</span></h1>
+        <p class="text-blue-100/80 text-[14.5px] leading-[1.9] mt-4 max-w-[440px]">منصة الرسائل الجماعية المصممة للجماهير الضخمة، مع خطوط أنابيب بيانات بمعايير المؤسسات الكبرى.</p>
       </div>
+
+      <!-- Features - كروت -->
+      <div class="space-y-3 mt-7">
+        <div class="glass rounded-2xl p-3.5 flex items-center gap-3">
+          <div class="icon-box bg-blue-500/30">📦</div>
+          <div><div class="font-bold text-[14px]">إدارة ملايين جهات الاتصال</div><div class="text-blue-200/70 text-[12px]">نظم وفلتر جمهورك بسهولة تامة</div></div>
+        </div>
+        <div class="glass rounded-2xl p-3.5 flex items-center gap-3">
+          <div class="icon-box bg-cyan-500/30">⚡</div>
+          <div><div class="font-bold text-[14px]">توصيل فائق السرعة</div><div class="text-blue-200/70 text-[12px]">رسائل بكميات ضخمة في ثواني</div></div>
+        </div>
+        <div class="glass rounded-2xl p-3.5 flex items-center gap-3">
+          <div class="icon-box bg-violet-500/30">🎯</div>
+          <div><div class="font-bold text-[14px]">استهداف دقيق</div><div class="text-blue-200/70 text-[12px]">وصل للجمهور الصح في الوقت الصح</div></div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="flex gap-6 mt-7 border-t border-white/10 pt-5">
+        <div><div class="text-xl font-black">+2M</div><div class="text-[11px] text-blue-300">رسالة مرسلة</div></div>
+        <div><div class="text-xl font-black">99.9%</div><div class="text-[11px] text-blue-300">نسبة التوصيل</div></div>
+        <div><div class="text-xl font-black">24/7</div><div class="text-[11px] text-blue-300">دعم فني</div></div>
+      </div>
+    </div>
+
+    <div class="relative text-[11px] text-blue-300/70 mt-6 flex justify-between">
+      <span>© 2026 Farag Platform</span><span>🔒 آمن ومشفر 100%</span>
     </div>
   </div>
 
-  <!-- Right Side -->
+  <!-- RIGHT - زي ما هو -->
   <div class="flex-1 bg-[#f8f9fb] flex items-center justify-center p-6">
     <div class="w-full max-w-[420px]">
-      <h2 class="text-3xl font-extrabold text-gray-900">Login</h2>
-      <p class="text-gray-500 text-sm mt-1 mb-8">Enter your credentials to access your account</p>
-
-      <label class="text-sm font-semibold text-gray-700">Email Or FB ID</label>
-      <div class="relative mt-2 mb-5">
-        <span class="absolute left-3 top-3.5 text-gray-400">✉️</span>
-        <input id="email" type="email" placeholder="your@email.com" class="w-full bg-white border border-blue-200 rounded-lg pl-10 pr-4 py-3 outline-none focus:ring-2 focus:ring-blue-600">
-      </div>
-
-      <div class="flex justify-between items-center">
-        <label class="text-sm font-semibold text-gray-700">Password</label>
-        <a href="#" onclick="alert('تواصل مع المدير لتغيير كلمة السر')" class="text-sm text-blue-600">Forgot your password?</a>
-      </div>
-      <div class="relative mt-2">
-        <span class="absolute left-3 top-3.5 text-gray-400">🔒</span>
-        <input id="password" type="password" placeholder="••••••••" class="w-full bg-white border border-gray-200 rounded-lg pl-10 pr-10 py-3 outline-none focus:ring-2 focus:ring-blue-600">
-        <button onclick="const p=document.getElementById('password');p.type=p.type==='password'?'text':'password'" class="absolute right-3 top-3.5 text-gray-400">👁️</button>
-      </div>
-
+      <h2 class="text-3xl font-black text-gray-900">تسجيل الدخول</h2>
+      <p class="text-gray-500 text-sm mt-1 mb-8">أدخل بيانات اعتمادك للوصول إلى حسابك</p>
+      <label class="text-sm font-bold text-gray-700">البريد الإلكتروني أو معرف فيسبوك</label>
+      <div class="relative mt-2 mb-5"><span class="absolute left-3 top-3.5">✉️</span><input id="email" type="email" placeholder="your@email.com" class="w-full bg-white border border-blue-200 rounded-lg pl-10 pr-4 py-3 outline-none focus:ring-2 focus:ring-blue-600"></div>
+      <div class="flex justify-between"><label class="text-sm font-bold text-gray-700">كلمة المرور</label><a href="#" onclick="alert('تواصل مع المدير')" class="text-sm text-blue-600">نسيت كلمة السر؟</a></div>
+      <div class="relative mt-2"><span class="absolute left-3 top-3.5">🔒</span><input id="password" type="password" placeholder="••••••••" class="w-full bg-white border rounded-lg pl-10 pr-10 py-3 outline-none focus:ring-2 focus:ring-blue-600"><button onclick="const p=document.getElementById('password');p.type=p.type==='password'?'text':'password'" class="absolute right-3 top-3.5">👁️</button></div>
       <p id="error" class="hidden text-red-600 text-sm mt-3 text-center">الإيميل أو كلمة السر غلط</p>
-
-      <button onclick="doLogin()" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 rounded-lg mt-6 shadow-lg shadow-blue-200">➜ Login</button>
-
-      <p class="text-center text-xs text-gray-400 mt-6">لا يوجد إنشاء حساب - الحسابات ينشئها المدير فقط</p>
+      <button onclick="doLogin()" class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-3.5 rounded-lg mt-6 shadow-lg">تسجيل الدخول ➜</button>
+      <p class="text-center text-xs text-gray-400 mt-6">لا يوجد إنشاء حساب - أرقام ينشئها المدير فقط</p>
     </div>
   </div>
 </div>
-
 <script>
-async function doLogin(){
-  const email = document.getElementById('email').value.trim().toLowerCase();
-  const pass = document.getElementById('password').value;
-  const res = await login(email, pass);
-  if(res.success){ window.location.href='dashboard.html'; }
-  else{ document.getElementById('error').classList.remove('hidden'); }
-}
-document.getElementById('password').addEventListener('keydown', e=>{ if(e.key==='Enter') doLogin(); });
+async function doLogin(){const email=document.getElementById('email').value.trim().toLowerCase();const pass=document.getElementById('password').value;const res=await login(email,pass);if(res.success){window.location.href='dashboard.html';}else{document.getElementById('error').classList.remove('hidden');}}
+document.getElementById('password').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 </script>
 </body>
 </html>
