@@ -7,25 +7,40 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 body{background:#eef1f6;font-family:Inter,system-ui}
-.card{background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(15,23,42,.06);border:1px solid #f1f5f9}
-.mini{background:#f8f9fb;border-radius:14px;padding:12px}
-.side-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:10px;font-size:13px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap;overflow:hidden}
-.side-item:hover{background:#f1f5f9}
+.card{background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(15,23,42,.06);border:1px solid #f1f5f9;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(15,23,42,.10)}
+.mini{background:#f8f9fb;border-radius:14px;padding:12px;transition:transform .3s}
+.mini:hover{transform:translateY(-2px)}
+/* ===== الأيقونات السحابية ===== */
+.side-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;font-size:13px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap;overflow:visible;transition:background .25s,transform .25s}
+.side-item:hover{background:#eef4ff;transform:translateX(3px)}
 .side-item.active{background:#e8f0ff;color:#1d4ed8}
-.ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ico{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;position:relative;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;cursor:pointer}
+.side-item:hover .ico,.icon-cloud:hover{transform:translateY(-5px) scale(1.18) rotate(-4deg);box-shadow:0 10px 20px rgba(37,99,235,.25),0 4px 8px rgba(0,0,0,.08);animation:floatCloud 1.6s ease-in-out infinite}
+@keyframes floatCloud{0%,100%{transform:translateY(-5px) scale(1.18)}50%{transform:translateY(-9px) scale(1.18)}}
+.icon-cloud{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;position:relative;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;cursor:pointer}
+.icon-cloud:hover{box-shadow:0 12px 22px rgba(37,99,235,.25)}
+/* سحابة الاسم */
+.cloud{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%) translateY(6px) scale(.9);background:#111827;color:#fff;font-size:11px;font-weight:700;white-space:nowrap;padding:7px 10px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50;box-shadow:0 8px 20px rgba(0,0,0,.2)}
+.cloud:after{content:'';position:absolute;left:50%;top:100%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#111827}
+.ico:hover .cloud,.icon-cloud:hover .cloud,.side-item:hover .ico .cloud{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+.side-item .cloud{left:100%;bottom:auto;top:50%;transform:translateY(-50%) translateX(6px) scale(.9)}
+.side-item .cloud:after{left:0;top:50%;transform:translate(-8px,-50%) rotate(-90deg);border-top-color:#111827}
+.side-item:hover .ico .cloud{opacity:1;transform:translateY(-50%) translateX(10px) scale(1)}
 .sec{font-size:9px;letter-spacing:2px;font-weight:800;color:#94a3b8;margin:16px 0 8px 10px;white-space:nowrap;overflow:hidden}
 .input{width:100%;border:1px solid #e2e8f0;border-radius:12px;padding:11px 12px;font-size:14px;outline:none;background:#fff}
 .btn{width:100%;background:#2563eb;color:#fff;padding:12px;border-radius:12px;font-weight:800;font-size:14px;border:none;cursor:pointer}
 .badge{font-size:11px;padding:3px 8px;border-radius:99px;font-weight:700}
 #layout{display:flex}
-#sidebar{width:290px;flex-shrink:0;height:100vh;position:sticky;top:0;background:#fff;overflow-y:auto;border-right:1px solid #e5e7eb}
+#sidebar{width:290px;flex-shrink:0;height:100vh;position:sticky;top:0;background:#fff;overflow-y:auto;border-right:1px solid #e5e7eb;overflow-x:visible}
 #main{flex:1;min-width:0}
 #sidebar.collapsed{width:72px}
 #sidebar.collapsed .hide-collapsed{display:none}
 #sidebar.collapsed .side-item{justify-content:center;padding:9px 0}
 #sidebar.collapsed .sec{opacity:0}
 #overlay{display:none}
-.donut{width:118px;height:118px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.donut{width:118px;height:118px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .35s}
+.donut:hover{transform:translateY(-4px) scale(1.05)}
 .donut-inner{width:84px;height:84px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .num{font-variant-numeric:tabular-nums}
 @media(max-width:768px){
@@ -43,39 +58,39 @@ body{background:#eef1f6;font-family:Inter,system-ui}
 <div id="layout">
 <div id="sidebar">
 <div class="flex items-center gap-2 px-3 pt-4 pb-3">
-<div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-black text-lg shrink-0">F</div>
+<div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-black text-lg shrink-0 shadow-lg shadow-blue-200">F</div>
 <div class="leading-none hide-collapsed"><div class="font-black text-[20px]">farag <span class="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold">ChatBot AI</span></div><div class="text-[10px] text-gray-400 mt-0.5">Farag Platform</div></div>
 </div>
 <div class="px-2">
-<div class="side-item active" data-page="dashboard" onclick="openPage('dashboard',this)"><span class="ico bg-blue-600 text-white">🏠</span><span class="hide-collapsed">Dashboard</span></div>
+<div class="side-item active" data-page="dashboard" onclick="openPage('dashboard',this)"><span class="ico bg-blue-600 text-white">🏠<span class="cloud">Dashboard</span></span><span class="hide-collapsed">Dashboard</span></div>
 <div class="sec">FARAG TOOLS</div>
-<div class="side-item" data-page="contacts" onclick="openPage('contacts',this)"><span class="ico bg-purple-50 text-purple-600">👥</span><span class="hide-collapsed">Contacts</span><span class="ml-auto badge bg-purple-100 text-purple-700 hide-collapsed" id="badge-contacts">0</span></div>
-<div class="side-item" data-page="campaigns" onclick="openPage('campaigns',this)"><span class="ico bg-blue-50 text-blue-600">📢</span><span class="hide-collapsed">Campaigns</span><span class="ml-auto badge bg-blue-100 text-blue-700 hide-collapsed" id="badge-campaigns">0</span></div>
-<div class="side-item" data-page="numbers" onclick="openPage('numbers',this)"><span class="ico bg-green-50 text-green-600">📱</span><span class="hide-collapsed">Numbers</span><span class="ml-auto badge bg-green-100 text-green-700 hide-collapsed" id="badge-numbers">0</span></div>
-<div class="side-item" data-page="users" onclick="openPage('users',this)"><span class="ico bg-orange-50 text-orange-600">👤</span><span class="hide-collapsed">Users</span><span class="ml-auto badge bg-orange-100 text-orange-700 hide-collapsed" id="badge-users">0</span></div>
+<div class="side-item" data-page="contacts" onclick="openPage('contacts',this)"><span class="ico bg-purple-100 text-purple-600">👥<span class="cloud">Contacts</span></span><span class="hide-collapsed">Contacts</span><span class="ml-auto badge bg-purple-100 text-purple-700 hide-collapsed" id="badge-contacts">0</span></div>
+<div class="side-item" data-page="campaigns" onclick="openPage('campaigns',this)"><span class="ico bg-blue-100 text-blue-600">📢<span class="cloud">Campaigns</span></span><span class="hide-collapsed">Campaigns</span><span class="ml-auto badge bg-blue-100 text-blue-700 hide-collapsed" id="badge-campaigns">0</span></div>
+<div class="side-item" data-page="numbers" onclick="openPage('numbers',this)"><span class="ico bg-green-100 text-green-600">📱<span class="cloud">Numbers</span></span><span class="hide-collapsed">Numbers</span><span class="ml-auto badge bg-green-100 text-green-700 hide-collapsed" id="badge-numbers">0</span></div>
+<div class="side-item" data-page="users" onclick="openPage('users',this)"><span class="ico bg-orange-100 text-orange-600">👤<span class="cloud">Users</span></span><span class="hide-collapsed">Users</span><span class="ml-auto badge bg-orange-100 text-orange-700 hide-collapsed" id="badge-users">0</span></div>
 <div class="sec">INTEGRATIONS</div>
-<div class="side-item" onclick="openPage('facebook',this)"><span class="ico bg-blue-50 text-blue-600">f</span><span class="hide-collapsed">Facebook &amp; Instagram</span></div>
-<div class="side-item" onclick="openPage('api',this)"><span class="ico bg-sky-50 text-sky-600">🔌</span><span class="hide-collapsed">API channels</span></div>
+<div class="side-item" onclick="openPage('facebook',this)"><span class="ico bg-blue-100 text-blue-600">🟦<span class="cloud">Facebook & Instagram</span></span><span class="hide-collapsed">Facebook &amp; Instagram</span></div>
+<div class="side-item" onclick="openPage('api',this)"><span class="ico bg-sky-100 text-sky-600">🔌<span class="cloud">API channels</span></span><span class="hide-collapsed">API channels</span></div>
 <div class="sec">COMMENT FEATURE</div>
-<div class="side-item" onclick="openPage('growth',this)"><span class="ico bg-purple-50 text-purple-600">💬</span><span class="hide-collapsed">Comment growth tools</span></div>
-<div class="side-item" onclick="openPage('analytics',this)"><span class="ico bg-violet-50 text-violet-600">📊</span><span class="hide-collapsed">Comment Analytics</span></div>
-<div class="side-item" onclick="openPage('restrictions',this)"><span class="ico bg-red-50 text-red-500">🚫</span><span class="hide-collapsed">Page Restrictions</span></div>
+<div class="side-item" onclick="openPage('growth',this)"><span class="ico bg-purple-100 text-purple-600">💬<span class="cloud">Comment growth tools</span></span><span class="hide-collapsed">Comment growth tools</span></div>
+<div class="side-item" onclick="openPage('analytics',this)"><span class="ico bg-violet-100 text-violet-600">📊<span class="cloud">Comment Analytics</span></span><span class="hide-collapsed">Comment Analytics</span></div>
+<div class="side-item" onclick="openPage('restrictions',this)"><span class="ico bg-red-100 text-red-500">🚫<span class="cloud">Page Restrictions</span></span><span class="hide-collapsed">Page Restrictions</span></div>
 <div class="sec">MESSENGER TOOLS</div>
-<div class="side-item" onclick="openPage('subscribers',this)"><span class="ico bg-purple-50 text-purple-600">👥</span><span class="hide-collapsed">Subscriber Manager</span></div>
-<div class="side-item" onclick="openPage('token',this)"><span class="ico bg-green-50 text-green-600">🔑</span><span class="hide-collapsed">Token Checker</span></div>
-<div class="side-item" onclick="openPage('migrate',this)"><span class="ico bg-green-50 text-green-600">✈️</span><span class="hide-collapsed">Migrate</span></div>
-<div class="side-item" onclick="openPage('bot',this)"><span class="ico bg-pink-50 text-pink-600">🤖</span><span class="hide-collapsed">Bot manager</span></div>
-<div class="side-item" onclick="openPage('broadcasting',this)"><span class="ico bg-blue-50 text-blue-600">📢</span><span class="hide-collapsed">Broadcasting</span></div>
-<div class="side-item" onclick="openPage('history',this)"><span class="ico bg-sky-50 text-sky-600">🕒</span><span class="hide-collapsed">Broadcast Job History</span></div>
-<div class="side-item" onclick="openPage('blocked',this)"><span class="ico bg-red-50 text-red-500">🚫</span><span class="hide-collapsed">Blocked Pages</span></div>
-<div class="side-item" onclick="openPage('media',this)"><span class="ico bg-violet-50 text-violet-600">🖼️</span><span class="hide-collapsed">Media &amp; Content</span></div>
+<div class="side-item" onclick="openPage('subscribers',this)"><span class="ico bg-purple-100 text-purple-600">👥<span class="cloud">Subscriber Manager</span></span><span class="hide-collapsed">Subscriber Manager</span></div>
+<div class="side-item" onclick="openPage('token',this)"><span class="ico bg-green-100 text-green-600">🔑<span class="cloud">Token Checker</span></span><span class="hide-collapsed">Token Checker</span></div>
+<div class="side-item" onclick="openPage('migrate',this)"><span class="ico bg-green-100 text-green-600">✈️<span class="cloud">Migrate</span></span><span class="hide-collapsed">Migrate</span></div>
+<div class="side-item" onclick="openPage('bot',this)"><span class="ico bg-pink-100 text-pink-600">🤖<span class="cloud">Bot manager</span></span><span class="hide-collapsed">Bot manager</span></div>
+<div class="side-item" onclick="openPage('broadcasting',this)"><span class="ico bg-blue-100 text-blue-600">📢<span class="cloud">Broadcasting</span></span><span class="hide-collapsed">Broadcasting</span></div>
+<div class="side-item" onclick="openPage('history',this)"><span class="ico bg-sky-100 text-sky-600">🕒<span class="cloud">Broadcast Job History</span></span><span class="hide-collapsed">Broadcast Job History</span></div>
+<div class="side-item" onclick="openPage('blocked',this)"><span class="ico bg-red-100 text-red-500">🚫<span class="cloud">Blocked Pages</span></span><span class="hide-collapsed">Blocked Pages</span></div>
+<div class="side-item" onclick="openPage('media',this)"><span class="ico bg-violet-100 text-violet-600">🖼️<span class="cloud">Media & Content</span></span><span class="hide-collapsed">Media &amp; Content</span></div>
 <div class="sec">UTILITY MESSAGING</div>
-<div class="side-item" onclick="openPage('utility',this)"><span class="ico bg-gray-100 text-gray-700">✈️</span><span class="hide-collapsed">Launch Utility</span></div>
+<div class="side-item" onclick="openPage('utility',this)"><span class="ico bg-gray-100 text-gray-700">✈️<span class="cloud">Launch Utility</span></span><span class="hide-collapsed">Launch Utility</span></div>
 <div class="sec">POSTING FEATURE</div>
-<div class="side-item" onclick="openPage('posting',this)"><span class="ico bg-purple-50 text-purple-600">✦</span><span class="hide-collapsed">Social Posting</span></div>
-<div class="side-item" onclick="openPage('aiagent',this)"><span class="ico bg-green-50 text-green-600">👤</span><span class="hide-collapsed">AI Sales Agent</span></div>
+<div class="side-item" onclick="openPage('posting',this)"><span class="ico bg-purple-100 text-purple-600">✦<span class="cloud">Social Posting</span></span><span class="hide-collapsed">Social Posting</span></div>
+<div class="side-item" onclick="openPage('aiagent',this)"><span class="ico bg-green-100 text-green-600">🤖<span class="cloud">AI Sales Agent</span></span><span class="hide-collapsed">AI Sales Agent</span></div>
 <div class="sec">PAYMENT</div>
-<div class="side-item" onclick="openPage('payment',this)"><span class="ico bg-yellow-50 text-yellow-600">💰</span><span class="hide-collapsed">Payment</span></div>
+<div class="side-item" onclick="openPage('payment',this)"><span class="ico bg-yellow-100 text-yellow-600">💰<span class="cloud">Payment</span></span><span class="hide-collapsed">Payment</span></div>
 </div>
 <button onclick="doReset()" class="mx-2 mt-6 w-[calc(100%-16px)] bg-red-500 text-white py-2.5 rounded-xl font-bold text-sm hide-collapsed">Reset / تصفير الكل</button>
 <div class="h-10"></div>
@@ -91,29 +106,29 @@ body{background:#eef1f6;font-family:Inter,system-ui}
 <div id="page-dashboard">
 <div class="flex items-start justify-between gap-2"><div><h1 class="text-[24px] md:text-[28px] font-black">Command Center</h1><p id="todayDate" class="text-gray-500 text-[12px] mt-1">Tuesday, November 10, 2026</p></div><div class="flex gap-2 shrink-0"><span class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>Live · <span id="liveClock" class="font-mono font-bold">11:00:21 م</span></span><button onclick="doRefresh()" class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm font-bold">⟳ Refresh</button></div></div>
 
-<div class="flex items-center gap-2 mt-6 mb-3"><span>👥</span><span class="text-[11px] font-black tracking-wider text-gray-500">SUBSCRIBERS</span><div class="flex-1 h-px bg-gray-200"></div></div>
+<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud bg-purple-100" style="width:28px;height:28px;font-size:14px">👥<span class="cloud">Subscribers</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">SUBSCRIBERS</span><div class="flex-1 h-px bg-gray-200"></div></div>
 <div class="card p-4 md:p-5">
 <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
 <div class="col-span-2 md:col-span-1"><div class="text-[10px] tracking-wider text-gray-500 font-bold">TOTAL SUBSCRIBERS</div><div id="dash-total" class="num text-[32px] md:text-[36px] font-black leading-none mt-1">0</div><div class="flex gap-1.5 mt-2"><span class="bg-blue-50 text-[11px] px-2 py-0.5 rounded-full font-bold">f <span id="dash-fb">0</span> FB</span><span class="bg-gray-50 text-[11px] px-2 py-0.5 rounded-full font-bold">◎ 0 IG</span></div></div>
 <div class="mini"><div class="text-[10px] font-bold text-gray-500">🚩 PAGES</div><div id="dash-pages" class="text-xl font-black num">0</div><div class="text-[11px] mt-1"><span class="text-green-600 font-bold">● <span id="dash-pages-en">0</span> Enabled</span> · <span class="text-red-500 font-bold">● 0 Disabled</span></div><div class="text-[11px] text-gray-500 mt-1">✅ All pages scanned · <span id="scanTime">05:10 م</span></div></div>
-<div class="mini"><div class="text-[10px] font-bold text-gray-500">TODAY</div><div id="dash-today" class="text-xl font-black num">0</div><div class="text-[11px] text-gray-500"><span id="dash-today-fb">0</span> FB · 0 IG</div><div id="todayBox" class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-1 rounded-lg mt-2 inline-block text-center leading-tight">↑ <span id="dash-today-pct">0%</span><br>vs yesterday</div></div>
+<div class="mini"><div class="text-[10px] font-bold text-gray-500">TODAY</div><div id="dash-today" class="text-xl font-black num">0</div><div class="text-[11px] text-gray-500"><span id="dash-today-fb">0</span> FB · 0 IG</div><div class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-1 rounded-lg mt-2 inline-block text-center leading-tight">↑ <span id="dash-today-pct">0%</span><br>vs yesterday</div></div>
 <div class="mini"><div class="text-[10px] font-bold text-gray-500">YESTERDAY</div><div id="dash-yest" class="text-xl font-black num">0</div><div class="text-[11px] text-gray-500">New subscribers</div></div>
 <div class="hidden md:block"><div class="text-[10px] font-bold text-gray-500">7-DAY GROWTH</div><svg viewBox="0 0 100 40" class="w-full h-[60px]"><path d="M0,32 L30,32 L55,32 L75,32 L90,10 L100,2" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/><circle cx="100" cy="2" r="3" fill="#2563eb"/></svg></div>
 </div>
 </div>
 
 <div class="card p-4 mt-3">
-<div class="flex justify-between items-center"><div class="flex items-center gap-3"><span class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center text-lg">✈️</span><div><span id="dash-sub" class="num text-[24px] font-black">0</span><span class="text-gray-500 text-sm"> / <span id="dash-sub-total" class="num">0</span></span><div class="text-[11px] text-gray-500">Subscribers — broadcasts go to these only</div></div></div><span id="dash-pct" class="bg-green-100 text-green-700 text-[11px] font-bold px-3 py-1.5 rounded-full">0% of leads</span></div>
+<div class="flex justify-between items-center"><div class="flex items-center gap-3"><span class="icon-cloud bg-green-100">✈️<span class="cloud">Broadcasts go to these only</span></span><div><span id="dash-sub" class="num text-[24px] font-black">0</span><span class="text-gray-500 text-sm"> / <span id="dash-sub-total" class="num">0</span></span><div class="text-[11px] text-gray-500">Subscribers — broadcasts go to these only</div></div></div><span id="dash-pct" class="bg-green-100 text-green-700 text-[11px] font-bold px-3 py-1.5 rounded-full">0% of leads</span></div>
 <div class="flex h-[12px] rounded-full overflow-hidden bg-gray-200 mt-3"><div id="bar-green" style="width:0%;background:#22c55e"></div><div id="bar-yellow" style="width:0%;background:#f59e0b"></div><div id="bar-red" style="width:0%;background:#f43f5e"></div></div>
 <div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[11px] text-gray-600"><span>🟢 Subscribers <b class="text-black num" id="dash-s1">0</b></span><span>🟡 Ready to migrate <b class="text-black num" id="dash-migrate">0</b></span><span>🔴 Unavailable <b class="text-black num" id="dash-unavail">0</b></span><span>⚪ Scanned leads <b class="text-black num" id="dash-s2">0</b></span></div>
 </div>
 
-<div class="flex items-center gap-2 mt-6 mb-3"><span>📊</span><span class="text-[11px] font-black tracking-wider text-gray-500">CAMPAIGN OVERVIEW</span><div class="flex-1 h-px bg-gray-200"></div></div>
+<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud bg-blue-100" style="width:28px;height:28px;font-size:14px">📊<span class="cloud">Campaign Overview</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">CAMPAIGN OVERVIEW</span><div class="flex-1 h-px bg-gray-200"></div></div>
 <div class="grid grid-cols-2 gap-3">
-<div class="card p-4 flex gap-3"><span class="w-11 h-11 bg-blue-50 rounded-xl flex items-center justify-center text-lg">✈️</span><div><div id="dash-sent" class="num text-[22px] font-black leading-none">0</div><div class="text-[11px] text-gray-500 mt-1">Messages Sent</div><div class="text-[11px] text-gray-500">Broadcast · 30 days</div></div></div>
-<div class="card p-4 flex gap-3"><span class="w-11 h-11 bg-green-50 rounded-xl flex items-center justify-center text-lg">💬</span><div><div id="dash-comments" class="num text-[22px] font-black leading-none text-green-600">0</div><div class="text-[11px] text-gray-500 mt-1">Comments Today</div><div class="text-[11px] font-bold" id="dash-replied">0% replied</div></div></div>
-<div class="card p-4 flex gap-3"><span class="w-11 h-11 bg-yellow-50 rounded-xl flex items-center justify-center text-lg">🚀</span><div><div id="dash-running" class="num text-[22px] font-black leading-none text-yellow-500">0</div><div class="text-[11px] text-gray-500 mt-1">Running Now</div><div class="text-[11px] text-gray-500">Active campaigns</div></div></div>
-<div class="card p-4 flex gap-3"><span class="w-11 h-11 bg-pink-50 rounded-xl flex items-center justify-center text-lg">❗</span><div><div class="text-[22px] font-black leading-none text-pink-600">0</div><div class="text-[11px] text-gray-500 mt-1">Failed Items</div><div class="text-[11px] text-pink-600 font-bold">Tap to retry →</div></div></div>
+<div class="card p-4 flex gap-3"><span class="icon-cloud bg-blue-100">✈️<span class="cloud">Messages Sent</span></span><div><div id="dash-sent" class="num text-[22px] font-black leading-none">0</div><div class="text-[11px] text-gray-500 mt-1">Messages Sent</div><div class="text-[11px] text-gray-500">Broadcast · 30 days</div></div></div>
+<div class="card p-4 flex gap-3"><span class="icon-cloud bg-green-100">💬<span class="cloud">Comments Today</span></span><div><div id="dash-comments" class="num text-[22px] font-black leading-none text-green-600">0</div><div class="text-[11px] text-gray-500 mt-1">Comments Today</div><div class="text-[11px] font-bold" id="dash-replied">0% replied</div></div></div>
+<div class="card p-4 flex gap-3"><span class="icon-cloud bg-yellow-100">🚀<span class="cloud">Running Now</span></span><div><div id="dash-running" class="num text-[22px] font-black leading-none text-yellow-500">0</div><div class="text-[11px] text-gray-500 mt-1">Running Now</div><div class="text-[11px] text-gray-500">Active campaigns</div></div></div>
+<div class="card p-4 flex gap-3"><span class="icon-cloud bg-pink-100">❗<span class="cloud">Failed Items - Tap to retry</span></span><div><div class="text-[22px] font-black leading-none text-pink-600">0</div><div class="text-[11px] text-gray-500 mt-1">Failed Items</div><div class="text-[11px] text-pink-600 font-bold">Tap to retry →</div></div></div>
 </div>
 
 <div class="card p-4 mt-3">
@@ -134,13 +149,11 @@ body{background:#eef1f6;font-family:Inter,system-ui}
 
 <div class="card p-4 mt-3">
 <div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-indigo-600 rounded-full"></span>7-Day Activity</div><div class="flex gap-3 text-[11px]"><span class="text-blue-600">— Broadcast</span><span class="text-green-600">— Comments</span></div></div>
-<div class="relative mt-3">
-<svg viewBox="0 0 600 180" class="w-full h-[180px]"><path d="M0,10 L100,110 L200,150 L300,155 L400,155 L500,155 L600,150 L600,180 L0,180 Z" fill="#2563eb" fill-opacity="0.08"/><path id="chart-blue" d="M0,155 L100,155 L200,155 L300,155 L400,155 L500,155 L600,155" fill="none" stroke="#2563eb" stroke-width="2.5"/><path id="chart-green" d="M0,155 L100,155 L200,155 L300,155 L400,155 L500,155 L600,155" fill="none" stroke="#22c55e" stroke-width="2.5"/><circle id="dot-blue" cx="600" cy="155" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle id="dot-green" cx="600" cy="155" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/></svg>
-</div>
+<div class="relative mt-3"><svg viewBox="0 0 600 180" class="w-full h-[180px]"><path d="M0,10 L100,110 L200,150 L300,155 L400,155 L500,155 L600,150 L600,180 L0,180 Z" fill="#2563eb" fill-opacity="0.08"/><path id="chart-blue" d="M0,155 L100,155 L200,155 L300,155 L400,155 L500,155 L600,155" fill="none" stroke="#2563eb" stroke-width="2.5"/><path id="chart-green" d="M0,155 L100,155 L200,155 L300,155 L400,155 L500,155 L600,155" fill="none" stroke="#22c55e" stroke-width="2.5"/><circle cx="600" cy="155" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="600" cy="155" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/></svg></div>
 <div class="flex text-[10px] text-gray-500 mt-1"><span class="flex-1">Nov 04</span><span class="flex-1 text-center">Nov 05</span><span class="flex-1 text-center">Nov 06</span><span class="flex-1 text-center">Nov 07</span><span class="flex-1 text-center">Nov 08</span><span class="flex-1 text-center">Nov 09</span><span class="flex-1 text-right">Nov 10</span></div>
 </div>
 
-<div class="flex items-center gap-2 mt-6 mb-3"><span>🕒</span><span class="text-[11px] font-black tracking-wider text-gray-500">RECENT ACTIVITY</span><div class="flex-1 h-px bg-gray-200"></div></div>
+<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud bg-yellow-100" style="width:28px;height:28px;font-size:14px">🕒<span class="cloud">Recent Activity</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">RECENT ACTIVITY</span><div class="flex-1 h-px bg-gray-200"></div></div>
 <div class="card overflow-hidden"><div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-blue-600 rounded-full"></span>Recent Broadcasts</div><a href="#" onclick="openPage('campaigns',document.querySelector('[data-page=campaigns]'));return false" class="text-blue-600 text-xs font-bold">View all →</a></div><table class="w-full text-left text-[13px]"><thead class="text-[10px] text-gray-500 border-y bg-gray-50"><tr><th class="px-4 py-2">CAMPAIGN</th><th class="px-4 py-2 text-center">SENT / TOTAL</th><th class="px-4 py-2 text-right">STATUS</th></tr></thead><tbody id="recentBody"></tbody></table><div id="recentEmpty" class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
 <div class="card overflow-hidden mt-3"><div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-green-600 rounded-full"></span>Recent Comment Campaigns</div><a href="#" class="text-green-600 text-xs font-bold">View all →</a></div><div class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
 </div>
@@ -154,7 +167,7 @@ body{background:#eef1f6;font-family:Inter,system-ui}
 </div>
 </div>
 </div>
-<div class="fixed bottom-5 right-4 flex flex-col gap-3 z-40"><button class="w-12 h-12 bg-violet-600 text-white rounded-full shadow-xl text-xl">✦</button><button class="w-12 h-12 bg-green-500 rounded-full shadow-xl flex items-center justify-center text-2xl">💬</button></div>
+<div class="fixed bottom-5 right-4 flex flex-col gap-3 z-40"><button class="w-12 h-12 bg-violet-600 text-white rounded-full shadow-xl text-xl icon-cloud" style="border-radius:999px">✦<span class="cloud">AI Assistant</span></button><button class="w-12 h-12 bg-green-500 rounded-full shadow-xl flex items-center justify-center text-2xl icon-cloud" style="border-radius:999px">💬<span class="cloud">WhatsApp Chat</span></button></div>
 
 <script>
 function getK(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}
@@ -166,7 +179,7 @@ function toggleSide(){var sb=document.getElementById('sidebar');if(window.innerW
 function toggleForm(id){document.getElementById(id).classList.toggle('hidden')}
 function updateClock(){var d=new Date();document.getElementById('liveClock').textContent=d.toLocaleTimeString('en-EG',{hour:'2-digit',minute:'2-digit',second:'2-digit'});document.getElementById('todayDate').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});document.getElementById('scanTime').textContent=d.toLocaleTimeString('en-EG',{hour:'2-digit',minute:'2-digit'})}
 setInterval(updateClock,1000);updateClock();
-function doReset(){if(!confirm('متأكد تصفر كل الأرقام؟ كل الـ Contacts والـ Campaigns والـ Numbers والـ Users هيتمسحوا'))return;localStorage.removeItem('farag_contacts');localStorage.removeItem('farag_campaigns');localStorage.removeItem('farag_numbers');localStorage.removeItem('farag_users');localStorage.setItem('farag_zeroed','1');syncAll();alert('تم التصفير ✅ كل الأرقام بقت 0')}
+function doReset(){if(!confirm('متأكد تصفر كل الأرقام؟'))return;localStorage.removeItem('farag_contacts');localStorage.removeItem('farag_campaigns');localStorage.removeItem('farag_numbers');localStorage.removeItem('farag_users');localStorage.setItem('farag_zeroed','1');syncAll();alert('تم التصفير ✅ كل الأرقام بقت 0')}
 function addContact(){var n=document.getElementById('c-name').value.trim();var p=document.getElementById('c-phone').value.trim();if(!n||!p){alert('اكتب الاسم والرقم');return}var a=getK('farag_contacts');a.unshift({id:Date.now(),name:n,phone:p,ts:Date.now()});setK('farag_contacts',a);document.getElementById('c-name').value='';document.getElementById('c-phone').value='';document.getElementById('contact-form').classList.add('hidden');syncAll();alert('تم إضافة '+n)}
 function addCampaign(){var n=document.getElementById('camp-name').value.trim();var m=document.getElementById('camp-msg').value.trim();if(!n){alert('اكتب اسم الحملة');return}var a=getK('farag_campaigns');a.unshift({id:Date.now(),name:n,msg:m,sent:0,total:getK('farag_contacts').length,status:'Draft',date:new Date().toLocaleString('en-EG')});setK('farag_campaigns',a);document.getElementById('camp-name').value='';document.getElementById('camp-msg').value='';document.getElementById('camp-form').classList.add('hidden');syncAll();alert('تم إنشاء الحملة')}
 function sendCampaign(id){var a=getK('farag_campaigns');var c=null;for(var i=0;i<a.length;i++){if(a[i].id===id){c=a[i];break}}if(!c)return;var contacts=getK('farag_contacts');if(!contacts.length){alert('ضيف Contacts الأول');return}c.sent=contacts.length;c.total=contacts.length;c.status='Done';setK('farag_campaigns',a);syncAll();alert('تم إرسال الحملة لـ '+contacts.length+' جهة')}
@@ -188,7 +201,7 @@ document.getElementById('contacts-count').textContent='('+contacts.length+')';
 document.getElementById('campaigns-count').textContent='('+camps.length+')';
 document.getElementById('numbers-count').textContent='('+nums.length+')';
 document.getElementById('users-count').textContent='('+users.length+')';
-var myTotal=B.total+contacts.length;var mySub=B.sub+contacts.length;var myPages=B.pages+nums.length;var myToday=B.today+todayCount;var myYest=B.yest;var mySent=B.sent;var myDone=B.done;var myPending=0;var myFailed=0;for(var j=0;j<camps.length;j++){mySent+=camps[j].sent||0;if(camps[j].status==='Done')myDone++;else myPending++}
+var myTotal=B.total+contacts.length;var mySub=B.sub+contacts.length;var myPages=B.pages+nums.length;var myToday=B.today+todayCount;var myYest=B.yest;var mySent=B.sent;var myDone=B.done;var myPending=0;for(var j=0;j<camps.length;j++){mySent+=camps[j].sent||0;if(camps[j].status==='Done')myDone++;else myPending++}
 var myTotalCamps=B.totalCamps+camps.length;var myComments=B.comments;
 document.getElementById('dash-total').textContent=fmt(myTotal);
 document.getElementById('dash-fb').textContent=fmt(myTotal);
@@ -209,7 +222,7 @@ document.getElementById('dash-comments').textContent=fmt(myComments);
 document.getElementById('dash-running').textContent=myPending;
 document.getElementById('dash-pending').textContent=myPending;
 document.getElementById('dash-done').textContent=myDone;
-document.getElementById('dash-failed').textContent=myFailed;
+document.getElementById('dash-failed').textContent=0;
 document.getElementById('donut-total').textContent=myTotalCamps;
 document.getElementById('dash-auto').textContent=isZeroed()?0:106;
 document.getElementById('dash-replied').textContent=isZeroed()?'0% replied':'97.5% replied';
