@@ -7,285 +7,229 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 body{background:#eef1f6;font-family:Inter,system-ui}
-.card{background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(15,23,42,.06);border:1px solid #f1f5f9;transition:transform .3s,box-shadow .3s,opacity .35s,filter .35s}
-.card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(15,23,42,.10)}
-.mini{background:#f8f9fb;border-radius:14px;padding:12px;transition:transform .3s}
-.mini:hover{transform:translateY(-2px)}
-.side-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;font-size:13px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap;overflow:visible;transition:background .25s,transform .25s}
-.side-item:hover{background:#eef4ff;transform:translateX(3px)}
+.card{background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(15,23,42,.06);border:1px solid #f1f5f9}
+.side-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;font-size:13px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap}
+.side-item:hover{background:#eef4ff}
 .side-item.active{background:#e8f0ff;color:#1d4ed8}
-#sidebar .ico{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;position:relative;transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .3s,box-shadow .35s;cursor:pointer}
-#sidebar .side-item:hover .ico{background:#111827 !important;color:#fff !important;transform:translateY(-5px) scale(1.18) rotate(-4deg);box-shadow:0 10px 22px rgba(17,24,39,.35),0 4px 8px rgba(0,0,0,.15);animation:floatCloudSidebar 1.6s ease-in-out infinite}
-@keyframes floatCloudSidebar{0%,100%{transform:translateY(-5px) scale(1.18) rotate(-4deg)}50%{transform:translateY(-10px) scale(1.18) rotate(-4deg)}}
-#sidebar .cloud{position:absolute;left:100%;bottom:auto;top:50%;transform:translateY(-50%) translateX(6px) scale(.9);background:#111827;color:#fff;font-size:11px;font-weight:700;white-space:nowrap;padding:7px 10px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50;box-shadow:0 8px 20px rgba(17,24,39,.30)}
-#sidebar .cloud:after{content:'';position:absolute;left:0;top:50%;transform:translate(-8px,-50%) rotate(-90deg);border:6px solid transparent;border-top-color:#111827}
-#sidebar .side-item:hover .ico .cloud{opacity:1;transform:translateY(-50%) translateX(12px) scale(1)}
-.icon-cloud{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;position:relative;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;cursor:pointer}
-.icon-cloud:hover{transform:translateY(-5px) scale(1.18) rotate(-4deg);box-shadow:0 10px 20px rgba(37,99,235,.25),0 4px 8px rgba(0,0,0,.08);animation:floatCloud 1.6s ease-in-out infinite}
-@keyframes floatCloud{0%,100%{transform:translateY(-5px) scale(1.18)}50%{transform:translateY(-9px) scale(1.18)}}
-.icon-cloud .cloud{position:absolute;left:50%;bottom:calc(100% + 10px);transform:translateX(-50%) translateY(6px) scale(.9);background:#111827;color:#fff;font-size:11px;font-weight:700;white-space:nowrap;padding:7px 10px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50;box-shadow:0 8px 20px rgba(0,0,0,.2)}
-.icon-cloud .cloud:after{content:'';position:absolute;left:50%;top:100%;transform:translateX(-50%);border:6px solid transparent;border-top-color:#111827}
-.icon-cloud:hover .cloud{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
-.sec{font-size:9px;letter-spacing:2px;font-weight:800;color:#94a3b8;margin:16px 0 8px 10px;white-space:nowrap;overflow:hidden}
+.sec{font-size:9px;letter-spacing:2px;font-weight:800;color:#94a3b8;margin:16px 0 8px 10px}
 .input{width:100%;border:1px solid #e2e8f0;border-radius:12px;padding:11px 12px;font-size:14px;outline:none;background:#fff}
 .btn{width:100%;background:#2563eb;color:#fff;padding:12px;border-radius:12px;font-weight:800;font-size:14px;border:none;cursor:pointer}
 .badge{font-size:11px;padding:3px 8px;border-radius:99px;font-weight:700}
 #layout{display:flex}
-#sidebar{width:290px;flex-shrink:0;height:100vh;position:sticky;top:0;background:#fff;overflow-y:auto;border-right:1px solid #e5e7eb;overflow-x:visible}
+#sidebar{width:290px;flex-shrink:0;height:100vh;position:sticky;top:0;background:#fff;overflow-y:auto;border-right:1px solid #e5e7eb}
 #main{flex:1;min-width:0}
 #sidebar.collapsed{width:72px}
 #sidebar.collapsed .hide-collapsed{display:none}
-#sidebar.collapsed .side-item{justify-content:center;padding:9px 0}
+#sidebar.collapsed .side-item{justify-content:center}
 #sidebar.collapsed .sec{opacity:0}
 #overlay{display:none}
-.donut{width:118px;height:118px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .35s}
-.donut:hover{transform:translateY(-4px) scale(1.05)}
-.donut-inner{width:84px;height:84px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .num{font-variant-numeric:tabular-nums}
-#page-dashboard.refreshing .card{opacity:.55;filter:blur(1px);transform:translateY(2px)}
-#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;font-size:13px;font-weight:700;padding:11px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:100}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;font-size:13px;font-weight:700;padding:11px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.3s;z-index:100}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(max-width:768px){
-#sidebar{position:fixed;left:0;top:0;bottom:0;z-index:50;transform:translateX(-100%);transition:transform .25s;width:290px}
-#sidebar.open{transform:translateX(0)}
-#sidebar.collapsed{width:290px}
-#sidebar.collapsed .hide-collapsed{display:block}
-#sidebar.collapsed .side-item{justify-content:flex-start;padding:9px 10px}
-#sidebar.collapsed .sec{opacity:1}
-#overlay.show{display:block}
-}
+.filter-btn{padding:7px 12px;border-radius:999px;font-size:12px;font-weight:700;background:#f1f5f9;color:#475569;border:1px solid #e2e8f0;cursor:pointer;white-space:nowrap}
+.filter-btn.active{background:#1e293b;color:#fff;border-color:#1e293b}
+.filter-btn.green{color:#16a34a;background:#f0fdf4}
+.page-card{background:#fff;border:1px solid #eef2f7;border-radius:16px;padding:14px;box-shadow:0 2px 10px rgba(15,23,42,.04)}
+@media(max-width:768px){#sidebar{position:fixed;left:0;top:0;bottom:0;z-index:50;transform:translateX(-100%);transition:.25s;width:290px}#sidebar.open{transform:translateX(0)}#sidebar.collapsed{width:290px}#sidebar.collapsed .hide-collapsed{display:block}#sidebar.collapsed .side-item{justify-content:flex-start}#sidebar.collapsed .sec{opacity:1}#overlay.show{display:block}}
 </style>
 </head>
 <body>
 <div id="layout">
 <div id="sidebar">
-<div class="flex items-center gap-2 px-3 pt-4 pb-3">
-<div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-black text-lg shrink-0 shadow-lg shadow-blue-200">F</div>
-<div class="leading-none hide-collapsed"><div class="font-black text-[20px]">farag <span class="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold">ChatBot AI</span></div><div class="text-[10px] text-gray-400 mt-0.5">Farag Platform</div></div>
-</div>
+<div class="flex items-center gap-2 px-3 pt-4 pb-3"><div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-black text-lg">F</div><div class="leading-none hide-collapsed"><div class="font-black text-[20px]">farag <span class="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold">ChatBot AI</span></div><div class="text-[10px] text-gray-400">Farag Platform</div></div></div>
 <div class="px-2">
-<div class="side-item active" data-page="dashboard" onclick="openPage('dashboard',this)"><span class="ico bg-blue-600 text-white">💎<span class="cloud">Dashboard</span></span><span class="hide-collapsed">Dashboard</span></div>
+<div class="side-item active" data-page="dashboard" onclick="openPage('dashboard',this)"><span>💎</span><span class="hide-collapsed">Dashboard</span></div>
 <div class="sec">FARAG TOOLS</div>
-<div class="side-item" data-page="contacts" onclick="openPage('contacts',this)"><span class="ico bg-purple-100 text-purple-600">👥<span class="cloud">Contacts</span></span><span class="hide-collapsed">Contacts</span><span class="ml-auto badge bg-purple-100 text-purple-700 hide-collapsed" id="badge-contacts">0</span></div>
-<div class="side-item" data-page="campaigns" onclick="openPage('campaigns',this)"><span class="ico bg-blue-100 text-blue-600">📢<span class="cloud">Campaigns</span></span><span class="hide-collapsed">Campaigns</span><span class="ml-auto badge bg-blue-100 text-blue-700 hide-collapsed" id="badge-campaigns">0</span></div>
-<div class="side-item" data-page="numbers" onclick="openPage('numbers',this)"><span class="ico bg-green-100 text-green-600">📱<span class="cloud">Numbers</span></span><span class="hide-collapsed">Numbers</span><span class="ml-auto badge bg-green-100 text-green-700 hide-collapsed" id="badge-numbers">0</span></div>
-<div class="side-item" data-page="users" onclick="openPage('users',this)"><span class="ico bg-orange-100 text-orange-600">👤<span class="cloud">Users</span></span><span class="hide-collapsed">Users</span><span class="ml-auto badge bg-orange-100 text-orange-700 hide-collapsed" id="badge-users">0</span></div>
+<div class="side-item" onclick="openPage('contacts',this)"><span>👥</span><span class="hide-collapsed">Contacts</span><span class="ml-auto badge bg-purple-100 text-purple-700 hide-collapsed" id="badge-contacts">0</span></div>
+<div class="side-item" onclick="openPage('campaigns',this)"><span>📢</span><span class="hide-collapsed">Campaigns</span><span class="ml-auto badge bg-blue-100 text-blue-700 hide-collapsed" id="badge-campaigns">0</span></div>
 <div class="sec">INTEGRATIONS</div>
-<div class="side-item" data-page="facebook" onclick="openPage('facebook',this)"><span class="ico bg-blue-100 text-blue-600">🌐<span class="cloud">Facebook & Instagram</span></span><span class="hide-collapsed">Facebook &amp; Instagram</span></div>
-<div class="side-item" onclick="openPage('api',this)"><span class="ico bg-sky-100 text-sky-600">🛜<span class="cloud">API channels</span></span><span class="hide-collapsed">API channels</span></div>
+<div class="side-item" data-page="facebook" onclick="openPage('facebook',this)"><span>🌐</span><span class="hide-collapsed">Facebook & Instagram</span></div>
+<div class="side-item" onclick="openPage('api',this)"><span>🛜</span><span class="hide-collapsed">API channels</span></div>
 <div class="sec">COMMENT FEATURE</div>
-<div class="side-item" onclick="openPage('growth',this)"><span class="ico bg-purple-100 text-purple-600">🗨️<span class="cloud">Comment growth tools</span></span><span class="hide-collapsed">Comment growth tools</span></div>
-<div class="side-item" onclick="openPage('analytics',this)"><span class="ico bg-violet-100 text-violet-600">📈<span class="cloud">Comment Analytics</span></span><span class="hide-collapsed">Comment Analytics</span></div>
-<div class="side-item" onclick="openPage('restrictions',this)"><span class="ico bg-red-100 text-red-500">🛡️<span class="cloud">Page Restrictions</span></span><span class="hide-collapsed">Page Restrictions</span></div>
+<div class="side-item" onclick="openPage('growth',this)"><span>🗨️</span><span class="hide-collapsed">Comment growth tools</span></div>
+<div class="side-item" onclick="openPage('analytics',this)"><span>📈</span><span class="hide-collapsed">Comment Analytics</span></div>
+<div class="side-item" onclick="openPage('restrictions',this)"><span>🛡️</span><span class="hide-collapsed">Page Restrictions</span></div>
 <div class="sec">MESSENGER TOOLS</div>
-<div class="side-item" onclick="openPage('subscribers',this)"><span class="ico bg-purple-100 text-purple-600">🧑‍🤝‍🧑<span class="cloud">Subscriber Manager</span></span><span class="hide-collapsed">Subscriber Manager</span></div>
-<div class="side-item" onclick="openPage('token',this)"><span class="ico bg-green-100 text-green-600">🗝️<span class="cloud">Token Checker</span></span><span class="hide-collapsed">Token Checker</span></div>
-<div class="side-item" onclick="openPage('migrate',this)"><span class="ico bg-green-100 text-green-600">✈️<span class="cloud">Migrate</span></span><span class="hide-collapsed">Migrate</span></div>
-<div class="side-item" onclick="openPage('bot',this)"><span class="ico bg-pink-100 text-pink-600">🦾<span class="cloud">Bot manager</span></span><span class="hide-collapsed">Bot manager</span></div>
-<div class="side-item" onclick="openPage('broadcasting',this)"><span class="ico bg-blue-100 text-blue-600">📣<span class="cloud">Broadcasting</span></span><span class="hide-collapsed">Broadcasting</span></div>
-<div class="side-item" onclick="openPage('history',this)"><span class="ico bg-sky-100 text-sky-600">📜<span class="cloud">Broadcast Job History</span></span><span class="hide-collapsed">Broadcast Job History</span></div>
-<div class="side-item" onclick="openPage('blocked',this)"><span class="ico bg-red-100 text-red-500">⛔<span class="cloud">Blocked Pages</span></span><span class="hide-collapsed">Blocked Pages</span></div>
-<div class="side-item" onclick="openPage('media',this)"><span class="ico bg-violet-100 text-violet-600">🎞️<span class="cloud">Media & Content</span></span><span class="hide-collapsed">Media &amp; Content</span></div>
-<div class="sec">UTILITY MESSAGING</div>
-<div class="side-item" onclick="openPage('utility',this)"><span class="ico bg-gray-100 text-gray-700">🚀<span class="cloud">Launch Utility</span></span><span class="hide-collapsed">Launch Utility</span></div>
-<div class="sec">POSTING FEATURE</div>
-<div class="side-item" onclick="openPage('posting',this)"><span class="ico bg-purple-100 text-purple-600">✦<span class="cloud">Social Posting</span></span><span class="hide-collapsed">Social Posting</span></div>
-<div class="side-item" onclick="openPage('aiagent',this)"><span class="ico bg-green-100 text-green-600">🧠<span class="cloud">AI Sales Agent</span></span><span class="hide-collapsed">AI Sales Agent</span></div>
-<div class="sec">PAYMENT</div>
-<div class="side-item" onclick="openPage('payment',this)"><span class="ico bg-yellow-100 text-yellow-600">💸<span class="cloud">Payment</span></span><span class="hide-collapsed">Payment</span></div>
+<div class="side-item" onclick="openPage('subscribers',this)"><span>🧑‍🤝‍🧑</span><span class="hide-collapsed">Subscriber Manager</span></div>
+<div class="side-item" onclick="openPage('token',this)"><span>🗝️</span><span class="hide-collapsed">Token Checker</span></div>
+<div class="side-item" onclick="openPage('migrate',this)"><span>✈️</span><span class="hide-collapsed">Migrate</span></div>
+<div class="side-item" onclick="openPage('bot',this)"><span>🦾</span><span class="hide-collapsed">Bot manager</span></div>
+<div class="side-item" onclick="openPage('broadcasting',this)"><span>📣</span><span class="hide-collapsed">Broadcasting</span></div>
+<div class="side-item" onclick="openPage('history',this)"><span>📜</span><span class="hide-collapsed">Broadcast Job History</span></div>
+<div class="side-item" onclick="openPage('blocked',this)"><span>⛔</span><span class="hide-collapsed">Blocked Pages</span></div>
+<div class="side-item" onclick="openPage('media',this)"><span>🎞️</span><span class="hide-collapsed">Media & Content</span></div>
 </div>
 <button onclick="doReset()" class="mx-2 mt-6 w-[calc(100%-16px)] bg-red-500 text-white py-2.5 rounded-xl font-bold text-sm hide-collapsed">Reset / تصفير الكل</button>
-<div class="h-10"></div>
 </div>
 <div id="overlay" class="fixed inset-0 bg-black/50 z-40" onclick="toggleSide()"></div>
 <div id="main">
-<div class="bg-white shadow-sm sticky top-0 z-30 flex items-center justify-between px-3 py-3">
-<button onclick="toggleSide()" class="text-2xl px-2">☰</button>
-<div class="flex items-center gap-2"><span class="bg-sky-50 text-sky-600 text-[11px] font-bold px-2 py-1 rounded-md border border-sky-200">AR</span><span class="text-lg">🌙</span><div class="bg-orange-50 px-2 py-1 rounded-full"><span class="text-xs font-bold">فرج ⌄</span></div></div>
-</div>
+<div class="bg-white shadow-sm sticky top-0 z-30 flex items-center justify-between px-3 py-3"><button onclick="toggleSide()" class="text-2xl px-2">☰</button><div class="flex items-center gap-2"><span class="bg-sky-50 text-sky-600 text-[11px] font-bold px-2 py-1 rounded-md border border-sky-200">AR</span><span class="text-lg">🌙</span><div class="bg-orange-50 px-2 py-1 rounded-full"><span class="text-xs font-bold">فرج ⌄</span></div></div></div>
 <div class="p-3 md:p-6 max-w-[1100px] mx-auto pb-24">
+
+<!-- DASHBOARD -->
 <div id="page-dashboard">
-<div class="flex items-start justify-between gap-2"><div><h1 class="text-[24px] md:text-[28px] font-black">Command Center</h1><p id="todayDate" class="text-gray-500 text-[12px] mt-1">Tuesday, November 10, 2026</p></div><div class="flex gap-2 shrink-0"><span class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>Live · <span id="liveClock" class="font-mono font-bold">11:00:21 م</span></span><button onclick="doRefresh()" class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm font-bold">⟳ Refresh</button></div></div>
-<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud bg-purple-100" style="width:28px;height:28px;font-size:14px">👥<span class="cloud">Subscribers</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">SUBSCRIBERS</span><div class="flex-1 h-px bg-gray-200"></div></div>
-<div class="card p-4 md:p-5">
-<div class="grid grid-cols-2 md:grid-cols-5 gap-4">
-<div class="col-span-2 md:col-span-1"><div class="text-[10px] tracking-wider text-gray-500 font-bold">TOTAL SUBSCRIBERS</div><div id="dash-total" class="num text-[32px] md:text-[36px] font-black leading-none mt-1">0</div><div class="flex gap-1.5 mt-2"><span class="bg-blue-50 text-[11px] px-2 py-0.5 rounded-full font-bold">f <span id="dash-fb">0</span> FB</span><span class="bg-gray-50 text-[11px] px-2 py-0.5 rounded-full font-bold">◎ 0 IG</span></div></div>
-<div class="mini"><div class="text-[10px] font-bold text-gray-500">🚩 PAGES</div><div id="dash-pages" class="text-xl font-black num">0</div><div class="text-[11px] mt-1"><span class="text-green-600 font-bold">● <span id="dash-pages-en">0</span> Enabled</span> · <span class="text-red-500 font-bold">● 0 Disabled</span></div><div class="text-[11px] text-gray-500 mt-1">✅ All pages scanned · <span id="scanTime">05:10 م</span></div></div>
-<div class="mini"><div class="text-[10px] font-bold text-gray-500">TODAY</div><div id="dash-today" class="text-xl font-black num">0</div><div class="text-[11px] text-gray-500"><span id="dash-today-fb">0</span> FB · 0 IG</div><div class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-1 rounded-lg mt-2 inline-block text-center leading-tight">↑ <span id="dash-today-pct">0%</span><br>vs yesterday</div></div>
-<div class="mini"><div class="text-[10px] font-bold text-gray-500">YESTERDAY</div><div id="dash-yest" class="text-xl font-black num">0</div><div class="text-[11px] text-gray-500">New subscribers</div></div>
-<div class="hidden md:block"><div class="text-[10px] font-bold text-gray-500">7-DAY GROWTH</div><svg viewBox="0 0 100 40" class="w-full h-[60px]"><path d="M0,32 L30,32 L55,32 L75,32 L90,10 L100,2" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/><circle cx="100" cy="2" r="3" fill="#2563eb"/></svg></div>
-</div>
-</div>
-<div class="card p-4 mt-3">
-<div class="flex justify-between items-center"><div class="flex items-center gap-3"><span class="icon-cloud bg-green-100">✈️<span class="cloud">Broadcasts go to these only</span></span><div><span id="dash-sub" class="num text-[24px] font-black">0</span><span class="text-gray-500 text-sm"> / <span id="dash-sub-total" class="num">0</span></span><div class="text-[11px] text-gray-500">Subscribers — broadcasts go to these only</div></div></div><span id="dash-pct" class="bg-green-100 text-green-700 text-[11px] font-bold px-3 py-1.5 rounded-full">0% of leads</span></div>
-<div class="flex h-[12px] rounded-full overflow-hidden bg-gray-200 mt-3"><div id="bar-green" style="width:0%;background:#22c55e"></div><div id="bar-yellow" style="width:0%;background:#f59e0b"></div><div id="bar-red" style="width:0%;background:#f43f5e"></div></div>
-<div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[11px] text-gray-600"><span>🟢 Subscribers <b class="text-black num" id="dash-s1">0</b></span><span>🟡 Ready to migrate <b class="text-black num" id="dash-migrate">0</b></span><span>🔴 Unavailable <b class="text-black num" id="dash-unavail">0</b></span><span>⚪ Scanned leads <b class="text-black num" id="dash-s2">0</b></span></div>
-</div>
-<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud bg-blue-100" style="width:28px;height:28px;font-size:14px">📊<span class="cloud">Campaign Overview</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">CAMPAIGN OVERVIEW</span><div class="flex-1 h-px bg-gray-200"></div></div>
-<div class="grid grid-cols-2 gap-3">
-<div class="card p-4 flex gap-3"><span class="icon-cloud bg-blue-100">✈️<span class="cloud">Messages Sent</span></span><div><div id="dash-sent" class="num text-[22px] font-black leading-none">0</div><div class="text-[11px] text-gray-500 mt-1">Messages Sent</div><div class="text-[11px] text-gray-500">Broadcast · 30 days</div></div></div>
-<div class="card p-4 flex gap-3"><span class="icon-cloud bg-green-100">💬<span class="cloud">Comments Today</span></span><div><div id="dash-comments" class="num text-[22px] font-black leading-none text-green-600">0</div><div class="text-[11px] text-gray-500 mt-1">Comments Today</div><div class="text-[11px] font-bold" id="dash-replied">0% replied</div></div></div>
-<div class="card p-4 flex gap-3"><span class="icon-cloud bg-yellow-100">🚀<span class="cloud">Running Now</span></span><div><div id="dash-running" class="num text-[22px] font-black leading-none text-yellow-500">0</div><div class="text-[11px] text-gray-500 mt-1">Running Now</div><div class="text-[11px] text-gray-500">Active campaigns</div></div></div>
-<div class="card p-4 flex gap-3"><span class="icon-cloud bg-pink-100">❗<span class="cloud">Failed Items - Tap to retry</span></span><div><div class="text-[22px] font-black leading-none text-pink-600">0</div><div class="text-[11px] text-gray-500 mt-1">Failed Items</div><div class="text-[11px] text-pink-600 font-bold">Tap to retry →</div></div></div>
-</div>
-<div class="card p-4 mt-3">
-<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-blue-600 rounded-full"></span>Broadcast Campaigns <span class="text-gray-400 font-normal text-xs">(last 30 days)</span></div><a href="#" onclick="openPage('campaigns',document.querySelector('[data-page=campaigns]'));return false" class="text-blue-600 text-xs font-bold">All campaigns →</a></div>
-<div class="flex gap-5 mt-4">
-<div id="donut1" class="donut" style="background:#e5e7eb"><div class="donut-inner"><span id="donut-total" class="font-black text-xl leading-none num">0</span><span class="text-[10px] text-gray-500">Total</span></div></div>
-<div class="flex-1 text-[13px] space-y-2.5"><div class="flex justify-between"><span>🟠 Pending</span><b id="dash-pending">0</b></div><div class="flex justify-between"><span>🔵 Processing</span><b>0</b></div><div class="flex justify-between"><span>🟢 Completed</span><b id="dash-done">0</b></div><div class="flex justify-between"><span>🔴 Failed</span><b id="dash-failed">0</b></div><div class="flex justify-between border-t pt-2"><span>✈️ Messages Sent</span><b class="text-blue-700 num" id="dash-sent2">0</b></div></div>
-</div>
-</div>
-<div class="card p-4 mt-3">
-<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-green-600 rounded-full"></span>Comment Campaigns <span class="text-gray-400 font-normal text-xs">(last 30 days)</span></div><a href="#" class="text-green-600 text-xs font-bold">Analytics →</a></div>
-<div class="flex gap-5 mt-4">
-<div class="donut" style="background:#e5e7eb"><div class="donut-inner"><span class="font-black text-xl leading-none">0</span><span class="text-[10px] text-gray-500">Campaigns</span></div></div>
-<div class="flex-1 text-[13px] space-y-2.5"><div class="flex justify-between"><span>🟠 Pending</span><b>0</b></div><div class="flex justify-between"><span>🔵 Processing</span><b>0</b></div><div class="flex justify-between"><span>🟢 Completed</span><b>0</b></div><div class="flex justify-between border-t pt-2"><span>↩️ Replies Sent</span><b class="text-green-600">0</b></div><div class="flex justify-between"><span>🤖 Active Autoreplies</span><b class="text-purple-600" id="dash-auto">0</b></div></div>
-</div>
-</div>
-<div class="card p-4 mt-3">
-<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-indigo-600 rounded-full"></span>7-Day Activity</div><div class="flex gap-3 text-[11px]"><span class="text-blue-600">— Broadcast</span><span class="text-green-600">— Comments</span></div></div>
-<div class="relative mt-3"><svg viewBox="0 0 600 180" class="w-full h-[180px]"><path d="M0,10 L100,110 L200,150 L300,155 L400,155 L500,155 L600,150 L600,180 L0,180 Z" fill="#2563eb" fill-opacity="0.08"/><path id="chart-blue" d="M0,155 L100,155 L200,155 L300,155 L400,155 L500,155 L600,155" fill="none" stroke="#2563eb" stroke-width="2.5"/><path id="chart-green" d="M0,155 L100,155 L200,155 L300,155 L400,155 L500,155 L600,155" fill="none" stroke="#22c55e" stroke-width="2.5"/><circle cx="600" cy="155" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="600" cy="155" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/></svg></div>
-<div class="flex text-[10px] text-gray-500 mt-1"><span class="flex-1">Nov 04</span><span class="flex-1 text-center">Nov 05</span><span class="flex-1 text-center">Nov 06</span><span class="flex-1 text-center">Nov 07</span><span class="flex-1 text-center">Nov 08</span><span class="flex-1 text-center">Nov 09</span><span class="flex-1 text-right">Nov 10</span></div>
-</div>
-<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud bg-yellow-100" style="width:28px;height:28px;font-size:14px">🕒<span class="cloud">Recent Activity</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">RECENT ACTIVITY</span><div class="flex-1 h-px bg-gray-200"></div></div>
-<div class="card overflow-hidden"><div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-blue-600 rounded-full"></span>Recent Broadcasts</div><a href="#" onclick="openPage('campaigns',document.querySelector('[data-page=campaigns]'));return false" class="text-blue-600 text-xs font-bold">View all →</a></div><table class="w-full text-left text-[13px]"><thead class="text-[10px] text-gray-500 border-y bg-gray-50"><tr><th class="px-4 py-2">CAMPAIGN</th><th class="px-4 py-2 text-center">SENT / TOTAL</th><th class="px-4 py-2 text-right">STATUS</th></tr></thead><tbody id="recentBody"></tbody></table><div id="recentEmpty" class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
-<div class="card overflow-hidden mt-3"><div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-green-600 rounded-full"></span>Recent Comment Campaigns</div><a href="#" class="text-green-600 text-xs font-bold">View all →</a></div><div class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
+<div class="flex justify-between"><div><h1 class="text-[26px] font-black">Command Center</h1><p class="text-gray-500 text-[12px]">Farag Platform - الخطة المدمجة</p></div><button onclick="openPage('facebook',document.querySelector('[data-page=facebook]'))" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm h-fit">Facebook & Instagram →</button></div>
+<div class="card p-5 mt-4"><div class="text-[11px] font-bold text-gray-500">TOTAL SUBSCRIBERS</div><div id="dash-total" class="num text-[36px] font-black">0</div><div class="text-[12px] text-gray-500 mt-1">الصفحات المربوطة: <b id="dash-pages">0</b> • الأكونتات: <b id="dash-accounts">0</b></div></div>
+<div class="grid grid-cols-2 gap-3 mt-3"><div class="card p-4"><div class="text-[22px] font-black" id="dash-sent">0</div><div class="text-[11px] text-gray-500">Messages Sent</div></div><div class="card p-4"><div class="text-[22px] font-black text-green-600" id="dash-comments">0</div><div class="text-[11px] text-gray-500">Comments Today</div></div></div>
 </div>
 
-<!-- FACEBOOK & INSTAGRAM - الخطة المدمجة -->
+<!-- FACEBOOK & INSTAGRAM - زي المنصة التانية بالظبط -->
 <div id="page-facebook" class="hidden">
-<div class="flex justify-between items-start gap-2"><div><h2 class="text-[22px] font-black">Facebook & Instagram</h2><p class="text-[12px] text-gray-500 mt-1">ربط الصفحات • Webhook على Cloudflare • Tokens في Supabase • طابور لكل صفحة في Upstash</p></div><button onclick="toggleForm('fb-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm shrink-0">+ Connect Page</button></div>
+<div class="flex flex-wrap items-center gap-3"><div class="flex items-center gap-2"><span class="text-xl">💬</span><h2 class="text-[20px] md:text-[22px] font-black">Connect Facebook & Instagram</h2></div><button onclick="loginFacebook()" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-sm">Login with Facebook</button></div>
 
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
-<div class="card p-4"><div class="text-[11px] font-bold text-gray-500">PAGES CONNECTED</div><div id="fb-count" class="text-[24px] font-black mt-1">0</div><div class="text-[11px] text-green-600 font-bold">● Supabase Synced</div></div>
-<div class="card p-4"><div class="text-[11px] font-bold text-gray-500">WEBHOOK • CLOUDFLARE</div><div class="text-[16px] font-black mt-1 flex items-center gap-2"><span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>Live</div><div class="text-[11px] text-gray-500">200 OK • &lt; 200ms</div></div>
-<div class="card p-4"><div class="text-[11px] font-bold text-gray-500">QUEUES • UPSTASH</div><div id="fb-queue-total" class="text-[24px] font-black mt-1">0</div><div class="text-[11px] text-gray-500">مهام مستنية في الطوابير</div></div>
-<div class="card p-4"><div class="text-[11px] font-bold text-gray-500">TOKENS</div><div id="fb-token-ok" class="text-[24px] font-black mt-1 text-green-600">0 OK</div><div class="text-[11px] text-gray-500">تنبيه Resend لو Token خلص</div></div>
+<!-- QUICK ACTIONS -->
+<div class="card p-4 mt-4">
+<div class="flex flex-wrap items-center gap-2">
+<span class="font-black text-[13px]">⚡ QUICK ACTIONS</span>
+<span class="badge bg-green-100 text-green-700" id="qa-enabled">✅ 0 Enabled</span>
+<span class="badge bg-gray-100 text-gray-600" id="qa-disabled">⏸ 0 Disabled</span>
+<span class="badge bg-yellow-100 text-yellow-700">⏸ 0 Paused</span>
+<span class="badge bg-orange-100 text-orange-700" id="qa-elsewhere">🔗 0 Linked elsewhere</span>
+<span class="badge bg-indigo-100 text-indigo-700" id="qa-total">📦 0 Total</span>
 </div>
-
-<div id="fb-form" class="card p-4 mt-3 hidden">
-<div class="grid md:grid-cols-2 gap-2">
-<input id="fb-name" class="input" placeholder="اسم الصفحة - مثال: Farag Store">
-<input id="fb-id" class="input" placeholder="Page ID - مثال: 104829...">
-<input id="fb-token" class="input md:col-span-2" placeholder="Page Access Token - هيتحفظ مشفر في Supabase">
-<select id="fb-type" class="input"><option value="Facebook">Facebook Page</option><option value="Instagram">Instagram Account</option></select>
-<input id="fb-days" class="input" type="number" placeholder="Token صالح لكام يوم؟ مثال: 60">
-</div>
-<button onclick="addFbPage()" class="btn mt-3">ربط الصفحة وحفظ Token</button>
-<p class="text-[11px] text-gray-400 mt-2 text-center">الـ Webhook هيتأكد أوتوماتيك من Cloudflare Workers، والطابور هيتعمل لوحده `queue:page_ID`</p>
-</div>
-
-<div class="card p-4 mt-3">
-<div class="flex justify-between items-center"><div class="font-bold text-sm">Webhook Endpoint • Cloudflare Workers</div><span class="badge bg-green-100 text-green-700">● Connected</span></div>
-<div class="bg-gray-900 text-green-300 text-[12px] font-mono p-3 rounded-xl mt-3 overflow-x-auto">https://farag-webhook.your-worker.workers.dev/webhook/facebook</div>
-<div class="flex gap-2 mt-3"><button onclick="testWebhook()" class="flex-1 bg-gray-900 text-white py-2.5 rounded-xl text-sm font-bold">Test Webhook • اختبار</button><button onclick="copyWebhook()" class="px-4 py-2.5 bg-gray-100 rounded-xl text-sm font-bold">Copy</button></div>
-<div id="webhook-log" class="text-[12px] text-gray-500 mt-3">آخر حدث: لا يوجد حدث بعد • في انتظار أول Comment / Message من فيسبوك</div>
-</div>
-
-<div id="fb-list" class="mt-3 space-y-3"></div>
-
-<div class="card p-4 mt-3">
-<div class="font-bold text-sm">إزاي الشغل ماشي؟ • الخطة المدمجة</div>
-<div class="text-[12px] text-gray-600 space-y-1.5 mt-2 leading-relaxed">
-<div>1. فيسبوك يبعت Comment / Message ← <b>Cloudflare Workers</b> بيرد `200 OK` فوراً</div>
-<div>2. الطلب يتحط في طابور الصفحة دي بس ← <b>Upstash `queue:page_ID`</b></div>
-<div>3. الـ Worker يسحب بالدور ← <b>Fly.io</b> رسالة كل ثانية عشان متتحظرش</div>
-<div>4. الـ Token والنافذة 24 ساعة متتابعين ← <b>Supabase</b></div>
-<div>5. لو Token خلص أو الطابور اتكدس ← <b>Resend</b> يبعتلك إيميل فوراً</div>
-</div>
+<div class="flex flex-wrap gap-2 mt-3">
+<button onclick="enableAll()" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border border-green-200">⬇ Enable All</button>
+<button onclick="enableAll()" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border border-green-200">⬇ Enable All Accounts</button>
+<button onclick="disableAll()" class="px-3 py-2 rounded-lg bg-gray-50 font-bold text-[12px] border">⏻ Disable All</button>
+<button onclick="scanAll()" class="px-3 py-2 rounded-lg bg-yellow-50 text-yellow-700 font-bold text-[12px] border border-yellow-200">⚡ Scan All Accounts</button>
+<button onclick="showToast('Migrate - هنعملها في تبويبة Migrate')" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border border-green-200">👥 Migrate</button>
+<button onclick="showToast('Migrate progress: 0%')" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border border-green-200">📈 Migrate progress</button>
+<button onclick="showToast('Publish Status: All Published ✅')" class="px-3 py-2 rounded-lg bg-red-50 text-red-600 font-bold text-[12px] border border-red-200">🚫 Check Publish Status</button>
+<button onclick="showToast('Unpublish Log: فارغ')" class="px-3 py-2 rounded-lg bg-gray-50 font-bold text-[12px] border">🗂 Unpublish Log</button>
+<button onclick="doRefresh()" class="px-3 py-2 rounded-lg bg-blue-50 text-blue-700 font-bold text-[12px] border border-blue-200">⟳ Refresh</button>
+<button onclick="deleteAllPages()" class="px-3 py-2 rounded-lg bg-red-50 text-red-600 font-bold text-[12px] border border-red-200">🗑 Delete All</button>
 </div>
 </div>
 
-<div id="page-contacts" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Contacts <span id="contacts-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('contact-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm">+ Add Contact</button></div><div id="contact-form" class="card p-4 mt-3 hidden"><input id="c-name" class="input" placeholder="الاسم - مثال: أحمد محمد"><input id="c-phone" class="input mt-2" placeholder="01012345678"><button onclick="addContact()" class="btn mt-3">حفظ جهة الاتصال</button></div><input id="contacts-search" oninput="renderContacts()" class="input mt-3" placeholder="ابحث بالاسم أو الرقم..."><div id="contacts-list" class="mt-3 space-y-2"></div></div>
-<div id="page-campaigns" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Campaigns <span id="campaigns-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('camp-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm">+ New Campaign</button></div><div id="camp-form" class="card p-4 mt-3 hidden"><input id="camp-name" class="input" placeholder="اسم الحملة - مثال: عرض رمضان"><textarea id="camp-msg" class="input mt-2" rows="3" placeholder="رسالة الحملة..."></textarea><button onclick="addCampaign()" class="btn mt-3">إنشاء الحملة</button></div><div id="campaigns-list" class="mt-3 space-y-2"></div></div>
-<div id="page-numbers" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Numbers <span id="numbers-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('num-form')" class="bg-green-600 text-white px-4 py-2 rounded-xl font-bold text-sm">+ Add Number</button></div><div id="num-form" class="card p-4 mt-3 hidden"><input id="n-label" class="input" placeholder="اسم الرقم - مثال: رقم المبيعات"><input id="n-phone" class="input mt-2" placeholder="01012345678"><button onclick="addNumber()" class="btn mt-3" style="background:#16a34a">حفظ الرقم</button></div><div id="numbers-list" class="mt-3 space-y-2"></div></div>
-<div id="page-users" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Users <span id="users-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('user-form')" class="bg-orange-500 text-white px-4 py-2 rounded-xl font-bold text-sm">+ Add User</button></div><div id="user-form" class="card p-4 mt-3 hidden"><input id="u-name" class="input" placeholder="اسم المستخدم"><input id="u-email" class="input mt-2" placeholder="email@example.com"><button onclick="addUser()" class="btn mt-3" style="background:#f97316">حفظ المستخدم</button></div><div id="users-list" class="mt-3 space-y-2"></div></div>
-<div id="page-other" class="hidden"><div class="card p-6 text-center"><div class="text-5xl mb-3">📢</div><h2 id="otherTitle" class="text-xl font-black">Broadcasting</h2><p class="text-gray-500 text-sm mt-2">هنعملها في دورها - ابعتلي صورتها.</p><button onclick="openPage('dashboard',document.querySelector('[data-page=dashboard]'))" class="mt-4 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm">Back to Dashboard</button></div></div>
+<!-- ACCOUNTS LIST -->
+<div id="accounts-list" class="mt-4 space-y-4"></div>
+
+<!-- SEARCH + FILTERS -->
+<div class="card p-4 mt-4">
+<div class="relative"><span class="absolute left-3 top-3 text-gray-400">🔍</span><input id="fb-search" oninput="renderAll()" class="input !pl-9" placeholder="Search pages by name or ID..."></div>
+<div class="flex gap-2 mt-3 overflow-x-auto pb-1" id="filter-bar">
+<button onclick="setFilter('all',this)" class="filter-btn active">All (<span id="f-all">0</span>)</button>
+<button onclick="setFilter('enabled',this)" class="filter-btn green">Enabled (<span id="f-enabled">0</span>)</button>
+<button onclick="setFilter('disabled',this)" class="filter-btn">Disabled (<span id="f-disabled">0</span>)</button>
+<button onclick="setFilter('paused',this)" class="filter-btn">Paused (<span id="f-paused">0</span>)</button>
+<button onclick="setFilter('instagram',this)" class="filter-btn">Instagram (<span id="f-ig">0</span>)</button>
+<button onclick="setFilter('unpublished',this)" class="filter-btn">🚫 Unpublished (<span id="f-unpub">0</span>)</button>
+<button onclick="setFilter('elsewhere',this)" class="filter-btn">🔗 Linked elsewhere (<span id="f-else">0</span>)</button>
+</div>
+</div>
+
+<!-- PAGE LIST HEADER -->
+<div class="flex flex-wrap justify-between items-center mt-4 px-1"><div class="flex items-center gap-3 flex-wrap"><span class="font-black text-[14px]">🧱 Page list</span><span class="text-[12px] text-gray-500" id="page-list-count">0 Pages</span><span class="badge bg-yellow-100 text-yellow-700">🔗 +0 Linked elsewhere</span><button onclick="enableAll()" class="px-3 py-1.5 rounded-full bg-yellow-50 border border-yellow-200 text-[12px] font-bold">⬇ Enable all here</button></div><label class="flex items-center gap-2 text-[12px] font-bold text-gray-600 mt-2 md:mt-0"><input type="checkbox" id="select-all" onchange="toggleSelectAll(this.checked)"> Select All</label></div>
+
+<!-- PAGES GRID -->
+<div id="pages-grid" class="grid md:grid-cols-3 gap-3 mt-3"></div>
+<div id="pages-empty" class="card p-8 text-center text-gray-400 text-sm mt-3">لسه مفيش أكونت مربوط - دوس <b class="text-blue-600">Login with Facebook</b> فوق<br>الأكونت هيجيب كل صفحاته لوحده، زي المنصة التانية بالظبط</div>
+
+<div class="card p-4 mt-4"><div class="font-bold text-sm">إزاي الشغل ماشي؟ • الخطة المدمجة</div><div class="text-[12px] text-gray-600 mt-2 space-y-1"><div>1. تدوس <b>Login with Facebook</b> → فيسبوك يرجع الأكونت + كل صفحاته + Token</div><div>2. الـ Token يتحفظ مشفر في <b>Supabase</b>، وكل صفحة يتعملها طابور <b>queue:page_ID</b> في <b>Upstash</b></div><div>3. الـ Webhook على <b>Cloudflare</b> بيرد 200 OK فوراً</div><div>4. الـ Worker على <b>Fly.io</b> يسحب رسالة كل ثانية</div><div>5. لو Token خلص → <b>Resend</b> يبعت إيميل فوراً</div></div></div>
+</div>
+
+<div id="page-contacts" class="hidden"><h2 class="text-xl font-black">Contacts</h2><div class="card p-4 mt-3"><input id="c-name" class="input" placeholder="الاسم"><input id="c-phone" class="input mt-2" placeholder="010..."><button onclick="addContact()" class="btn mt-3">حفظ</button></div><div id="contacts-list" class="mt-3 space-y-2"></div></div>
+<div id="page-campaigns" class="hidden"><h2 class="text-xl font-black">Campaigns</h2><div class="card p-4 mt-3"><input id="camp-name" class="input" placeholder="اسم الحملة"><button onclick="addCampaign()" class="btn mt-3">إنشاء</button></div><div id="campaigns-list" class="mt-3 space-y-2"></div></div>
+<div id="page-other" class="hidden"><div class="card p-6 text-center"><h2 id="otherTitle" class="text-xl font-black">Broadcasting</h2><p class="text-gray-500 text-sm mt-2">هنعملها في دورها - ابعتلي صورتها.</p><button onclick="openPage('dashboard',document.querySelector('[data-page=dashboard]'))" class="mt-4 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm">Back to Dashboard</button></div></div>
 </div>
 </div>
 </div>
 <div id="toast">تم ✅</div>
-<div class="fixed bottom-5 right-4 flex flex-col gap-3 z-40"><button class="w-12 h-12 bg-violet-600 text-white rounded-full shadow-xl text-xl icon-cloud" style="border-radius:999px">✦<span class="cloud">AI Assistant</span></button><button class="w-12 h-12 bg-green-500 rounded-full shadow-xl flex items-center justify-center text-2xl icon-cloud" style="border-radius:999px">💬<span class="cloud">WhatsApp Chat</span></button></div>
 <script>
-function getK(k){try{return JSON.parse(localStorage.getItem(k)||'[]')}catch(e){return[]}}
-function setK(k,v){localStorage.setItem(k,JSON.stringify(v))}
+let accounts = JSON.parse(localStorage.getItem('farag_accounts')||'[]');
+let pages = JSON.parse(localStorage.getItem('farag_pages')||'[]');
+let currentFilter='all';
+function save(){localStorage.setItem('farag_accounts',JSON.stringify(accounts));localStorage.setItem('farag_pages',JSON.stringify(pages))}
 function fmt(n){return n.toLocaleString('en-US')}
-function isZeroed(){return localStorage.getItem('farag_zeroed')==='1'}
-function getBase(){if(isZeroed()){return {total:0,sub:0,pages:0,today:0,yest:0,sent:0,comments:0,done:0,totalCamps:0}}return {total:1592739,sub:75177,pages:177,today:180,yest:127,sent:865990,comments:1141,done:677,totalCamps:705}}
-function toggleSide(){var sb=document.getElementById('sidebar');if(window.innerWidth<=768){sb.classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}else{sb.classList.toggle('collapsed')}}
-function toggleForm(id){document.getElementById(id).classList.toggle('hidden')}
-function updateClock(){var d=new Date();document.getElementById('liveClock').textContent=d.toLocaleTimeString('en-EG',{hour:'2-digit',minute:'2-digit',second:'2-digit'});document.getElementById('todayDate').textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});document.getElementById('scanTime').textContent=d.toLocaleTimeString('en-EG',{hour:'2-digit',minute:'2-digit'})}
-setInterval(updateClock,1000);updateClock();
-function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._toastTimer);window._toastTimer=setTimeout(function(){t.classList.remove('show')},2200)}
-function smoothRefresh(msg){var d=document.getElementById('page-dashboard');d.classList.add('refreshing');setTimeout(function(){syncAll();d.classList.remove('refreshing');if(msg)showToast(msg)},280)}
-function doReset(){if(!confirm('متأكد تصفر كل الأرقام؟'))return;localStorage.removeItem('farag_contacts');localStorage.removeItem('farag_campaigns');localStorage.removeItem('farag_numbers');localStorage.removeItem('farag_users');localStorage.removeItem('farag_pages');localStorage.setItem('farag_zeroed','1');smoothRefresh('تم التصفير ✅ كل الأرقام بقت 0')}
-// Facebook & Instagram - الخطة المدمجة
-function addFbPage(){var n=document.getElementById('fb-name').value.trim();var id=document.getElementById('fb-id').value.trim();var tk=document.getElementById('fb-token').value.trim();var type=document.getElementById('fb-type').value;var days=parseInt(document.getElementById('fb-days').value||'60');if(!n||!id){alert('اكتب اسم الصفحة و Page ID');return}var a=getK('farag_pages');var exp=Date.now()+days*24*60*60*1000;a.unshift({id:Date.now(),pageId:id,name:n,type:type,token:tk?tk.slice(0,6)+'••••':'••••',expiry:exp,queue:0,webhook:'Live',window24:'Active'});setK('farag_pages',a);document.getElementById('fb-name').value='';document.getElementById('fb-id').value='';document.getElementById('fb-token').value='';document.getElementById('fb-days').value='';document.getElementById('fb-form').classList.add('hidden');syncAll();showToast('تم ربط '+n+' ✅ • Queue اتعمل: queue:'+id)}
-function checkToken(id){var a=getK('farag_pages');for(var i=0;i<a.length;i++){if(a[i].id===id){var left=Math.ceil((a[i].expiry-Date.now())/86400000);if(left<=0){showToast('⚠️ Token خلص لـ '+a[i].name+' • Resend بعت إيميل')}else if(left<=7){showToast('⚠️ Token لـ '+a[i].name+' فاضل عليه '+left+' يوم • هيتبعت تنبيه')}else{showToast('✅ Token سليم لـ '+a[i].name+' • فاضل '+left+' يوم')}break}}}
-function testWebhook(){document.getElementById('webhook-log').textContent='✅ Test OK • Cloudflare رد 200 OK في 142ms • Event: comment → queue:page_ID → Fly.io';showToast('✅ Webhook شغال • 200 OK')}
-function copyWebhook(){try{navigator.clipboard.writeText('https://farag-webhook.your-worker.workers.dev/webhook/facebook');showToast('تم نسخ Webhook')}catch(e){showToast('انسخ اللينك يدوي')}}
-function renderFbPages(){var a=getK('farag_pages');var h='';if(!a.length){h='<div class="card p-6 text-center text-gray-400 text-sm">لسه مفيش صفحات مربوطة - دوس + Connect Page<br><span class="text-[11px]">أول صفحة هتتربط هتتخزن في Supabase ويتعملها طابور في Upstash</span></div>'}else{for(var i=0;i<a.length;i++){var p=a[i];var left=Math.ceil((p.expiry-Date.now())/86400000);var tokenClass=left<=0?'bg-red-100 text-red-700':left<=7?'bg-yellow-100 text-yellow-700':'bg-green-100 text-green-700';var tokenTxt=left<=0?'EXPIRED • Resend بعت إيميل':left<=7?('ينتهي بعد '+left+' يوم • تنبيه'):('صالح • فاضل '+left+' يوم');h+='<div class="card p-4"><div class="flex justify-between gap-2"><div class="flex gap-3"><div class="w-11 h-11 '+(p.type==='Instagram'?'bg-pink-100':'bg-blue-100')+' rounded-full flex items-center justify-center text-xl">'+(p.type==='Instagram'?'◎':'f')+'</div><div><div class="font-bold text-[14px]">'+p.name+'</div><div class="text-[11px] text-gray-500">ID: '+p.pageId+' • '+p.type+' • Queue: <span class="font-mono font-bold">queue:'+p.pageId+'</span></div></div></div><span class="badge '+tokenClass+'">'+tokenTxt+'</span></div><div class="grid grid-cols-3 gap-2 mt-3 text-center"><div class="bg-gray-50 rounded-xl py-2"><div class="text-[10px] text-gray-500">WEBHOOK</div><div class="text-[12px] font-bold text-green-600">● Live</div></div><div class="bg-gray-50 rounded-xl py-2"><div class="text-[10px] text-gray-500">QUEUE</div><div class="text-[12px] font-bold">'+p.queue+' waiting</div></div><div class="bg-gray-50 rounded-xl py-2"><div class="text-[10px] text-gray-500">24H WINDOW</div><div class="text-[12px] font-bold text-blue-600">'+p.window24+'</div></div></div><div class="flex gap-2 mt-3"><button onclick="checkToken('+p.id+')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-[13px] font-bold">فحص Token</button><button onclick="delItem(\'farag_pages\','+p.id+')" class="px-4 py-2 bg-red-50 text-red-600 rounded-lg text-[13px] font-bold">فك الربط</button></div></div>'}}document.getElementById('fb-list').innerHTML=h;document.getElementById('fb-count').textContent=a.length;var q=0,ok=0;for(var j=0;j<a.length;j++){q+=a[j].queue||0;if(a[j].expiry>Date.now())ok++}document.getElementById('fb-queue-total').textContent=q;document.getElementById('fb-token-ok').textContent=ok+' OK';document.getElementById('fb-token-ok').className='text-[24px] font-black mt-1 '+(ok===a.length&&a.length?'text-green-600':'text-yellow-600')}
-function addContact(){var n=document.getElementById('c-name').value.trim();var p=document.getElementById('c-phone').value.trim();if(!n||!p){alert('اكتب الاسم والرقم');return}var a=getK('farag_contacts');a.unshift({id:Date.now(),name:n,phone:p,ts:Date.now()});setK('farag_contacts',a);document.getElementById('c-name').value='';document.getElementById('c-phone').value='';document.getElementById('contact-form').classList.add('hidden');syncAll();showToast('تم إضافة '+n)}
-function addCampaign(){var n=document.getElementById('camp-name').value.trim();var m=document.getElementById('camp-msg').value.trim();if(!n){alert('اكتب اسم الحملة');return}var a=getK('farag_campaigns');a.unshift({id:Date.now(),name:n,msg:m,sent:0,total:getK('farag_contacts').length,status:'Draft',date:new Date().toLocaleString('en-EG')});setK('farag_campaigns',a);document.getElementById('camp-name').value='';document.getElementById('camp-msg').value='';document.getElementById('camp-form').classList.add('hidden');syncAll();showToast('تم إنشاء الحملة')}
-function sendCampaign(id){var a=getK('farag_campaigns');var c=null;for(var i=0;i<a.length;i++){if(a[i].id===id){c=a[i];break}}if(!c)return;var contacts=getK('farag_contacts');if(!contacts.length){alert('ضيف Contacts الأول');return}c.sent=contacts.length;c.total=contacts.length;c.status='Done';setK('farag_campaigns',a);syncAll();showToast('تم إرسال الحملة لـ '+contacts.length+' جهة')}
-function addNumber(){var l=document.getElementById('n-label').value.trim();var p=document.getElementById('n-phone').value.trim();if(!l||!p){alert('اكتب اسم الرقم والرقم');return}var a=getK('farag_numbers');a.unshift({id:Date.now(),label:l,phone:p});setK('farag_numbers',a);document.getElementById('n-label').value='';document.getElementById('n-phone').value='';document.getElementById('num-form').classList.add('hidden');syncAll();showToast('تم إضافة الرقم')}
-function addUser(){var n=document.getElementById('u-name').value.trim();var e=document.getElementById('u-email').value.trim();if(!n||!e){alert('اكتب الاسم والإيميل');return}var a=getK('farag_users');a.unshift({id:Date.now(),name:n,email:e});setK('farag_users',a);document.getElementById('u-name').value='';document.getElementById('u-email').value='';document.getElementById('user-form').classList.add('hidden');syncAll();showToast('تم إضافة المستخدم')}
-function delItem(key,id){if(!confirm('متأكد تحذف؟'))return;setK(key,getK(key).filter(function(x){return x.id!==id}));smoothRefresh('تم الحذف')}
-function renderContacts(){var q=(document.getElementById('contacts-search').value||'').toLowerCase();var a=getK('farag_contacts').filter(function(c){return (c.name+c.phone).toLowerCase().indexOf(q)>-1});var h='';if(!a.length){h='<div class="card p-6 text-center text-gray-400 text-sm">لسه مفيش Contacts - دوس + Add Contact</div>'}else{for(var i=0;i<a.length;i++){var c=a[i];h+='<div class="card p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center font-black text-purple-700">'+c.name.charAt(0)+'</div><div><div class="font-bold text-sm">'+c.name+'</div><div class="text-xs text-gray-500">'+c.phone+'</div></div></div><button onclick="delItem(\'farag_contacts\','+c.id+')" class="text-red-500 font-bold px-2">حذف</button></div>'}}document.getElementById('contacts-list').innerHTML=h}
-function renderCampaigns(){var a=getK('farag_campaigns');var h='';if(!a.length){h='<div class="card p-6 text-center text-gray-400 text-sm">لسه مفيش Campaigns - دوس + New Campaign</div>'}else{for(var i=0;i<a.length;i++){var c=a[i];h+='<div class="card p-4"><div class="flex justify-between"><div class="font-bold text-sm">'+c.name+'</div><span class="badge '+(c.status==='Done'?'bg-green-100 text-green-700':'bg-yellow-100 text-yellow-700')+'">'+c.status+'</span></div><div class="text-xs text-gray-500 mt-1">'+(c.msg||'')+' - '+c.date+'</div><div class="text-xs mt-2 font-bold">Sent: '+c.sent+' / '+c.total+'</div><div class="flex gap-2 mt-3"><button onclick="sendCampaign('+c.id+')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-sm font-bold">Send Now</button><button onclick="delItem(\'farag_campaigns\','+c.id+')" class="px-3 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-bold">حذف</button></div></div>'}}document.getElementById('campaigns-list').innerHTML=h}
-function renderNumbers(){var a=getK('farag_numbers');var h='';if(!a.length){h='<div class="card p-6 text-center text-gray-400 text-sm">لسه مفيش Numbers - دوس + Add Number</div>'}else{for(var i=0;i<a.length;i++){var n=a[i];h+='<div class="card p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">📱</div><div><div class="font-bold text-sm">'+n.label+'</div><div class="text-xs text-gray-500">'+n.phone+'</div></div></div><button onclick="delItem(\'farag_numbers\','+n.id+')" class="text-red-500 font-bold">حذف</button></div>'}}document.getElementById('numbers-list').innerHTML=h}
-function renderUsers(){var a=getK('farag_users');var h='';if(!a.length){h='<div class="card p-6 text-center text-gray-400 text-sm">لسه مفيش Users - دوس + Add User</div>'}else{for(var i=0;i<a.length;i++){var u=a[i];h+='<div class="card p-3 flex justify-between items-center"><div class="flex gap-3 items-center"><div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center font-black text-orange-700">'+u.name.charAt(0)+'</div><div><div class="font-bold text-sm">'+u.name+'</div><div class="text-xs text-gray-500">'+u.email+'</div></div></div><button onclick="delItem(\'farag_users\','+u.id+')" class="text-red-500 font-bold">حذف</button></div>'}}document.getElementById('users-list').innerHTML=h}
-function syncAll(){
-var contacts=getK('farag_contacts');var camps=getK('farag_campaigns');var nums=getK('farag_numbers');var users=getK('farag_users');var B=getBase();
-var today=new Date().toDateString();var todayCount=0;for(var i=0;i<contacts.length;i++){if(new Date(contacts[i].ts||Date.now()).toDateString()===today)todayCount++}
-document.getElementById('badge-contacts').textContent=contacts.length;
-document.getElementById('badge-campaigns').textContent=camps.length;
-document.getElementById('badge-numbers').textContent=nums.length;
-document.getElementById('badge-users').textContent=users.length;
-document.getElementById('contacts-count').textContent='('+contacts.length+')';
-document.getElementById('campaigns-count').textContent='('+camps.length+')';
-document.getElementById('numbers-count').textContent='('+nums.length+')';
-document.getElementById('users-count').textContent='('+users.length+')';
-var myTotal=B.total+contacts.length;var mySub=B.sub+contacts.length;var myPages=B.pages+nums.length+getK('farag_pages').length;var myToday=B.today+todayCount;var myYest=B.yest;var mySent=B.sent;var myDone=B.done;var myPending=0;for(var j=0;j<camps.length;j++){mySent+=camps[j].sent||0;if(camps[j].status==='Done')myDone++;else myPending++}
-var myTotalCamps=B.totalCamps+camps.length;var myComments=B.comments;
-document.getElementById('dash-total').textContent=fmt(myTotal);
-document.getElementById('dash-fb').textContent=fmt(myTotal);
-document.getElementById('dash-today').textContent=fmt(myToday);
-document.getElementById('dash-today-fb').textContent=fmt(myToday);
-document.getElementById('dash-yest').textContent=fmt(myYest);
-document.getElementById('dash-pages').textContent=myPages;
-document.getElementById('dash-pages-en').textContent=myPages;
-document.getElementById('dash-sub').textContent=fmt(mySub);
-document.getElementById('dash-sub-total').textContent=fmt(myTotal);
-document.getElementById('dash-s1').textContent=fmt(mySub);
-document.getElementById('dash-s2').textContent=fmt(myTotal);
-document.getElementById('dash-migrate').textContent=fmt(myTotal>0?Math.round(myTotal*0.69):0);
-document.getElementById('dash-unavail').textContent=fmt(myTotal>0?Math.round(myTotal*0.25):0);
-document.getElementById('dash-sent').textContent=fmt(mySent);
-document.getElementById('dash-sent2').textContent=fmt(mySent);
-document.getElementById('dash-comments').textContent=fmt(myComments);
-document.getElementById('dash-running').textContent=myPending;
-document.getElementById('dash-pending').textContent=myPending;
-document.getElementById('dash-done').textContent=myDone;
-document.getElementById('dash-failed').textContent=0;
-document.getElementById('donut-total').textContent=myTotalCamps;
-document.getElementById('dash-auto').textContent=isZeroed()?0:106;
-document.getElementById('dash-replied').textContent=isZeroed()?'0% replied':'97.5% replied';
-document.getElementById('dash-today-pct').textContent=isZeroed()?'0%':'+41.7%';
-var pct=myTotal>0?(mySub/myTotal*100).toFixed(1):0;document.getElementById('dash-pct').textContent=pct+'% of leads';
-document.getElementById('bar-green').style.width=pct+'%';
-document.getElementById('bar-yellow').style.width=myTotal>0?'70%':'0%';
-document.getElementById('bar-red').style.width=myTotal>0?'25.3%':'0%';
-if(myTotalCamps>0){var donePct=Math.round(myDone/myTotalCamps*100);document.getElementById('donut1').style.background='conic-gradient(#22c55e 0% '+donePct+'%, #f43f5e '+donePct+'% 100%)'}else{document.getElementById('donut1').style.background='#e5e7eb'}
-var rh='';for(var k=0;k<Math.min(camps.length,8);k++){var c=camps[k];rh+='<tr class="border-b"><td class="px-4 py-3"><div class="font-bold">'+c.name+'</div><div class="text-[11px] text-gray-400">'+c.date+'</div></td><td class="px-4 py-3 text-center font-bold">'+c.sent+' / '+c.total+'</td><td class="px-4 py-3 text-right"><span class="bg-green-50 text-green-700 text-[11px] px-2.5 py-1 rounded-full font-bold">● '+c.status+'</span></td></tr>'}
-document.getElementById('recentBody').innerHTML=rh;
-document.getElementById('recentEmpty').style.display=camps.length?'none':'block';
-renderContacts();renderCampaigns();renderNumbers();renderUsers();renderFbPages();
+function showToast(m){let t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2500)}
+function toggleSide(){let sb=document.getElementById('sidebar');if(window.innerWidth<=768){sb.classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}else{sb.classList.toggle('collapsed')}}
+function doReset(){if(!confirm('تصفر الكل؟'))return;accounts=[];pages=[];localStorage.removeItem('farag_contacts');localStorage.removeItem('farag_campaigns');save();renderAll();showToast('تم التصفير ✅')}
+function doRefresh(){renderAll();showToast('تم التحديث ✅')}
+function loginFacebook(){
+  let name=prompt('اسم الأكونت اللي هتربطه؟ مثال: Yoka Karam','Yoka Karam');
+  if(!name) return;
+  let count=parseInt(prompt('الأكونت ده فيه كام صفحة؟ مثال: 126','3')||'3');
+  let accId=Date.now();
+  accounts.unshift({id:accId,name:name,avatar:name.charAt(0),tokenValid:true,created:Date.now()});
+  let colors=['#3b82f6','#ec4899','#f59e0b','#10b981','#8b5cf6','#ef4444'];
+  let names=['فاطمة','براءة','ايه','مريم','يوسف','نور','سارة','عمر','ليلى','حسن'];
+  for(let i=0;i<count;i++){
+    let nm=names[i%names.length]+(count>10?' '+(i+1):'');
+    pages.unshift({id:Date.now()+i,accId:accId,name:nm,fbId:'2659737366'+(1000+i),enabled:true,paused:false,ig:false,unpublished:false,elsewhere:false,selected:false,color:colors[i%colors.length]});
+  }
+  save();renderAll();showToast('✅ تم ربط '+name+' - '+count+' صفحة اتجابوا من فيسبوك');
 }
-var titles={facebook:'Facebook & Instagram',api:'API channels',growth:'Comment growth tools',analytics:'Comment Analytics',restrictions:'Page Restrictions',subscribers:'Subscriber Manager',token:'Token Checker',migrate:'Migrate',bot:'Bot manager',broadcasting:'Broadcasting',history:'Broadcast Job History',blocked:'Blocked Pages',media:'Media & Content',utility:'Launch Utility',posting:'Social Posting',aiagent:'AI Sales Agent',payment:'Payment'};
-function openPage(name,el){var items=document.querySelectorAll('.side-item');for(var i=0;i<items.length;i++)items[i].classList.remove('active');if(el)el.classList.add('active');var pages=['dashboard','contacts','campaigns','numbers','users','facebook','other'];for(var j=0;j<pages.length;j++)document.getElementById('page-'+pages[j]).classList.add('hidden');if(name!=='other'&&pages.indexOf(name)>-1){document.getElementById('page-'+name).classList.remove('hidden')}else{document.getElementById('page-other').classList.remove('hidden');document.getElementById('otherTitle').textContent=titles[name]||name}if(window.innerWidth<=768){var sb=document.getElementById('sidebar');if(sb.classList.contains('open'))toggleSide()}window.scrollTo({top:0})}
-function doRefresh(){smoothRefresh('تم التحديث ✅')}
-syncAll();
+function scanAll(){if(!accounts.length){showToast('اربط أكونت الأول');return}showToast('⚡ جاري فحص كل الأكونتات...');setTimeout(()=>{renderAll();showToast('✅ تم فحص '+accounts.length+' أكونت - '+pages.length+' صفحة')},800)}
+function scanAccount(id){let a=accounts.find(x=>x.id===id);showToast('⚡ جاري فحص '+a.name+'...');setTimeout(()=>{showToast('✅ تم فحص '+a.name+' - كل الصفحات متزامنة')},700)}
+function checkLinked(id){let a=accounts.find(x=>x.id===id);let c=pages.filter(p=>p.accId===id).length;showToast('✅ '+a.name+' مربوط بيه '+c+' صفحة')}
+function unlinkAccount(id){if(!confirm('متأكد تفك ربط الأكونت ده؟ كل صفحاته هتتمسح'))return;accounts=accounts.filter(a=>a.id!==id);pages=pages.filter(p=>p.accId!==id);save();renderAll();showToast('تم فك الربط')}
+function enableAll(){pages.forEach(p=>p.enabled=true);save();renderAll();showToast('✅ تم تفعيل كل الصفحات')}
+function disableAll(){pages.forEach(p=>p.enabled=false);save();renderAll();showToast('تم إيقاف كل الصفحات')}
+function deleteAllPages(){if(!confirm('متأكد تمسح كل الصفحات؟'))return;pages=[];save();renderAll();showToast('تم مسح كل الصفحات')}
+function setFilter(f,el){currentFilter=f;document.querySelectorAll('#filter-bar .filter-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderAll()}
+function togglePage(id){let p=pages.find(x=>x.id===id);p.enabled=!p.enabled;save();renderAll();showToast(p.enabled?'✅ تم تفعيل '+p.name:'تم إيقاف '+p.name)}
+function resetPage(id){showToast('تم عمل Reset للصفحة - الإحصائيات اتصفرت')}
+function statsPage(id){let p=pages.find(x=>x.id===id);alert('إحصائيات '+p.name+'\n\nالمشتركين: 1,245\nالرسائل اليوم: 32\nالكومنتات: 18\nالحالة: '+(p.enabled?'Enabled ✅':'Disabled'))}
+function toggleSelectAll(v){pages.forEach(p=>p.selected=v);renderAll()}
+function renderAll(){
+  // Accounts
+  let ah='';
+  accounts.forEach(a=>{
+    let c=pages.filter(p=>p.accId===a.id).length;
+    let elsewhere=pages.filter(p=>p.accId===a.id&&p.elsewhere).length;
+    ah+='<div class="card p-4 md:p-5 flex flex-wrap gap-4 items-center"><div class="flex items-center gap-3 flex-1 min-w-[220px]"><div class="relative"><div class="w-[68px] h-[68px] rounded-full bg-green-100 flex items-center justify-center text-[28px] font-black overflow-hidden">🌿</div><span class="absolute bottom-1 right-1 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span></div><div><div class="font-black text-[18px]">'+a.name+'</div><div class="flex gap-2 mt-1.5 flex-wrap"><span class="badge bg-gray-100 text-gray-700">📄 '+c+' Pages</span><span class="badge bg-orange-100 text-orange-700">🔗 '+elsewhere+' Linked elsewhere</span></div><span class="badge bg-green-100 text-green-700 mt-1.5 inline-block">✅ Token Valid</span></div></div><div class="flex gap-2 flex-wrap"><button onclick="scanAccount('+a.id+')" class="px-3 py-2 rounded-lg bg-yellow-50 border border-yellow-200 font-bold text-[12px]">⚡ Scan Account</button><button onclick="checkLinked('+a.id+')" class="px-3 py-2 rounded-lg bg-yellow-50 border border-yellow-200 font-bold text-[12px]">🔗 Check Linked Pages</button><button onclick="unlinkAccount('+a.id+')" class="px-3 py-2 rounded-lg bg-gray-50 border font-bold text-[12px]">✕ Unlink account</button></div></div>';
+  });
+  document.getElementById('accounts-list').innerHTML=ah;
+  // Filters
+  let q=(document.getElementById('fb-search').value||'').toLowerCase();
+  let filtered=pages.filter(p=>{
+    if(q && (p.name+p.fbId).toLowerCase().indexOf(q)===-1) return false;
+    if(currentFilter==='enabled') return p.enabled;
+    if(currentFilter==='disabled') return !p.enabled;
+    if(currentFilter==='paused') return p.paused;
+    if(currentFilter==='instagram') return p.ig;
+    if(currentFilter==='unpublished') return p.unpublished;
+    if(currentFilter==='elsewhere') return p.elsewhere;
+    return true;
+  });
+  let enabled=pages.filter(p=>p.enabled).length;
+  document.getElementById('qa-enabled').textContent='✅ '+enabled+' Enabled';
+  document.getElementById('qa-disabled').textContent='⏸ '+(pages.length-enabled)+' Disabled';
+  document.getElementById('qa-elsewhere').textContent='🔗 '+pages.filter(p=>p.elsewhere).length+' Linked elsewhere';
+  document.getElementById('qa-total').textContent='📦 '+pages.length+' Total';
+  document.getElementById('f-all').textContent=pages.length;
+  document.getElementById('f-enabled').textContent=enabled;
+  document.getElementById('f-disabled').textContent=pages.length-enabled;
+  document.getElementById('f-paused').textContent=pages.filter(p=>p.paused).length;
+  document.getElementById('f-ig').textContent=pages.filter(p=>p.ig).length;
+  document.getElementById('f-unpub').textContent=pages.filter(p=>p.unpublished).length;
+  document.getElementById('f-else').textContent=pages.filter(p=>p.elsewhere).length;
+  document.getElementById('page-list-count').textContent=pages.length+' Pages';
+  // Pages grid
+  let gh='';
+  filtered.forEach(p=>{
+    gh+='<div class="page-card"><div class="flex justify-between items-start"><div class="flex gap-3 items-center"><div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-[13px] shrink-0" style="background:'+p.color+'">'+p.name.charAt(0)+'</div><div><div class="font-bold text-[14px]">'+p.name+'</div><div class="text-[11px] text-gray-400"># '+p.fbId+'</div></div></div><input type="checkbox" '+(p.selected?'checked':'')+' onchange="pages.find(x=>x.id==='+p.id+').selected=this.checked;save()" class="w-4 h-4"></div><div class="mt-3"><span class="badge '+(p.enabled?'bg-green-100 text-green-700':'bg-red-100 text-red-700')+'">'+(p.enabled?'✅ Enabled':'⏸ Disabled')+'</span></div><div class="flex gap-1.5 mt-3"><button onclick="togglePage('+p.id+')" class="flex-1 py-1.5 rounded-lg bg-gray-50 border text-[12px] font-bold">'+(p.enabled?'⏻ Disable':'✅ Enable')+'</button><button onclick="resetPage('+p.id+')" class="flex-1 py-1.5 rounded-lg bg-yellow-50 border border-yellow-200 text-[12px] font-bold">🔄 Reset</button><button onclick="statsPage('+p.id+')" class="flex-1 py-1.5 rounded-lg bg-purple-50 border border-purple-200 text-[12px] font-bold">📊 Stats</button></div></div>';
+  });
+  document.getElementById('pages-grid').innerHTML=gh;
+  document.getElementById('pages-empty').style.display=(pages.length===0)?'block':'none';
+  // Dashboard sync
+  document.getElementById('dash-total').textContent=fmt(1592739+pages.length*1200);
+  document.getElementById('dash-pages').textContent=pages.length;
+  document.getElementById('dash-accounts').textContent=accounts.length;
+  document.getElementById('dash-sent').textContent=fmt(865990+pages.length*10);
+  document.getElementById('dash-comments').textContent=fmt(1141+pages.length);
+  document.getElementById('badge-contacts').textContent=JSON.parse(localStorage.getItem('farag_contacts')||'[]').length;
+  document.getElementById('badge-campaigns').textContent=JSON.parse(localStorage.getItem('farag_campaigns')||'[]').length;
+  // Contacts / Campaigns simple render
+  let contacts=JSON.parse(localStorage.getItem('farag_contacts')||'[]');
+  document.getElementById('contacts-list').innerHTML=contacts.map(c=>'<div class="card p-3 flex justify-between"><b>'+c.name+'</b><span>'+c.phone+'</span></div>').join('')||'<div class="card p-4 text-center text-gray-400 text-sm">لسه مفيش Contacts</div>';
+  let camps=JSON.parse(localStorage.getItem('farag_campaigns')||'[]');
+  document.getElementById('campaigns-list').innerHTML=camps.map(c=>'<div class="card p-3"><b>'+c.name+'</b></div>').join('')||'<div class="card p-4 text-center text-gray-400 text-sm">لسه مفيش Campaigns</div>';
+}
+function addContact(){let n=document.getElementById('c-name').value.trim();let p=document.getElementById('c-phone').value.trim();if(!n||!p)return alert('اكتب الاسم والرقم');let a=JSON.parse(localStorage.getItem('farag_contacts')||'[]');a.unshift({name:n,phone:p});localStorage.setItem('farag_contacts',JSON.stringify(a));renderAll();showToast('تم إضافة '+n)}
+function addCampaign(){let n=document.getElementById('camp-name').value.trim();if(!n)return alert('اكتب اسم الحملة');let a=JSON.parse(localStorage.getItem('farag_campaigns')||'[]');a.unshift({name:n});localStorage.setItem('farag_campaigns',JSON.stringify(a));renderAll();showToast('تم إنشاء الحملة')}
+function openPage(name,el){document.querySelectorAll('.side-item').forEach(i=>i.classList.remove('active'));if(el)el.classList.add('active');['dashboard','contacts','campaigns','facebook','other'].forEach(p=>document.getElementById('page-'+p).classList.add('hidden'));if(['dashboard','contacts','campaigns','facebook'].includes(name)){document.getElementById('page-'+name).classList.remove('hidden')}else{document.getElementById('page-other').classList.remove('hidden');document.getElementById('otherTitle').textContent=name}if(window.innerWidth<=768){let sb=document.getElementById('sidebar');if(sb.classList.contains('open'))toggleSide()}window.scrollTo({top:0})}
+renderAll();
 </script>
 </body>
 </html>
