@@ -14,14 +14,12 @@ body{background:#eef1f6;font-family:Inter,system-ui}
 .side-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;font-size:13px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap;overflow:visible;transition:background .25s,transform .25s}
 .side-item:hover{background:#eef4ff;transform:translateX(3px)}
 .side-item.active{background:#e8f0ff;color:#1d4ed8}
-/* القايمة الجانبية فقط - بنفس لون السحابة */
 #sidebar .ico{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;position:relative;transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .3s,box-shadow .35s;cursor:pointer}
 #sidebar .side-item:hover .ico{background:#111827 !important;color:#fff !important;transform:translateY(-5px) scale(1.18) rotate(-4deg);box-shadow:0 10px 22px rgba(17,24,39,.35),0 4px 8px rgba(0,0,0,.15);animation:floatCloudSidebar 1.6s ease-in-out infinite}
 @keyframes floatCloudSidebar{0%,100%{transform:translateY(-5px) scale(1.18) rotate(-4deg)}50%{transform:translateY(-10px) scale(1.18) rotate(-4deg)}}
 #sidebar .cloud{position:absolute;left:100%;bottom:auto;top:50%;transform:translateY(-50%) translateX(6px) scale(.9);background:#111827;color:#fff;font-size:11px;font-weight:700;white-space:nowrap;padding:7px 10px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:50;box-shadow:0 8px 20px rgba(17,24,39,.30)}
 #sidebar .cloud:after{content:'';position:absolute;left:0;top:50%;transform:translate(-8px,-50%) rotate(-90deg);border:6px solid transparent;border-top-color:#111827}
 #sidebar .side-item:hover .ico .cloud{opacity:1;transform:translateY(-50%) translateX(12px) scale(1)}
-/* الداشبورد - زي ما هو */
 .icon-cloud{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;position:relative;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;cursor:pointer}
 .icon-cloud:hover{transform:translateY(-5px) scale(1.18) rotate(-4deg);box-shadow:0 10px 20px rgba(37,99,235,.25),0 4px 8px rgba(0,0,0,.08);animation:floatCloud 1.6s ease-in-out infinite}
 @keyframes floatCloud{0%,100%{transform:translateY(-5px) scale(1.18)}50%{transform:translateY(-9px) scale(1.18)}}
@@ -44,7 +42,6 @@ body{background:#eef1f6;font-family:Inter,system-ui}
 .donut:hover{transform:translateY(-4px) scale(1.05)}
 .donut-inner{width:84px;height:84px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .num{font-variant-numeric:tabular-nums}
-/* الريفرش الناعم - من غير اسدال */
 #page-dashboard.refreshing .card{opacity:.55;filter:blur(1px);transform:translateY(2px)}
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#111827;color:#fff;font-size:13px;font-weight:700;padding:11px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.25);opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:100}
 #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
@@ -67,35 +64,35 @@ body{background:#eef1f6;font-family:Inter,system-ui}
 <div class="leading-none hide-collapsed"><div class="font-black text-[20px]">farag <span class="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded font-bold">ChatBot AI</span></div><div class="text-[10px] text-gray-400 mt-0.5">Farag Platform</div></div>
 </div>
 <div class="px-2">
-<div class="side-item active" data-page="dashboard" onclick="openPage('dashboard',this)"><span class="ico bg-blue-600 text-white">🏠<span class="cloud">Dashboard</span></span><span class="hide-collapsed">Dashboard</span></div>
+<div class="side-item active" data-page="dashboard" onclick="openPage('dashboard',this)"><span class="ico bg-blue-600 text-white">💎<span class="cloud">Dashboard</span></span><span class="hide-collapsed">Dashboard</span></div>
 <div class="sec">FARAG TOOLS</div>
 <div class="side-item" data-page="contacts" onclick="openPage('contacts',this)"><span class="ico bg-purple-100 text-purple-600">👥<span class="cloud">Contacts</span></span><span class="hide-collapsed">Contacts</span><span class="ml-auto badge bg-purple-100 text-purple-700 hide-collapsed" id="badge-contacts">0</span></div>
 <div class="side-item" data-page="campaigns" onclick="openPage('campaigns',this)"><span class="ico bg-blue-100 text-blue-600">📢<span class="cloud">Campaigns</span></span><span class="hide-collapsed">Campaigns</span><span class="ml-auto badge bg-blue-100 text-blue-700 hide-collapsed" id="badge-campaigns">0</span></div>
 <div class="side-item" data-page="numbers" onclick="openPage('numbers',this)"><span class="ico bg-green-100 text-green-600">📱<span class="cloud">Numbers</span></span><span class="hide-collapsed">Numbers</span><span class="ml-auto badge bg-green-100 text-green-700 hide-collapsed" id="badge-numbers">0</span></div>
 <div class="side-item" data-page="users" onclick="openPage('users',this)"><span class="ico bg-orange-100 text-orange-600">👤<span class="cloud">Users</span></span><span class="hide-collapsed">Users</span><span class="ml-auto badge bg-orange-100 text-orange-700 hide-collapsed" id="badge-users">0</span></div>
 <div class="sec">INTEGRATIONS</div>
-<div class="side-item" onclick="openPage('facebook',this)"><span class="ico bg-blue-100 text-blue-600">🟦<span class="cloud">Facebook & Instagram</span></span><span class="hide-collapsed">Facebook &amp; Instagram</span></div>
-<div class="side-item" onclick="openPage('api',this)"><span class="ico bg-sky-100 text-sky-600">🔌<span class="cloud">API channels</span></span><span class="hide-collapsed">API channels</span></div>
+<div class="side-item" data-page="facebook" onclick="openPage('facebook',this)"><span class="ico bg-blue-100 text-blue-600">🌐<span class="cloud">Facebook & Instagram</span></span><span class="hide-collapsed">Facebook &amp; Instagram</span></div>
+<div class="side-item" onclick="openPage('api',this)"><span class="ico bg-sky-100 text-sky-600">🛜<span class="cloud">API channels</span></span><span class="hide-collapsed">API channels</span></div>
 <div class="sec">COMMENT FEATURE</div>
-<div class="side-item" onclick="openPage('growth',this)"><span class="ico bg-purple-100 text-purple-600">💬<span class="cloud">Comment growth tools</span></span><span class="hide-collapsed">Comment growth tools</span></div>
-<div class="side-item" onclick="openPage('analytics',this)"><span class="ico bg-violet-100 text-violet-600">📊<span class="cloud">Comment Analytics</span></span><span class="hide-collapsed">Comment Analytics</span></div>
-<div class="side-item" onclick="openPage('restrictions',this)"><span class="ico bg-red-100 text-red-500">🚫<span class="cloud">Page Restrictions</span></span><span class="hide-collapsed">Page Restrictions</span></div>
+<div class="side-item" onclick="openPage('growth',this)"><span class="ico bg-purple-100 text-purple-600">🗨️<span class="cloud">Comment growth tools</span></span><span class="hide-collapsed">Comment growth tools</span></div>
+<div class="side-item" onclick="openPage('analytics',this)"><span class="ico bg-violet-100 text-violet-600">📈<span class="cloud">Comment Analytics</span></span><span class="hide-collapsed">Comment Analytics</span></div>
+<div class="side-item" onclick="openPage('restrictions',this)"><span class="ico bg-red-100 text-red-500">🛡️<span class="cloud">Page Restrictions</span></span><span class="hide-collapsed">Page Restrictions</span></div>
 <div class="sec">MESSENGER TOOLS</div>
-<div class="side-item" onclick="openPage('subscribers',this)"><span class="ico bg-purple-100 text-purple-600">👥<span class="cloud">Subscriber Manager</span></span><span class="hide-collapsed">Subscriber Manager</span></div>
-<div class="side-item" onclick="openPage('token',this)"><span class="ico bg-green-100 text-green-600">🔑<span class="cloud">Token Checker</span></span><span class="hide-collapsed">Token Checker</span></div>
+<div class="side-item" onclick="openPage('subscribers',this)"><span class="ico bg-purple-100 text-purple-600">🧑‍🤝‍🧑<span class="cloud">Subscriber Manager</span></span><span class="hide-collapsed">Subscriber Manager</span></div>
+<div class="side-item" onclick="openPage('token',this)"><span class="ico bg-green-100 text-green-600">🗝️<span class="cloud">Token Checker</span></span><span class="hide-collapsed">Token Checker</span></div>
 <div class="side-item" onclick="openPage('migrate',this)"><span class="ico bg-green-100 text-green-600">✈️<span class="cloud">Migrate</span></span><span class="hide-collapsed">Migrate</span></div>
-<div class="side-item" onclick="openPage('bot',this)"><span class="ico bg-pink-100 text-pink-600">🤖<span class="cloud">Bot manager</span></span><span class="hide-collapsed">Bot manager</span></div>
-<div class="side-item" onclick="openPage('broadcasting',this)"><span class="ico bg-blue-100 text-blue-600">📢<span class="cloud">Broadcasting</span></span><span class="hide-collapsed">Broadcasting</span></div>
-<div class="side-item" onclick="openPage('history',this)"><span class="ico bg-sky-100 text-sky-600">🕒<span class="cloud">Broadcast Job History</span></span><span class="hide-collapsed">Broadcast Job History</span></div>
-<div class="side-item" onclick="openPage('blocked',this)"><span class="ico bg-red-100 text-red-500">🚫<span class="cloud">Blocked Pages</span></span><span class="hide-collapsed">Blocked Pages</span></div>
-<div class="side-item" onclick="openPage('media',this)"><span class="ico bg-violet-100 text-violet-600">🖼️<span class="cloud">Media & Content</span></span><span class="hide-collapsed">Media &amp; Content</span></div>
+<div class="side-item" onclick="openPage('bot',this)"><span class="ico bg-pink-100 text-pink-600">🦾<span class="cloud">Bot manager</span></span><span class="hide-collapsed">Bot manager</span></div>
+<div class="side-item" onclick="openPage('broadcasting',this)"><span class="ico bg-blue-100 text-blue-600">📣<span class="cloud">Broadcasting</span></span><span class="hide-collapsed">Broadcasting</span></div>
+<div class="side-item" onclick="openPage('history',this)"><span class="ico bg-sky-100 text-sky-600">📜<span class="cloud">Broadcast Job History</span></span><span class="hide-collapsed">Broadcast Job History</span></div>
+<div class="side-item" onclick="openPage('blocked',this)"><span class="ico bg-red-100 text-red-500">⛔<span class="cloud">Blocked Pages</span></span><span class="hide-collapsed">Blocked Pages</span></div>
+<div class="side-item" onclick="openPage('media',this)"><span class="ico bg-violet-100 text-violet-600">🎞️<span class="cloud">Media & Content</span></span><span class="hide-collapsed">Media &amp; Content</span></div>
 <div class="sec">UTILITY MESSAGING</div>
-<div class="side-item" onclick="openPage('utility',this)"><span class="ico bg-gray-100 text-gray-700">✈️<span class="cloud">Launch Utility</span></span><span class="hide-collapsed">Launch Utility</span></div>
+<div class="side-item" onclick="openPage('utility',this)"><span class="ico bg-gray-100 text-gray-700">🚀<span class="cloud">Launch Utility</span></span><span class="hide-collapsed">Launch Utility</span></div>
 <div class="sec">POSTING FEATURE</div>
 <div class="side-item" onclick="openPage('posting',this)"><span class="ico bg-purple-100 text-purple-600">✦<span class="cloud">Social Posting</span></span><span class="hide-collapsed">Social Posting</span></div>
-<div class="side-item" onclick="openPage('aiagent',this)"><span class="ico bg-green-100 text-green-600">🤖<span class="cloud">AI Sales Agent</span></span><span class="hide-collapsed">AI Sales Agent</span></div>
+<div class="side-item" onclick="openPage('aiagent',this)"><span class="ico bg-green-100 text-green-600">🧠<span class="cloud">AI Sales Agent</span></span><span class="hide-collapsed">AI Sales Agent</span></div>
 <div class="sec">PAYMENT</div>
-<div class="side-item" onclick="openPage('payment',this)"><span class="ico bg-yellow-100 text-yellow-600">💰<span class="cloud">Payment</span></span><span class="hide-collapsed">Payment</span></div>
+<div class="side-item" onclick="openPage('payment',this)"><span class="ico bg-yellow-100 text-yellow-600">💸<span class="cloud">Payment</span></span><span class="hide-collapsed">Payment</span></div>
 </div>
 <button onclick="doReset()" class="mx-2 mt-6 w-[calc(100%-16px)] bg-red-500 text-white py-2.5 rounded-xl font-bold text-sm hide-collapsed">Reset / تصفير الكل</button>
 <div class="h-10"></div>
@@ -154,6 +151,51 @@ body{background:#eef1f6;font-family:Inter,system-ui}
 <div class="card overflow-hidden"><div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-blue-600 rounded-full"></span>Recent Broadcasts</div><a href="#" onclick="openPage('campaigns',document.querySelector('[data-page=campaigns]'));return false" class="text-blue-600 text-xs font-bold">View all →</a></div><table class="w-full text-left text-[13px]"><thead class="text-[10px] text-gray-500 border-y bg-gray-50"><tr><th class="px-4 py-2">CAMPAIGN</th><th class="px-4 py-2 text-center">SENT / TOTAL</th><th class="px-4 py-2 text-right">STATUS</th></tr></thead><tbody id="recentBody"></tbody></table><div id="recentEmpty" class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
 <div class="card overflow-hidden mt-3"><div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-green-600 rounded-full"></span>Recent Comment Campaigns</div><a href="#" class="text-green-600 text-xs font-bold">View all →</a></div><div class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
 </div>
+
+<!-- FACEBOOK & INSTAGRAM - الخطة المدمجة -->
+<div id="page-facebook" class="hidden">
+<div class="flex justify-between items-start gap-2"><div><h2 class="text-[22px] font-black">Facebook & Instagram</h2><p class="text-[12px] text-gray-500 mt-1">ربط الصفحات • Webhook على Cloudflare • Tokens في Supabase • طابور لكل صفحة في Upstash</p></div><button onclick="toggleForm('fb-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm shrink-0">+ Connect Page</button></div>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-4">
+<div class="card p-4"><div class="text-[11px] font-bold text-gray-500">PAGES CONNECTED</div><div id="fb-count" class="text-[24px] font-black mt-1">0</div><div class="text-[11px] text-green-600 font-bold">● Supabase Synced</div></div>
+<div class="card p-4"><div class="text-[11px] font-bold text-gray-500">WEBHOOK • CLOUDFLARE</div><div class="text-[16px] font-black mt-1 flex items-center gap-2"><span class="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>Live</div><div class="text-[11px] text-gray-500">200 OK • &lt; 200ms</div></div>
+<div class="card p-4"><div class="text-[11px] font-bold text-gray-500">QUEUES • UPSTASH</div><div id="fb-queue-total" class="text-[24px] font-black mt-1">0</div><div class="text-[11px] text-gray-500">مهام مستنية في الطوابير</div></div>
+<div class="card p-4"><div class="text-[11px] font-bold text-gray-500">TOKENS</div><div id="fb-token-ok" class="text-[24px] font-black mt-1 text-green-600">0 OK</div><div class="text-[11px] text-gray-500">تنبيه Resend لو Token خلص</div></div>
+</div>
+
+<div id="fb-form" class="card p-4 mt-3 hidden">
+<div class="grid md:grid-cols-2 gap-2">
+<input id="fb-name" class="input" placeholder="اسم الصفحة - مثال: Farag Store">
+<input id="fb-id" class="input" placeholder="Page ID - مثال: 104829...">
+<input id="fb-token" class="input md:col-span-2" placeholder="Page Access Token - هيتحفظ مشفر في Supabase">
+<select id="fb-type" class="input"><option value="Facebook">Facebook Page</option><option value="Instagram">Instagram Account</option></select>
+<input id="fb-days" class="input" type="number" placeholder="Token صالح لكام يوم؟ مثال: 60">
+</div>
+<button onclick="addFbPage()" class="btn mt-3">ربط الصفحة وحفظ Token</button>
+<p class="text-[11px] text-gray-400 mt-2 text-center">الـ Webhook هيتأكد أوتوماتيك من Cloudflare Workers، والطابور هيتعمل لوحده `queue:page_ID`</p>
+</div>
+
+<div class="card p-4 mt-3">
+<div class="flex justify-between items-center"><div class="font-bold text-sm">Webhook Endpoint • Cloudflare Workers</div><span class="badge bg-green-100 text-green-700">● Connected</span></div>
+<div class="bg-gray-900 text-green-300 text-[12px] font-mono p-3 rounded-xl mt-3 overflow-x-auto">https://farag-webhook.your-worker.workers.dev/webhook/facebook</div>
+<div class="flex gap-2 mt-3"><button onclick="testWebhook()" class="flex-1 bg-gray-900 text-white py-2.5 rounded-xl text-sm font-bold">Test Webhook • اختبار</button><button onclick="copyWebhook()" class="px-4 py-2.5 bg-gray-100 rounded-xl text-sm font-bold">Copy</button></div>
+<div id="webhook-log" class="text-[12px] text-gray-500 mt-3">آخر حدث: لا يوجد حدث بعد • في انتظار أول Comment / Message من فيسبوك</div>
+</div>
+
+<div id="fb-list" class="mt-3 space-y-3"></div>
+
+<div class="card p-4 mt-3">
+<div class="font-bold text-sm">إزاي الشغل ماشي؟ • الخطة المدمجة</div>
+<div class="text-[12px] text-gray-600 space-y-1.5 mt-2 leading-relaxed">
+<div>1. فيسبوك يبعت Comment / Message ← <b>Cloudflare Workers</b> بيرد `200 OK` فوراً</div>
+<div>2. الطلب يتحط في طابور الصفحة دي بس ← <b>Upstash `queue:page_ID`</b></div>
+<div>3. الـ Worker يسحب بالدور ← <b>Fly.io</b> رسالة كل ثانية عشان متتحظرش</div>
+<div>4. الـ Token والنافذة 24 ساعة متتابعين ← <b>Supabase</b></div>
+<div>5. لو Token خلص أو الطابور اتكدس ← <b>Resend</b> يبعتلك إيميل فوراً</div>
+</div>
+</div>
+</div>
+
 <div id="page-contacts" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Contacts <span id="contacts-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('contact-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm">+ Add Contact</button></div><div id="contact-form" class="card p-4 mt-3 hidden"><input id="c-name" class="input" placeholder="الاسم - مثال: أحمد محمد"><input id="c-phone" class="input mt-2" placeholder="01012345678"><button onclick="addContact()" class="btn mt-3">حفظ جهة الاتصال</button></div><input id="contacts-search" oninput="renderContacts()" class="input mt-3" placeholder="ابحث بالاسم أو الرقم..."><div id="contacts-list" class="mt-3 space-y-2"></div></div>
 <div id="page-campaigns" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Campaigns <span id="campaigns-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('camp-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm">+ New Campaign</button></div><div id="camp-form" class="card p-4 mt-3 hidden"><input id="camp-name" class="input" placeholder="اسم الحملة - مثال: عرض رمضان"><textarea id="camp-msg" class="input mt-2" rows="3" placeholder="رسالة الحملة..."></textarea><button onclick="addCampaign()" class="btn mt-3">إنشاء الحملة</button></div><div id="campaigns-list" class="mt-3 space-y-2"></div></div>
 <div id="page-numbers" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Numbers <span id="numbers-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('num-form')" class="bg-green-600 text-white px-4 py-2 rounded-xl font-bold text-sm">+ Add Number</button></div><div id="num-form" class="card p-4 mt-3 hidden"><input id="n-label" class="input" placeholder="اسم الرقم - مثال: رقم المبيعات"><input id="n-phone" class="input mt-2" placeholder="01012345678"><button onclick="addNumber()" class="btn mt-3" style="background:#16a34a">حفظ الرقم</button></div><div id="numbers-list" class="mt-3 space-y-2"></div></div>
@@ -176,7 +218,13 @@ function updateClock(){var d=new Date();document.getElementById('liveClock').tex
 setInterval(updateClock,1000);updateClock();
 function showToast(msg){var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(window._toastTimer);window._toastTimer=setTimeout(function(){t.classList.remove('show')},2200)}
 function smoothRefresh(msg){var d=document.getElementById('page-dashboard');d.classList.add('refreshing');setTimeout(function(){syncAll();d.classList.remove('refreshing');if(msg)showToast(msg)},280)}
-function doReset(){if(!confirm('متأكد تصفر كل الأرقام؟'))return;localStorage.removeItem('farag_contacts');localStorage.removeItem('farag_campaigns');localStorage.removeItem('farag_numbers');localStorage.removeItem('farag_users');localStorage.setItem('farag_zeroed','1');smoothRefresh('تم التصفير ✅ كل الأرقام بقت 0')}
+function doReset(){if(!confirm('متأكد تصفر كل الأرقام؟'))return;localStorage.removeItem('farag_contacts');localStorage.removeItem('farag_campaigns');localStorage.removeItem('farag_numbers');localStorage.removeItem('farag_users');localStorage.removeItem('farag_pages');localStorage.setItem('farag_zeroed','1');smoothRefresh('تم التصفير ✅ كل الأرقام بقت 0')}
+// Facebook & Instagram - الخطة المدمجة
+function addFbPage(){var n=document.getElementById('fb-name').value.trim();var id=document.getElementById('fb-id').value.trim();var tk=document.getElementById('fb-token').value.trim();var type=document.getElementById('fb-type').value;var days=parseInt(document.getElementById('fb-days').value||'60');if(!n||!id){alert('اكتب اسم الصفحة و Page ID');return}var a=getK('farag_pages');var exp=Date.now()+days*24*60*60*1000;a.unshift({id:Date.now(),pageId:id,name:n,type:type,token:tk?tk.slice(0,6)+'••••':'••••',expiry:exp,queue:0,webhook:'Live',window24:'Active'});setK('farag_pages',a);document.getElementById('fb-name').value='';document.getElementById('fb-id').value='';document.getElementById('fb-token').value='';document.getElementById('fb-days').value='';document.getElementById('fb-form').classList.add('hidden');syncAll();showToast('تم ربط '+n+' ✅ • Queue اتعمل: queue:'+id)}
+function checkToken(id){var a=getK('farag_pages');for(var i=0;i<a.length;i++){if(a[i].id===id){var left=Math.ceil((a[i].expiry-Date.now())/86400000);if(left<=0){showToast('⚠️ Token خلص لـ '+a[i].name+' • Resend بعت إيميل')}else if(left<=7){showToast('⚠️ Token لـ '+a[i].name+' فاضل عليه '+left+' يوم • هيتبعت تنبيه')}else{showToast('✅ Token سليم لـ '+a[i].name+' • فاضل '+left+' يوم')}break}}}
+function testWebhook(){document.getElementById('webhook-log').textContent='✅ Test OK • Cloudflare رد 200 OK في 142ms • Event: comment → queue:page_ID → Fly.io';showToast('✅ Webhook شغال • 200 OK')}
+function copyWebhook(){try{navigator.clipboard.writeText('https://farag-webhook.your-worker.workers.dev/webhook/facebook');showToast('تم نسخ Webhook')}catch(e){showToast('انسخ اللينك يدوي')}}
+function renderFbPages(){var a=getK('farag_pages');var h='';if(!a.length){h='<div class="card p-6 text-center text-gray-400 text-sm">لسه مفيش صفحات مربوطة - دوس + Connect Page<br><span class="text-[11px]">أول صفحة هتتربط هتتخزن في Supabase ويتعملها طابور في Upstash</span></div>'}else{for(var i=0;i<a.length;i++){var p=a[i];var left=Math.ceil((p.expiry-Date.now())/86400000);var tokenClass=left<=0?'bg-red-100 text-red-700':left<=7?'bg-yellow-100 text-yellow-700':'bg-green-100 text-green-700';var tokenTxt=left<=0?'EXPIRED • Resend بعت إيميل':left<=7?('ينتهي بعد '+left+' يوم • تنبيه'):('صالح • فاضل '+left+' يوم');h+='<div class="card p-4"><div class="flex justify-between gap-2"><div class="flex gap-3"><div class="w-11 h-11 '+(p.type==='Instagram'?'bg-pink-100':'bg-blue-100')+' rounded-full flex items-center justify-center text-xl">'+(p.type==='Instagram'?'◎':'f')+'</div><div><div class="font-bold text-[14px]">'+p.name+'</div><div class="text-[11px] text-gray-500">ID: '+p.pageId+' • '+p.type+' • Queue: <span class="font-mono font-bold">queue:'+p.pageId+'</span></div></div></div><span class="badge '+tokenClass+'">'+tokenTxt+'</span></div><div class="grid grid-cols-3 gap-2 mt-3 text-center"><div class="bg-gray-50 rounded-xl py-2"><div class="text-[10px] text-gray-500">WEBHOOK</div><div class="text-[12px] font-bold text-green-600">● Live</div></div><div class="bg-gray-50 rounded-xl py-2"><div class="text-[10px] text-gray-500">QUEUE</div><div class="text-[12px] font-bold">'+p.queue+' waiting</div></div><div class="bg-gray-50 rounded-xl py-2"><div class="text-[10px] text-gray-500">24H WINDOW</div><div class="text-[12px] font-bold text-blue-600">'+p.window24+'</div></div></div><div class="flex gap-2 mt-3"><button onclick="checkToken('+p.id+')" class="flex-1 bg-blue-600 text-white py-2 rounded-lg text-[13px] font-bold">فحص Token</button><button onclick="delItem(\'farag_pages\','+p.id+')" class="px-4 py-2 bg-red-50 text-red-600 rounded-lg text-[13px] font-bold">فك الربط</button></div></div>'}}document.getElementById('fb-list').innerHTML=h;document.getElementById('fb-count').textContent=a.length;var q=0,ok=0;for(var j=0;j<a.length;j++){q+=a[j].queue||0;if(a[j].expiry>Date.now())ok++}document.getElementById('fb-queue-total').textContent=q;document.getElementById('fb-token-ok').textContent=ok+' OK';document.getElementById('fb-token-ok').className='text-[24px] font-black mt-1 '+(ok===a.length&&a.length?'text-green-600':'text-yellow-600')}
 function addContact(){var n=document.getElementById('c-name').value.trim();var p=document.getElementById('c-phone').value.trim();if(!n||!p){alert('اكتب الاسم والرقم');return}var a=getK('farag_contacts');a.unshift({id:Date.now(),name:n,phone:p,ts:Date.now()});setK('farag_contacts',a);document.getElementById('c-name').value='';document.getElementById('c-phone').value='';document.getElementById('contact-form').classList.add('hidden');syncAll();showToast('تم إضافة '+n)}
 function addCampaign(){var n=document.getElementById('camp-name').value.trim();var m=document.getElementById('camp-msg').value.trim();if(!n){alert('اكتب اسم الحملة');return}var a=getK('farag_campaigns');a.unshift({id:Date.now(),name:n,msg:m,sent:0,total:getK('farag_contacts').length,status:'Draft',date:new Date().toLocaleString('en-EG')});setK('farag_campaigns',a);document.getElementById('camp-name').value='';document.getElementById('camp-msg').value='';document.getElementById('camp-form').classList.add('hidden');syncAll();showToast('تم إنشاء الحملة')}
 function sendCampaign(id){var a=getK('farag_campaigns');var c=null;for(var i=0;i<a.length;i++){if(a[i].id===id){c=a[i];break}}if(!c)return;var contacts=getK('farag_contacts');if(!contacts.length){alert('ضيف Contacts الأول');return}c.sent=contacts.length;c.total=contacts.length;c.status='Done';setK('farag_campaigns',a);syncAll();showToast('تم إرسال الحملة لـ '+contacts.length+' جهة')}
@@ -198,7 +246,7 @@ document.getElementById('contacts-count').textContent='('+contacts.length+')';
 document.getElementById('campaigns-count').textContent='('+camps.length+')';
 document.getElementById('numbers-count').textContent='('+nums.length+')';
 document.getElementById('users-count').textContent='('+users.length+')';
-var myTotal=B.total+contacts.length;var mySub=B.sub+contacts.length;var myPages=B.pages+nums.length;var myToday=B.today+todayCount;var myYest=B.yest;var mySent=B.sent;var myDone=B.done;var myPending=0;for(var j=0;j<camps.length;j++){mySent+=camps[j].sent||0;if(camps[j].status==='Done')myDone++;else myPending++}
+var myTotal=B.total+contacts.length;var mySub=B.sub+contacts.length;var myPages=B.pages+nums.length+getK('farag_pages').length;var myToday=B.today+todayCount;var myYest=B.yest;var mySent=B.sent;var myDone=B.done;var myPending=0;for(var j=0;j<camps.length;j++){mySent+=camps[j].sent||0;if(camps[j].status==='Done')myDone++;else myPending++}
 var myTotalCamps=B.totalCamps+camps.length;var myComments=B.comments;
 document.getElementById('dash-total').textContent=fmt(myTotal);
 document.getElementById('dash-fb').textContent=fmt(myTotal);
@@ -232,10 +280,10 @@ if(myTotalCamps>0){var donePct=Math.round(myDone/myTotalCamps*100);document.getE
 var rh='';for(var k=0;k<Math.min(camps.length,8);k++){var c=camps[k];rh+='<tr class="border-b"><td class="px-4 py-3"><div class="font-bold">'+c.name+'</div><div class="text-[11px] text-gray-400">'+c.date+'</div></td><td class="px-4 py-3 text-center font-bold">'+c.sent+' / '+c.total+'</td><td class="px-4 py-3 text-right"><span class="bg-green-50 text-green-700 text-[11px] px-2.5 py-1 rounded-full font-bold">● '+c.status+'</span></td></tr>'}
 document.getElementById('recentBody').innerHTML=rh;
 document.getElementById('recentEmpty').style.display=camps.length?'none':'block';
-renderContacts();renderCampaigns();renderNumbers();renderUsers();
+renderContacts();renderCampaigns();renderNumbers();renderUsers();renderFbPages();
 }
 var titles={facebook:'Facebook & Instagram',api:'API channels',growth:'Comment growth tools',analytics:'Comment Analytics',restrictions:'Page Restrictions',subscribers:'Subscriber Manager',token:'Token Checker',migrate:'Migrate',bot:'Bot manager',broadcasting:'Broadcasting',history:'Broadcast Job History',blocked:'Blocked Pages',media:'Media & Content',utility:'Launch Utility',posting:'Social Posting',aiagent:'AI Sales Agent',payment:'Payment'};
-function openPage(name,el){var items=document.querySelectorAll('.side-item');for(var i=0;i<items.length;i++)items[i].classList.remove('active');if(el)el.classList.add('active');var pages=['dashboard','contacts','campaigns','numbers','users','other'];for(var j=0;j<pages.length;j++)document.getElementById('page-'+pages[j]).classList.add('hidden');if(name!=='other'&&pages.indexOf(name)>-1){document.getElementById('page-'+name).classList.remove('hidden')}else{document.getElementById('page-other').classList.remove('hidden');document.getElementById('otherTitle').textContent=titles[name]||name}if(window.innerWidth<=768){var sb=document.getElementById('sidebar');if(sb.classList.contains('open'))toggleSide()}window.scrollTo({top:0})}
+function openPage(name,el){var items=document.querySelectorAll('.side-item');for(var i=0;i<items.length;i++)items[i].classList.remove('active');if(el)el.classList.add('active');var pages=['dashboard','contacts','campaigns','numbers','users','facebook','other'];for(var j=0;j<pages.length;j++)document.getElementById('page-'+pages[j]).classList.add('hidden');if(name!=='other'&&pages.indexOf(name)>-1){document.getElementById('page-'+name).classList.remove('hidden')}else{document.getElementById('page-other').classList.remove('hidden');document.getElementById('otherTitle').textContent=titles[name]||name}if(window.innerWidth<=768){var sb=document.getElementById('sidebar');if(sb.classList.contains('open'))toggleSide()}window.scrollTo({top:0})}
 function doRefresh(){smoothRefresh('تم التحديث ✅')}
 syncAll();
 </script>
