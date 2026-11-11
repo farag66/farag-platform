@@ -16,6 +16,13 @@ body{background:linear-gradient(180deg,#eef1f6,#e8edf5);font-family:Inter,system
 .side-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;font-size:13px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap;transition:background .3s,transform .3s}
 .side-item:hover{background:#eef4ff;transform:translateX(3px)}
 .side-item.active{background:#e8f0ff;color:#1d4ed8}
+.side-sub{display:flex;align-items:center;gap:8px;padding:8px 10px 8px 52px;border-radius:10px;font-size:12px;font-weight:700;color:#64748b;cursor:pointer;transition:background .3s,transform .3s;white-space:nowrap}
+.side-sub:hover{background:#f8f5ff;transform:translateX(3px);color:#7c3aed}
+.side-sub.active{background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#6d28d9}
+#media-sub{max-height:0;overflow:hidden;transition:max-height .45s ease}
+#media-sub.open{max-height:180px}
+#media-chevron{transition:transform .35s}
+#media-chevron.rot{transform:rotate(180deg)}
 #sidebar .ico{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;position:relative;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s;cursor:pointer;--c:#2563eb;background:linear-gradient(135deg,var(--c),var(--c2,#2563eb));color:#fff;box-shadow:0 6px 14px var(--glow),0 1px 0 rgba(255,255,255,.4) inset}
 #sidebar .side-item:hover .ico{transform:translateY(-6px) scale(1.18) rotate(-5deg);box-shadow:0 14px 26px var(--glow);animation:floatSidebar 1.6s ease-in-out infinite}
 @keyframes floatSidebar{0%,100%{transform:translateY(-6px) scale(1.18) rotate(-5deg)}50%{transform:translateY(-11px) scale(1.18) rotate(-5deg)}}
@@ -38,8 +45,7 @@ body{background:linear-gradient(180deg,#eef1f6,#e8edf5);font-family:Inter,system
 .inner-tab{padding:9px 16px;border-radius:999px;font-size:12px;font-weight:800;cursor:pointer;white-space:nowrap;border:1px solid #e2e8f0;background:#fff;color:#475569;transition:transform .3s,box-shadow .3s}
 .inner-tab:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(0,0,0,.08)}
 .inner-tab.active{background:linear-gradient(135deg,var(--c),var(--c2,#1e293b));color:#fff;border-color:var(--c);box-shadow:0 8px 18px var(--glow)}
-/* ===== BROADCAST 12D - زي سكرين cavaliy بالظبط ===== */
-.bc-pill{padding:6px 12px;border-radius:999px;font-size:11px;font-weight:800;cursor:pointer;border:1px solid #e2e8f0;background:#fff;color:#475569;white-space:nowrap;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s,background .35s;display:inline-flex;align-items:center;gap:4px}
+.bc-pill{padding:6px 12px;border-radius:999px;font-size:11px;font-weight:800;cursor:pointer;border:1px solid #e2e8f0;background:#fff;color:#475569;white-space:nowrap;transition:transform .35s cubic-bezier(.34,1.56,.64,1),box-shadow .35s;display:inline-flex;align-items:center;gap:4px}
 .bc-pill:hover{transform:translateY(-3px) scale(1.05);box-shadow:0 10px 20px var(--glow,rgba(0,0,0,.12))}
 .bc-pill.active{background:linear-gradient(135deg,var(--c,#2563eb),var(--c2,#60a5fa));color:#fff;border-color:var(--c,#2563eb);box-shadow:0 8px 18px var(--glow)}
 .bc-row{transition:transform .3s,box-shadow .3s,background .3s}
@@ -49,6 +55,17 @@ body{background:linear-gradient(180deg,#eef1f6,#e8edf5);font-family:Inter,system
 @keyframes floatBtn{0%,100%{transform:translateY(-4px) scale(1.2) rotate(-5deg)}50%{transform:translateY(-7px) scale(1.2) rotate(-5deg)}}
 .bc-icon-btn .cloud{position:absolute;left:50%;bottom:calc(100% + 8px);transform:translateX(-50%) translateY(6px) scale(.85);background:linear-gradient(135deg,var(--c),var(--c2));color:#fff;font-size:10px;font-weight:800;white-space:nowrap;padding:6px 9px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s;z-index:30;box-shadow:0 8px 18px var(--glow)}
 .bc-icon-btn:hover .cloud{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+/* ===== MEDIA 12D ===== */
+.media-item{border-radius:16px;overflow:hidden;position:relative;cursor:pointer;transition:transform .45s cubic-bezier(.34,1.56,.64,1),box-shadow .45s;background:#fff;box-shadow:0 4px 14px rgba(0,0,0,.08);aspect-ratio:1}
+.media-item:hover{transform:translateY(-8px) scale(1.04) rotate(-0.5deg);box-shadow:0 20px 36px var(--glow,rgba(124,58,237,.3))}
+.media-item img{width:100%;height:100%;object-fit:cover}
+.media-del{position:absolute;top:8px;right:8px;width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#ef4444,#f87171);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;cursor:pointer;box-shadow:0 6px 14px rgba(239,68,68,.4);transition:transform .35s;z-index:5}
+.media-del:hover{transform:translateY(-3px) scale(1.2) rotate(-8deg)}
+.media-overlay{position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(0,0,0,.7));display:flex;align-items:flex-end;padding:10px;opacity:0;transition:opacity .3s}
+.media-item:hover .media-overlay{opacity:1}
+.list-item{padding:10px 12px;border-radius:14px;display:flex;align-items:center;gap:8px;cursor:pointer;transition:transform .3s,box-shadow .3s,background .3s;border:1px solid transparent}
+.list-item:hover{transform:translateY(-2px);box-shadow:0 8px 16px rgba(124,58,237,.12)}
+.list-item.active{background:linear-gradient(135deg,#ede9fe,#ddd6fe);border-color:#ddd6fe}
 .btn{width:100%;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;font-size:14px;border:none;cursor:pointer;transition:transform .35s,box-shadow .35s;box-shadow:0 8px 18px rgba(37,99,235,.25)}
 .btn:hover{transform:translateY(-3px);box-shadow:0 14px 26px rgba(37,99,235,.35)}
 .action-btn{transition:transform .35s,box-shadow .35s}
@@ -64,6 +81,7 @@ body{background:linear-gradient(180deg,#eef1f6,#e8edf5);font-family:Inter,system
 #sidebar.collapsed .hide-collapsed{display:none}
 #sidebar.collapsed .side-item{justify-content:center;padding:9px 0}
 #sidebar.collapsed .sec{opacity:0}
+#sidebar.collapsed #media-sub{display:none}
 #overlay{display:none}
 .donut{width:118px;height:118px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 8px 18px rgba(0,0,0,.08)}
 .donut-inner{width:84px;height:84px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
@@ -75,7 +93,7 @@ body{background:linear-gradient(180deg,#eef1f6,#e8edf5);font-family:Inter,system
 .filter-btn.active{background:#1e293b;color:#fff}
 .page-card12{background:linear-gradient(180deg,#fff,#fbfdff);border:1px solid #eef2f7;border-radius:20px;padding:16px;box-shadow:0 4px 14px rgba(15,23,42,.05);transition:transform .45s,box-shadow .45s;position:relative;overflow:hidden}
 .page-card12:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 20px 36px var(--glow,rgba(37,99,235,.2))}
-@media(max-width:768px){#sidebar{position:fixed;left:0;top:0;bottom:0;z-index:50;transform:translateX(-100%);transition:.25s;width:290px}#sidebar.open{transform:translateX(0)}#sidebar.collapsed{width:290px}#sidebar.collapsed .hide-collapsed{display:block}#sidebar.collapsed .side-item{justify-content:flex-start;padding:9px 10px}#sidebar.collapsed .sec{opacity:1}#overlay.show{display:block}}
+@media(max-width:768px){#sidebar{position:fixed;left:0;top:0;bottom:0;z-index:50;transform:translateX(-100%);transition:.25s;width:290px}#sidebar.open{transform:translateX(0)}#sidebar.collapsed{width:290px}#sidebar.collapsed .hide-collapsed{display:block}#sidebar.collapsed .side-item{justify-content:flex-start;padding:9px 10px}#sidebar.collapsed .sec{opacity:1}#sidebar.collapsed #media-sub{display:block}#overlay.show{display:block}}
 </style>
 </head>
 <body>
@@ -104,7 +122,15 @@ body{background:linear-gradient(180deg,#eef1f6,#e8edf5);font-family:Inter,system
 <div class="side-item" data-page="broadcasting" onclick="openPage('broadcasting',this)"><span class="ico" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.4)">📡<span class="cloud">Broadcasting</span></span><span class="hide-collapsed">Broadcasting</span></div>
 <div class="side-item" onclick="openPage('history',this)"><span class="ico" style="--c:#0284c7;--c2:#38bdf8;--glow:rgba(2,132,199,.4)">🕘<span class="cloud">Broadcast Job History</span></span><span class="hide-collapsed">Broadcast Job History</span></div>
 <div class="side-item" onclick="openPage('blocked',this)"><span class="ico" style="--c:#ef4444;--c2:#f87171;--glow:rgba(239,68,68,.4)">🚫<span class="cloud">Blocked Pages</span></span><span class="hide-collapsed">Blocked Pages</span></div>
-<div class="side-item" onclick="openPage('media',this)"><span class="ico" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.4)">🎬<span class="cloud">Media & Content</span></span><span class="hide-collapsed">Media & Content</span></div>
+
+<!-- ===== MEDIA & CONTENT - قائمة منسدلة ===== -->
+<div class="side-item" data-page="media" id="media-parent" onclick="toggleMediaMenu(this)"><span class="ico" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.4)">🎬<span class="cloud">Media & Content</span></span><span class="hide-collapsed">Media & Content</span><span id="media-chevron" class="ml-auto text-gray-400 hide-collapsed">⌄</span></div>
+<div id="media-sub">
+<div class="side-sub" data-media="images" onclick="openMedia('images',this)">🖼️ Images</div>
+<div class="side-sub" data-media="posts" onclick="openMedia('posts',this)">📄 Posts</div>
+<div class="side-sub" data-media="videos" onclick="openMedia('videos',this)">🎬 Videos</div>
+</div>
+
 <div class="sec">UTILITY MESSAGING</div>
 <div class="side-item" onclick="openPage('utility',this)"><span class="ico" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.4)">⚡<span class="cloud">Launch Utility</span></span><span class="hide-collapsed">Launch Utility</span></div>
 <div class="sec">POSTING FEATURE</div>
@@ -128,167 +154,124 @@ body{background:linear-gradient(180deg,#eef1f6,#e8edf5);font-family:Inter,system
 <div class="card12 p-4 md:p-5" style="--c:#9333ea;--glow:rgba(147,51,234,.2)">
 <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
 <div class="col-span-2 md:col-span-1"><div class="text-[10px] tracking-wider text-gray-500 font-bold">TOTAL SUBSCRIBERS</div><div id="dash-total" class="num text-[32px] md:text-[36px] font-black leading-none mt-1">0</div><div class="flex gap-1.5 mt-2"><span class="bg-blue-50 text-[11px] px-2 py-0.5 rounded-full font-bold">f <span id="dash-fb">0</span> FB</span><span class="bg-gray-50 text-[11px] px-2 py-0.5 rounded-full font-bold">◎ 0 IG</span></div></div>
-<div class="mini12" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="text-[10px] font-bold text-gray-500">🚩 PAGES</div><div id="dash-pages" class="text-xl font-black num">0</div><div class="text-[11px] mt-1"><span class="text-green-600 font-bold">● <span id="dash-pages-en">0</span> Enabled</span> · <span class="text-red-500 font-bold">● 0 Disabled</span></div><div class="text-[11px] text-gray-500 mt-1">✅ All pages scanned · <span id="scanTime">05:10 م</span></div></div>
-<div class="mini12" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><div class="text-[10px] font-bold text-gray-500">TODAY</div><div id="dash-today" class="text-xl font-black num">0</div><div class="text-[11px] text-gray-500"><span id="dash-today-fb">0</span> FB · 0 IG</div><div class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-1 rounded-lg mt-2 inline-block text-center leading-tight">↑ <span id="dash-today-pct">0%</span><br>vs yesterday</div></div>
+<div class="mini12" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="text-[10px] font-bold text-gray-500">🚩 PAGES</div><div id="dash-pages" class="text-xl font-black num">0</div><div class="text-[11px] mt-1"><span class="text-green-600 font-bold">● <span id="dash-pages-en">0</span> Enabled</span> · <span class="text-red-500 font-bold">● 0 Disabled</span></div></div>
+<div class="mini12" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><div class="text-[10px] font-bold text-gray-500">TODAY</div><div id="dash-today" class="text-xl font-black num">0</div><div class="text-[11px] text-gray-500"><span id="dash-today-fb">0</span> FB · 0 IG</div><div class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-1 rounded-lg mt-2 inline-block">↑ <span id="dash-today-pct">0%</span> vs yesterday</div></div>
 <div class="mini12" style="--c:#f59e0b;--glow:rgba(245,158,11,.2)"><div class="text-[10px] font-bold text-gray-500">YESTERDAY</div><div id="dash-yest" class="text-xl font-black num">0</div><div class="text-[11px] text-gray-500">New subscribers</div></div>
-<div class="hidden md:block"><div class="text-[10px] font-bold text-gray-500">7-DAY GROWTH</div><svg viewBox="0 0 100 40" class="w-full h-[60px]"><path d="M0,32 L30,32 L55,32 L75,32 L90,10 L100,2" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-linecap="round"/><circle cx="100" cy="2" r="3" fill="#2563eb"/></svg></div>
+<div class="hidden md:block"><div class="text-[10px] font-bold text-gray-500">7-DAY GROWTH</div><svg viewBox="0 0 100 40" class="w-full h-[60px]"><path d="M0,32 L30,32 L55,32 L75,32 L90,10 L100,2" fill="none" stroke="#2563eb" stroke-width="2.5"/><circle cx="100" cy="2" r="3" fill="#2563eb"/></svg></div>
 </div>
 </div>
 <div class="card12 p-4 mt-3" style="--c:#16a34a;--glow:rgba(22,163,74,.2)">
 <div class="flex justify-between items-center"><div class="flex items-center gap-3"><span class="icon-cloud" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.35)">📤<span class="cloud">Broadcasts go to these only</span></span><div><span id="dash-sub" class="num text-[24px] font-black">0</span><span class="text-gray-500 text-sm"> / <span id="dash-sub-total" class="num">0</span></span><div class="text-[11px] text-gray-500">Subscribers — broadcasts go to these only</div></div></div><span id="dash-pct" class="bg-green-100 text-green-700 text-[11px] font-bold px-3 py-1.5 rounded-full">0% of leads</span></div>
 <div class="flex h-[12px] rounded-full overflow-hidden bg-gray-200 mt-3"><div id="bar-green" style="width:0%;background:#22c55e"></div><div id="bar-yellow" style="width:0%;background:#f59e0b"></div><div id="bar-red" style="width:0%;background:#f43f5e"></div></div>
-<div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[11px] text-gray-600"><span>🟢 Subscribers <b class="text-black num" id="dash-s1">0</b></span><span>🟡 Ready to migrate <b class="text-black num" id="dash-migrate">0</b></span><span>🔴 Unavailable <b class="text-black num" id="dash-unavail">0</b></span><span>⚪ Scanned leads <b class="text-black num" id="dash-s2">0</b></span></div>
+<div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[11px] text-gray-600"><span>🟢 Subscribers <b id="dash-s1">0</b></span><span>🟡 Ready to migrate <b id="dash-migrate">0</b></span><span>🔴 Unavailable <b id="dash-unavail">0</b></span><span>⚪ Scanned leads <b id="dash-s2">0</b></span></div>
 </div>
-<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35);width:28px;height:28px;font-size:14px">📊<span class="cloud">Campaign Overview</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">CAMPAIGN OVERVIEW</span><div class="flex-1 h-px bg-gray-200"></div></div>
-<div class="grid grid-cols-2 gap-3">
-<div class="card12 p-4 flex gap-3" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><span class="icon-cloud" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35)">📤<span class="cloud">Messages Sent</span></span><div><div id="dash-sent" class="num text-[22px] font-black leading-none">0</div><div class="text-[11px] text-gray-500 mt-1">Messages Sent</div><div class="text-[11px] text-gray-500">Broadcast · 30 days</div></div></div>
-<div class="card12 p-4 flex gap-3" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><span class="icon-cloud" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.35)">💭<span class="cloud">Comments Today</span></span><div><div id="dash-comments" class="num text-[22px] font-black leading-none text-green-600">0</div><div class="text-[11px] text-gray-500 mt-1">Comments Today</div><div class="text-[11px] font-bold" id="dash-replied">0% replied</div></div></div>
-<div class="card12 p-4 flex gap-3" style="--c:#f59e0b;--glow:rgba(245,158,11,.25)"><span class="icon-cloud" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.4)">⚡<span class="cloud">Running Now</span></span><div><div id="dash-running" class="num text-[22px] font-black leading-none text-yellow-500">0</div><div class="text-[11px] text-gray-500 mt-1">Running Now</div><div class="text-[11px] text-gray-500">Active campaigns</div></div></div>
-<div class="card12 p-4 flex gap-3" style="--c:#ec4899;--glow:rgba(236,72,153,.2)"><span class="icon-cloud" style="--c:#ec4899;--c2:#f472b6;--glow:rgba(236,72,153,.4)">⚠️<span class="cloud">Failed Items</span></span><div><div class="text-[22px] font-black leading-none text-pink-600">0</div><div class="text-[11px] text-gray-500 mt-1">Failed Items</div><div class="text-[11px] text-pink-600 font-bold">Tap to retry →</div></div></div>
+<div class="grid grid-cols-2 gap-3 mt-6">
+<div class="card12 p-4 flex gap-3" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><span class="icon-cloud" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35)">📤<span class="cloud">Messages Sent</span></span><div><div id="dash-sent" class="num text-[22px] font-black">0</div><div class="text-[11px] text-gray-500">Messages Sent</div></div></div>
+<div class="card12 p-4 flex gap-3" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><span class="icon-cloud" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.35)">💭<span class="cloud">Comments Today</span></span><div><div id="dash-comments" class="num text-[22px] font-black text-green-600">0</div><div class="text-[11px] text-gray-500">Comments Today</div><div class="text-[11px] font-bold" id="dash-replied">0% replied</div></div></div>
+<div class="card12 p-4 flex gap-3" style="--c:#f59e0b;--glow:rgba(245,158,11,.25)"><span class="icon-cloud" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.4)">⚡<span class="cloud">Running Now</span></span><div><div id="dash-running" class="num text-[22px] font-black text-yellow-500">0</div><div class="text-[11px] text-gray-500">Running Now</div></div></div>
+<div class="card12 p-4 flex gap-3" style="--c:#ec4899;--glow:rgba(236,72,153,.2)"><span class="icon-cloud" style="--c:#ec4899;--c2:#f472b6;--glow:rgba(236,72,153,.4)">⚠️<span class="cloud">Failed Items</span></span><div><div class="text-[22px] font-black text-pink-600">0</div><div class="text-[11px] text-gray-500">Failed Items</div></div></div>
 </div>
-<div class="card12 p-4 mt-3" style="--c:#2563eb;--glow:rgba(37,99,235,.2)">
-<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-blue-600 rounded-full"></span>Broadcast Campaigns <span class="text-gray-400 font-normal text-xs">(last 30 days)</span></div><a href="#" onclick="openPage('broadcasting',document.querySelector('[data-page=broadcasting]'));return false" class="text-blue-600 text-xs font-bold">All campaigns →</a></div>
-<div class="flex gap-5 mt-4"><div id="donut1" class="donut" style="background:#e5e7eb"><div class="donut-inner"><span id="donut-total" class="font-black text-xl leading-none num">0</span><span class="text-[10px] text-gray-500">Total</span></div></div><div class="flex-1 text-[13px] space-y-2.5"><div class="flex justify-between"><span>🟠 Pending</span><b id="dash-pending">0</b></div><div class="flex justify-between"><span>🔵 Processing</span><b>0</b></div><div class="flex justify-between"><span>🟢 Completed</span><b id="dash-done">0</b></div><div class="flex justify-between"><span>🔴 Failed</span><b id="dash-failed">0</b></div><div class="flex justify-between border-t pt-2"><span>📤 Messages Sent</span><b class="text-blue-700 num" id="dash-sent2">0</b></div></div></div>
-</div>
-<div class="card12 p-4 mt-3" style="--c:#16a34a;--glow:rgba(22,163,74,.2)">
-<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-green-600 rounded-full"></span>Comment Campaigns <span class="text-gray-400 font-normal text-xs">(last 30 days)</span></div><a href="#" class="text-green-600 text-xs font-bold">Analytics →</a></div>
-<div class="flex gap-5 mt-4"><div class="donut" style="background:#e5e7eb"><div class="donut-inner"><span class="font-black text-xl leading-none">0</span><span class="text-[10px] text-gray-500">Campaigns</span></div></div><div class="flex-1 text-[13px] space-y-2.5"><div class="flex justify-between"><span>🟠 Pending</span><b>0</b></div><div class="flex justify-between"><span>🔵 Processing</span><b>0</b></div><div class="flex justify-between"><span>🟢 Completed</span><b>0</b></div><div class="flex justify-between border-t pt-2"><span>↩️ Replies Sent</span><b class="text-green-600">0</b></div><div class="flex justify-between"><span>🤖 Active Autoreplies</span><b class="text-purple-600" id="dash-auto">0</b></div></div></div>
-</div>
-<div class="card12 p-4 mt-3" style="--c:#7c3aed;--glow:rgba(124,58,237,.2)">
-<div class="flex justify-between"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-indigo-600 rounded-full"></span>7-Day Activity</div><div class="flex gap-3 text-[11px]"><span class="text-blue-600">— Broadcast</span><span class="text-green-600">— Comments</span></div></div>
-<div class="relative mt-3"><svg viewBox="0 0 600 180" class="w-full h-[180px]"><path d="M0,10 L100,110 L200,150 L300,155 L400,155 L500,155 L600,150 L600,180 L0,180 Z" fill="#2563eb" fill-opacity="0.08"/><path d="M0,155 L100,155 L200,155 L300,155 L400,155 L500,155 L600,155" fill="none" stroke="#2563eb" stroke-width="2.5"/><path d="M0,155 L100,155 L200,155 L300,155 L400,155 L500,155 L600,155" fill="none" stroke="#22c55e" stroke-width="2.5"/><circle cx="600" cy="155" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/><circle cx="600" cy="155" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/></svg></div>
-<div class="flex text-[10px] text-gray-500 mt-1"><span class="flex-1">Nov 04</span><span class="flex-1 text-center">Nov 05</span><span class="flex-1 text-center">Nov 06</span><span class="flex-1 text-center">Nov 07</span><span class="flex-1 text-center">Nov 08</span><span class="flex-1 text-center">Nov 09</span><span class="flex-1 text-right">Nov 10</span></div>
-</div>
-<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.4);width:28px;height:28px;font-size:14px">🕘<span class="cloud">Recent Activity</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">RECENT ACTIVITY</span><div class="flex-1 h-px bg-gray-200"></div></div>
-<div class="card12 overflow-hidden" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-blue-600 rounded-full"></span>Recent Broadcasts</div><a href="#" onclick="openPage('broadcasting',document.querySelector('[data-page=broadcasting]'));return false" class="text-blue-600 text-xs font-bold">View all →</a></div><table class="w-full text-left text-[13px]"><thead class="text-[10px] text-gray-500 border-y bg-gray-50"><tr><th class="px-4 py-2">CAMPAIGN</th><th class="px-4 py-2 text-center">SENT / TOTAL</th><th class="px-4 py-2 text-right">STATUS</th></tr></thead><tbody id="recentBody"></tbody></table><div id="recentEmpty" class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
-<div class="card12 overflow-hidden mt-3" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><div class="flex justify-between p-4"><div class="font-bold text-sm flex items-center gap-2"><span class="w-2 h-2 bg-green-600 rounded-full"></span>Recent Comment Campaigns</div><a href="#" class="text-green-600 text-xs font-bold">View all →</a></div><div class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
+<div class="card12 p-4 mt-3" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="flex justify-between"><div class="font-bold text-sm">Broadcast Campaigns <span class="text-gray-400 font-normal text-xs">(last 30 days)</span></div><a href="#" onclick="openPage('broadcasting',document.querySelector('[data-page=broadcasting]'));return false" class="text-blue-600 text-xs font-bold">All campaigns →</a></div><div class="flex gap-5 mt-4"><div id="donut1" class="donut" style="background:#e5e7eb"><div class="donut-inner"><span id="donut-total" class="font-black text-xl num">0</span><span class="text-[10px] text-gray-500">Total</span></div></div><div class="flex-1 text-[13px] space-y-2.5"><div class="flex justify-between"><span>🟠 Pending</span><b id="dash-pending">0</b></div><div class="flex justify-between"><span>🟢 Completed</span><b id="dash-done">0</b></div><div class="flex justify-between border-t pt-2"><span>📤 Messages Sent</span><b class="text-blue-700 num" id="dash-sent2">0</b></div></div></div></div>
+<div class="card12 overflow-hidden mt-3" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="flex justify-between p-4"><div class="font-bold text-sm">Recent Broadcasts</div><a href="#" onclick="openPage('broadcasting',document.querySelector('[data-page=broadcasting]'));return false" class="text-blue-600 text-xs font-bold">View all →</a></div><table class="w-full text-left text-[13px]"><thead class="text-[10px] text-gray-500 border-y bg-gray-50"><tr><th class="px-4 py-2">CAMPAIGN</th><th class="px-4 py-2 text-center">SENT / TOTAL</th><th class="px-4 py-2 text-right">STATUS</th></tr></thead><tbody id="recentBody"></tbody></table><div id="recentEmpty" class="text-center text-gray-400 text-[12px] py-6">No campaigns yet</div></div>
 </div>
 
-<!-- ===== FACEBOOK & INSTAGRAM ===== -->
+<!-- ===== FACEBOOK ===== -->
 <div id="page-facebook" class="hidden">
-<div class="flex flex-wrap items-center gap-3"><div class="flex items-center gap-2"><span class="text-xl">💬</span><h2 class="text-[20px] md:text-[22px] font-black">Connect Facebook & Instagram</h2></div><button onclick="loginFacebook()" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-sm action-btn" style="background:linear-gradient(135deg,#1877f2,#60a5fa);box-shadow:0 8px 18px rgba(24,119,242,.3)">Login with Facebook</button></div>
-<div class="card12 p-4 mt-4" style="--c:#f59e0b;--glow:rgba(245,158,11,.2)">
-<div class="flex flex-wrap items-center gap-2"><span class="font-black text-[13px]">⚡ QUICK ACTIONS</span><span class="badge bg-green-100 text-green-700" id="qa-enabled">✅ 0 Enabled</span><span class="badge bg-gray-100 text-gray-600" id="qa-disabled">⏸ 0 Disabled</span><span class="badge bg-yellow-100 text-yellow-700">⏸ 0 Paused</span><span class="badge bg-orange-100 text-orange-700" id="qa-elsewhere">🔗 0 Linked elsewhere</span><span class="badge bg-indigo-100 text-indigo-700" id="qa-total">📦 0 Total</span></div>
-<div class="flex flex-wrap gap-2 mt-3">
-<button onclick="enableAll()" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border border-green-200 action-btn">⬇ Enable All</button>
-<button onclick="enableAll()" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border border-green-200 action-btn">⬇ Enable All Accounts</button>
-<button onclick="disableAll()" class="px-3 py-2 rounded-lg bg-gray-50 font-bold text-[12px] border action-btn">⏻ Disable All</button>
-<button onclick="scanAll()" class="px-3 py-2 rounded-lg bg-yellow-50 text-yellow-700 font-bold text-[12px] border border-yellow-200 action-btn">⚡ Scan All Accounts</button>
-<button onclick="showToast('Migrate')" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border border-green-200 action-btn">👥 Migrate</button>
-<button onclick="showToast('Migrate progress: 0%')" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border border-green-200 action-btn">📈 Migrate progress</button>
-<button onclick="showToast('Publish Status: All Published ✅')" class="px-3 py-2 rounded-lg bg-red-50 text-red-600 font-bold text-[12px] border border-red-200 action-btn">🚫 Check Publish Status</button>
-<button onclick="showToast('Unpublish Log: فارغ')" class="px-3 py-2 rounded-lg bg-gray-50 font-bold text-[12px] border action-btn">🗂 Unpublish Log</button>
-<button onclick="doRefresh()" class="px-3 py-2 rounded-lg bg-blue-50 text-blue-700 font-bold text-[12px] border border-blue-200 action-btn">⟳ Refresh</button>
-<button onclick="deleteAllPages()" class="px-3 py-2 rounded-lg bg-red-50 text-red-600 font-bold text-[12px] border border-red-200 action-btn">🗑 Delete All</button>
-</div>
-</div>
+<div class="flex flex-wrap items-center gap-3"><h2 class="text-[20px] font-black">Connect Facebook & Instagram</h2><button onclick="loginFacebook()" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold text-sm action-btn" style="background:linear-gradient(135deg,#1877f2,#60a5fa)">Login with Facebook</button></div>
+<div class="card12 p-4 mt-4" style="--c:#f59e0b;--glow:rgba(245,158,11,.2)"><div class="flex flex-wrap gap-2"><span class="badge bg-green-100 text-green-700" id="qa-enabled">✅ 0 Enabled</span><span class="badge bg-gray-100" id="qa-disabled">⏸ 0 Disabled</span><span class="badge bg-indigo-100 text-indigo-700" id="qa-total">📦 0 Total</span></div><div class="flex flex-wrap gap-2 mt-3"><button onclick="enableAll()" class="px-3 py-2 rounded-lg bg-green-50 text-green-700 font-bold text-[12px] border action-btn">⬇ Enable All</button><button onclick="disableAll()" class="px-3 py-2 rounded-lg bg-gray-50 font-bold text-[12px] border action-btn">⏻ Disable All</button><button onclick="scanAll()" class="px-3 py-2 rounded-lg bg-yellow-50 text-yellow-700 font-bold text-[12px] border action-btn">⚡ Scan All</button><button onclick="doRefresh()" class="px-3 py-2 rounded-lg bg-blue-50 text-blue-700 font-bold text-[12px] border action-btn">⟳ Refresh</button><button onclick="deleteAllPages()" class="px-3 py-2 rounded-lg bg-red-50 text-red-600 font-bold text-[12px] border action-btn">🗑 Delete All</button></div></div>
 <div id="accounts-list" class="mt-4 space-y-4"></div>
-<div class="card12 p-4 mt-4" style="--c:#2563eb;--glow:rgba(37,99,235,.2)">
-<div class="relative"><span class="absolute left-3 top-3 text-gray-400">🔍</span><input id="fb-search" oninput="renderAll()" class="input !pl-9" placeholder="Search pages by name or ID..."></div>
-<div class="flex gap-2 mt-3 overflow-x-auto pb-1" id="filter-bar">
-<button onclick="setFilter('all',this)" class="filter-btn active">All (<span id="f-all">0</span>)</button>
-<button onclick="setFilter('enabled',this)" class="filter-btn green">Enabled (<span id="f-enabled">0</span>)</button>
-<button onclick="setFilter('disabled',this)" class="filter-btn">Disabled (<span id="f-disabled">0</span>)</button>
-<button onclick="setFilter('paused',this)" class="filter-btn">Paused (<span id="f-paused">0</span>)</button>
-<button onclick="setFilter('instagram',this)" class="filter-btn">Instagram (<span id="f-ig">0</span>)</button>
-<button onclick="setFilter('unpublished',this)" class="filter-btn">🚫 Unpublished (<span id="f-unpub">0</span>)</button>
-<button onclick="setFilter('elsewhere',this)" class="filter-btn">🔗 Linked elsewhere (<span id="f-else">0</span>)</button>
-</div>
-</div>
-<div class="flex flex-wrap justify-between items-center mt-4 px-1"><div class="flex items-center gap-3 flex-wrap"><span class="font-black text-[14px]">🧱 Page list</span><span class="text-[12px] text-gray-500" id="page-list-count">0 Pages</span><span class="badge bg-yellow-100 text-yellow-700">🔗 +0 Linked elsewhere</span><button onclick="enableAll()" class="px-3 py-1.5 rounded-full bg-yellow-50 border border-yellow-200 text-[12px] font-bold action-btn">⬇ Enable all here</button></div><label class="flex items-center gap-2 text-[12px] font-bold text-gray-600 mt-2 md:mt-0"><input type="checkbox" id="select-all" onchange="toggleSelectAll(this.checked)"> Select All</label></div>
+<div class="card12 p-4 mt-4" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><input id="fb-search" oninput="renderAll()" class="input" placeholder="Search pages..."><div class="flex gap-2 mt-3 overflow-x-auto pb-1" id="filter-bar"><button onclick="setFilter('all',this)" class="filter-btn active">All (<span id="f-all">0</span>)</button><button onclick="setFilter('enabled',this)" class="filter-btn">Enabled (<span id="f-enabled">0</span>)</button><button onclick="setFilter('disabled',this)" class="filter-btn">Disabled (<span id="f-disabled">0</span>)</button></div></div>
 <div id="pages-grid" class="grid md:grid-cols-3 gap-3 mt-3"></div>
-<div id="pages-empty" class="card12 p-8 text-center text-gray-400 text-sm mt-3" style="--c:#1877f2;--glow:rgba(24,119,242,.2)">لسه مفيش أكونت مربوط - دوس <b class="text-blue-600">Login with Facebook</b> فوق</div>
+<div id="pages-empty" class="card12 p-8 text-center text-gray-400 text-sm mt-3" style="--c:#1877f2;--glow:rgba(24,119,242,.2)">لسه مفيش أكونت مربوط - دوس <b class="text-blue-600">Login with Facebook</b></div>
 </div>
 
-<!-- ===== COMMENT GROWTH TOOLS ===== -->
+<!-- ===== GROWTH ===== -->
 <div id="page-growth" class="hidden">
-<div class="flex items-center gap-2"><span class="text-[20px]">📘</span><h2 class="text-[20px] md:text-[22px] font-black">Facebook comment growth tools</h2></div>
+<div class="flex items-center gap-2"><h2 class="text-[20px] font-black">Facebook comment growth tools</h2></div>
 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 mt-5">
-<div class="growth-card" style="--c:#0ea5e9;--c2:#38bdf8;--glow:rgba(14,165,233,.4)" onclick="openGrowth('comment')"><span class="cloud">Comment Template</span><div class="growth-icon">💬</div><div class="font-bold text-[13px]">Comment Template</div><div class="text-[11px] text-gray-400 mt-1"><span id="cnt-comment">0</span> templates</div></div>
-<div class="growth-card" style="--c:#06b6d4;--c2:#22d3ee;--glow:rgba(6,182,212,.4)" onclick="openGrowth('reply')"><span class="cloud">Reply Template</span><div class="growth-icon">💭</div><div class="font-bold text-[13px]">Reply Template</div><div class="text-[11px] text-gray-400 mt-1"><span id="cnt-reply">0</span> templates</div></div>
-<div class="growth-card" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.4)" onclick="openGrowth('campaign')"><span class="cloud">Campaigns</span><div class="growth-icon">⚙️</div><div class="font-bold text-[13px]">Campaigns</div><div class="text-[11px] text-gray-400 mt-1"><span id="cnt-campaign">0</span> campaigns</div></div>
-<div class="growth-card" style="--c:#9333ea;--c2:#d946ef;--glow:rgba(147,51,234,.4)" onclick="openGrowth('tag')"><span class="cloud">Tag Campaign</span><div class="growth-icon">🏷️</div><div class="font-bold text-[13px]">Tag Campaign</div><div class="text-[11px] text-gray-400 mt-1"><span id="cnt-tag">0</span> tags</div></div>
-<div class="growth-card" style="--c:#f97316;--c2:#fb923c;--glow:rgba(249,115,22,.4)" onclick="openGrowth('report')"><span class="cloud">Reports</span><div class="growth-icon">📊</div><div class="font-bold text-[13px]">Reports</div><div class="text-[11px] text-gray-400 mt-1">Analytics</div></div>
-<div class="growth-card" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.4)" onclick="openGrowth('bulk')"><span class="cloud">Bulk Campaign</span><div class="growth-icon">📢</div><div class="font-bold text-[13px]">Bulk Campaign</div><div class="text-[11px] text-gray-400 mt-1">Bulk send</div></div>
+<div class="growth-card" style="--c:#0ea5e9;--c2:#38bdf8;--glow:rgba(14,165,233,.4)" onclick="openGrowth('comment')"><span class="cloud">Comment Template</span><div class="growth-icon">💬</div><div class="font-bold text-[13px]">Comment Template</div><div class="text-[11px] text-gray-400"><span id="cnt-comment">0</span> templates</div></div>
+<div class="growth-card" style="--c:#06b6d4;--c2:#22d3ee;--glow:rgba(6,182,212,.4)" onclick="openGrowth('reply')"><span class="cloud">Reply Template</span><div class="growth-icon">💭</div><div class="font-bold text-[13px]">Reply Template</div><div class="text-[11px] text-gray-400"><span id="cnt-reply">0</span> templates</div></div>
+<div class="growth-card" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.4)" onclick="openGrowth('campaign')"><span class="cloud">Campaigns</span><div class="growth-icon">⚙️</div><div class="font-bold text-[13px]">Campaigns</div><div class="text-[11px] text-gray-400"><span id="cnt-campaign">0</span> campaigns</div></div>
+<div class="growth-card" style="--c:#9333ea;--c2:#d946ef;--glow:rgba(147,51,234,.4)" onclick="openGrowth('tag')"><span class="cloud">Tag Campaign</span><div class="growth-icon">🏷️</div><div class="font-bold text-[13px]">Tag Campaign</div><div class="text-[11px] text-gray-400"><span id="cnt-tag">0</span> tags</div></div>
+<div class="growth-card" style="--c:#f97316;--c2:#fb923c;--glow:rgba(249,115,22,.4)" onclick="openGrowth('report')"><span class="cloud">Reports</span><div class="growth-icon">📊</div><div class="font-bold text-[13px]">Reports</div><div class="text-[11px] text-gray-400">Analytics</div></div>
+<div class="growth-card" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.4)" onclick="openGrowth('bulk')"><span class="cloud">Bulk Campaign</span><div class="growth-icon">📢</div><div class="font-bold text-[13px]">Bulk Campaign</div><div class="text-[11px] text-gray-400">Bulk send</div></div>
 </div>
 <div id="growth-detail" class="mt-6"></div>
 </div>
 
-<!-- ===== BROADCASTING / Subscriber broadcast - زي سكرين cavaliy ===== -->
+<!-- ===== BROADCASTING ===== -->
 <div id="page-broadcasting" class="hidden">
-<div class="flex flex-wrap justify-between gap-3 items-start">
-<div>
 <div class="text-[11px] text-gray-400 font-bold">Broadcasting / Subscriber broadcast</div>
 <h2 class="text-[22px] font-black mt-1">Subscriber broadcast</h2>
-<div class="flex flex-wrap gap-2 mt-3">
-<button onclick="setBcType('all',this)" class="bc-pill active" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.3)">📋 All</button>
-<button onclick="setBcType('pro',this)" class="bc-pill" style="--c:#0ea5e9;--c2:#38bdf8;--glow:rgba(14,165,233,.3)">⭐ Pro Template</button>
-<button onclick="openBcCreate()" class="bc-pill" style="--c:#9333ea;--c2:#c084fc;--glow:rgba(147,51,234,.3)">➕ New Broadcast</button>
+<div class="flex flex-wrap gap-2 mt-3"><button onclick="setBcStatus('all',this)" class="bc-pill active" style="--c:#1e293b;--c2:#475569;--glow:rgba(30,41,59,.3)">All (<span id="bc-all">0</span>)</button><button onclick="setBcStatus('completed',this)" class="bc-pill" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.3)">🟢 Completed</button><button onclick="setBcStatus('processing',this)" class="bc-pill" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.3)">🔵 Processing</button><button onclick="setBcStatus('pending',this)" class="bc-pill" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.3)">🟡 Pending</button><button onclick="setBcStatus('stopped',this)" class="bc-pill" style="--c:#ef4444;--c2:#f87171;--glow:rgba(239,68,68,.3)">🛑 Stopped</button><button onclick="setBcStatus('onhold',this)" class="bc-pill" style="--c:#f97316;--c2:#fb923c;--glow:rgba(249,115,22,.3)">⏸ On hold</button></div>
+<div class="card12 p-3 mt-4 flex flex-wrap gap-2" style="--c:#2563eb;--glow:rgba(37,99,235,.15)"><select class="input !w-auto !py-2 text-[12px] font-bold"><option>Select page</option><option>All Pages</option></select><input id="bc-search" oninput="renderBc()" class="input !flex-1 !min-w-[180px] !py-2" placeholder="Search..."><button onclick="renderBc()" class="px-4 py-2 rounded-xl text-white font-bold text-[13px] action-btn" style="background:linear-gradient(135deg,#2563eb,#60a5fa)">🔍 Search</button><button onclick="openBcCreate()" class="px-4 py-2 rounded-xl text-white font-bold text-[13px] action-btn" style="background:linear-gradient(135deg,#9333ea,#c084fc)">➕ New Broadcast</button></div>
+<div id="bc-create" class="card12 p-4 mt-4 hidden" style="--c:#9333ea;--glow:rgba(147,51,234,.2)"><input id="bc-name" class="input" placeholder="اسم البرودكاست"><textarea id="bc-msg" class="input mt-3" rows="3" placeholder="رسالة البرودكاست..."></textarea><button onclick="saveBc()" class="btn mt-3">🚀 Send Broadcast</button></div>
+<div class="card12 mt-4 overflow-hidden" style="--c:#2563eb;--glow:rgba(37,99,235,.15)"><div class="overflow-x-auto"><table class="w-full text-left text-[12px] min-w-[820px]"><thead class="text-[10px] text-gray-500 border-b bg-gray-50"><tr><th class="px-3 py-3">TYPE</th><th class="px-3 py-3">STATUS</th><th class="px-3 py-3">ACTIONS</th><th class="px-3 py-3">MEDIA</th><th class="px-3 py-3 text-center">SUBSCRIBER</th><th class="px-3 py-3 text-center">SENT</th><th class="px-3 py-3 text-center">OPEN</th><th class="px-3 py-3">SCHEDULED AT</th><th class="px-3 py-3">CREATED AT</th></tr></thead><tbody id="bc-body"></tbody></table></div><div id="bc-empty" class="text-center text-gray-400 text-[13px] py-8">لسه مفيش برودكاست</div></div>
 </div>
-</div>
+
+<!-- ===== MEDIA & CONTENT - 3 أقسام ===== -->
+<div id="page-media" class="hidden">
+<div class="flex flex-wrap justify-between gap-3 items-start">
+<div><div class="text-[11px] text-gray-400 font-bold">Messenger Tools / Media & Content</div>
+<div class="flex items-center gap-2 mt-1"><span class="icon-cloud" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.4)">🎬<span class="cloud">Media & Content</span></span><h2 id="media-title" class="text-[22px] font-black">Media Manager</h2><span id="media-count-badge" class="bg-violet-100 text-violet-700 text-[11px] font-bold px-2 py-1 rounded-full">51 items</span></div></div>
 <div class="flex gap-2">
-<button onclick="doRefresh()" class="bc-pill" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.3)">⟳ Reforce</button>
-<button onclick="doRefresh()" class="bc-pill" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.3)">⟳ Refresh</button>
+<button onclick="randomURL()" class="bc-pill" style="--c:#f97316;--c2:#fb923c;--glow:rgba(249,115,22,.35)">🔀 Random URL</button>
+<label class="bc-pill active cursor-pointer" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35)">☁️ Upload<input type="file" id="media-upload" accept="image/*,video/*" multiple class="hidden" onchange="uploadMedia(event)"></label>
 </div>
 </div>
 
-<!-- تبويبات الحالة - كل واحدة ليها تبويبات -->
-<div class="flex flex-wrap gap-2 mt-4">
-<button onclick="setBcStatus('all',this)" class="bc-pill active" style="--c:#1e293b;--c2:#475569;--glow:rgba(30,41,59,.3)">All (<span id="bc-all">0</span>)</button>
-<button onclick="setBcStatus('completed',this)" class="bc-pill" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.3)">🟢 Completed</button>
-<button onclick="setBcStatus('processing',this)" class="bc-pill" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.3)">🔵 Processing</button>
-<button onclick="setBcStatus('pending',this)" class="bc-pill" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.3)">🟡 Pending</button>
-<button onclick="setBcStatus('stopped',this)" class="bc-pill" style="--c:#ef4444;--c2:#f87171;--glow:rgba(239,68,68,.3)">🛑 Stopped</button>
-<button onclick="setBcStatus('onhold',this)" class="bc-pill" style="--c:#f97316;--c2:#fb923c;--glow:rgba(249,115,22,.3)">⏸ On hold</button>
-<button onclick="setBcStatus('delete',this)" class="bc-pill" style="--c:#ef4444;--c2:#f87171;--glow:rgba(239,68,68,.3)">🗑 DELETE</button>
+<!-- تبويبات الـ 3 أقسام -->
+<div class="flex gap-2 mt-4 overflow-x-auto pb-1">
+<button onclick="openMedia('images',this)" id="tab-images" class="inner-tab active" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.25)">🖼️ Images</button>
+<button onclick="openMedia('posts',this)" id="tab-posts" class="inner-tab" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.25)">📄 Posts</button>
+<button onclick="openMedia('videos',this)" id="tab-videos" class="inner-tab" style="--c:#ec4899;--c2:#f472b6;--glow:rgba(236,72,153,.25)">🎬 Videos</button>
 </div>
 
-<!-- فلاتر البحث زي السكرين -->
-<div class="card12 p-3 mt-4 flex flex-wrap gap-2 items-center" style="--c:#2563eb;--glow:rgba(37,99,235,.15)">
-<select id="bc-page" onchange="renderBc()" class="input !w-auto !py-2 text-[12px] font-bold"><option value="all">Select page</option><option value="all">All Pages</option></select>
-<select id="bc-status-sel" onchange="renderBc()" class="input !w-auto !py-2 text-[12px] font-bold"><option value="all">Status</option><option value="completed">Completed</option><option value="processing">Processing</option><option value="pending">Pending</option></select>
-<input id="bc-search" oninput="renderBc()" class="input !flex-1 !min-w-[180px] !py-2 text-[13px]" placeholder="Search...">
-<button onclick="renderBc()" class="px-4 py-2 rounded-xl text-white font-bold text-[13px] action-btn" style="background:linear-gradient(135deg,#2563eb,#60a5fa);box-shadow:0 8px 18px rgba(37,99,235,.3)">🔍 Search</button>
-<button onclick="showToast('Choose date - اختار التاريخ')" class="px-4 py-2 rounded-xl text-white font-bold text-[13px] action-btn" style="background:linear-gradient(135deg,#0284c7,#38bdf8);box-shadow:0 8px 18px rgba(2,132,199,.3)">📅 Choose date</button>
+<!-- تبويبات جوة كل قسم -->
+<div class="flex gap-2 mt-3 overflow-x-auto pb-1" id="media-inner-tabs"></div>
+
+<div class="flex flex-col md:flex-row gap-4 mt-4">
+<!-- MY LISTS -->
+<div class="card12 p-3 md:w-[240px] shrink-0" style="--c:#7c3aed;--glow:rgba(124,58,237,.2)">
+<div class="text-[10px] font-black tracking-wider text-gray-400 px-1">MY LISTS</div>
+<div class="flex gap-2 mt-2"><input id="new-list-name" class="input !py-2 text-[13px]" placeholder="New list name..."><button onclick="addMediaList()" class="w-10 shrink-0 rounded-xl text-white font-black text-lg action-btn" style="background:linear-gradient(135deg,#2563eb,#60a5fa);box-shadow:0 8px 18px rgba(37,99,235,.3)">+</button></div>
+<div id="media-lists" class="mt-3 space-y-1"></div>
 </div>
 
-<!-- انشاء برودكاست -->
-<div id="bc-create" class="card12 p-4 mt-4 hidden" style="--c:#9333ea;--glow:rgba(147,51,234,.2)">
-<div class="font-black text-[15px]">➕ New Subscriber Broadcast</div>
-<div class="grid md:grid-cols-2 gap-3 mt-3"><input id="bc-name" class="input" placeholder="اسم البرودكاست - مثال: عرض رمضان"><select class="input"><option>Select page - كل الصفحات</option></select></div>
-<textarea id="bc-msg" class="input mt-3" rows="3" placeholder="رسالة البرودكاست..."></textarea>
-<div class="flex gap-2 mt-3"><button onclick="saveBc()" class="flex-1 py-3 rounded-xl text-white font-bold text-sm action-btn" style="background:linear-gradient(135deg,#2563eb,#60a5fa)">🚀 Send Broadcast</button><button onclick="document.getElementById('bc-create').classList.add('hidden')" class="px-4 py-3 rounded-xl bg-gray-100 font-bold text-sm">إلغاء</button></div>
+<!-- MAIN GRID -->
+<div class="flex-1 min-w-0">
+<div class="card12 p-3" style="--c:#2563eb;--glow:rgba(37,99,235,.15)">
+<div class="border-2 border-dashed border-blue-200 rounded-2xl p-4 text-center bg-blue-50/50" onclick="document.getElementById('media-upload').click()">
+<div class="flex items-center justify-center gap-2"><span class="icon-cloud" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35);width:36px;height:36px;font-size:18px">☁️<span class="cloud">Upload</span></span><div class="text-left"><div class="font-bold text-[14px]" id="media-drop-title">Drag & drop images here</div><div class="text-[11px] text-gray-500" id="media-drop-sub">or click Upload above — JPG · PNG · GIF · WEBP · multiple files</div></div></div>
+</div>
+<div class="flex flex-wrap gap-2 mt-3"><input id="media-search" oninput="renderMediaGrid()" class="input !flex-1 !min-w-[160px] !py-2 text-[13px]" placeholder="Search in this list..."><select id="media-sort" onchange="renderMediaGrid()" class="input !w-auto !py-2 text-[12px] font-bold"><option>Newest first</option><option>Oldest first</option><option>Name A-Z</option></select><button onclick="renderMediaGrid()" class="px-3 py-2 rounded-xl bg-violet-50 text-violet-700 font-bold text-[12px] action-btn">⟳ Refresh</button></div>
 </div>
 
-<!-- الجدول -->
-<div class="card12 mt-4 overflow-hidden" style="--c:#2563eb;--glow:rgba(37,99,235,.15)">
-<div class="overflow-x-auto">
-<table class="w-full text-left text-[12px] min-w-[820px]"><thead class="text-[10px] text-gray-500 border-b bg-gray-50"><tr><th class="px-3 py-3">TYPE</th><th class="px-3 py-3">STATUS</th><th class="px-3 py-3">ACTIONS</th><th class="px-3 py-3">MEDIA</th><th class="px-3 py-3 text-center">SUBSCRIBER</th><th class="px-3 py-3 text-center">SENT</th><th class="px-3 py-3 text-center">OPEN</th><th class="px-3 py-3">SCHEDULED AT</th><th class="px-3 py-3">CREATED AT</th></tr></thead><tbody id="bc-body"></tbody></table>
-</div>
-<div id="bc-empty" class="text-center text-gray-400 text-[13px] py-8">لسه مفيش برودكاست - دوس <b>New Broadcast</b> فوق</div>
-<div class="flex flex-wrap justify-between items-center p-3 border-t gap-2"><div class="flex items-center gap-2 text-[12px]"><select class="input !w-auto !py-1 text-[12px]"><option>10</option><option>25</option><option>50</option></select><span class="text-gray-500" id="bc-count">1-10 / 105</span></div><div class="flex gap-1 items-center text-[12px] font-bold" id="bc-pager"></div></div>
-</div>
+<!-- Posts / Videos extra -->
+<div id="media-extra" class="mt-4"></div>
 
-<!-- تبويبات جوة البرودكاست -->
-<div class="card12 p-4 mt-4" style="--c:#9333ea;--glow:rgba(147,51,234,.2)">
-<div class="font-black text-[15px] flex items-center gap-2"><span class="icon-cloud" style="--c:#9333ea;--c2:#c084fc;--glow:rgba(147,51,234,.3);width:32px;height:32px;font-size:16px">📊<span class="cloud">Broadcast Tabs</span></span>تبويبات جوة كل برودكاست</div>
-<div class="flex gap-2 mt-3 overflow-x-auto pb-1">
-<button onclick="setBcInner('overview',this)" class="inner-tab active" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.2)">📊 Overview</button>
-<button onclick="setBcInner('recipients',this)" class="inner-tab" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.2)">👥 Recipients</button>
-<button onclick="setBcInner('media',this)" class="inner-tab" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.2)">🖼 Media</button>
-<button onclick="setBcInner('schedule',this)" class="inner-tab" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.2)">⏰ Schedule</button>
-<button onclick="setBcInner('report',this)" class="inner-tab" style="--c:#ec4899;--c2:#f472b6;--glow:rgba(236,72,153,.2)">📈 Report</button>
-<button onclick="setBcInner('settings',this)" class="inner-tab" style="--c:#64748b;--c2:#94a3b8;--glow:rgba(100,116,139,.2)">⚙️ Settings</button>
+<div id="media-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 mt-4"></div>
+<div id="media-empty" class="card12 p-8 text-center text-gray-400 text-sm mt-4 hidden" style="--c:#7c3aed;--glow:rgba(124,58,237,.2)">لسه مفيش حاجة في القائمة دي - ارفع أول صورة</div>
+
+<!-- شرح الخواص -->
+<div class="card12 p-4 mt-4" style="--c:#7c3aed;--glow:rgba(124,58,237,.2)">
+<div class="font-black text-[14px]" id="media-props-title">خواص Images</div>
+<div class="text-[12px] text-gray-600 mt-2 space-y-1" id="media-props">
+<div>• <b>Lists:</b> اعمل قائمة لكل حملة، واسحب الصور جواها</div>
+<div>• <b>Random URL:</b> يجيب لينك عشوائي للصورة للاستخدام في البوت</div>
+<div>• <b>Upload:</b> ارفع كذا صورة مرة واحدة</div>
+<div>• <b>Use in Bot:</b> دوس على أي صورة عشان تاخد لينكها للبوت أو البرودكاست</div>
 </div>
-<div id="bc-inner" class="mt-3 text-[13px] text-gray-600"></div>
+</div>
+</div>
 </div>
 </div>
 
 <!-- CONTACTS / CAMPAIGNS / NUMBERS / USERS -->
-<div id="page-contacts" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Contacts <span id="contacts-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('contact-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm action-btn">+ Add Contact</button></div><div id="contact-form" class="card12 p-4 mt-3 hidden" style="--c:#9333ea;--glow:rgba(147,51,234,.2)"><input id="c-name" class="input" placeholder="الاسم"><input id="c-phone" class="input mt-2" placeholder="01012345678"><button onclick="addContact()" class="btn mt-3">حفظ</button></div><input id="contacts-search" oninput="renderAll()" class="input mt-3" placeholder="ابحث..."><div id="contacts-list" class="mt-3 space-y-2"></div></div>
-<div id="page-campaigns" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Campaigns <span id="campaigns-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('camp-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm action-btn">+ New Campaign</button></div><div id="camp-form" class="card12 p-4 mt-3 hidden" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><input id="camp-name" class="input" placeholder="اسم الحملة"><textarea id="camp-msg" class="input mt-2" rows="3" placeholder="رسالة الحملة..."></textarea><button onclick="addCampaign()" class="btn mt-3">إنشاء</button></div><div id="campaigns-list" class="mt-3 space-y-2"></div></div>
-<div id="page-numbers" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Numbers <span id="numbers-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('num-form')" class="bg-green-600 text-white px-4 py-2 rounded-xl font-bold text-sm action-btn">+ Add Number</button></div><div id="num-form" class="card12 p-4 mt-3 hidden" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><input id="n-label" class="input" placeholder="اسم الرقم"><input id="n-phone" class="input mt-2" placeholder="01012345678"><button onclick="addNumber()" class="btn mt-3" style="background:linear-gradient(135deg,#16a34a,#4ade80)">حفظ الرقم</button></div><div id="numbers-list" class="mt-3 space-y-2"></div></div>
-<div id="page-users" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Users <span id="users-count" class="text-sm text-gray-400 font-normal">(0)</span></h2><button onclick="toggleForm('user-form')" class="bg-orange-500 text-white px-4 py-2 rounded-xl font-bold text-sm action-btn">+ Add User</button></div><div id="user-form" class="card12 p-4 mt-3 hidden" style="--c:#f97316;--glow:rgba(249,115,22,.2)"><input id="u-name" class="input" placeholder="اسم المستخدم"><input id="u-email" class="input mt-2" placeholder="email@example.com"><button onclick="addUser()" class="btn mt-3" style="background:linear-gradient(135deg,#f97316,#fb923c)">حفظ المستخدم</button></div><div id="users-list" class="mt-3 space-y-2"></div></div>
+<div id="page-contacts" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Contacts <span id="contacts-count" class="text-sm text-gray-400">(0)</span></h2><button onclick="toggleForm('contact-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm action-btn">+ Add Contact</button></div><div id="contact-form" class="card12 p-4 mt-3 hidden" style="--c:#9333ea;--glow:rgba(147,51,234,.2)"><input id="c-name" class="input" placeholder="الاسم"><input id="c-phone" class="input mt-2" placeholder="01012345678"><button onclick="addContact()" class="btn mt-3">حفظ</button></div><input id="contacts-search" oninput="renderAll()" class="input mt-3" placeholder="ابحث..."><div id="contacts-list" class="mt-3 space-y-2"></div></div>
+<div id="page-campaigns" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Campaigns <span id="campaigns-count" class="text-sm text-gray-400">(0)</span></h2><button onclick="toggleForm('camp-form')" class="bg-blue-600 text-white px-4 py-2 rounded-xl font-bold text-sm action-btn">+ New Campaign</button></div><div id="camp-form" class="card12 p-4 mt-3 hidden" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><input id="camp-name" class="input" placeholder="اسم الحملة"><textarea id="camp-msg" class="input mt-2" rows="3" placeholder="رسالة الحملة..."></textarea><button onclick="addCampaign()" class="btn mt-3">إنشاء</button></div><div id="campaigns-list" class="mt-3 space-y-2"></div></div>
+<div id="page-numbers" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Numbers <span id="numbers-count" class="text-sm text-gray-400">(0)</span></h2><button onclick="toggleForm('num-form')" class="bg-green-600 text-white px-4 py-2 rounded-xl font-bold text-sm action-btn">+ Add Number</button></div><div id="num-form" class="card12 p-4 mt-3 hidden" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><input id="n-label" class="input" placeholder="اسم الرقم"><input id="n-phone" class="input mt-2" placeholder="01012345678"><button onclick="addNumber()" class="btn mt-3" style="background:linear-gradient(135deg,#16a34a,#4ade80)">حفظ الرقم</button></div><div id="numbers-list" class="mt-3 space-y-2"></div></div>
+<div id="page-users" class="hidden"><div class="flex justify-between items-center"><h2 class="text-xl font-black">Users <span id="users-count" class="text-sm text-gray-400">(0)</span></h2><button onclick="toggleForm('user-form')" class="bg-orange-500 text-white px-4 py-2 rounded-xl font-bold text-sm action-btn">+ Add User</button></div><div id="user-form" class="card12 p-4 mt-3 hidden" style="--c:#f97316;--glow:rgba(249,115,22,.2)"><input id="u-name" class="input" placeholder="اسم المستخدم"><input id="u-email" class="input mt-2" placeholder="email@example.com"><button onclick="addUser()" class="btn mt-3" style="background:linear-gradient(135deg,#f97316,#fb923c)">حفظ المستخدم</button></div><div id="users-list" class="mt-3 space-y-2"></div></div>
 <div id="page-other" class="hidden"><div class="card12 p-6 text-center" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="text-5xl mb-3">📡</div><h2 id="otherTitle" class="text-xl font-black">Broadcasting</h2><p class="text-gray-500 text-sm mt-2">هنعملها في دورها - ابعتلي صورتها.</p><button onclick="openPage('dashboard',document.querySelector('[data-page=dashboard]'))" class="mt-4 bg-blue-600 text-white px-5 py-2.5 rounded-xl font-bold text-sm action-btn">Back to Dashboard</button></div></div>
 
 </div>
@@ -303,27 +286,30 @@ function fmt(n){return n.toLocaleString('en-US')}
 function isZeroed(){return localStorage.getItem('farag_zeroed')==='1'}
 function getBase(){if(isZeroed()){return {total:0,sub:0,pages:0,today:0,yest:0,sent:0,comments:0,done:0,totalCamps:0}}return {total:1592739,sub:75177,pages:177,today:180,yest:127,sent:865990,comments:1141,done:677,totalCamps:705}}
 let accounts=getK('farag_accounts');let pages=getK('farag_pages');let currentFilter='all';let currentGrowth='comment';let currentInner='list';
-let bcStatus='all';let bcType='all';let bcInner='overview';let bcPage=1;
+let bcStatus='all';let mediaMode='images';let mediaInner='all';let activeList='00';let mediaLists=getK('farag_media_lists');
+if(!mediaLists.length){mediaLists=[{id:'00',name:'00',count:51},{id:'12',name:'12',count:3},{id:'11',name:'11',count:3},{id:'10',name:'1.',count:2},{id:'9',name:'9',count:2},{id:'8',name:'8',count:1},{id:'7',name:'7',count:11},{id:'6',name:'6',count:34},{id:'5',name:'5',count:14},{id:'4',name:'4',count:35},{id:'3',name:'3',count:15},{id:'2',name:'2',count:18}];setK('farag_media_lists',mediaLists)}
+let mediaItems=getK('farag_media_items');
+if(!mediaItems.length){
+  let pics=['https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400','https://images.unsplash.com/photo-1519681393784-d120267933ba?w=400','https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400','https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=400','https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400','https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=400','https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=400','https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=400','https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=400','https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=400','https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=400','https://images.unsplash.com/photo-1501594907352-04cda38ebc29?w=400'];
+  mediaItems=pics.map((u,i)=>({id:Date.now()+i,url:u,list:'00',type:'images',name:'صورة '+(i+1)}));
+  setK('farag_media_items',mediaItems);
+}
 function saveFB(){setK('farag_accounts',accounts);setK('farag_pages',pages)}
 function toggleSide(){let sb=document.getElementById('sidebar');if(window.innerWidth<=768){sb.classList.toggle('open');document.getElementById('overlay').classList.toggle('show')}else{sb.classList.toggle('collapsed')}}
 function toggleForm(id){document.getElementById(id).classList.toggle('hidden')}
-function updateClock(){let d=new Date();let c=document.getElementById('liveClock');if(c)c.textContent=d.toLocaleTimeString('en-EG',{hour:'2-digit',minute:'2-digit',second:'2-digit'});let t=document.getElementById('todayDate');if(t)t.textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'});let s=document.getElementById('scanTime');if(s)s.textContent=d.toLocaleTimeString('en-EG',{hour:'2-digit',minute:'2-digit'})}
+function updateClock(){let d=new Date();let c=document.getElementById('liveClock');if(c)c.textContent=d.toLocaleTimeString('en-EG',{hour:'2-digit',minute:'2-digit',second:'2-digit'});let t=document.getElementById('todayDate');if(t)t.textContent=d.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric',year:'numeric'})}
 setInterval(updateClock,1000);updateClock();
 function showToast(m){let t=document.getElementById('toast');t.textContent=m;t.classList.add('show');clearTimeout(window._tt);window._tt=setTimeout(()=>t.classList.remove('show'),2500)}
-function doReset(){if(!confirm('متأكد تصفر كل الأرقام؟'))return;['farag_contacts','farag_campaigns','farag_numbers','farag_users','farag_comment_tpl','farag_reply_tpl','farag_growth_campaigns','farag_tag_campaigns','farag_broadcasts'].forEach(k=>localStorage.removeItem(k));accounts=[];pages=[];saveFB();localStorage.setItem('farag_zeroed','1');renderAll();showToast('تم التصفير ✅')}
+function doReset(){if(!confirm('متأكد تصفر كل الأرقام؟'))return;['farag_contacts','farag_campaigns','farag_numbers','farag_users','farag_comment_tpl','farag_reply_tpl','farag_growth_campaigns','farag_tag_campaigns','farag_broadcasts','farag_media_items','farag_media_lists'].forEach(k=>localStorage.removeItem(k));accounts=[];pages=[];saveFB();localStorage.setItem('farag_zeroed','1');renderAll();showToast('تم التصفير ✅')}
 function doRefresh(){renderAll();showToast('تم التحديث ✅')}
-function loginFacebook(){let name=prompt('اسم الأكونت اللي هتربطه؟','Yoka Karam');if(!name)return;let count=parseInt(prompt('الأكونت ده فيه كام صفحة؟','3')||'3');let accId=Date.now();accounts.unshift({id:accId,name:name,tokenValid:true});let colors=['#3b82f6','#ec4899','#f59e0b','#10b981','#8b5cf6','#ef4444'];let names=['فاطمة','براءة','ايه','مريم','يوسف','نور','سارة','عمر','ليلى','حسن'];for(let i=0;i<count;i++){let nm=names[i%names.length]+(count>10?' '+(i+1):'');pages.unshift({id:Date.now()+i,accId:accId,name:nm,fbId:'2659737366'+(1000+i),enabled:true,paused:false,ig:false,unpublished:false,elsewhere:false,selected:false,color:colors[i%colors.length]})}saveFB();renderAll();showToast('✅ تم ربط '+name+' - '+count+' صفحة')}
-function scanAll(){if(!accounts.length){showToast('اربط أكونت الأول');return}showToast('⚡ جاري فحص كل الأكونتات...');setTimeout(()=>{renderAll();showToast('✅ تم فحص '+accounts.length+' أكونت - '+pages.length+' صفحة')},800)}
-function scanAccount(id){let a=accounts.find(x=>x.id===id);showToast('⚡ جاري فحص '+a.name+'...');setTimeout(()=>showToast('✅ تم فحص '+a.name),700)}
-function checkLinked(id){let a=accounts.find(x=>x.id===id);let c=pages.filter(p=>p.accId===id).length;showToast('✅ '+a.name+' مربوط بيه '+c+' صفحة')}
+function loginFacebook(){let name=prompt('اسم الأكونت؟','Yoka Karam');if(!name)return;let count=parseInt(prompt('كام صفحة؟','3')||'3');let accId=Date.now();accounts.unshift({id:accId,name:name});let colors=['#3b82f6','#ec4899','#f59e0b','#10b981','#8b5cf6','#ef4444'];let names=['فاطمة','براءة','ايه','مريم','يوسف','نور','سارة','عمر'];for(let i=0;i<count;i++){pages.unshift({id:Date.now()+i,accId:accId,name:names[i%names.length]+(count>10?' '+(i+1):''),fbId:'2659737366'+(1000+i),enabled:true,selected:false,color:colors[i%colors.length]})}saveFB();renderAll();showToast('✅ تم ربط '+name)}
+function scanAll(){showToast('⚡ جاري فحص كل الأكونتات...');setTimeout(()=>{renderAll();showToast('✅ تم فحص '+accounts.length+' أكونت')},800)}
 function unlinkAccount(id){if(!confirm('متأكد تفك ربط الأكونت؟'))return;accounts=accounts.filter(a=>a.id!==id);pages=pages.filter(p=>p.accId!==id);saveFB();renderAll();showToast('تم فك الربط')}
 function enableAll(){pages.forEach(p=>p.enabled=true);saveFB();renderAll();showToast('✅ تم تفعيل كل الصفحات')}
 function disableAll(){pages.forEach(p=>p.enabled=false);saveFB();renderAll();showToast('تم إيقاف كل الصفحات')}
 function deleteAllPages(){if(!confirm('متأكد تمسح كل الصفحات؟'))return;pages=[];saveFB();renderAll();showToast('تم مسح كل الصفحات')}
 function setFilter(f,el){currentFilter=f;document.querySelectorAll('#filter-bar .filter-btn').forEach(b=>b.classList.remove('active'));el.classList.add('active');renderAll()}
-function togglePage(id){let p=pages.find(x=>x.id===id);p.enabled=!p.enabled;saveFB();renderAll();showToast(p.enabled?'✅ تم تفعيل '+p.name:'تم إيقاف '+p.name)}
-function resetPage(id){showToast('تم عمل Reset للصفحة')}
-function statsPage(id){let p=pages.find(x=>x.id===id);alert('إحصائيات '+p.name+'\n\nالمشتركين: 1,245\nالرسائل اليوم: 32\nالكومنتات: 18\nالحالة: '+(p.enabled?'Enabled ✅':'Disabled'))}
+function togglePage(id){let p=pages.find(x=>x.id===id);p.enabled=!p.enabled;saveFB();renderAll()}
 function toggleSelectAll(v){pages.forEach(p=>p.selected=v);saveFB();renderAll()}
 // GROWTH
 function openGrowth(type){currentGrowth=type;currentInner='list';renderGrowth();document.getElementById('growth-detail').scrollIntoView({behavior:'smooth'})}
@@ -333,79 +319,135 @@ function renderGrowth(){
   let t=titles[currentGrowth];
   let tabs={comment:['list','create','variables'],reply:['list','create','quick'],campaign:['list','create','active','archived'],tag:['list','create','stats'],report:['overview','by-page','by-campaign','export'],bulk:['new','history','scheduled']}[currentGrowth];
   let tabNames={list:'📋 List',create:'➕ Create New',variables:'🔣 Variables',quick:'⚡ Quick Replies',active:'🟢 Active',archived:'📦 Archived',stats:'📊 Stats',overview:'📊 Overview','by-page':'📄 By Page','by-campaign':'⚙️ By Campaign',export:'📤 Export',new:'🚀 New Bulk',history:'🕘 History',scheduled:'⏰ Scheduled'};
-  let html='<div class="card12 p-4 md:p-5" style="--c:'+t[2]+';--glow:rgba(0,0,0,.1)"><div class="flex flex-wrap justify-between gap-3 items-center"><div class="flex items-center gap-3"><span class="icon-cloud" style="--c:'+t[2]+';--c2:'+t[3]+';--glow:rgba(0,0,0,.15)">'+t[0]+'<span class="cloud">'+t[1]+'</span></span><div><div class="font-black text-[18px]">'+t[1]+'</div><div class="text-[12px] text-gray-500">التبويبات اللي جوه '+t[1]+'</div></div></div><button onclick="setInner(\'create\')" class="px-4 py-2 rounded-xl text-white font-bold text-sm action-btn" style="background:linear-gradient(135deg,'+t[2]+','+t[3]+')">+ New '+t[1]+'</button></div>';
-  html+='<div class="flex gap-2 mt-4 overflow-x-auto pb-1">';tabs.forEach(tb=>{html+='<button onclick="setInner(\''+tb+'\')" class="inner-tab '+(currentInner===tb?'active':'')+'" style="--c:'+t[2]+';--c2:'+t[3]+';--glow:rgba(0,0,0,.15)">'+(tabNames[tb]||tb)+'</button>'});html+='</div>';
-  html+='<div class="mt-4">'+growthInnerContent()+'</div></div>';document.getElementById('growth-detail').innerHTML=html;
+  let html='<div class="card12 p-4 md:p-5" style="--c:'+t[2]+';--glow:rgba(0,0,0,.1)"><div class="flex flex-wrap justify-between gap-3 items-center"><div class="flex items-center gap-3"><span class="icon-cloud" style="--c:'+t[2]+';--c2:'+t[3]+';--glow:rgba(0,0,0,.15)">'+t[0]+'<span class="cloud">'+t[1]+'</span></span><div><div class="font-black text-[18px]">'+t[1]+'</div></div></div><button onclick="setInner(\'create\')" class="px-4 py-2 rounded-xl text-white font-bold text-sm action-btn" style="background:linear-gradient(135deg,'+t[2]+','+t[3]+')">+ New '+t[1]+'</button></div>';
+  html+='<div class="flex gap-2 mt-4 overflow-x-auto pb-1">';tabs.forEach(tb=>{html+='<button onclick="setInner(\''+tb+'\')" class="inner-tab '+(currentInner===tb?'active':'')+'" style="--c:'+t[2]+';--c2:'+t[3]+';--glow:rgba(0,0,0,.15)">'+(tabNames[tb]||tb)+'</button>'});html+='</div><div class="mt-4">'+growthInnerContent()+'</div></div>';document.getElementById('growth-detail').innerHTML=html;
 }
 function growthInnerContent(){
-  if(currentInner==='create'){
-    if(currentGrowth==='comment') return '<div class="grid md:grid-cols-2 gap-3"><div><label class="text-[12px] font-bold">Template Name</label><input id="gt-name" class="input mt-1" placeholder="مثال: قالب ترحيب"></div><div><label class="text-[12px] font-bold">Page</label><select class="input mt-1"><option>كل الصفحات</option></select></div><div class="md:col-span-2"><label class="text-[12px] font-bold">Comment Text - {name} {page}</label><textarea id="gt-text" class="input mt-1" rows="3" placeholder="أهلاً {name} 😍 شكراً على تعليقك..."></textarea></div><div class="md:col-span-2"><button onclick="saveTemplate()" class="btn" style="background:linear-gradient(135deg,#0ea5e9,#38bdf8)">حفظ القالب ✅</button></div></div>';
-    if(currentGrowth==='reply') return '<div class="grid md:grid-cols-2 gap-3"><input id="gt-name" class="input" placeholder="اسم الرد"><input id="gt-key" class="input" placeholder="Keyword: سعر"><textarea id="gt-text" class="input md:col-span-2" rows="3" placeholder="نص الرد..."></textarea><button onclick="saveTemplate()" class="btn md:col-span-2" style="background:linear-gradient(135deg,#06b6d4,#22d3ee)">حفظ الرد ✅</button></div>';
-    if(currentGrowth==='campaign') return '<div class="grid md:grid-cols-2 gap-3"><input id="gt-name" class="input" placeholder="اسم الحملة"><select class="input"><option>Comment Template: قالب ترحيب</option></select><input id="gt-text" class="input md:col-span-2" placeholder="Post URL أو Post ID"><button onclick="saveTemplate()" class="btn md:col-span-2" style="background:linear-gradient(135deg,#7c3aed,#a78bfa)">إنشاء الحملة 🚀</button></div>';
-    if(currentGrowth==='tag') return '<div class="grid md:grid-cols-2 gap-3"><input id="gt-name" class="input" placeholder="اسم Tag Campaign"><input id="gt-text" class="input" placeholder="Tag: مهتم"><button onclick="saveTemplate()" class="btn md:col-span-2" style="background:linear-gradient(135deg,#9333ea,#d946ef)">حفظ التاج 🏷️</button></div>';
-    if(currentGrowth==='bulk') return '<div><textarea id="gt-text" class="input" rows="4" placeholder="رسالة الـ Bulk..."></textarea><button onclick="saveTemplate()" class="btn mt-3">إرسال Bulk 📢</button></div>';
-    return '<div class="text-center text-gray-400 py-6">اختار تبويبة</div>';
-  }
+  if(currentInner==='create'){return '<div class="grid md:grid-cols-2 gap-3"><input id="gt-name" class="input" placeholder="اسم القالب"><textarea id="gt-text" class="input md:col-span-2" rows="3" placeholder="نص القالب..."></textarea><button onclick="saveTemplate()" class="btn md:col-span-2">حفظ ✅</button></div>'}
   if(currentGrowth==='report'){return '<div class="grid grid-cols-2 md:grid-cols-4 gap-3"><div class="mini12" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="text-[11px] text-gray-500">Total Comments</div><div class="text-xl font-black">1,241</div></div><div class="mini12" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><div class="text-[11px] text-gray-500">Replies Sent</div><div class="text-xl font-black text-green-600">1,189</div></div><div class="mini12" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="text-[11px] text-gray-500">Reply Rate</div><div class="text-xl font-black text-blue-600">95.8%</div></div><div class="mini12" style="--c:#9333ea;--glow:rgba(147,51,234,.2)"><div class="text-[11px] text-gray-500">New Subscribers</div><div class="text-xl font-black text-purple-600">342</div></div></div>';}
   let key={comment:'farag_comment_tpl',reply:'farag_reply_tpl',campaign:'farag_growth_campaigns',tag:'farag_tag_campaigns',bulk:'farag_growth_campaigns'}[currentGrowth];
   let items=key?getK(key):[];
-  if(!items.length) return '<div class="text-center py-8"><div class="text-4xl mb-2">📭</div><div class="text-gray-400 text-sm">لسه مفيش حاجة هنا - دوس <b>Create New</b> فوق</div><button onclick="setInner(\'create\')" class="mt-3 px-5 py-2 rounded-xl bg-blue-600 text-white font-bold text-sm action-btn">+ Create First</button></div>';
+  if(!items.length) return '<div class="text-center py-8"><div class="text-4xl mb-2">📭</div><div class="text-gray-400 text-sm">لسه مفيش حاجة - دوس Create New</div><button onclick="setInner(\'create\')" class="mt-3 px-5 py-2 rounded-xl bg-blue-600 text-white font-bold text-sm action-btn">+ Create First</button></div>';
   let h='';items.forEach(it=>{h+='<div class="card12 p-3 flex justify-between items-center" style="--c:#2563eb;--glow:rgba(37,99,235,.15)"><div><div class="font-bold text-sm">'+it.name+'</div><div class="text-xs text-gray-500">'+(it.text||'')+'</div></div><button onclick="delItem(\''+key+'\','+it.id+');renderGrowth()" class="text-red-500 font-bold text-sm">حذف</button></div>'});return '<div class="space-y-2">'+h+'</div>';
 }
 function saveTemplate(){let name=(document.getElementById('gt-name')?.value||'').trim();let text=(document.getElementById('gt-text')?.value||'').trim();if(!name && !text) return alert('اكتب الاسم أو النص');let key={comment:'farag_comment_tpl',reply:'farag_reply_tpl',campaign:'farag_growth_campaigns',tag:'farag_tag_campaigns',bulk:'farag_growth_campaigns'}[currentGrowth];let a=getK(key);a.unshift({id:Date.now(),name:name||'بدون اسم',text:text});setK(key,a);showToast('✅ تم الحفظ');setInner('list');renderAll();}
-// ===== BROADCAST =====
-function getBcData(){
-  let saved=getK('farag_broadcasts');
-  if(saved.length) return saved;
-  // بيانات زي السكرين - 10 UTILITY Completed
-  let arr=[];
-  for(let i=0;i<10;i++){arr.push({id:1000+i,type:'UTILITY',status:'completed',sub:i===2?1:0,sent:i===2?1:0,open:0,sched:'Oct 30, 26 18:28',created:'Oct 30, 26 18:28',name:'Utility Broadcast '+(i+1),msg:'رسالة UTILITY'})}
-  return arr;
-}
-function setBcStatus(s,el){bcStatus=s;bcPage=1;document.querySelectorAll('#page-broadcasting .bc-pill').forEach(b=>{if(b.textContent.includes('Completed')||b.textContent.includes('Processing')||b.textContent.includes('Pending')||b.textContent.includes('Stopped')||b.textContent.includes('hold')||b.textContent.includes('DELETE')||b.textContent.includes('All (')) b.classList.remove('active')});if(el)el.classList.add('active');renderBc()}
-function setBcType(t,el){bcType=t;document.querySelectorAll('#page-broadcasting .bc-pill').forEach(b=>{if(b.textContent.includes('Pro Template')||b.textContent.includes('New Broadcast')||b.textContent.trim()==='📋 All') b.classList.remove('active')});if(el)el.classList.add('active');renderBc();if(t==='pro') showToast('⭐ Pro Template - قوالب جاهزة')}
-function setBcInner(tab,el){bcInner=tab;document.querySelectorAll('#page-broadcasting .inner-tab').forEach(b=>b.classList.remove('active'));if(el)el.classList.add('active');renderBcInner()}
-function renderBcInner(){
-  let map={overview:'📊 <b>Overview:</b> إجمالي البرودكاستات <b>'+getBcData().length+'</b> • المكتمل <b>'+getBcData().filter(x=>x.status==='completed').length+'</b> • المرسل <b>'+getBcData().reduce((s,x)=>s+x.sent,0)+'</b>',recipients:'👥 <b>Recipients:</b> هنا قائمة المشتركين اللي هيوصلهم البرودكاست، مع فلترة بالصفحة والتاج.',media:'🖼 <b>Media:</b> ارفع صورة أو فيديو أو ملف للبرودكاست هنا.',schedule:'⏰ <b>Schedule:</b> اختار وقت الإرسال - دلوقتي أو جدولة لتاريخ معين زي <b>Oct 30, 26 18:28</b>.',report:'📈 <b>Report:</b> نسبة الفتح <b>OPEN</b> ونسبة الإرسال <b>SENT</b> لكل برودكاست.',settings:'⚙️ <b>Settings:</b> إعدادات البرودكاست - إعادة المحاولة، الإيقاف التلقائي، والـ Stopped / On hold.'};
-  document.getElementById('bc-inner').innerHTML=map[bcInner]||map.overview;
-}
-function openBcCreate(){document.getElementById('bc-create').classList.remove('hidden');document.getElementById('bc-create').scrollIntoView({behavior:'smooth'})}
-function saveBc(){
-  let n=(document.getElementById('bc-name').value||'').trim();let m=(document.getElementById('bc-msg').value||'').trim();if(!n) return alert('اكتب اسم البرودكاست');
-  let a=getK('farag_broadcasts');a.unshift({id:Date.now(),type:'UTILITY',status:'pending',sub:0,sent:0,open:0,sched:'Now',created:new Date().toLocaleString('en-EG'),name:n,msg:m});setK('farag_broadcasts',a);
-  document.getElementById('bc-name').value='';document.getElementById('bc-msg').value='';document.getElementById('bc-create').classList.add('hidden');showToast('✅ تم إنشاء البرودكاست');renderBc();renderAll();
-}
-function delBc(id){if(!confirm('متأكد تحذف البرودكاست؟'))return;setK('farag_broadcasts',getK('farag_broadcasts').filter(x=>x.id!==id));renderBc();showToast('تم الحذف')}
-function toggleBcStatus(id){let a=getK('farag_broadcasts');let b=a.find(x=>x.id===id);if(b){b.status=b.status==='completed'?'pending':'completed';setK('farag_broadcasts',a);renderBc()}}
+// BROADCAST
+function getBcData(){let s=getK('farag_broadcasts');if(s.length) return s;let arr=[];for(let i=0;i<10;i++){arr.push({id:1000+i,type:'UTILITY',status:'completed',sub:i===2?1:0,sent:i===2?1:0,open:0,sched:'Oct 30, 26 18:28',created:'Oct 30, 26 18:28',name:'Utility Broadcast '+(i+1)})}return arr}
+function setBcStatus(s,el){bcStatus=s;document.querySelectorAll('#page-broadcasting .bc-pill').forEach(b=>b.classList.remove('active'));if(el)el.classList.add('active');renderBc()}
+function openBcCreate(){document.getElementById('bc-create').classList.remove('hidden')}
+function saveBc(){let n=(document.getElementById('bc-name').value||'').trim();let m=(document.getElementById('bc-msg').value||'').trim();if(!n) return alert('اكتب اسم البرودكاست');let a=getK('farag_broadcasts');a.unshift({id:Date.now(),type:'UTILITY',status:'pending',sub:0,sent:0,open:0,sched:'Now',created:new Date().toLocaleString('en-EG'),name:n,msg:m});setK('farag_broadcasts',a);document.getElementById('bc-create').classList.add('hidden');showToast('✅ تم إنشاء البرودكاست');renderBc();renderAll()}
+function delBc(id){if(!confirm('متأكد تحذف؟'))return;setK('farag_broadcasts',getK('farag_broadcasts').filter(x=>x.id!==id));renderBc()}
 function renderBc(){
-  let all=getBcData();
-  let q=((document.getElementById('bc-search')?.value)||'').toLowerCase();
-  let sel=document.getElementById('bc-status-sel')?.value||'all';
-  let filtered=all.filter(b=>{
-    if(bcStatus!=='all' && bcStatus!=='delete' && b.status!==bcStatus) return false;
-    if(bcStatus==='delete') return false;
-    if(sel!=='all' && b.status!==sel) return false;
-    if(q && (b.name+b.type).toLowerCase().indexOf(q)===-1) return false;
-    return true;
-  });
+  let all=getBcData();let q=((document.getElementById('bc-search')?.value)||'').toLowerCase();
+  let filtered=all.filter(b=>{if(bcStatus!=='all' && b.status!==bcStatus) return false;if(q && (b.name+b.type).toLowerCase().indexOf(q)===-1) return false;return true});
   document.getElementById('bc-all').textContent=all.length;
-  let per=10;let totalPages=Math.max(1,Math.ceil(filtered.length/per));if(bcPage>totalPages) bcPage=1;
-  let slice=filtered.slice((bcPage-1)*per,bcPage*per);
-  let h='';
-  slice.forEach(b=>{
-    let statusColor=b.status==='completed'?'#16a34a':b.status==='pending'?'#f59e0b':b.status==='processing'?'#2563eb':'#ef4444';
-    let statusLabel=b.status==='completed'?'Completed':b.status==='pending'?'Pending':b.status==='processing'?'Processing':b.status;
-    h+='<tr class="bc-row border-b"><td class="px-3 py-3"><span class="badge" style="background:#e0f2fe;color:#0284c7">'+b.type+'</span></td><td class="px-3 py-3"><span class="badge" style="background:#dcfce7;color:#15803d">● '+statusLabel+'</span></td><td class="px-3 py-3"><div class="flex gap-1"><span class="bc-icon-btn" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35)" onclick="showToast(\'👁 عرض '+b.name+'\')">👁<span class="cloud">View</span></span><span class="bc-icon-btn" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.35)" onclick="toggleBcStatus('+b.id+')">✏️<span class="cloud">Edit</span></span><span class="bc-icon-btn" style="--c:#ef4444;--c2:#f87171;--glow:rgba(239,68,68,.35)" onclick="delBc('+b.id+')">🗑<span class="cloud">Delete</span></span></div></td><td class="px-3 py-3 text-center">📄</td><td class="px-3 py-3 text-center font-bold">FB<br><span class="text-[10px] text-gray-400 font-normal">Page</span></td><td class="px-3 py-3 text-center font-bold">'+b.sub+'</td><td class="px-3 py-3 text-center font-bold">'+b.sent+'</td><td class="px-3 py-3 text-center">'+b.open+'</td><td class="px-3 py-3 text-[11px] text-gray-600">'+b.sched+'</td><td class="px-3 py-3 text-[11px] text-gray-600">'+b.created+'</td></tr>';
-  });
-  // لو مفيش saved و filtered فاضي، اعرض الـ 10 الافتراضيين
-  document.getElementById('bc-body').innerHTML=h;
-  document.getElementById('bc-empty').style.display=filtered.length?'none':'block';
-  document.getElementById('bc-count').textContent=((bcPage-1)*per+1)+'-'+Math.min(bcPage*per,filtered.length)+' / '+filtered.length;
-  let pg='<button onclick="bcPage=Math.max(1,bcPage-1);renderBc()" class="px-2 py-1 rounded-lg bg-gray-100 action-btn">Previous</button>';
-  for(let i=1;i<=Math.min(5,totalPages);i++){pg+='<button onclick="bcPage='+i+';renderBc()" class="px-2.5 py-1 rounded-lg '+(i===bcPage?'bg-blue-600 text-white':'bg-gray-100')+' action-btn">'+i+'</button>'}
-  pg+='<button onclick="bcPage=Math.min('+totalPages+',bcPage+1);renderBc()" class="px-2 py-1 rounded-lg bg-gray-100 action-btn">Next</button>';
-  document.getElementById('bc-pager').innerHTML=pg;
+  let h='';filtered.slice(0,10).forEach(b=>{h+='<tr class="bc-row border-b"><td class="px-3 py-3"><span class="badge" style="background:#e0f2fe;color:#0284c7">'+b.type+'</span></td><td class="px-3 py-3"><span class="badge" style="background:#dcfce7;color:#15803d">● '+b.status+'</span></td><td class="px-3 py-3"><div class="flex gap-1"><span class="bc-icon-btn" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35)" onclick="showToast(\'👁 '+b.name+'\')">👁<span class="cloud">View</span></span><span class="bc-icon-btn" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.35)" onclick="showToast(\'✏️ تعديل\')">✏️<span class="cloud">Edit</span></span><span class="bc-icon-btn" style="--c:#ef4444;--c2:#f87171;--glow:rgba(239,68,68,.35)" onclick="delBc('+b.id+')">🗑<span class="cloud">Delete</span></span></div></td><td class="px-3 py-3 text-center">📄</td><td class="px-3 py-3 text-center font-bold">FB<br><span class="text-[10px] text-gray-400 font-normal">Page</span></td><td class="px-3 py-3 text-center font-bold">'+b.sub+'</td><td class="px-3 py-3 text-center font-bold">'+b.sent+'</td><td class="px-3 py-3 text-center">'+b.open+'</td><td class="px-3 py-3 text-[11px]">'+b.sched+'</td><td class="px-3 py-3 text-[11px]">'+b.created+'</td></tr>'});document.getElementById('bc-body').innerHTML=h;document.getElementById('bc-empty').style.display=filtered.length?'none':'block';
 }
+// ===== MEDIA & CONTENT - القائمة المنسدلة =====
+function toggleMediaMenu(el){
+  let sub=document.getElementById('media-sub');let chev=document.getElementById('media-chevron');
+  let isOpen=sub.classList.contains('open');
+  if(isOpen){sub.classList.remove('open');chev.classList.remove('rot');}
+  else{sub.classList.add('open');chev.classList.add('rot');}
+  document.querySelectorAll('.side-item').forEach(i=>i.classList.remove('active'));if(el)el.classList.add('active');
+  // لو مقفولة وفتحتها، روح لـ Images
+  if(!isOpen){openMedia('images',document.querySelector('[data-media="images"]'))}
+}
+function openMedia(mode,el){
+  mediaMode=mode;mediaInner='all';
+  // افتح القائمة المنسدلة
+  document.getElementById('media-sub').classList.add('open');document.getElementById('media-chevron').classList.add('rot');
+  // Active states
+  document.querySelectorAll('.side-item').forEach(i=>i.classList.remove('active'));document.getElementById('media-parent').classList.add('active');
+  document.querySelectorAll('.side-sub').forEach(s=>s.classList.remove('active'));if(el)el.classList.add('active');
+  document.querySelectorAll('#page-media .inner-tab').forEach(b=>b.classList.remove('active'));
+  let tabEl=document.getElementById('tab-'+mode);if(tabEl)tabEl.classList.add('active');
+  // افتح صفحة الميديا
+  ['dashboard','contacts','campaigns','numbers','users','facebook','growth','broadcasting','other'].forEach(p=>document.getElementById('page-'+p).classList.add('hidden'));
+  document.getElementById('page-media').classList.remove('hidden');
+  if(window.innerWidth<=768){let sb=document.getElementById('sidebar');if(sb.classList.contains('open'))toggleSide()}
+  window.scrollTo({top:0});
+  renderMedia();
+}
+function setMediaInner(tab,el){mediaInner=tab;document.querySelectorAll('#media-inner-tabs .inner-tab').forEach(b=>b.classList.remove('active'));if(el)el.classList.add('active');renderMediaGrid()}
+function renderMedia(){
+  let titles={images:['Media Manager','🖼️ Images','51 images','Drag & drop images here','or click Upload above — JPG · PNG · GIF · WEBP · multiple files'],posts:['Posts Manager','📄 Posts','24 posts','Drag & drop post covers here','or click Upload — صور غلاف البوستات'],videos:['Videos Manager','🎬 Videos','18 videos','Drag & drop videos here','or click Upload — MP4 · MOV · WEBM']};
+  let t=titles[mediaMode];
+  document.getElementById('media-title').textContent=t[0];
+  document.getElementById('media-drop-title').textContent=t[3];
+  document.getElementById('media-drop-sub').textContent=t[4];
+  document.getElementById('media-count-badge').textContent=t[2];
+  // تبويبات جوة كل قسم
+  let innerTabs={images:[['all','📋 All Images'],['favorites','⭐ Favorites'],['recent','🕘 Recent'],['archived','📦 Archived']],posts:[['all','📋 All Posts'],['draft','✏️ Draft'],['scheduled','⏰ Scheduled'],['published','✅ Published'],['archived','📦 Archived']],videos:[['all','📋 All Videos'],['shorts','📱 Shorts'],['long','🎞️ Long Videos'],['draft','✏️ Draft'],['published','✅ Published']] }[mediaMode];
+  let h='';innerTabs.forEach((tb,i)=>{h+='<button onclick="setMediaInner(\''+tb[0]+'\',this)" class="inner-tab '+(i===0?'active':'')+'" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.2)">'+tb[1]+'</button>'});
+  document.getElementById('media-inner-tabs').innerHTML=h;
+  // خواص كل قسم
+  let props={images:'<div>• <b>Lists:</b> اعمل قائمة لكل حملة، واسحب الصور جواها</div><div>• <b>Random URL:</b> يجيب لينك عشوائي للصورة للاستخدام في البوت</div><div>• <b>Upload:</b> ارفع كذا صورة مرة واحدة</div><div>• <b>Use in Bot:</b> دوس على أي صورة عشان تاخد لينكها للبوت أو البرودكاست</div>',
+  posts:'<div>• <b>Draft:</b> جهز البوست واحفظه مسودة</div><div>• <b>Scheduled:</b> جدولة البوست لوقت معين</div><div>• <b>Published:</b> البوستات اللي اتنشرت على الصفحات</div><div>• <b>Caption + Hashtags:</b> اكتب الكابشن والهاشتاج لكل بوست</div>',
+  videos:'<div>• <b>Shorts:</b> فيديوهات قصيرة للريلز</div><div>• <b>Long Videos:</b> فيديوهات طويلة</div><div>• <b>Thumbnail:</b> اختار صورة الغلاف للفيديو</div><div>• <b>Use in Bot:</b> ابعت الفيديو في البوت أو البرودكاست</div>'}[mediaMode];
+  document.getElementById('media-props-title').textContent='خواص '+(mediaMode==='images'?'Images':mediaMode==='posts'?'Posts':'Videos');
+  document.getElementById('media-props').innerHTML=props;
+  // Extra للـ Posts / Videos
+  if(mediaMode==='posts'){
+    document.getElementById('media-extra').innerHTML='<div class="card12 p-4" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="font-black text-[14px]">➕ New Post</div><div class="grid md:grid-cols-2 gap-3 mt-3"><input id="post-title" class="input" placeholder="عنوان البوست"><select class="input"><option>اختر الصفحة</option><option>كل الصفحات</option></select></div><textarea id="post-caption" class="input mt-3" rows="2" placeholder="Caption + Hashtags... #عرض #رمضان"></textarea><div class="flex gap-2 mt-3"><button onclick="addPost()" class="flex-1 py-2.5 rounded-xl text-white font-bold text-sm action-btn" style="background:linear-gradient(135deg,#2563eb,#60a5fa)">📄 نشر البوست</button><button onclick="showToast(\'⏰ تمت الجدولة\')" class="px-4 py-2.5 rounded-xl bg-yellow-50 text-yellow-700 font-bold text-sm action-btn">⏰ جدولة</button></div></div>';
+  } else if(mediaMode==='videos'){
+    document.getElementById('media-extra').innerHTML='<div class="card12 p-4" style="--c:#ec4899;--glow:rgba(236,72,153,.2)"><div class="font-black text-[14px]">➕ New Video</div><div class="grid md:grid-cols-2 gap-3 mt-3"><input id="video-title" class="input" placeholder="عنوان الفيديو"><select class="input"><option>Shorts - ريلز</option><option>Long Video</option></select></div><textarea id="video-desc" class="input mt-3" rows="2" placeholder="وصف الفيديو..."></textarea><button onclick="addVideo()" class="btn mt-3" style="background:linear-gradient(135deg,#ec4899,#f472b6)">🎬 رفع الفيديو</button></div>';
+  } else {
+    document.getElementById('media-extra').innerHTML='';
+  }
+  renderMediaLists();renderMediaGrid();
+}
+function renderMediaLists(){
+  let h='';mediaLists.forEach(l=>{
+    let cnt=mediaItems.filter(it=>it.list===l.id && it.type===mediaMode).length;
+    if(mediaMode!=='images') cnt=l.count;
+    h+='<div class="list-item '+(activeList===l.id?'active':'')+'" onclick="activeList=\''+l.id+'\';renderMediaLists();renderMediaGrid()"><span class="w-7 h-7 rounded-lg flex items-center justify-center text-[13px] shrink-0" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe)">🖼️</span><span class="flex-1 font-bold text-[13px] truncate">'+l.name+'</span><span class="badge bg-violet-100 text-violet-700">'+(mediaMode==='images'?Math.max(cnt,l.count):l.count)+'</span><span class="text-gray-300 hover:text-blue-600" onclick="event.stopPropagation();showToast(\'✏️ تعديل القائمة '+l.name+'\')">✏️</span><span class="text-gray-300 hover:text-red-500" onclick="event.stopPropagation();delMediaList(\''+l.id+'\')">🗑</span></div>';
+  });
+  document.getElementById('media-lists').innerHTML=h;
+}
+function addMediaList(){let n=document.getElementById('new-list-name').value.trim();if(!n) return alert('اكتب اسم القائمة');let id=Date.now().toString();mediaLists.unshift({id:id,name:n,count:0});setK('farag_media_lists',mediaLists);document.getElementById('new-list-name').value='';activeList=id;renderMediaLists();showToast('✅ تم إنشاء قائمة '+n)}
+function delMediaList(id){if(!confirm('متأكد تمسح القائمة؟'))return;mediaLists=mediaLists.filter(l=>l.id!==id);setK('farag_media_lists',mediaLists);activeList=mediaLists[0]?.id||'00';renderMediaLists();renderMediaGrid();showToast('تم مسح القائمة')}
+function renderMediaGrid(){
+  let q=((document.getElementById('media-search')?.value)||'').toLowerCase();
+  let items=mediaItems.filter(it=>it.type==='images' || mediaMode==='images');
+  if(mediaMode!=='images'){
+    // Posts / Videos - اعرض كروت وهمية بنفس الستايل
+    let count=mediaMode==='posts'?6:4;
+    let h='';
+    for(let i=0;i<count;i++){
+      let isPost=mediaMode==='posts';
+      h+='<div class="media-item" style="--c:'+(isPost?'#2563eb':'#ec4899')+';--glow:rgba(0,0,0,.25)"><img src="https://images.unsplash.com/photo-'+(isPost?'1507525428034-b723cf961d3e':'1493225457124-a3eb161ffa5f')+'?w=400" alt=""><div class="media-overlay"><div class="text-white"><div class="font-bold text-[13px]">'+(isPost?'Post '+(i+1)+' - عرض رمضان':'Video '+(i+1)+' - ريلز')+'</div><div class="text-[11px] opacity-80">'+(isPost?'Draft · Caption جاهز':'Shorts · 0:32')+'</div></div></div><span class="media-del" onclick="event.stopPropagation();showToast(\'تم الحذف\')">✕</span><div class="absolute bottom-2 left-2 flex gap-1 z-10"><span class="bc-icon-btn" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35);width:26px;height:26px;font-size:12px" onclick="event.stopPropagation();showToast(\'👁 عرض\')">👁<span class="cloud">View</span></span><span class="bc-icon-btn" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.35);width:26px;height:26px;font-size:12px" onclick="event.stopPropagation();showToast(\'📤 نشر\')">📤<span class="cloud">Publish</span></span></div></div>';
+    }
+    document.getElementById('media-grid').innerHTML=h;document.getElementById('media-empty').classList.add('hidden');return;
+  }
+  let filtered=items.filter(it=>{if(activeList!=='00' && it.list!==activeList) return false;if(q && it.name.toLowerCase().indexOf(q)===-1) return false;return true});
+  // لو القائمة 00 اعرض كل الصور، لو قائمة تانية اعرض عددها
+  if(activeList!=='00' && filtered.length===0){
+    // املأ بصور من القائمة الأساسية للعرض
+    filtered=items.slice(0,mediaLists.find(l=>l.id===activeList)?.count||3);
+  }
+  let h='';
+  filtered.forEach(it=>{
+    h+='<div class="media-item" style="--c:#7c3aed;--glow:rgba(124,58,237,.35)" onclick="useMedia(\''+it.url+'\')"><img src="'+it.url+'" alt=""><div class="media-overlay"><div class="text-white"><div class="font-bold text-[12px]">'+it.name+'</div><div class="text-[10px] opacity-80">دوس للاستخدام في البوت</div></div></div><span class="media-del" onclick="event.stopPropagation();delMediaItem('+it.id+')">✕</span><div class="absolute bottom-2 left-2 flex gap-1 z-10"><span class="bc-icon-btn" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35);width:26px;height:26px;font-size:12px" onclick="event.stopPropagation();copyMedia(\''+it.url+'\')">🔗<span class="cloud">Copy URL</span></span><span class="bc-icon-btn" style="--c:#f97316;--c2:#fb923c;--glow:rgba(249,115,22,.35);width:26px;height:26px;font-size:12px" onclick="event.stopPropagation();randomURL()">🔀<span class="cloud">Random</span></span></div></div>';
+  });
+  document.getElementById('media-grid').innerHTML=h;
+  document.getElementById('media-empty').classList.toggle('hidden',filtered.length>0);
+  document.getElementById('media-count-badge').textContent=filtered.length+' items';
+}
+function uploadMedia(e){
+  let files=e.target.files;if(!files.length) return;
+  for(let f of files){
+    let url=URL.createObjectURL(f);
+    mediaItems.unshift({id:Date.now()+Math.random(),url:url,list:activeList,type:'images',name:f.name});
+  }
+  setK('farag_media_items',mediaItems);renderMediaLists();renderMediaGrid();showToast('✅ تم رفع '+files.length+' ملف');e.target.value='';
+}
+function delMediaItem(id){if(!confirm('متأكد تمسح الصورة؟'))return;mediaItems=mediaItems.filter(x=>x.id!==id);setK('farag_media_items',mediaItems);renderMediaGrid();showToast('تم مسح الصورة')}
+function copyMedia(url){navigator.clipboard?.writeText(url);showToast('✅ تم نسخ لينك الصورة')}
+function useMedia(url){copyMedia(url);showToast('✅ تم اختيار الصورة للبوت / البرودكاست')}
+function randomURL(){let items=mediaItems;if(!items.length) return;let r=items[Math.floor(Math.random()*items.length)];copyMedia(r.url);showToast('🔀 Random URL: تم نسخ لينك عشوائي')}
+function addPost(){let t=document.getElementById('post-title').value.trim();if(!t) return alert('اكتب عنوان البوست');showToast('✅ تم إنشاء بوست: '+t);document.getElementById('post-title').value='';renderMediaGrid()}
+function addVideo(){let t=document.getElementById('video-title').value.trim();if(!t) return alert('اكتب عنوان الفيديو');showToast('✅ تم رفع فيديو: '+t);document.getElementById('video-title').value='';renderMediaGrid()}
 function addContact(){let n=document.getElementById('c-name').value.trim();let p=document.getElementById('c-phone').value.trim();if(!n||!p)return alert('اكتب الاسم والرقم');let a=getK('farag_contacts');a.unshift({id:Date.now(),name:n,phone:p,ts:Date.now()});setK('farag_contacts',a);document.getElementById('c-name').value='';document.getElementById('c-phone').value='';document.getElementById('contact-form').classList.add('hidden');renderAll();showToast('تم إضافة '+n)}
 function addCampaign(){let n=document.getElementById('camp-name').value.trim();let m=document.getElementById('camp-msg').value.trim();if(!n)return alert('اكتب اسم الحملة');let a=getK('farag_campaigns');a.unshift({id:Date.now(),name:n,msg:m,sent:0,total:getK('farag_contacts').length,status:'Draft',date:new Date().toLocaleString('en-EG')});setK('farag_campaigns',a);document.getElementById('camp-name').value='';document.getElementById('camp-msg').value='';document.getElementById('camp-form').classList.add('hidden');renderAll();showToast('تم إنشاء الحملة')}
 function sendCampaign(id){let a=getK('farag_campaigns');let c=a.find(x=>x.id===id);if(!c)return;let contacts=getK('farag_contacts');if(!contacts.length)return alert('ضيف Contacts الأول');c.sent=contacts.length;c.total=contacts.length;c.status='Done';setK('farag_campaigns',a);renderAll();showToast('تم إرسال الحملة لـ '+contacts.length)}
@@ -419,17 +461,17 @@ document.getElementById('badge-contacts').textContent=contacts.length;document.g
 document.getElementById('contacts-count').textContent='('+contacts.length+')';document.getElementById('campaigns-count').textContent='('+camps.length+')';document.getElementById('numbers-count').textContent='('+nums.length+')';document.getElementById('users-count').textContent='('+users.length+')';
 let myTotal=B.total+contacts.length;let mySub=B.sub+contacts.length;let myPages=B.pages+nums.length+pages.length;let myToday=B.today+todayCount;let mySent=B.sent;let myDone=B.done;let myPending=0;camps.forEach(c=>{mySent+=c.sent||0;if(c.status==='Done')myDone++;else myPending++});
 let myTotalCamps=B.totalCamps+camps.length+getBcData().length;let myComments=B.comments+pages.length;
-document.getElementById('dash-total').textContent=fmt(myTotal);document.getElementById('dash-fb').textContent=fmt(myTotal);document.getElementById('dash-today').textContent=fmt(myToday);document.getElementById('dash-today-fb').textContent=fmt(myToday);document.getElementById('dash-yest').textContent=fmt(B.yest);document.getElementById('dash-pages').textContent=myPages;document.getElementById('dash-pages-en').textContent=myPages;document.getElementById('dash-sub').textContent=fmt(mySub);document.getElementById('dash-sub-total').textContent=fmt(myTotal);document.getElementById('dash-s1').textContent=fmt(mySub);document.getElementById('dash-s2').textContent=fmt(myTotal);document.getElementById('dash-migrate').textContent=fmt(myTotal>0?Math.round(myTotal*0.69):0);document.getElementById('dash-unavail').textContent=fmt(myTotal>0?Math.round(myTotal*0.25):0);document.getElementById('dash-sent').textContent=fmt(mySent);document.getElementById('dash-sent2').textContent=fmt(mySent);document.getElementById('dash-comments').textContent=fmt(myComments);document.getElementById('dash-running').textContent=myPending;document.getElementById('dash-pending').textContent=myPending;document.getElementById('dash-done').textContent=myDone;document.getElementById('dash-failed').textContent=0;document.getElementById('donut-total').textContent=myTotalCamps;document.getElementById('dash-auto').textContent=isZeroed()?0:106;document.getElementById('dash-replied').textContent=isZeroed()?'0% replied':'97.5% replied';document.getElementById('dash-today-pct').textContent=isZeroed()?'0%':'+41.7%';
+document.getElementById('dash-total').textContent=fmt(myTotal);document.getElementById('dash-fb').textContent=fmt(myTotal);document.getElementById('dash-today').textContent=fmt(myToday);document.getElementById('dash-today-fb').textContent=fmt(myToday);document.getElementById('dash-yest').textContent=fmt(B.yest);document.getElementById('dash-pages').textContent=myPages;document.getElementById('dash-pages-en').textContent=myPages;document.getElementById('dash-sub').textContent=fmt(mySub);document.getElementById('dash-sub-total').textContent=fmt(myTotal);document.getElementById('dash-s1').textContent=fmt(mySub);document.getElementById('dash-s2').textContent=fmt(myTotal);document.getElementById('dash-migrate').textContent=fmt(myTotal>0?Math.round(myTotal*0.69):0);document.getElementById('dash-unavail').textContent=fmt(myTotal>0?Math.round(myTotal*0.25):0);document.getElementById('dash-sent').textContent=fmt(mySent);document.getElementById('dash-sent2').textContent=fmt(mySent);document.getElementById('dash-comments').textContent=fmt(myComments);document.getElementById('dash-running').textContent=myPending;document.getElementById('dash-pending').textContent=myPending;document.getElementById('dash-done').textContent=myDone;document.getElementById('donut-total').textContent=myTotalCamps;document.getElementById('dash-auto').textContent=isZeroed()?0:106;document.getElementById('dash-replied').textContent=isZeroed()?'0% replied':'97.5% replied';document.getElementById('dash-today-pct').textContent=isZeroed()?'0%':'+41.7%';
 let pct=myTotal>0?(mySub/myTotal*100).toFixed(1):0;document.getElementById('dash-pct').textContent=pct+'% of leads';document.getElementById('bar-green').style.width=pct+'%';document.getElementById('bar-yellow').style.width=myTotal>0?'70%':'0%';document.getElementById('bar-red').style.width=myTotal>0?'25.3%':'0%';
 if(myTotalCamps>0){let donePct=Math.round(myDone/myTotalCamps*100);document.getElementById('donut1').style.background='conic-gradient(#22c55e 0% '+donePct+'%, #f43f5e '+donePct+'% 100%)'}else{document.getElementById('donut1').style.background='#e5e7eb'}
 let rh='';camps.slice(0,8).forEach(c=>{rh+='<tr class="border-b"><td class="px-4 py-3"><div class="font-bold">'+c.name+'</div><div class="text-[11px] text-gray-400">'+c.date+'</div></td><td class="px-4 py-3 text-center font-bold">'+c.sent+' / '+c.total+'</td><td class="px-4 py-3 text-right"><span class="bg-green-50 text-green-700 text-[11px] px-2.5 py-1 rounded-full font-bold">● '+c.status+'</span></td></tr>'});document.getElementById('recentBody').innerHTML=rh;document.getElementById('recentEmpty').style.display=camps.length?'none':'block';
-let ah='';accounts.forEach(a=>{let c=pages.filter(p=>p.accId===a.id).length;let elsewhere=pages.filter(p=>p.accId===a.id&&p.elsewhere).length;ah+='<div class="card12 p-4 md:p-5 flex flex-wrap gap-4 items-center" style="--c:#1877f2;--glow:rgba(24,119,242,.2)"><div class="flex items-center gap-3 flex-1 min-w-[220px]"><div class="relative"><div class="w-[68px] h-[68px] rounded-full flex items-center justify-center text-[28px] shadow-lg" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0)">🌿</div><span class="absolute bottom-1 right-1 w-3.5 h-3.5 bg-green-500 border-2 border-white rounded-full"></span></div><div><div class="font-black text-[18px]">'+a.name+'</div><div class="flex gap-2 mt-1.5 flex-wrap"><span class="badge bg-gray-100 text-gray-700">📄 '+c+' Pages</span><span class="badge bg-orange-100 text-orange-700">🔗 '+elsewhere+' Linked elsewhere</span></div><span class="badge bg-green-100 text-green-700 mt-1.5 inline-block">✅ Token Valid</span></div></div><div class="flex gap-2 flex-wrap"><button onclick="scanAccount('+a.id+')" class="px-3 py-2 rounded-lg bg-yellow-50 border border-yellow-200 font-bold text-[12px] action-btn">⚡ Scan Account</button><button onclick="checkLinked('+a.id+')" class="px-3 py-2 rounded-lg bg-yellow-50 border border-yellow-200 font-bold text-[12px] action-btn">🔗 Check Linked Pages</button><button onclick="unlinkAccount('+a.id+')" class="px-3 py-2 rounded-lg bg-gray-50 border font-bold text-[12px] action-btn">✕ Unlink account</button></div></div>'});document.getElementById('accounts-list').innerHTML=ah;
+let ah='';accounts.forEach(a=>{let c=pages.filter(p=>p.accId===a.id).length;ah+='<div class="card12 p-4 md:p-5 flex flex-wrap gap-4 items-center" style="--c:#1877f2;--glow:rgba(24,119,242,.2)"><div class="flex items-center gap-3 flex-1 min-w-[220px]"><div class="w-[68px] h-[68px] rounded-full flex items-center justify-center text-[28px] shadow-lg" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0)">🌿</div><div><div class="font-black text-[18px]">'+a.name+'</div><div class="flex gap-2 mt-1"><span class="badge bg-gray-100">📄 '+c+' Pages</span></div><span class="badge bg-green-100 text-green-700 mt-1 inline-block">✅ Token Valid</span></div></div><div class="flex gap-2 flex-wrap"><button onclick="scanAll()" class="px-3 py-2 rounded-lg bg-yellow-50 border border-yellow-200 font-bold text-[12px] action-btn">⚡ Scan Account</button><button onclick="unlinkAccount('+a.id+')" class="px-3 py-2 rounded-lg bg-gray-50 border font-bold text-[12px] action-btn">✕ Unlink</button></div></div>'});document.getElementById('accounts-list').innerHTML=ah;
 let q=((document.getElementById('fb-search')?.value)||'').toLowerCase();
-let filtered=pages.filter(p=>{if(q&&(p.name+p.fbId).toLowerCase().indexOf(q)===-1)return false;if(currentFilter==='enabled')return p.enabled;if(currentFilter==='disabled')return !p.enabled;if(currentFilter==='paused')return p.paused;if(currentFilter==='instagram')return p.ig;if(currentFilter==='unpublished')return p.unpublished;if(currentFilter==='elsewhere')return p.elsewhere;return true});
+let filtered=pages.filter(p=>{if(q&&(p.name+p.fbId).toLowerCase().indexOf(q)===-1)return false;if(currentFilter==='enabled')return p.enabled;if(currentFilter==='disabled')return !p.enabled;return true});
 let enabled=pages.filter(p=>p.enabled).length;
-document.getElementById('qa-enabled').textContent='✅ '+enabled+' Enabled';document.getElementById('qa-disabled').textContent='⏸ '+(pages.length-enabled)+' Disabled';document.getElementById('qa-elsewhere').textContent='🔗 '+pages.filter(p=>p.elsewhere).length+' Linked elsewhere';document.getElementById('qa-total').textContent='📦 '+pages.length+' Total';
-document.getElementById('f-all').textContent=pages.length;document.getElementById('f-enabled').textContent=enabled;document.getElementById('f-disabled').textContent=pages.length-enabled;document.getElementById('f-paused').textContent=pages.filter(p=>p.paused).length;document.getElementById('f-ig').textContent=pages.filter(p=>p.ig).length;document.getElementById('f-unpub').textContent=pages.filter(p=>p.unpublished).length;document.getElementById('f-else').textContent=pages.filter(p=>p.elsewhere).length;document.getElementById('page-list-count').textContent=pages.length+' Pages';
-let gh='';filtered.forEach(p=>{gh+='<div class="page-card12" style="--c:'+p.color+';--glow:'+p.color+'33"><div class="flex justify-between items-start"><div class="flex gap-3 items-center"><div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-[13px] shrink-0 shadow-lg" style="background:linear-gradient(135deg,'+p.color+',#60a5fa)">'+p.name.charAt(0)+'</div><div><div class="font-bold text-[14px]">'+p.name+'</div><div class="text-[11px] text-gray-400"># '+p.fbId+'</div></div></div><input type="checkbox" '+(p.selected?'checked':'')+' onchange="pages.find(x=>x.id==='+p.id+').selected=this.checked;saveFB()" class="w-4 h-4"></div><div class="mt-3"><span class="badge '+(p.enabled?'bg-green-100 text-green-700':'bg-red-100 text-red-700')+'">'+(p.enabled?'✅ Enabled':'⏸ Disabled')+'</span></div><div class="flex gap-1.5 mt-3"><button onclick="togglePage('+p.id+')" class="flex-1 py-1.5 rounded-lg bg-gray-50 border text-[12px] font-bold action-btn">'+(p.enabled?'⏻ Disable':'✅ Enable')+'</button><button onclick="resetPage('+p.id+')" class="flex-1 py-1.5 rounded-lg bg-yellow-50 border border-yellow-200 text-[12px] font-bold action-btn">🔄 Reset</button><button onclick="statsPage('+p.id+')" class="flex-1 py-1.5 rounded-lg bg-purple-50 border border-purple-200 text-[12px] font-bold action-btn">📊 Stats</button></div></div>'});document.getElementById('pages-grid').innerHTML=gh;document.getElementById('pages-empty').style.display=(pages.length===0)?'block':'none';
+document.getElementById('qa-enabled').textContent='✅ '+enabled+' Enabled';document.getElementById('qa-disabled').textContent='⏸ '+(pages.length-enabled)+' Disabled';document.getElementById('qa-total').textContent='📦 '+pages.length+' Total';
+document.getElementById('f-all').textContent=pages.length;document.getElementById('f-enabled').textContent=enabled;document.getElementById('f-disabled').textContent=pages.length-enabled;
+let gh='';filtered.forEach(p=>{gh+='<div class="page-card12" style="--c:'+p.color+';--glow:'+p.color+'33"><div class="flex justify-between items-start"><div class="flex gap-3 items-center"><div class="w-11 h-11 rounded-full flex items-center justify-center text-white font-black text-[13px] shadow-lg" style="background:linear-gradient(135deg,'+p.color+',#60a5fa)">'+p.name.charAt(0)+'</div><div><div class="font-bold text-[14px]">'+p.name+'</div><div class="text-[11px] text-gray-400"># '+p.fbId+'</div></div></div></div><div class="mt-3"><span class="badge '+(p.enabled?'bg-green-100 text-green-700':'bg-red-100 text-red-700')+'">'+(p.enabled?'✅ Enabled':'⏸ Disabled')+'</span></div><div class="flex gap-1.5 mt-3"><button onclick="togglePage('+p.id+')" class="flex-1 py-1.5 rounded-lg bg-gray-50 border text-[12px] font-bold action-btn">'+(p.enabled?'⏻ Disable':'✅ Enable')+'</button></div></div>'});document.getElementById('pages-grid').innerHTML=gh;document.getElementById('pages-empty').style.display=(pages.length===0)?'block':'none';
 document.getElementById('cnt-comment').textContent=getK('farag_comment_tpl').length;document.getElementById('cnt-reply').textContent=getK('farag_reply_tpl').length;document.getElementById('cnt-campaign').textContent=getK('farag_growth_campaigns').length;document.getElementById('cnt-tag').textContent=getK('farag_tag_campaigns').length;
 let qs=((document.getElementById('contacts-search')?.value)||'').toLowerCase();
 let ch='';contacts.filter(c=>(c.name+c.phone).toLowerCase().indexOf(qs)>-1).forEach(c=>{ch+='<div class="card12 p-3 flex justify-between items-center" style="--c:#9333ea;--glow:rgba(147,51,234,.15)"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-purple-700" style="background:linear-gradient(135deg,#f3e8ff,#e9d5ff)">'+c.name.charAt(0)+'</div><div><div class="font-bold text-sm">'+c.name+'</div><div class="text-xs text-gray-500">'+c.phone+'</div></div></div><button onclick="delItem(\'farag_contacts\','+c.id+')" class="text-red-500 font-bold px-2 action-btn">حذف</button></div>'});document.getElementById('contacts-list').innerHTML=ch||'<div class="card12 p-6 text-center text-gray-400 text-sm" style="--c:#9333ea;--glow:rgba(147,51,234,.15)">لسه مفيش Contacts</div>';
@@ -438,8 +480,8 @@ let nh='';nums.forEach(n=>{nh+='<div class="card12 p-3 flex justify-between item
 let uh='';users.forEach(u=>{uh+='<div class="card12 p-3 flex justify-between items-center" style="--c:#f97316;--glow:rgba(249,115,22,.15)"><div class="flex gap-3 items-center"><div class="w-10 h-10 rounded-full flex items-center justify-center font-black text-orange-700" style="background:linear-gradient(135deg,#ffedd5,#fed7aa)">'+u.name.charAt(0)+'</div><div><div class="font-bold text-sm">'+u.name+'</div><div class="text-xs text-gray-500">'+u.email+'</div></div></div><button onclick="delItem(\'farag_users\','+u.id+')" class="text-red-500 font-bold action-btn">حذف</button></div>'});document.getElementById('users-list').innerHTML=uh||'<div class="card12 p-6 text-center text-gray-400 text-sm" style="--c:#f97316;--glow:rgba(249,115,22,.15)">لسه مفيش Users</div>';
 renderBc();
 }
-function openPage(name,el){document.querySelectorAll('.side-item').forEach(i=>i.classList.remove('active'));if(el)el.classList.add('active');['dashboard','contacts','campaigns','numbers','users','facebook','growth','broadcasting','other'].forEach(p=>document.getElementById('page-'+p).classList.add('hidden'));if(['dashboard','contacts','campaigns','numbers','users','facebook','growth','broadcasting'].includes(name)){document.getElementById('page-'+name).classList.remove('hidden')}else{document.getElementById('page-other').classList.remove('hidden');document.getElementById('otherTitle').textContent=name}if(window.innerWidth<=768){let sb=document.getElementById('sidebar');if(sb.classList.contains('open'))toggleSide()}window.scrollTo({top:0})}
-renderAll();renderGrowth();renderBcInner();
+function openPage(name,el){document.querySelectorAll('.side-item').forEach(i=>i.classList.remove('active'));if(el)el.classList.add('active');['dashboard','contacts','campaigns','numbers','users','facebook','growth','broadcasting','media','other'].forEach(p=>document.getElementById('page-'+p).classList.add('hidden'));if(['dashboard','contacts','campaigns','numbers','users','facebook','growth','broadcasting','media'].includes(name)){document.getElementById('page-'+name).classList.remove('hidden');if(name==='media') renderMedia()}else{document.getElementById('page-other').classList.remove('hidden');document.getElementById('otherTitle').textContent=name}if(window.innerWidth<=768){let sb=document.getElementById('sidebar');if(sb.classList.contains('open'))toggleSide()}window.scrollTo({top:0})}
+renderAll();renderGrowth();renderMedia();
 </script>
 </body>
 </html>
