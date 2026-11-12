@@ -3,64 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Farag - Dashboard</title>
+<title>Farag - Platform + Pro Charts</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 *{box-sizing:border-box}body{background:#eef1f6;font-family:Inter,system-ui;margin:0}
 .card12{background:#fff;border-radius:22px;box-shadow:0 4px 20px rgba(15,23,42,.06);padding:18px}
 .side-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;font-size:13px;font-weight:700;color:#334155;cursor:pointer}
-.side-item.active{background:#e8f0ff;color:#1d4ed8}
-.chart-box{height:230px;position:relative}
-.chart-small{height:190px;position:relative}
-.badge{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:700}
-.btn{width:100%;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer}
+.side-item:hover{background:#eef4ff}.side-item.active{background:#e8f0ff;color:#1d4ed8}
 .input{width:100%;border:1px solid #e2e8f0;border-radius:12px;padding:11px;font-size:14px}
+.btn{width:100%;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer}
+#sidebar{width:280px;flex-shrink:0;height:100vh;position:sticky;top:0;background:#fff;overflow-y:auto;border-right:1px solid #e5e7eb}
+#layout{display:flex}#main{flex:1;min-width:0}
+.chart-box{height:220px;position:relative}
+.chart-box-small{height:180px;position:relative}
+.badge{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:700}
 </style>
 </head>
 <body>
-<div class="flex">
-<div class="w-[280px] shrink-0 h-screen sticky top-0 bg-white border-l p-2">
-<div class="flex items-center gap-2 px-2 pt-3 pb-3"><div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-black">F</div><div><div class="font-black text-[20px]">farag</div><div class="text-[10px] text-gray-400">Farag Platform</div></div></div>
-<div class="side-item active" onclick="showPage('dashboard')">💠 Dashboard</div>
-<div class="side-item" onclick="showPage('template')">📝 Create Template</div>
-<div class="side-item" onclick="showPage('broadcasting')">📡 Broadcasting</div>
-<div class="side-item" onclick="showPage('utility')">⚡ Launch Utility</div>
-<div class="side-item" onclick="showPage('posting')">✍️ Social Posting</div>
-<div class="side-item" onclick="showPage('media')">🎬 Media & Content</div>
+<div id="layout">
+<div id="sidebar">
+<div class="flex items-center gap-2 px-3 pt-4 pb-3"><div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-black">F</div><div><div class="font-black text-[20px]">farag <span class="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">ChatBot AI</span></div><div class="text-[10px] text-gray-400">Farag Platform</div></div></div>
+<div class="px-2" id="menu"></div>
 <button onclick="doReset()" class="mx-2 mt-6 w-[calc(100%-16px)] bg-red-500 text-white py-2.5 rounded-xl font-bold text-sm">Reset / تصفير الكل</button>
 </div>
-
-<div class="flex-1 min-w-0">
-<div class="bg-white shadow-sm sticky top-0 flex justify-between px-4 py-3"><button class="text-2xl">☰</button><div class="font-bold text-sm">فرج ⌄</div></div>
-<div class="p-4 md:p-6 max-w-[1100px] mx-auto" id="app"></div>
+<div id="main">
+<div class="bg-white shadow-sm sticky top-0 z-30 flex justify-between px-4 py-3"><button class="text-2xl">☰</button><div class="font-bold text-sm">فرج ⌄</div></div>
+<div class="p-4 md:p-6 max-w-[1100px] mx-auto pb-24" id="app"></div>
 </div>
 </div>
-
+<div id="toast" class="fixed left-1/2 bottom-6 -translate-x-1/2 bg-gray-900 text-white px-5 py-2.5 rounded-full text-[13px] font-bold opacity-0 transition z-50">تم ✅</div>
 <script>
 const DB={get(k,d){try{let v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
 let S={page:'dashboard'};
 let CHARTS=[];
-function toast(m){alert(m)}
-function doReset(){if(!confirm('تصفر كل حاجة في الداشبورد؟'))return;localStorage.clear();localStorage.setItem('farag_zeroed','1');location.reload()}
+function toast(m){let t=document.getElementById('toast');t.textContent=m;t.style.opacity=1;setTimeout(()=>t.style.opacity=0,2000)}
+function doReset(){if(!confirm('تصفر كل حاجة؟'))return;localStorage.clear();localStorage.setItem('farag_zeroed','1');['farag_broadcasts','farag_reply_tpl','farag_posts'].forEach(k=>localStorage.setItem(k,'[]'));toast('✅ تم التصفير');setTimeout(()=>location.reload(),500)}
 function killCharts(){CHARTS.forEach(c=>c.destroy());CHARTS=[]}
-function showPage(p){S.page=p;render()}
-
+const MENU=[
+{s:'FARAG TOOLS'},{t:'Dashboard',p:'dashboard',i:'💠'},{t:'Contacts',p:'contacts',i:'🫂'},{t:'Campaigns',p:'campaigns',i:'📣'},
+{s:'MESSENGER TOOLS'},{t:'Broadcasting',p:'broadcasting',i:'📡'},{t:'Broadcast Job History',p:'history',i:'🕘'},
+{s:'UTILITY MESSAGING'},{t:'Launch Utility',p:'utility',i:'⚡'},
+{s:'POSTING FEATURE'},{t:'Social Posting',p:'posting',i:'✍️'},{t:'Create Template',p:'template',i:'📝'},
+{s:'MEDIA & CONTENT'},{t:'Media & Content',p:'media',i:'🎬'},
+];
+function renderMenu(){let h='';MENU.forEach(m=>{if(m.s)h+=`<div class="text-[9px] tracking-[2px] font-black text-slate-400 px-2 mt-4 mb-2">${m.s}</div>`;else h+=`<div class="side-item ${S.page===m.p?'active':''}" onclick="openPage('${m.p}')">${m.i} ${m.t}</div>`});document.getElementById('menu').innerHTML=h}
+function openPage(p){S.page=p;render()}
 function render(){
-killCharts();
+killCharts();renderMenu();
 let h='';
-if(S.page==='dashboard') h=dashboardHTML();
-else if(S.page==='template') h=templateHTML();
-else if(S.page==='broadcasting') h=broadcastHTML('MARKETING');
-else if(S.page==='utility') h=broadcastHTML('UTILITY');
-else if(S.page==='posting') h=postingHTML();
-else if(S.page==='media') h=mediaHTML();
+if(S.page==='dashboard') h=dashboard();
+else if(S.page==='template') h=templatePage();
+else if(S.page==='broadcasting') h=broadcastPage('MARKETING');
+else if(S.page==='utility') h=broadcastPage('UTILITY');
+else if(S.page==='posting') h=postingPage();
+else if(S.page==='media') h=mediaPage();
+else h=`<div class="card12 text-center"><h2 class="font-black text-xl">${S.page}</h2><p class="text-slate-500 text-sm mt-2">الصفحة دي متثبتة وهنكملها بعد Dashboard - دوس Dashboard</p><button onclick="openPage('dashboard')" class="btn mt-4">Back to Dashboard</button></div>`;
 document.getElementById('app').innerHTML=h;
-document.querySelectorAll('.side-item').forEach(el=>el.classList.remove('active'));
-if(S.page==='dashboard') initCharts();
+if(S.page==='dashboard') initDashboardCharts();
 }
-
-function dashboardHTML(){
+function dashboard(){
 let zero=localStorage.getItem('farag_zeroed')==='1';
 let total=zero?0:1592739, sub=zero?0:75177;
 return `
@@ -68,52 +70,48 @@ return `
 
 <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5">
 <div class="card12"><div class="text-[10px] font-bold text-slate-500">TOTAL SUBSCRIBERS</div><div class="text-[30px] font-black">${total.toLocaleString()}</div><div class="text-[11px]">f ${total.toLocaleString()} FB · 0 IG</div></div>
-<div class="card12"><div class="text-[10px] font-bold text-slate-500">PAGES</div><div class="text-[30px] font-black">${zero?0:177}</div><div class="text-[11px] text-green-600 font-bold">● ${zero?0:177} Enabled · 0 Disabled</div></div>
+<div class="card12"><div class="text-[10px] font-bold text-slate-500">PAGES</div><div class="text-[30px] font-black">${zero?0:177}</div><div class="text-[11px] text-green-600 font-bold">● ${zero?0:177} Enabled</div></div>
 <div class="card12"><div class="text-[10px] font-bold text-slate-500">TODAY</div><div class="text-[30px] font-black">${zero?0:180}</div><div class="text-[11px] bg-green-100 text-green-700 inline-block px-2 py-1 rounded-lg font-bold">↑ +41.7% vs yesterday</div></div>
 <div class="card12"><div class="text-[10px] font-bold text-slate-500">MESSAGES SENT</div><div class="text-[30px] font-black">865,990</div><div class="text-[11px] text-slate-500">Broadcast · 30 days</div></div>
 </div>
 
 <div class="grid md:grid-cols-2 gap-3 mt-3">
 <div class="card12"><div class="flex justify-between"><b class="text-sm">● 7-Day Activity - Line Chart</b><span class="text-[11px]">🔵 Broadcast 🟢 Comments</span></div><div class="chart-box mt-3"><canvas id="chLine"></canvas></div></div>
-<div class="card12"><div class="flex justify-between"><b class="text-sm">● Broadcast Campaigns - Donut</b><span class="badge bg-green-100 text-green-700">677 Completed</span></div><div class="chart-small mt-3"><canvas id="chDonut"></canvas></div><div class="flex justify-between text-[12px] mt-2"><span>🟢 Completed <b>677</b></span><span>🔴 Failed <b>28</b></span><span>🟠 Pending <b>0</b></span></div></div>
+<div class="card12"><div class="flex justify-between"><b class="text-sm">● Broadcast Campaigns - Donut</b><span class="badge bg-green-100 text-green-700">677 Completed</span></div><div class="chart-box-small mt-3"><canvas id="chDonut"></canvas></div><div class="flex justify-between text-[12px] mt-2"><span>🟢 Completed <b>677</b></span><span>🔴 Failed <b>28</b></span><span>🟠 Pending <b>0</b></span></div></div>
 </div>
 
 <div class="grid md:grid-cols-2 gap-3 mt-3">
 <div class="card12"><div class="flex justify-between"><b class="text-sm">● New Subscribers - Bar Chart</b><span class="text-[11px] text-slate-500">آخر 7 أيام</span></div><div class="chart-box mt-3"><canvas id="chBar"></canvas></div></div>
-<div class="card12"><div class="flex justify-between"><b class="text-sm">● Subscribers Rate - Radial</b><span class="badge bg-blue-100 text-blue-700">4.7% of leads</span></div><div class="chart-small mt-3"><canvas id="chRadial"></canvas></div><div class="text-center text-[12px] text-slate-500 mt-1"><b class="text-slate-900">${sub.toLocaleString()}</b> / ${total.toLocaleString()} - broadcasts go to these only</div></div>
+<div class="card12"><div class="flex justify-between"><b class="text-sm">● Subscribers Rate - Radial</b><span class="badge bg-blue-100 text-blue-700">4.7% of leads</span></div><div class="chart-box-small mt-3"><canvas id="chRadial"></canvas></div><div class="text-center text-[12px] text-slate-500 mt-1"><b class="text-slate-900">${sub.toLocaleString()}</b> / ${total.toLocaleString()} - broadcasts go to these only</div></div>
 </div>
 
-<div class="card12 mt-3"><div class="flex justify-between"><b class="text-sm">● Recent Broadcasts</b><span class="text-blue-600 text-xs font-bold">View all →</span></div>
-<table class="w-full text-left text-[13px] mt-3"><thead class="text-[10px] text-slate-500 border-y bg-slate-50"><tr><th class="px-3 py-2">CAMPAIGN</th><th class="px-3 py-2 text-center">SENT / TOTAL</th><th class="px-3 py-2 text-right">STATUS</th></tr></thead>
-<tbody><tr class="border-b"><td class="px-3 py-3 font-bold">وصفات · 18:28 30-10-2026</td><td class="px-3 py-3 text-center font-bold">15 / 15</td><td class="px-3 py-3 text-right"><span class="badge bg-green-100 text-green-700">● Done</span></td></tr>
-<tr><td class="px-3 py-3 font-bold">جونام · 18:28 30-10-2026</td><td class="px-3 py-3 text-center font-bold">1 / 1</td><td class="px-3 py-3 text-right"><span class="badge bg-green-100 text-green-700">● Done</span></td></tr></tbody></table></div>`;
+<div class="card12 mt-3"><div class="flex justify-between"><b class="text-sm">● Recent Broadcasts</b><a class="text-blue-600 text-xs font-bold cursor-pointer" onclick="openPage('broadcasting')">View all →</a></div><div class="overflow-x-auto mt-3"><table class="w-full text-left text-[13px]"><thead class="text-[10px] text-slate-500 border-y bg-slate-50"><tr><th class="px-3 py-2">CAMPAIGN</th><th class="px-3 py-2 text-center">SENT / TOTAL</th><th class="px-3 py-2 text-right">STATUS</th></tr></thead><tbody><tr class="border-b"><td class="px-3 py-3 font-bold">وصفات · 18:28 30-10-2026</td><td class="px-3 py-3 text-center font-bold">15 / 15</td><td class="px-3 py-3 text-right"><span class="badge bg-green-100 text-green-700">● Done</span></td></tr><tr><td class="px-3 py-3 font-bold">جونام · 18:28 30-10-2026</td><td class="px-3 py-3 text-center font-bold">1 / 1</td><td class="px-3 py-3 text-right"><span class="badge bg-green-100 text-green-700">● Done</span></td></tr></tbody></table></div></div>
+`;
 }
-
-function initCharts(){
-let c1=new Chart(document.getElementById('chLine'),{type:'line',data:{labels:['Nov 06','Nov 07','Nov 08','Nov 09','Nov 10','Nov 11','Nov 12'],datasets:[{label:'Broadcast',data:[4000,300,80,20,10,10,10],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,0.15)',fill:true,tension:0.4},{label:'Comments',data:[5,5,5,5,5,60,180],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,0.1)',fill:true,tension:0.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true}}}});
-let c2=new Chart(document.getElementById('chDonut'),{type:'doughnut',data:{labels:['Completed','Failed','Pending'],datasets:[{data:[677,28,0],backgroundColor:['#22c55e','#ef4444','#f59e0b'],borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{position:'bottom'}}}});
-let c3=new Chart(document.getElementById('chBar'),{type:'bar',data:{labels:['Sat','Sun','Mon','Tue','Wed','Thu','Fri'],datasets:[{label:'New Subscribers',data:[95,110,127,140,155,180,210],backgroundColor:['#93c5fd','#93c5fd','#93c5fd','#93c5fd','#93c5fd','#2563eb','#2563eb'],borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}});
-let c4=new Chart(document.getElementById('chRadial'),{type:'doughnut',data:{labels:['Subscribers','Rest'],datasets:[{data:[4.7,95.3],backgroundColor:['#2563eb','#e5e7eb'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'78%',circumference:270,rotation:225,plugins:{legend:{display:false}}}});
+function initDashboardCharts(){
+let c1=new Chart(document.getElementById('chLine'),{type:'line',data:{labels:['Nov 06','Nov 07','Nov 08','Nov 09','Nov 10','Nov 11','Nov 12'],datasets:[{label:'Broadcast',data:[4000,1200,300,200,180,220,350],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.15)',fill:true,tension:.4},{label:'Comments',data:[100,150,200,300,800,1100,1141],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.1)',fill:true,tension:.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+let c2=new Chart(document.getElementById('chDonut'),{type:'doughnut',data:{labels:['Completed','Failed','Pending'],datasets:[{data:[677,28,0],backgroundColor:['#22c55e','#f43f5e','#f59e0b'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{position:'bottom'}}}});
+let c3=new Chart(document.getElementById('chBar'),{type:'bar',data:{labels:['Sat','Sun','Mon','Tue','Wed','Thu','Fri'],datasets:[{label:'New Subscribers',data:[95,110,127,180,165,190,210],backgroundColor:['#cbd5e1','#cbd5e1','#cbd5e1','#2563eb','#60a5fa','#93c5fd','#2563eb'],borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
+let c4=new Chart(document.getElementById('chRadial'),{type:'doughnut',data:{labels:['Subscribers','Rest'],datasets:[{data:[4.7,95.3],backgroundColor:['#7c3aed','#eef2f7'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'78%',plugins:{legend:{display:false}}}});
 CHARTS=[c1,c2,c3,c4];
 }
-
-function templateHTML(){
+function templatePage(){
 let list=DB.get('farag_reply_tpl',[{id:1,name:'A',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);
 return `<h2 class="text-[22px] font-black">Create Template - المخزن الرئيسي</h2>
-<div class="card12 mt-3"><div class="grid md:grid-cols-2 gap-3"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input mt-3" placeholder="Title"><input id="t-sub" class="input mt-3" placeholder="Sub-title"><button onclick="saveTpl()" class="btn mt-3">💾 حفظ القالب</button></div>
-<div class="card12 mt-3"><b>القوالب المحفوظة (${list.length})</b><div class="mt-3 space-y-2">${list.map(t=>`<div class="flex justify-between border rounded-xl p-3"><div><b>${t.name}</b> <span class="badge bg-blue-100 text-blue-700">${t.type||'UTILITY'}</span><div class="text-[12px] text-slate-500">${t.title||''} - ${t.subtitle||''}</div></div><button onclick="delTpl(${t.id})" class="text-red-500 font-bold">🗑 Delete</button></div>`).join('')}</div></div>`;
+<div class="card12 mt-3"><div class="grid md:grid-cols-2 gap-3"><input id="t-name" class="input" placeholder="Template name - مثال: قالب الترحيب"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input mt-3" placeholder="Title"><input id="t-sub" class="input mt-3" placeholder="Sub-title"><button onclick="saveTpl()" class="btn mt-3">💾 حفظ القالب</button></div>
+<div class="card12 mt-3"><b>القوالب المحفوظة (${list.length})</b><div class="mt-3 space-y-2">${list.map(t=>`<div class="flex justify-between border rounded-xl p-3"><div><b>${t.name}</b> <span class="badge bg-blue-100 text-blue-700">${t.type||'UTILITY'}</span><div class="text-[12px] text-slate-500">${t.title||''} - ${t.subtitle||''}</div></div><button onclick="delTpl(${t.id})" class="text-red-500 font-bold">🗑 Delete</button></div>`).join('')||'لسه مفيش قوالب'}</div></div>`;
 }
-function saveTpl(){let n=document.getElementById('t-name').value.trim();if(!n)return alert('اكتب اسم القالب');let a=DB.get('farag_reply_tpl',[]);a.unshift({id:Date.now(),name:n,title:document.getElementById('t-title').value,subtitle:document.getElementById('t-sub').value,type:document.getElementById('t-type').value.split(' - ')[0]});DB.set('farag_reply_tpl',a);alert('✅ تم حفظ القالب '+n);render()}
+function saveTpl(){let n=document.getElementById('t-name').value.trim();if(!n)return alert('اكتب اسم القالب');let a=DB.get('farag_reply_tpl',[]);a.unshift({id:Date.now(),name:n,title:document.getElementById('t-title').value,subtitle:document.getElementById('t-sub').value,type:document.getElementById('t-type').value.split(' - ')[0]});DB.set('farag_reply_tpl',a);toast('✅ تم حفظ القالب '+n);render()}
 function delTpl(id){if(!confirm('تمسح؟'))return;DB.set('farag_reply_tpl',DB.get('farag_reply_tpl',[]).filter(x=>x.id!==id));render()}
-function broadcastHTML(type){
+function broadcastPage(type){
 let list=DB.get('farag_reply_tpl',[]);
 let filtered=list.filter(t=>(t.type||'UTILITY')===type);
 return `<h2 class="text-[22px] font-black">${type==='MARKETING'?'Broadcasting - دعائية':'Launch Utility - خدمية'} 🚀</h2>
-<div class="card12 mt-3"><label class="text-[12px] font-bold">اختار الصفحة</label><select class="input mt-1"><option>صفحة انغام</option><option>صفحة بهية</option><option>صفحة جنه</option></select><label class="text-[12px] font-bold block mt-3">اختار القالب - بيظهرلك ${type} بس</label><select class="input mt-1"><option>${filtered.length?filtered.map(t=>t.name).join(' - '):'مفيش قوالب '+type+' - روح Create Template واعمل واحد'}</option></select><button onclick="alert('🚀 تم إطلاق الحملة - ${type}')" class="btn mt-4">Launch 🚀</button></div>
-<div class="card12 mt-3 text-[13px] text-slate-600">${type==='MARKETING'?'⚠️ MARKETING: مينفعش تبعت غير للي كلمك اخر 24 ساعة':'✅ UTILITY: مسموح تبعت حتى لو العميل مردش بقاله فترة، لانها خدمية'}</div>`;
+<div class="card12 mt-3"><label class="text-[12px] font-bold">اختار الصفحة</label><select class="input mt-1"><option>صفحة انغام</option><option>صفحة بهية</option><option>صفحة جنه</option></select><label class="text-[12px] font-bold block mt-3">اختار القالب - بيظهرلك ${type} بس</label><select class="input mt-1"><option>${filtered.length?filtered.map(t=>t.name).join(' - '):'مفيش قوالب '+type+' - روح Create Template واعمل واحد'}</option></select><label class="text-[12px] font-bold block mt-3">Labels</label><select class="input mt-1"><option>All Labels</option><option>VIP</option><option>New</option></select><button onclick="toast('🚀 تم إطلاق الحملة - ${type}')" class="btn mt-4">Launch 🚀</button></div>
+<div class="card12 mt-3 text-[13px] text-slate-600">${type==='MARKETING'?'⚠️ MARKETING: مينفعش تبعت غير للي كلمك اخر 24 ساعة':'✅ UTILITY: مسموح تبعت حتى لو العميل مردش بقاله فترة، لانها خدمية' }</div>`;
 }
-function postingHTML(){return `<h2 class="text-[22px] font-black">Social Posting ✍️</h2><div class="card12 mt-3"><input class="input" placeholder="عنوان البوست"><textarea class="input mt-3" rows="3" placeholder="نص البوست..."></textarea><div class="mt-3 text-[13px] font-bold">الصفحات: ✅ انغام ✅ بهية ✅ جنه</div><div class="flex gap-2 mt-3"><button onclick="alert('📤 تم نشر البوست')" class="btn">نشر 📤</button></div></div>`}
-function mediaHTML(){return `<h2 class="text-[22px] font-black">Media & Content 🎬</h2><div class="card12 mt-3"><div class="border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer" onclick="document.getElementById('up').click()">📤 دوس هنا ارفع صورة / فيديو<input type="file" id="up" class="hidden" onchange="alert('✅ تم رفع الملف')"></div><p class="text-[12px] text-slate-500 mt-2">ده المخزن - Social Posting و Create Template بياخدوا منه</p></div>`}
+function postingPage(){return `<h2 class="text-[22px] font-black">Social Posting ✍️</h2><div class="card12 mt-3"><input class="input" placeholder="عنوان البوست"><textarea class="input mt-3" rows="3" placeholder="نص البوست..."></textarea><div class="mt-3 text-[13px] font-bold">الصفحات: ✅ انغام ✅ بهية ✅ جنه - تكتب مرة واحدة وينزل على الكل</div><div class="flex gap-2 mt-3"><button onclick="toast('📤 تم نشر البوست')" class="btn">نشر 📤</button><button onclick="toast('🕘 تم جدولة البوست لبكرة الساعة 8')" class="btn" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">جدولة 🕘</button></div></div>`}
+function mediaPage(){return `<h2 class="text-[22px] font-black">Media & Content 🎬</h2><div class="card12 mt-3"><div class="border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer" onclick="document.getElementById('up').click()">📤 دوس هنا ارفع صورة / فيديو<input type="file" id="up" class="hidden" onchange="toast('✅ تم رفع الملف')"></div><p class="text-[12px] text-slate-500 mt-2">ده المخزن - Social Posting و Create Template بياخدوا منه</p></div>`}
 render();
 </script>
 </body>
