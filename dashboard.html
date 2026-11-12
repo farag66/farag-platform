@@ -3,52 +3,68 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Farag - Platform</title>
+<title>Farag AI - 50D Platform</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 *{box-sizing:border-box}
-body{background:#070b1f;background:radial-gradient(600px 300px at 80% 0%,#1a2456 0%,transparent 60%),linear-gradient(180deg,#070b1f,#0a0f2a);font-family:Inter,system-ui;margin:0;min-height:100vh;color:#fff;overflow-x:hidden}
+body{background:#04061a;background:radial-gradient(800px 400px at 15% 0%,rgba(124,58,237,.45) 0%,transparent 60%),radial-gradient(700px 400px at 90% 20%,rgba(37,99,235,.5) 0%,transparent 60%),radial-gradient(600px 400px at 50% 100%,rgba(34,197,94,.25) 0%,transparent 60%),linear-gradient(180deg,#04061a,#070b1f 40%,#04061a);font-family:Inter,system-ui;margin:0;min-height:100vh;color:#fff;overflow-x:hidden;perspective:1200px}
+/* كرات نيون طايرة في الخلفية - AI */
+body::before{content:'';position:fixed;top:-80px;left:20%;width:320px;height:320px;background:radial-gradient(circle,rgba(124,58,237,.5),transparent 70%);filter:blur(40px);z-index:0;animation:floatAI 7s ease-in-out infinite}
+body::after{content:'';position:fixed;bottom:-100px;right:10%;width:380px;height:380px;background:radial-gradient(circle,rgba(37,99,235,.45),transparent 70%);filter:blur(45px);z-index:0;animation:floatAI 9s ease-in-out infinite reverse}
+@keyframes floatAI{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-25px) scale(1.08)}}
+/* ===== سايد بار مجسم 50D ===== */
 .sidebar-wrap{position:relative;flex-shrink:0;z-index:50}
-.sidebar{background:#0a0f2a;border-left:1px solid rgba(255,255,255,.08);transition:.4s cubic-bezier(.4,0,.2,1);width:290px;height:100vh;position:sticky;top:0;overflow-y:auto;overflow-x:hidden}
+.sidebar{background:linear-gradient(180deg,rgba(18,24,60,.95),rgba(8,12,35,.98));backdrop-filter:blur(20px);border-left:1px solid rgba(255,255,255,.14);box-shadow:-20px 0 50px rgba(0,0,0,.5),inset -1px 0 0 rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.12);transition:.4s cubic-bezier(.4,0,.2,1);width:290px;height:100vh;position:sticky;top:0;overflow-y:auto;overflow-x:hidden;transform-style:preserve-3d}
 .sidebar.collapsed{width:72px}
 .sidebar.collapsed .hide-text{display:none!important}
 .sidebar.collapsed .side{justify-content:center;padding:10px 6px}
 .sidebar.collapsed .brand-sub{display:none}
-.sidebar-toggle{position:absolute;top:108px;right:-19px;left:auto;width:38px;height:38px;border-radius:50%;border:2px solid #a78bfa;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(124,58,237,.6);z-index:60;transition:.3s}
-.sidebar-toggle:hover{transform:scale(1.12)}
-.stat{background:linear-gradient(180deg,#11173a,#0d1230);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px;text-align:center;transition:.35s}
-.stat:hover{transform:translateY(-5px);box-shadow:0 18px 35px rgba(99,102,241,.45)}
-.side{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer;white-space:nowrap}
-.side:hover{background:rgba(255,255,255,.07);color:#fff}
-.side.active{background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;box-shadow:0 8px 20px rgba(124,58,237,.5)}
-.ico{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:linear-gradient(135deg,var(--c),var(--c2));box-shadow:0 6px 14px var(--glow)}
-.grid-ico{background:linear-gradient(180deg,#121a3f,#0d1230);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:16px 8px;text-align:center;cursor:pointer;transition:.35s}
-.grid-ico:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 18px 35px rgba(99,102,241,.5)}
-.card{background:#fff;color:#0f172a;border-radius:20px;padding:18px}
-.input{width:100%;border:1px solid #e2e8f0;border-radius:12px;padding:11px 12px;font-size:14px;outline:none;background:#fff;color:#0f172a}
-.btn{width:100%;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer}
-.btn-blue{background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer;width:100%}
+.sidebar-toggle{position:absolute;top:108px;right:-19px;left:auto;width:38px;height:38px;border-radius:50%;border:2px solid #a78bfa;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(124,58,237,.7),inset 0 2px 4px rgba(255,255,255,.5),inset 0 -3px 6px rgba(0,0,0,.3);z-index:60;transition:.3s}
+.sidebar-toggle:hover{transform:scale(1.15) rotate(5deg)}
+/* ===== كروت احصائيات مجسمة ===== */
+.stat{background:linear-gradient(145deg,#1a2456 0%,#0d1230 55%,#11173a 100%);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:16px 10px;text-align:center;position:relative;overflow:hidden;box-shadow:0 18px 35px rgba(0,0,0,.45),0 8px 18px rgba(99,102,241,.22),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -2px 6px rgba(0,0,0,.3);transition:.4s;transform-style:preserve-3d}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#2563eb,#22c55e)}
+.stat::after{content:'';position:absolute;top:6px;left:10px;width:50px;height:22px;background:rgba(255,255,255,.18);border-radius:99px;filter:blur(6px)}
+.stat:hover{transform:translateY(-8px) rotateX(6deg) scale(1.03);box-shadow:0 28px 50px rgba(99,102,241,.45),0 14px 25px rgba(0,0,0,.4)}
+.side{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 12px;border-radius:14px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer;white-space:nowrap;position:relative;transition:.3s;border:1px solid transparent}
+.side:hover{background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(37,99,235,.2));color:#fff;transform:translateX(-4px) scale(1.02);border-color:rgba(255,255,255,.15);box-shadow:0 10px 20px rgba(124,58,237,.3),inset 0 1px 0 rgba(255,255,255,.2)}
+.side.active{background:linear-gradient(135deg,#4f46e5,#7c3aed,#a78bfa);color:#fff;box-shadow:0 12px 25px rgba(124,58,237,.55),inset 0 2px 4px rgba(255,255,255,.4),inset 0 -3px 6px rgba(0,0,0,.25);transform:translateX(-3px)}
+.ico{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:linear-gradient(145deg,var(--c2),var(--c) 60%,var(--c));box-shadow:0 8px 16px var(--glow),inset 0 2px 4px rgba(255,255,255,.6),inset 0 -3px 6px rgba(0,0,0,.25);transition:.3s}
+.side:hover .ico{transform:scale(1.15) rotate(8deg)}
+.grid-ico{background:linear-gradient(145deg,#1a2456,#0d1230 60%,#141b45);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:18px 8px;text-align:center;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 16px 30px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.22);transition:.35s}
+.grid-ico::before{content:'';position:absolute;top:0;left:15%;width:50px;height:18px;background:rgba(255,255,255,.2);border-radius:99px;filter:blur(6px)}
+.grid-ico:hover{transform:translateY(-9px) rotateX(8deg) scale(1.04);box-shadow:0 28px 45px rgba(99,102,241,.5),inset 0 1px 0 rgba(255,255,255,.3)}
+.grid-ico:hover .ico{transform:scale(1.25) rotate(-10deg)}
+.card{background:linear-gradient(180deg,#ffffff,#eef2ff);color:#0f172a;border-radius:22px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.35),inset 0 1px 0 #fff}
+.input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:12px;font-size:14px;outline:none;background:#fff;color:#0f172a;box-shadow:inset 0 2px 6px rgba(0,0,0,.06)}
+.btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;box-shadow:0 12px 22px rgba(124,58,237,.45),inset 0 2px 4px rgba(255,255,255,.45),inset 0 -3px 6px rgba(0,0,0,.2);transition:.25s}
+.btn:hover{transform:translateY(-2px) scale(1.01)}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn-blue{background:linear-gradient(145deg,#60a5fa,#2563eb 55%,#1d4ed8);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;width:100%;box-shadow:0 12px 22px rgba(37,99,235,.45),inset 0 2px 4px rgba(255,255,255,.45),inset 0 -3px 6px rgba(0,0,0,.2)}
 .badge{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:800}
-.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:45;display:none}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:45;display:none}
 .backdrop.show{display:block}
-.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:16px}
-.icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
-.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
-/* ===== الرسومات - أتقل وأتقل وأتقل - ULTRA 12D ===== */
-.chart-ultra{background:linear-gradient(180deg,#ffffff 0%,#f1f5ff 55%,#e8edff 100%);border-radius:24px;padding:18px;color:#0f172a;position:relative;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.4),0 10px 25px rgba(37,99,235,.18),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(37,99,235,.12),0 0 0 1px rgba(255,255,255,.7);transition:.4s}
-.chart-ultra:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 35px 70px rgba(37,99,235,.35),0 18px 35px rgba(0,0,0,.35),inset 0 1px 0 #fff}
-.chart-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ec4899,#7c3aed);box-shadow:0 2px 12px rgba(37,99,235,.5)}
-.chart-ultra::after{content:'';position:absolute;top:18px;left:18px;width:90px;height:50px;background:radial-gradient(ellipse,rgba(255,255,255,.9),transparent 70%);filter:blur(8px);pointer-events:none}
-.donut-ultra{width:172px;height:172px;border-radius:50%;margin:14px auto 0;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 24px 45px rgba(34,197,94,.4),0 8px 18px rgba(0,0,0,.25),inset 0 -12px 22px rgba(0,0,0,.25),inset 0 10px 18px rgba(255,255,255,.8),inset 0 0 0 3px rgba(255,255,255,.35)}
-.donut-ultra::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(34,197,94,.25);box-shadow:0 0 22px rgba(34,197,94,.25)}
-.donut-ultra::after{content:'';position:absolute;top:12px;left:22px;width:62px;height:26px;background:rgba(255,255,255,.75);border-radius:99px;filter:blur(7px);transform:rotate(-20deg)}
-.donut-in-ultra{width:106px;height:106px;background:radial-gradient(circle at 32% 28%,#ffffff 0%,#eef2ff 55%,#dbeafe 100%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a;box-shadow:inset 0 6px 16px rgba(0,0,0,.14),inset 0 -4px 10px rgba(255,255,255,.9),0 10px 20px rgba(0,0,0,.18),0 0 0 1px rgba(255,255,255,.8);position:relative;z-index:2}
-.pulse-dot{animation:pulse 1.6s ease-in-out infinite}
-@keyframes pulse{0%,100%{r:7;opacity:1}50%{r:11;opacity:.55}}
-.bar-ultra{border-radius:14px 14px 5px 5px;flex:1;position:relative;box-shadow:inset 0 6px 10px rgba(255,255,255,.7),inset 0 -10px 14px rgba(0,0,0,.22),inset -6px 0 10px rgba(0,0,0,.12),0 16px 24px rgba(37,99,235,.32);transition:.35s;overflow:hidden}
-.bar-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,.65),transparent);border-radius:14px 14px 0 0}
-.bar-ultra::after{content:'';position:absolute;top:6px;left:8px;right:8px;height:10px;background:rgba(255,255,255,.6);border-radius:99px;filter:blur(1px)}
-.bar-ultra:hover{transform:translateY(-6px) scale(1.03);filter:brightness(1.12);box-shadow:inset 0 6px 10px rgba(255,255,255,.8),0 22px 32px rgba(37,99,235,.45)}
+.stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:16px;position:relative;z-index:2}
+.icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:14px}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;position:relative;z-index:2}
+.glass-panel{background:linear-gradient(145deg,rgba(26,36,86,.9),rgba(13,18,48,.95));border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.22);position:relative;overflow:hidden}
+.glass-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent)}
+/* ===== رسومات ULTRA 50D ===== */
+.chart-ultra{background:linear-gradient(180deg,#ffffff 0%,#f1f5ff 55%,#e0e7ff 100%);border-radius:26px;padding:18px;color:#0f172a;position:relative;overflow:hidden;box-shadow:0 28px 55px rgba(0,0,0,.4),0 14px 28px rgba(37,99,235,.22),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(37,99,235,.15),0 0 0 1px rgba(255,255,255,.7);transition:.4s}
+.chart-ultra:hover{transform:translateY(-7px) rotateX(3deg) scale(1.01);box-shadow:0 40px 75px rgba(37,99,235,.4)}
+.chart-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ec4899,#7c3aed);box-shadow:0 2px 14px rgba(37,99,235,.55)}
+.donut-ultra{width:178px;height:178px;border-radius:50%;margin:14px auto 0;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 28px 50px rgba(34,197,94,.45),0 10px 20px rgba(0,0,0,.25),inset 0 -14px 24px rgba(0,0,0,.28),inset 0 12px 20px rgba(255,255,255,.85),inset 0 0 0 3px rgba(255,255,255,.4)}
+.donut-ultra::before{content:'';position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(34,197,94,.3);box-shadow:0 0 26px rgba(34,197,94,.3)}
+.donut-ultra::after{content:'';position:absolute;top:13px;left:24px;width:66px;height:28px;background:rgba(255,255,255,.8);border-radius:99px;filter:blur(7px);transform:rotate(-20deg)}
+.donut-in-ultra{width:108px;height:108px;background:radial-gradient(circle at 32% 28%,#ffffff 0%,#eef2ff 55%,#dbeafe 100%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a;box-shadow:inset 0 6px 16px rgba(0,0,0,.14),inset 0 -4px 10px rgba(255,255,255,.9),0 12px 22px rgba(0,0,0,.18);position:relative;z-index:2}
+.pulse-dot{animation:pulseAI 1.6s ease-in-out infinite}
+@keyframes pulseAI{0%,100%{r:7;opacity:1}50%{r:12;opacity:.5}}
+.bar-ultra{border-radius:16px 16px 6px 6px;flex:1;position:relative;box-shadow:inset 0 6px 10px rgba(255,255,255,.7),inset 0 -10px 14px rgba(0,0,0,.22),inset -6px 0 10px rgba(0,0,0,.12),0 18px 26px rgba(37,99,235,.35);transition:.35s;overflow:hidden}
+.bar-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,.7),transparent)}
+.bar-ultra::after{content:'';position:absolute;top:6px;left:8px;right:8px;height:10px;background:rgba(255,255,255,.6);border-radius:99px}
+.bar-ultra:hover{transform:translateY(-7px) scale(1.04);filter:brightness(1.12)}
+.launch-ultra{background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;border:none;padding:10px 18px;border-radius:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 25px rgba(124,58,237,.55),inset 0 2px 4px rgba(255,255,255,.5),inset 0 -3px 6px rgba(0,0,0,.25);transition:.3s;white-space:nowrap}
+.launch-ultra:hover{transform:translateY(-3px) scale(1.05)}
 @media(max-width:900px){
 .stats-grid{grid-template-columns:repeat(3,1fr)}
 .icons-grid{grid-template-columns:repeat(3,1fr)}
@@ -71,21 +87,21 @@ body{background:#070b1f;background:radial-gradient(600px 300px at 80% 0%,#1a2456
 </style>
 </head>
 <body>
-<div style="display:flex;flex-direction:row-reverse">
+<div style="display:flex;flex-direction:row-reverse;position:relative;z-index:2">
 <div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
 <div class="sidebar-wrap" id="sidebarWrap">
 <div class="sidebar" id="sidebar">
-<div style="text-align:center;padding:14px 0 6px"><div style="display:flex;align-items:center;justify-content:center;gap:8px"><div style="width:38px;height:38px;background:linear-gradient(135deg,#4f46e5,#a78bfa);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;box-shadow:0 8px 20px rgba(124,58,237,.6)">F</div><div class="hide-text" style="text-align:right"><div style="font-weight:900;font-size:22px;line-height:1">FARAG<span style="color:#a78bfa">.com</span></div><div class="brand-sub" style="font-size:10px;color:#94a3b8">منصة فرج - Farag Platform</div></div></div></div>
+<div style="text-align:center;padding:16px 0 6px"><div style="display:flex;align-items:center;justify-content:center;gap:9px"><div style="width:42px;height:42px;background:linear-gradient(145deg,#a78bfa,#4f46e5 60%,#312e81);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;box-shadow:0 12px 22px rgba(124,58,237,.6),inset 0 2px 4px rgba(255,255,255,.5)">F</div><div class="hide-text" style="text-align:right"><div style="font-weight:900;font-size:22px;line-height:1;text-shadow:0 4px 12px rgba(124,58,237,.5)">FARAG<span style="color:#a78bfa">.com</span></div><div class="brand-sub" style="font-size:10px;color:#94a3b8">منصة فرج - Farag AI Platform 🤖</div></div></div></div>
 <div id="menu" style="padding:8px 12px 0"></div>
-<button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" class="hide-text" style="margin:16px 12px 0;width:calc(100% - 24px);background:linear-gradient(135deg,#ef4444,#f87171);color:#fff;padding:10px;border:none;border-radius:12px;font-weight:800;cursor:pointer">Reset / تصفير الكل</button>
+<button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" class="hide-text" style="margin:16px 12px 0;width:calc(100% - 24px);background:linear-gradient(145deg,#f87171,#ef4444);color:#fff;padding:11px;border:none;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 10px 20px rgba(239,68,68,.4),inset 0 2px 4px rgba(255,255,255,.4)">Reset / تصفير الكل</button>
 </div>
 <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="فتح / قفل القايمة">☰</button>
 </div>
 
-<div style="flex:1;min-width:0;padding:16px;max-width:1150px;margin:0 auto;padding-bottom:60px;width:100%">
+<div style="flex:1;min-width:0;padding:16px;max-width:1150px;margin:0 auto;padding-bottom:60px;width:100%;position:relative;z-index:2">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-<div><h1 style="font-size:26px;font-weight:900;margin:0">Dashboard - فرج</h1><p style="color:#94a3b8;font-size:11px;margin:4px 0 0">Farag - Cloud + Glow + Float + STATE</p></div>
-<button onclick="go('broadcasting',null)" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:8px 16px;border-radius:12px;font-weight:800;cursor:pointer;white-space:nowrap">Launch 🚀</button>
+<div><h1 style="font-size:28px;font-weight:900;margin:0;text-shadow:0 6px 18px rgba(124,58,237,.5)">Dashboard - فرج 🤖</h1><p style="color:#94a3b8;font-size:11px;margin:4px 0 0">Farag AI - 50D • Cloud + Glow + Float + STATE • ✨</p></div>
+<button class="launch-ultra" onclick="go('broadcasting',null)">Launch 🚀</button>
 </div>
 <div id="app"></div>
 </div>
@@ -156,47 +172,43 @@ else renderDashboard();
 window.scrollTo(0,0);
 }
 function renderSimple(t,s){
-document.getElementById('app').innerHTML='<div style="background:linear-gradient(180deg,#11173a,#0d1230);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:36px;text-align:center;margin-top:16px"><h2 style="font-weight:900;font-size:24px;margin:0">'+t+'</h2><p style="color:#94a3b8;margin-top:10px">'+s+'</p><button class="btn" style="max-width:250px;margin:16px auto 0" onclick="go(\'dashboard\')">Back to Dashboard</button></div>';
+document.getElementById('app').innerHTML='<div class="glass-panel" style="padding:36px;text-align:center;margin-top:16px"><h2 style="font-weight:900;font-size:24px;margin:0">'+t+'</h2><p style="color:#94a3b8;margin-top:10px">'+s+'</p><button class="btn" style="max-width:250px;margin:16px auto 0" onclick="go(\'dashboard\')">Back to Dashboard</button></div>';
 }
 function renderDashboard(){
-let icons=MENU.map(function(m){return '<div class="grid-ico" onclick="go(\''+m.p+'\')"><div class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+';width:48px;height:48px;font-size:22px;margin:0 auto">'+m.i+'</div><div style="font-size:12px;font-weight:700;margin-top:10px;line-height:1.3">'+m.t+'</div></div>'}).join('');
+let icons=MENU.map(function(m){return '<div class="grid-ico" onclick="go(\''+m.p+'\')"><div class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+';width:52px;height:52px;font-size:23px;margin:0 auto">'+m.i+'</div><div style="font-size:12px;font-weight:800;margin-top:11px;line-height:1.3;text-shadow:0 2px 8px rgba(0,0,0,.4)">'+m.t+'</div></div>'}).join('');
 document.getElementById('app').innerHTML=`
 <div class="stats-grid">
-<div class="stat"><div style="font-size:11px;color:#94a3b8">Total Jobs</div><div style="font-size:20px;font-weight:900;margin-top:4px">1060</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8">Completed</div><div style="font-size:20px;font-weight:900;margin-top:4px">1013</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8">Pending</div><div style="font-size:20px;font-weight:900;margin-top:4px">19</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8">Scheduled</div><div style="font-size:20px;font-weight:900;margin-top:4px">28</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8">Total Sent</div><div style="font-size:20px;font-weight:900;margin-top:4px">1,101,208</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8">Recipients</div><div style="font-size:20px;font-weight:900;margin-top:4px">1,423,473</div></div>
+<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Jobs</div><div style="font-size:22px;font-weight:900;margin-top:4px;text-shadow:0 4px 12px rgba(99,102,241,.5)">1060</div></div>
+<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Completed</div><div style="font-size:22px;font-weight:900;margin-top:4px;text-shadow:0 4px 12px rgba(34,197,94,.5)">1013</div></div>
+<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Pending</div><div style="font-size:22px;font-weight:900;margin-top:4px">19</div></div>
+<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Scheduled</div><div style="font-size:22px;font-weight:900;margin-top:4px">28</div></div>
+<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Sent</div><div style="font-size:22px;font-weight:900;margin-top:4px">1,101,208</div></div>
+<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Recipients</div><div style="font-size:22px;font-weight:900;margin-top:4px">1,423,473</div></div>
 </div>
-<div style="background:linear-gradient(180deg,#11173a,#0d1230);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px;margin-top:14px;text-align:right">
-<h2 style="font-weight:900;font-size:20px;margin:0">المعادلة - منصة فرج</h2>
+<div class="glass-panel" style="margin-top:14px;text-align:right">
+<h2 style="font-weight:900;font-size:21px;margin:0">المعادلة - منصة فرج 🤖</h2>
 <div style="color:#e2e8f0;font-size:14px;line-height:2;margin-top:8px"><div>Create Template = بتعمل القالب</div><div>Subscriber Manager = بتشوف هنبعت لمين</div><div>Launch Utility / Broadcasting = بتبعت الحملة</div><div>Broadcast Job History = بنشوف الحملة حصل فيها ايه</div></div>
 </div>
-<div style="background:linear-gradient(180deg,#11173a,#0d1230);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:18px;margin-top:14px">
-<h2 style="font-weight:900;font-size:18px;margin:0;text-align:right">كل الايقونات</h2>
+<div class="glass-panel" style="margin-top:14px">
+<h2 style="font-weight:900;font-size:18px;margin:0;text-align:right">كل الايقونات ✨</h2>
 <div class="icons-grid">${icons}</div>
 </div>
 
-<!-- ===== الرسومات - ULTRA أتقل وأتقل ===== -->
 <div class="charts-grid">
-<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● 7-Day Activity - Line Chart</b><span style="font-size:10px;background:#eff6ff;color:#2563eb;padding:4px 8px;border-radius:99px;font-weight:800;box-shadow:0 4px 10px rgba(37,99,235,.2)">LIVE 🔴</span></div>
-<svg viewBox="0 0 600 230" style="width:100%;height:195px;margin-top:8px;filter:drop-shadow(0 14px 18px rgba(37,99,235,.22))">
-<defs><linearGradient id="lgBlue2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.42"/><stop offset="55%" stop-color="#60a5fa" stop-opacity="0.14"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient><linearGradient id="lgGreen2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.32"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient><filter id="glowB2"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="glowG2"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,230 L0,230 Z" fill="url(#lgBlue2)"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110 L600,230 L0,230 Z" fill="url(#lgGreen2)"/>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" filter="url(#glowB2)"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" filter="url(#glowG2)"/>
-<circle class="pulse-dot" cx="0" cy="20" r="7" fill="#fff" stroke="#2563eb" stroke-width="3.5"/>
-<circle cx="0" cy="20" r="3" fill="#2563eb"/>
-<circle class="pulse-dot" cx="600" cy="110" r="7" fill="#fff" stroke="#22c55e" stroke-width="3.5"/>
-<circle cx="600" cy="110" r="3" fill="#22c55e"/>
+<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● 7-Day Activity - Line Chart</b><span style="font-size:10px;background:#eff6ff;color:#2563eb;padding:4px 8px;border-radius:99px;font-weight:800;box-shadow:0 4px 10px rgba(37,99,235,.2)">LIVE 🔴 AI</span></div>
+<svg viewBox="0 0 600 230" style="width:100%;height:195px;margin-top:8px;filter:drop-shadow(0 14px 18px rgba(37,99,235,.25))">
+<defs><linearGradient id="lgBlue3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.45"/><stop offset="55%" stop-color="#60a5fa" stop-opacity="0.16"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient><linearGradient id="lgGreen3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.35"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient><filter id="glowB3"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,230 L0,230 Z" fill="url(#lgBlue3)"/>
+<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110 L600,230 L0,230 Z" fill="url(#lgGreen3)"/>
+<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" filter="url(#glowB3)"/>
+<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" filter="url(#glowB3)"/>
+<circle class="pulse-dot" cx="0" cy="20" r="7" fill="#fff" stroke="#2563eb" stroke-width="3.5"/><circle cx="0" cy="20" r="3" fill="#2563eb"/>
+<circle class="pulse-dot" cx="600" cy="110" r="7" fill="#fff" stroke="#22c55e" stroke-width="3.5"/><circle cx="600" cy="110" r="3" fill="#22c55e"/>
 <circle cx="510" cy="175" r="6" fill="#fff" stroke="#2563eb" stroke-width="3"/>
-<circle cx="340" cy="175" r="5" fill="#fff" stroke="#2563eb" stroke-width="2.5"/>
 </svg><div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;font-weight:800"><span>🟢 Comments</span><span>🔵 Broadcast</span></div></div>
 
 <div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Broadcast Campaigns - Donut</b><span class="badge" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d;box-shadow:0 6px 14px rgba(34,197,94,.35)">677 Completed</span></div>
-<div class="donut-ultra" style="background:conic-gradient(from 200deg,#16a34a 0 55%,#22c55e 55% 92%,#4ade80 92% 96%,#ef4444 96% 100%)"><div class="donut-in-ultra"><b style="font-size:26px;letter-spacing:-.5px;text-shadow:0 2px 8px rgba(0,0,0,.1)">705</b><span style="font-size:10px;color:#64748b;font-weight:800">Total</span></div></div>
+<div class="donut-ultra" style="background:conic-gradient(from 200deg,#16a34a 0 55%,#22c55e 55% 92%,#4ade80 92% 96%,#ef4444 96% 100%)"><div class="donut-in-ultra"><b style="font-size:26px;letter-spacing:-.5px">705</b><span style="font-size:10px;color:#64748b;font-weight:800">Total</span></div></div>
 <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:900;margin-top:14px"><span style="background:#f0fdf4;padding:5px 10px;border-radius:99px">🟢 677</span><span style="background:#fef2f2;padding:5px 10px;border-radius:99px">🔴 28</span><span style="background:#fff7ed;padding:5px 10px;border-radius:99px">🟠 0</span></div></div>
 </div>
 
@@ -213,14 +225,14 @@ document.getElementById('app').innerHTML=`
 </div><div style="display:flex;justify-content:space-between;font-size:10px;color:#64748b;font-weight:800;margin-top:10px"><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div>
 
 <div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Subscribers Rate - Radial</b><span class="badge" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1d4ed8;box-shadow:0 6px 14px rgba(37,99,235,.3)">4.7% of leads</span></div>
-<div class="donut-ultra" style="background:conic-gradient(from 270deg,#2563eb 0 4.7%,#60a5fa 4.7% 5.8%,#e5e7eb 5.8% 100%);box-shadow:0 24px 45px rgba(37,99,235,.38),0 8px 18px rgba(0,0,0,.25),inset 0 -12px 22px rgba(0,0,0,.22),inset 0 10px 18px rgba(255,255,255,.8)"><div class="donut-in-ultra"><b style="font-size:24px">4.7%</b><span style="font-size:10px;color:#64748b;font-weight:800">Subscribers</span></div></div>
+<div class="donut-ultra" style="background:conic-gradient(from 270deg,#2563eb 0 4.7%,#60a5fa 4.7% 5.8%,#e5e7eb 5.8% 100%);box-shadow:0 28px 50px rgba(37,99,235,.4),0 10px 20px rgba(0,0,0,.25),inset 0 -14px 24px rgba(0,0,0,.22),inset 0 12px 20px rgba(255,255,255,.85)"><div class="donut-in-ultra"><b style="font-size:24px">4.7%</b><span style="font-size:10px;color:#64748b;font-weight:800">Subscribers</span></div></div>
 <div style="text-align:center;font-size:12px;color:#64748b;margin-top:14px;font-weight:800"><b style="color:#0f172a;font-size:13px">75,177</b> / 1,592,739</div></div>
 </div>
 `;
 }
 function renderTemplate(){
 let list=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);
-let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Create Template - المخزن الرئيسي - فرج</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b><div style="margin-top:10px">';
+let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Create Template - المخزن الرئيسي - فرج 🤖</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b><div style="margin-top:10px">';
 list.forEach(function(t){html+='<div style="display:flex;justify-content:space-between;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:10px;margin-bottom:8px"><div><b>'+t.name+'</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">'+t.type+'</span><div style="font-size:12px;color:#64748b">'+(t.title||'')+' - '+(t.subtitle||'')+'</div></div><button onclick="delTpl('+t.id+')" style="background:none;border:none;color:#ef4444;font-weight:800;cursor:pointer">🗑 Delete</button></div>'});
 html+='</div></div>';
 document.getElementById('app').innerHTML=html;
