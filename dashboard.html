@@ -58,8 +58,6 @@ body::after{content:'';position:fixed;bottom:-110px;right:8%;width:400px;height:
 .bar-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,.7),transparent)}
 .bar-ultra:hover{transform:translateY(-7px) scale(1.04);filter:brightness(1.12)}
 .launch-ultra{background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;border:none;padding:10px 18px;border-radius:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 25px rgba(124,58,237,.55),inset 0 2px 4px rgba(255,255,255,.5);white-space:nowrap}
-
-/* ===== Floating Buttons - نفس الشكل والمكان بالظبط زي الصورة ===== */
 .fab-wrap{position:fixed;left:14px;top:18px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:10px}
 .fab-ai{width:62px;height:62px;border-radius:50%;background:linear-gradient(145deg,#8b5cf6,#7c3aed 55%,#5b21b6);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;cursor:pointer;position:relative;box-shadow:0 14px 28px rgba(124,58,237,.55),0 6px 14px rgba(0,0,0,.35),inset 0 3px 6px rgba(255,255,255,.55),inset 0 -4px 8px rgba(0,0,0,.25);transition:.3s;border:2px solid rgba(255,255,255,.25)}
 .fab-ai:hover{transform:scale(1.1) rotate(-5deg)}
@@ -73,6 +71,9 @@ body::after{content:'';position:fixed;bottom:-110px;right:8%;width:400px;height:
 .ai-popup.show{display:block}
 .wa-popup{position:fixed;left:86px;top:92px;width:320px;max-width:calc(100vw - 110px);background:#fff;color:#0f172a;border-radius:20px;padding:16px;z-index:9999;display:none;box-shadow:0 25px 50px rgba(0,0,0,.6)}
 .wa-popup.show{display:block}
+table.farag-table{width:100%;border-collapse:collapse;background:#fff;color:#0f172a;border-radius:16px;overflow:hidden}
+table.farag-table th{background:#f1f5f9;padding:12px;text-align:right;font-size:12px;font-weight:900;color:#475569}
+table.farag-table td{padding:12px;border-top:1px solid #e2e8f0;font-size:13px;font-weight:700}
 @media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr)}.icons-grid{grid-template-columns:repeat(3,1fr)}.charts-grid{grid-template-columns:1fr}}
 @media(max-width:768px){
 .sidebar-wrap{position:fixed;right:0;top:0;height:100vh;transform:translateX(105%);transition:.4s;box-shadow:-20px 0 50px rgba(0,0,0,.5)}
@@ -94,7 +95,6 @@ body::after{content:'';position:fixed;bottom:-110px;right:8%;width:400px;height:
 </div>
 <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="فتح / قفل القايمة">☰</button>
 </div>
-
 <div style="flex:1;min-width:0;padding:16px;max-width:1150px;margin:0 auto;padding-bottom:60px;width:100%;position:relative;z-index:2">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
 <div><h1 style="font-size:28px;font-weight:900;margin:0;text-shadow:0 6px 18px rgba(124,58,237,.5)">Dashboard - فرج 🤖🌍</h1><p style="color:#94a3b8;font-size:11px;margin:4px 0 0">Farag AI - Best AI Platform in the World • بعون الله هنوصل للعالمية</p></div>
@@ -109,8 +109,6 @@ body::after{content:'';position:fixed;bottom:-110px;right:8%;width:400px;height:
 <div id="app"></div>
 </div>
 </div>
-
-<!-- ===== Floating Buttons - نفس الصورة بالظبط ===== -->
 <div class="fab-wrap">
 <div class="fab-ai" onclick="toggleAiPopup()" title="Farag AI">✦</div>
 <div class="fab-wa" onclick="toggleWaPopup()" title="WhatsApp">
@@ -118,8 +116,6 @@ body::after{content:'';position:fixed;bottom:-110px;right:8%;width:400px;height:
 </div>
 <div class="fab-count">0</div>
 </div>
-
-<!-- AI Popup -->
 <div class="ai-popup" id="aiPopup">
 <div style="display:flex;justify-content:space-between;align-items:center"><b>✦ Farag AI</b><span onclick="toggleAiPopup()" style="cursor:pointer;font-size:18px">✕</span></div>
 <p style="font-size:13px;color:#cbd5e1;line-height:1.8;margin:10px 0 0">أنا فرج AI 🤖<br>اسألني أي حاجة، هقولك تعملها ازاي، بعون الله هنخليها أفخم منصة في العالم.</p>
@@ -127,15 +123,12 @@ body::after{content:'';position:fixed;bottom:-110px;right:8%;width:400px;height:
 <button onclick="fabAiSend()" style="width:100%;margin-top:8px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:10px;border-radius:99px;font-weight:900;cursor:pointer">ابعت لـ AI ✦</button>
 <div id="fabAiAns" style="display:none;margin-top:10px;background:rgba(255,255,255,.08);border-radius:12px;padding:10px;font-size:13px;line-height:1.7"></div>
 </div>
-
-<!-- WhatsApp Popup -->
 <div class="wa-popup" id="waPopup">
 <div style="display:flex;justify-content:space-between;align-items:center"><b>💬 WhatsApp</b><span onclick="toggleWaPopup()" style="cursor:pointer;font-size:18px">✕</span></div>
 <p style="font-size:13px;color:#475569;margin:10px 0">كلم عملاءك على الواتساب على طول، من غير ما تطلع من المنصة.</p>
 <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px;font-size:13px">🟢 <b>متصل الآن</b><br>0 رسايل جديدة - كل حاجة مترد عليها</div>
 <button onclick="alert('📱 بيفتح الواتساب...')" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#22c55e,#15803d);color:#fff;border:none;padding:11px;border-radius:99px;font-weight:900;cursor:pointer">افتح واتساب 📱</button>
 </div>
-
 <script>
 function toggleAiPopup(){document.getElementById('aiPopup').classList.toggle('show');document.getElementById('waPopup').classList.remove('show');}
 function toggleWaPopup(){document.getElementById('waPopup').classList.toggle('show');document.getElementById('aiPopup').classList.remove('show');}
@@ -189,7 +182,7 @@ else if(p==='posting') renderPosting();
 else if(p==='media') renderMedia();
 else if(p==='subscriber') renderSimple('🫂 Subscriber Manager','بتشوف هنبعت لمين - 1,592,739 مشترك - 75,177 Subscribers');
 else if(p==='history') renderSimple('🕘 Broadcast Job History','بنشوف الحملة حصل فيها ايه - وصفات 15/15 Done - جونام 1/1 Done');
-else if(p==='facebook') renderSimple('🔗 Facebook & Instagram','177 صفحة مربوطة - 177 Enabled');
+else if(p==='facebook') renderFacebook();
 else if(p==='comment') renderSimple('💬 Comment growth tools','1,141 تعليق النهاردة - 97.5% اترد عليه');
 else if(p==='bot') renderSimple('🤖 Bot manager','البوت شغال - بيرد على التعليقات والرسايل');
 else if(p==='ai') renderSimple('✦ AI Sales Agent','وكيل المبيعات - جاهز يبيع بدالك - بعون الله هنبيع للعالم كله');
@@ -262,6 +255,56 @@ document.getElementById('app').innerHTML=`
 <div style="text-align:center;font-size:12px;color:#64748b;margin-top:14px;font-weight:800"><b style="color:#0f172a;font-size:13px">75,177</b> / 1,592,739</div></div>
 </div>
 `;
+}
+/* ===== Facebook & Instagram - التبويبة دي بس اللي اتعدلت ===== */
+let fbConnectType='facebook';
+function renderFacebook(){
+let pages=DB.get('farag_pages',[{n:'انغام',t:'Facebook',s:'Connected',e:'🎤',c:'#1877F2'},{n:'بهية',t:'Instagram',s:'Connected',e:'💃',c:'#E1306C'}]);
+let rows=pages.map(function(p){return '<tr><td style="display:flex;align-items:center;gap:10px"><span style="width:36px;height:36px;border-radius:50%;background:'+p.c+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px">'+p.e+'</span><b>'+p.n+'</b></td><td>'+p.t+'</td><td><span class="badge" style="background:#dcfce7;color:#15803d">● '+p.s+'</span></td></tr>'}).join('');
+document.getElementById('app').innerHTML=`
+<div class="glass-panel" style="margin-top:14px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">
+<div><h2 style="font-weight:900;font-size:22px;margin:0">🔗 Facebook & Instagram - FARAG.com</h2><p style="color:#94a3b8;font-size:13px;margin:6px 0 0">دي اهم صفحة في المنصة كلها 👌 • دلوقتي: ${pages.length} صفحات مربوطة</p></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap">
+<button onclick="openFbConnect('facebook')" style="background:linear-gradient(135deg,#1877F2,#60a5fa);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer;box-shadow:0 10px 20px rgba(24,119,242,.4)">+ Connect Page</button>
+<button onclick="openFbConnect('instagram')" style="background:linear-gradient(135deg,#E1306C,#F472B6);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer;box-shadow:0 10px 20px rgba(225,48,108,.4)">+ Connect Instagram</button>
+</div></div>
+<div id="fbConnectBox" style="display:none;margin-top:14px;background:rgba(255,255,255,.07);border:1px solid rgba(167,139,250,.4);border-radius:16px;padding:14px"></div>
+</div>
+<div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>PAGE</th><th>TYPE</th><th>STATUS</th></tr></thead><tbody>${rows}</tbody></table></div>
+<div class="card" style="margin-top:12px"><b>الربط الحقيقي بيتعمل ازاي؟ - 4 خطوات، مفيش غيرهم</b>
+<div style="font-size:13px;color:#475569;line-height:2;margin-top:8px">
+<div><b>الخطوة 1:</b> بتدوس Connect Page - المنصة بتفتحلك صفحة فيسبوك، بتقولك "سجل دخول بالفيسبوك بتاعك"</div>
+<div><b>الخطوة 2:</b> بتختار الصفحات - فيسبوك بيوريك كل الصفحات اللي انت ادمن فيها، وانت بتختار: انغام ولا بهية ولا الاتنين؟</div>
+<div><b>الخطوة 3:</b> فيسبوك بيدينا التوكن - Page Access Token، زي كلمة سر الصفحة. من غيرها المنصة متقدرش تبعت ولا ترد. الورقة دي بتتخزن في Token Checker</div>
+<div><b>الخطوة 4:</b> الصفحة بتتضاف هنا - اول ما الورقة تتخزن، الصفحة بتظهر هنا في الجدول، وحالتها بتبقى Connected</div>
+<div style="margin-top:8px;background:#fef3c7;border-radius:12px;padding:10px"><b>الانستجرام نفس الكلام بالظبط،</b> بس لازم الانستجرام يكون مربوط بصفحة فيسبوك الاول، عشان فيسبوك هو اللي بيدينا توكن الانستجرام.</div>
+</div></div>
+<div class="card" style="margin-top:12px;background:linear-gradient(180deg,#fefce8,#fff7ed)"><b>كل الصفحات ولا تختار بايدك؟</b>
+<div style="font-size:13px;color:#475569;line-height:1.9;margin-top:8px">
+<div><b>الاختيار الاول - كل الصفحات:</b> الاكونت ده هيشترك بكل الصفحات اللي انت انشأتها قبل كده، واللي هتنشئها في المستقبل. اي صفحة جديدة هتتربط لوحدها.</div>
+<div><b>الاختيار التاني - اختار بايدك:</b> تختار الصفحات اللي انت عايزها بس. مثلا انغام بس، وتسيب باقي الصفحات.</div>
+<div style="margin-top:6px"><b>نصيحة فرج:</b> اختار <b>اختار بايدك</b> في الاول، عشان تتحكم في انهي صفحة تتربط، وبعد ما الدنيا تستقر، نبقى نعملها كل الصفحات.</div>
+</div></div>
+`;
+}
+function openFbConnect(type){
+fbConnectType=type;
+let box=document.getElementById('fbConnectBox');box.style.display='block';
+box.innerHTML='<b>'+(type==='facebook'?'+ Connect Page - ربط صفحة فيسبوك':'+ Connect Instagram - ربط اكونت انستجرام')+'</b><p style="font-size:13px;color:#cbd5e1;line-height:1.9;margin:8px 0 0">الخطوة 1: سجل دخول بالفيسبوك بتاعك<br>الخطوة 2: اختار: كل الصفحات ولا تختار بايدك؟</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><label style="background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);border-radius:14px;padding:12px;cursor:pointer;display:block"><input type="radio" name="fbChoice" value="all"> <b>كل الصفحات</b><div style="font-size:11px;color:#94a3b8;margin-top:4px">كل اللي انشأتها واللي هتنشئها بعد كده</div></label><label style="background:rgba(255,255,255,.08);border:2px solid #a78bfa;border-radius:14px;padding:12px;cursor:pointer;display:block"><input type="radio" name="fbChoice" value="manual" checked> <b>اختار بايدك ✅</b><div style="font-size:11px;color:#94a3b8;margin-top:4px">اختار الصفحات اللي انت عايزها بس</div></label></div><input id="newPageName" class="input" style="margin-top:10px;background:rgba(255,255,255,.95)" placeholder="اكتب اسم الصفحة... مثلا: جنه"><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><label style="color:#e2e8f0;font-size:13px"><input type="checkbox" checked> صفحة انغام</label><label style="color:#e2e8f0;font-size:13px"><input type="checkbox"> صفحة بهية</label><label style="color:#e2e8f0;font-size:13px"><input type="checkbox"> صفحة جنه</label></div><button onclick="doFbConnect()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px;border-radius:99px;font-weight:900;cursor:pointer">ابدأ الربط - Connect</button><div style="font-size:11px;color:#94a3b8;margin-top:8px;text-align:center">دلوقتي ده ربط تجريبي جوة المنصة - الربط الحقيقي بفيسبوك هنعمله بعدين، وهيبقى فيه نفس الاختيارين دول بالظبط.</div>';
+box.scrollIntoView({behavior:'smooth'});
+}
+function doFbConnect(){
+let n=(document.getElementById('newPageName').value||'').trim();
+let choice=document.querySelector('input[name="fbChoice"]:checked');
+let mode=choice?choice.value:'manual';
+if(!n){alert('اكتب اسم الصفحة الاول - مثلا: جنه');return;}
+let a=DB.get('farag_pages',[]);
+let isIg=fbConnectType==='instagram';
+a.push({n:n,t:isIg?'Instagram':'Facebook',s:'Connected',e:isIg?'💃':'✨',c:isIg?'#E1306C':'#1877F2'});
+DB.set('farag_pages',a);
+alert('✅ اتربطت: '+n+' - '+(mode==='all'?'كل الصفحات':'اختار بايدك')+' - التوكن اتخزن في Token Checker');
+renderFacebook();
 }
 function renderTemplate(){
 let list=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);
