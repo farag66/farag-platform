@@ -3,33 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Farag - Dark Blue Platform</title>
+<title>Farag - Platform</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 *{box-sizing:border-box}
-body{background:#0a1628;background:linear-gradient(180deg,#0a1628 0%,#0f2342 40%,#0a1628 100%);font-family:Inter,system-ui;margin:0;min-height:100vh;color:#fff}
+body{background:#0a1628;background:linear-gradient(180deg,#0a1628,#0f2342 45%,#0a1628);font-family:Inter,system-ui;margin:0;min-height:100vh;color:#fff}
 .sidebar{background:#0c1e3a;border-left:1px solid rgba(255,255,255,.08)}
-.card{background:#fff;color:#0f172a;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 1px rgba(255,255,255,.1);padding:18px;transition:.4s}
+.card{background:#fff;color:#0f172a;border-radius:22px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:18px;transition:.4s}
 .card:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 24px 50px rgba(37,99,235,.45)}
-.side{display:flex;align-items:center;gap:10px;padding:10px 10px;border-radius:12px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer;white-space:nowrap}
+.side{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer}
 .side:hover{background:rgba(255,255,255,.08);color:#fff}
 .side.active{background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;box-shadow:0 8px 20px rgba(37,99,235,.5)}
 .sec{font-size:9px;letter-spacing:2px;font-weight:900;color:#64748b;margin:16px 8px 8px}
 .badge{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:800}
 .input{width:100%;border:1px solid #e2e8f0;border-radius:12px;padding:11px 12px;font-size:14px;outline:none;background:#fff;color:#0f172a}
-.btn{width:100%;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer;box-shadow:0 8px 20px rgba(37,99,235,.4)}
+.btn{width:100%;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer}
 .btn2{background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer;flex:1}
 .bar{border-radius:8px 8px 0 0;flex:1}
 .donut{width:150px;height:150px;border-radius:50%;margin:12px auto 0;display:flex;align-items:center;justify-content:center}
 .donut-in{width:100px;height:100px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a}
-.topbar{background:rgba(255,255,255,.95);color:#0f172a;backdrop-filter:blur(10px)}
+.topbar{background:rgba(255,255,255,.96);color:#0f172a}
+.float{width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;font-size:22px;color:#fff}
 </style>
 </head>
 <body>
 <div style="display:flex">
-<!-- SIDEBAR -->
 <div class="sidebar" style="width:285px;flex-shrink:0;height:100vh;position:sticky;top:0;padding:10px;overflow-y:auto">
-<div style="display:flex;align-items:center;gap:8px;padding:10px"><div style="width:38px;height:38px;background:linear-gradient(135deg,#2563eb,#60a5fa);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px;box-shadow:0 8px 20px rgba(37,99,235,.5)">F</div><div><div style="font-weight:900;font-size:20px;line-height:1">farag <span style="font-size:9px;background:#2563eb;padding:2px 6px;border-radius:99px">ChatBot AI</span></div><div style="font-size:10px;color:#94a3b8">Farag Platform</div></div></div>
+<div style="display:flex;align-items:center;gap:8px;padding:10px"><div style="width:38px;height:38px;background:linear-gradient(135deg,#2563eb,#60a5fa);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:18px">F</div><div><div style="font-weight:900;font-size:20px;line-height:1">farag <span style="font-size:9px;background:#2563eb;padding:2px 6px;border-radius:99px">ChatBot AI</span></div><div style="font-size:10px;color:#94a3b8">Farag Platform</div></div></div>
 <div class="sec">FARAG TOOLS</div>
 <div class="side active" onclick="go('dashboard',this)">💠 Dashboard</div>
 <div class="side" onclick="go('contacts',this)">🫂 Contacts</div>
@@ -47,17 +47,15 @@ body{background:#0a1628;background:linear-gradient(180deg,#0a1628 0%,#0f2342 40%
 <button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" style="margin:20px 8px 0;width:calc(100% - 16px);background:linear-gradient(135deg,#ef4444,#f87171);color:#fff;padding:11px;border:none;border-radius:12px;font-weight:800;cursor:pointer">Reset / تصفير الكل</button>
 </div>
 
-<!-- MAIN -->
 <div style="flex:1;min-width:0">
-<div class="topbar" style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30"><span style="font-size:22px">☰</span><div style="display:flex;align-items:center;gap:8px"><span style="background:#e0f2fe;padding:5px 10px;border-radius:99px;font-size:12px;font-weight:800">AR</span><span style="font-size:18px">🌙</span><span style="font-size:18px">🔔</span><b>فرج ⌄</b></div></div>
+<div class="topbar" style="padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:30"><span style="font-size:22px">☰</span><div style="display:flex;align-items:center;gap:8px"><span style="background:#e0f2fe;padding:5px 10px;border-radius:99px;font-size:12px;font-weight:800">AR</span><span>🌙</span><span>🔔</span><b>فرج ⌄</b></div></div>
 <div id="app" style="padding:16px;max-width:1100px;margin:0 auto;padding-bottom:80px"></div>
 </div>
 </div>
 
-<!-- FLOATING -->
 <div style="position:fixed;bottom:20px;right:16px;display:flex;flex-direction:column;gap:12px;z-index:40">
-<button onclick="alert('✦ AI Assistant - جاهز اساعدك')" style="width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;font-size:22px;color:#fff;background:linear-gradient(135deg,#7c3aed,#a78bfa);box-shadow:0 10px 25px rgba(124,58,237,.6)">✦</button>
-<button onclick="alert('💬 WhatsApp Chat - افتح الواتس')" style="width:50px;height:50px;border-radius:50%;border:none;cursor:pointer;font-size:22px;color:#fff;background:linear-gradient(135deg,#22c55e,#4ade80);box-shadow:0 10px 25px rgba(34,197,94,.6)">💬</button>
+<button class="float" onclick="alert('✦ AI Assistant - جاهز اساعدك')" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);box-shadow:0 10px 25px rgba(124,58,237,.6)">✦</button>
+<button class="float" onclick="alert('💬 WhatsApp Chat')" style="background:linear-gradient(135deg,#22c55e,#4ade80);box-shadow:0 10px 25px rgba(34,197,94,.6)">💬</button>
 </div>
 
 <script>
@@ -71,10 +69,9 @@ else if(p==='broadcasting') renderBroadcast('MARKETING');
 else if(p==='utility') renderBroadcast('UTILITY');
 else if(p==='posting') renderPosting();
 else if(p==='media') renderMedia();
-else if(p==='contacts') renderSimple('🫂 Contacts','عندك 1,592,739 مشترك - 177 صفحة - كلهم هنا');
-else if(p==='campaigns') renderSimple('📣 Campaigns','عندك 705 حملة - 677 Done - 28 Failed');
+else if(p==='contacts') renderSimple('🫂 Contacts','عندك 1,592,739 مشترك - 177 صفحة');
+else if(p==='campaigns') renderSimple('📣 Campaigns','705 حملة - 677 Done - 28 Failed');
 else if(p==='history') renderSimple('🕘 Broadcast Job History','وصفات 15/15 Done - جونام 1/1 Done');
-else renderDashboard();
 window.scrollTo(0,0);
 }
 function renderSimple(t,s){
@@ -84,48 +81,29 @@ function renderDashboard(){
 document.getElementById('app').innerHTML=`
 <h1 style="font-size:30px;font-weight:900;margin:0;color:#fff">Command Center</h1>
 <p style="color:#94a3b8;font-size:12px;margin:4px 0 16px">Thursday, November 12, 2026 - 🟢 Live</p>
-
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 <div class="card"><div style="font-size:10px;font-weight:800;color:#64748b">TOTAL SUBSCRIBERS</div><div style="font-size:32px;font-weight:900">1,592,739</div><div style="font-size:11px">f 1,592,739 FB · 0 IG</div></div>
 <div class="card"><div style="font-size:10px;font-weight:800;color:#64748b">PAGES</div><div style="font-size:32px;font-weight:900">177</div><div style="font-size:11px;color:#16a34a;font-weight:800">● 177 Enabled · 0 Disabled</div></div>
 <div class="card"><div style="font-size:10px;font-weight:800;color:#64748b">TODAY</div><div style="font-size:32px;font-weight:900">180</div><div style="font-size:11px"><span style="background:#dcfce7;color:#15803d;padding:4px 8px;border-radius:8px;font-weight:800">↑ +41.7% vs yesterday</span></div></div>
 <div class="card"><div style="font-size:10px;font-weight:800;color:#64748b">MESSAGES SENT</div><div style="font-size:32px;font-weight:900">865,990</div><div style="font-size:11px;color:#64748b">Broadcast · 30 days</div></div>
 </div>
-
 <div style="background:#fff;color:#0f172a;border-radius:18px;padding:14px;margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div><b style="font-size:20px">75,177</b><span style="color:#64748b"> / 1,592,739</span><div style="font-size:11px;color:#64748b">Subscribers - broadcasts go to these only</div></div><span style="background:#dcfce7;color:#15803d;padding:5px 10px;border-radius:99px;font-size:11px;font-weight:800">4.7% of leads</span></div>
 <div style="display:flex;height:12px;border-radius:99px;overflow:hidden;background:rgba(255,255,255,.2);margin-top:8px"><div style="width:4.7%;background:#22c55e"></div><div style="width:69.7%;background:#f59e0b"></div><div style="width:25.6%;background:#f43f5e"></div></div>
 <div style="display:flex;gap:16px;font-size:11px;color:#cbd5e1;margin-top:8px"><span>🟢 Subscribers 75,177</span><span>🟡 Ready 1,109,765</span><span>🔴 Unavailable 407,797</span></div>
-
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
-<div class="card"><b>● 7-Day Activity - Line Chart</b>
-<svg viewBox="0 0 600 220" style="width:100%;height:200px;margin-top:10px">
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,220 L0,220 Z" fill="#2563eb" opacity="0.12"/>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="3"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="3"/>
-</svg><div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b"><span>🔵 Broadcast</span><span>🟢 Comments</span></div></div>
-
-<div class="card"><b>● Broadcast Campaigns - Donut</b> <span class="badge" style="background:#dcfce7;color:#15803d">677 Completed</span>
-<div class="donut" style="background:conic-gradient(#22c55e 0 96%, #ef4444 96% 100%)"><div class="donut-in"><b style="font-size:22px">705</b><span style="font-size:10px;color:#64748b">Total</span></div></div>
-<div style="display:flex;justify-content:space-between;font-size:12px;margin-top:10px"><span>🟢 677</span><span>🔴 28</span><span>🟠 0</span></div></div>
+<div class="card"><b>● 7-Day Activity - Line Chart</b><svg viewBox="0 0 600 220" style="width:100%;height:200px;margin-top:10px"><path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,220 L0,220 Z" fill="#2563eb" opacity="0.12"/><path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="3"/><path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="3"/></svg><div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b"><span>🔵 Broadcast</span><span>🟢 Comments</span></div></div>
+<div class="card"><b>● Broadcast Campaigns - Donut</b> <span class="badge" style="background:#dcfce7;color:#15803d">677 Completed</span><div class="donut" style="background:conic-gradient(#22c55e 0 96%, #ef4444 96% 100%)"><div class="donut-in"><b style="font-size:22px">705</b><span style="font-size:10px;color:#64748b">Total</span></div></div><div style="display:flex;justify-content:space-between;font-size:12px;margin-top:10px"><span>🟢 677</span><span>🔴 28</span><span>🟠 0</span></div></div>
 </div>
-
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-<div class="card"><b>● New Subscribers - Bar Chart</b>
-<div style="display:flex;align-items:end;gap:8px;height:180px;margin-top:12px">
-<div class="bar" style="height:30%;background:#93c5fd"></div><div class="bar" style="height:45%;background:#60a5fa"></div><div class="bar" style="height:35%;background:#93c5fd"></div><div class="bar" style="height:60%;background:#3b82f6"></div><div class="bar" style="height:80%;background:#2563eb"></div><div class="bar" style="height:95%;background:#1d4ed8"></div><div class="bar" style="height:100%;background:#1e40af"></div>
-</div><div style="display:flex;justify-content:space-between;font-size:10px;color:#64748b;margin-top:6px"><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div>
-
-<div class="card"><b>● Subscribers Rate - Radial</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">4.7% of leads</span>
-<div class="donut" style="background:conic-gradient(#2563eb 0 4.7%, #e5e7eb 4.7% 100%)"><div class="donut-in"><b style="font-size:20px">4.7%</b><span style="font-size:10px;color:#64748b">Subscribers</span></div></div>
-<div style="text-align:center;font-size:12px;color:#64748b;margin-top:10px"><b style="color:#0f172a">75,177</b> / 1,592,739</div></div>
+<div class="card"><b>● New Subscribers - Bar Chart</b><div style="display:flex;align-items:end;gap:8px;height:180px;margin-top:12px"><div class="bar" style="height:30%;background:#93c5fd"></div><div class="bar" style="height:45%;background:#60a5fa"></div><div class="bar" style="height:35%;background:#93c5fd"></div><div class="bar" style="height:60%;background:#3b82f6"></div><div class="bar" style="height:80%;background:#2563eb"></div><div class="bar" style="height:95%;background:#1d4ed8"></div><div class="bar" style="height:100%;background:#1e40af"></div></div><div style="display:flex;justify-content:space-between;font-size:10px;color:#64748b;margin-top:6px"><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div>
+<div class="card"><b>● Subscribers Rate - Radial</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">4.7% of leads</span><div class="donut" style="background:conic-gradient(#2563eb 0 4.7%, #e5e7eb 4.7% 100%)"><div class="donut-in"><b style="font-size:20px">4.7%</b><span style="font-size:10px;color:#64748b">Subscribers</span></div></div><div style="text-align:center;font-size:12px;color:#64748b;margin-top:10px"><b style="color:#0f172a">75,177</b> / 1,592,739</div></div>
 </div>
-
 <div class="card" style="margin-top:12px"><b>● Recent Broadcasts</b><table style="width:100%;text-align:left;font-size:13px;margin-top:10px"><tr style="color:#64748b;font-size:11px"><th>CAMPAIGN</th><th style="text-align:center">SENT</th><th style="text-align:right">STATUS</th></tr><tr><td style="padding:10px 0;font-weight:700">وصفات · 18:28 30-10-2026</td><td style="text-align:center;font-weight:700">15 / 15</td><td style="text-align:right"><span class="badge" style="background:#dcfce7;color:#15803d">● Done</span></td></tr><tr><td style="padding:10px 0;font-weight:700">جونام · 18:28 30-10-2026</td><td style="text-align:center;font-weight:700">1 / 1</td><td style="text-align:right"><span class="badge" style="background:#dcfce7;color:#15803d">● Done</span></td></tr></table></div>
 `;
 }
 function renderTemplate(){
 let list=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);
-let html='<h1 style="color:#fff;font-weight:900;font-size:26px;margin:0">Create Template - المخزن الرئيسي</h1><div class="card" style="margin-top:14px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><input id="t-name" class="input" placeholder="Template name - مثال: قالب الترحيب"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب - هيظهر في Broadcasting او Utility حسب نوعه</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b><div style="margin-top:10px">';
+let html='<h1 style="color:#fff;font-weight:900;font-size:26px;margin:0">Create Template - المخزن الرئيسي</h1><div class="card" style="margin-top:14px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b><div style="margin-top:10px">';
 list.forEach(function(t){html+='<div style="display:flex;justify-content:space-between;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:10px;margin-bottom:8px"><div><b>'+t.name+'</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">'+t.type+'</span><div style="font-size:12px;color:#64748b">'+(t.title||'')+' - '+(t.subtitle||'')+'</div></div><button onclick="delTpl('+t.id+')" style="background:none;border:none;color:#ef4444;font-weight:800;cursor:pointer">🗑 Delete</button></div>'});
 html+='</div></div>';
 document.getElementById('app').innerHTML=html;
@@ -135,10 +113,10 @@ function delTpl(id){if(!confirm('تمسح؟'))return;DB.set('farag_tpl',DB.get('
 function renderBroadcast(type){
 let list=DB.get('farag_tpl',[]);
 let f=list.filter(function(t){return (t.type||'UTILITY')===type});
-document.getElementById('app').innerHTML='<h1 style="color:#fff;font-weight:900;font-size:26px;margin:0">'+(type==='MARKETING'?'Broadcasting - دعائية 📡':'Launch Utility - خدمية ⚡')+'</h1><div class="card" style="margin-top:14px"><label style="font-size:12px;font-weight:800">اختار الصفحة</label><select class="input" style="margin-top:6px"><option>صفحة انغام</option><option>صفحة بهية</option><option>صفحة جنه</option></select><label style="font-size:12px;font-weight:800;display:block;margin-top:12px">اختار القالب - بيظهرلك '+type+' بس</label><select class="input" style="margin-top:6px"><option>'+(f.length?f.map(function(t){return t.name}).join(' - '):'مفيش قوالب '+type+' - روح Create Template واعمل واحد')+'</option></select><button class="btn" style="margin-top:14px" onclick="alert(\'🚀 تم إطلاق الحملة - '+type+'\')">Launch 🚀</button></div><div class="card" style="margin-top:12px;font-size:13px;color:#475569">'+(type==='MARKETING'?'⚠️ MARKETING: مينفعش تبعت غير للي كلمك اخر 24 ساعة':'✅ UTILITY: مسموح تبعت حتى لو العميل مردش بقاله فترة، لانها خدمية')+'</div>';
+document.getElementById('app').innerHTML='<h1 style="color:#fff;font-weight:900;font-size:26px;margin:0">'+(type==='MARKETING'?'Broadcasting - دعائية 📡':'Launch Utility - خدمية ⚡')+'</h1><div class="card" style="margin-top:14px"><label style="font-size:12px;font-weight:800">اختار الصفحة</label><select class="input" style="margin-top:6px"><option>صفحة انغام</option><option>صفحة بهية</option><option>صفحة جنه</option></select><label style="font-size:12px;font-weight:800;display:block;margin-top:12px">اختار القالب - بيظهرلك '+type+' بس</label><select class="input" style="margin-top:6px"><option>'+(f.length?f.map(function(t){return t.name}).join(' - '):'مفيش قوالب '+type+' - روح Create Template واعمل واحد')+'</option></select><button class="btn" style="margin-top:14px" onclick="alert(\'🚀 تم إطلاق الحملة - '+type+'\')">Launch 🚀</button></div><div class="card" style="margin-top:12px;font-size:13px;color:#475569">'+(type==='MARKETING'?'⚠️ MARKETING: مينفعش تبعت غير للي كلمك اخر 24 ساعة':'✅ UTILITY: مسموح تبعت حتى لو العميل مردش بقاله فترة')+'</div>';
 }
 function renderPosting(){
-document.getElementById('app').innerHTML='<h1 style="color:#fff;font-weight:900;font-size:26px;margin:0">Social Posting ✍️</h1><div class="card" style="margin-top:14px"><input class="input" placeholder="عنوان البوست"><textarea class="input" rows="3" style="margin-top:10px" placeholder="نص البوست..."></textarea><div style="font-size:13px;font-weight:700;margin-top:10px">الصفحات: ✅ انغام ✅ بهية ✅ جنه - تكتب مرة واحدة وينزل على الكل</div><div style="display:flex;gap:10px;margin-top:12px"><button class="btn" onclick="alert(\'📤 تم نشر البوست\')">نشر 📤</button><button class="btn2" onclick="alert(\'🕘 تم جدولة البوست لبكرة 8\')">جدولة 🕘</button></div></div>';
+document.getElementById('app').innerHTML='<h1 style="color:#fff;font-weight:900;font-size:26px;margin:0">Social Posting ✍️</h1><div class="card" style="margin-top:14px"><input class="input" placeholder="عنوان البوست"><textarea class="input" rows="3" style="margin-top:10px" placeholder="نص البوست..."></textarea><div style="font-size:13px;font-weight:700;margin-top:10px">الصفحات: ✅ انغام ✅ بهية ✅ جنه</div><div style="display:flex;gap:10px;margin-top:12px"><button class="btn" onclick="alert(\'📤 تم نشر البوست\')">نشر 📤</button><button class="btn2" onclick="alert(\'🕘 تم جدولة البوست لبكرة 8\')">جدولة 🕘</button></div></div>';
 }
 function renderMedia(){
 document.getElementById('app').innerHTML='<h1 style="color:#fff;font-weight:900;font-size:26px;margin:0">Media & Content 🎬</h1><div class="card" style="margin-top:14px"><div onclick="document.getElementById(\'up\').click()" style="border:2px dashed #cbd5e1;border-radius:18px;padding:28px;text-align:center;cursor:pointer">📤 دوس هنا ارفع صورة / فيديو<input type="file" id="up" style="display:none" onchange="alert(\'✅ تم رفع الملف\')"></div><p style="font-size:12px;color:#64748b">ده المخزن - Social Posting و Create Template بياخدوا منه</p></div>';
