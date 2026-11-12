@@ -7,81 +7,101 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 *{box-sizing:border-box}
-body{background:#02010f;background:radial-gradient(900px 450px at 10% 0%,rgba(124,58,237,.55) 0%,transparent 60%),radial-gradient(800px 450px at 95% 10%,rgba(37,99,235,.55) 0%,transparent 60%),radial-gradient(700px 500px at 50% 110%,rgba(34,197,94,.3) 0%,transparent 60%),linear-gradient(180deg,#02010f,#070b1f 40%,#02010f);font-family:Inter,system-ui;margin:0;min-height:100vh;color:#fff;overflow-x:hidden;perspective:1400px}
-body::before{content:'';position:fixed;top:-90px;left:18%;width:340px;height:340px;background:radial-gradient(circle,rgba(124,58,237,.55),transparent 70%);filter:blur(45px);z-index:0;animation:floatAI 7s ease-in-out infinite}
-body::after{content:'';position:fixed;bottom:-110px;right:8%;width:400px;height:400px;background:radial-gradient(circle,rgba(37,99,235,.5),transparent 70%);filter:blur(50px);z-index:0;animation:floatAI 9s ease-in-out infinite reverse}
-@keyframes floatAI{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.1)}}
-@keyframes shine{0%{transform:translateX(-120%) skewX(-15deg)}100%{transform:translateX(250%) skewX(-15deg)}}
-@keyframes orbPulse{0%,100%{transform:scale(1);box-shadow:0 0 25px rgba(167,139,250,.8),0 0 60px rgba(124,58,237,.5),inset 0 3px 8px rgba(255,255,255,.6)}50%{transform:scale(1.08);box-shadow:0 0 35px rgba(167,139,250,1),0 0 90px rgba(124,58,237,.7)}}
+body{background:#02010f;background:radial-gradient(900px 450px at 10% 0%,rgba(124,58,237,.62) 0%,transparent 60%),radial-gradient(800px 450px at 95% 10%,rgba(37,99,235,.62) 0%,transparent 60%),radial-gradient(700px 500px at 50% 110%,rgba(34,197,94,.38) 0%,transparent 60%),radial-gradient(500px 300px at 50% 50%,rgba(245,158,11,.18) 0%,transparent 60%),linear-gradient(180deg,#02010f,#070b1f 40%,#02010f);font-family:Inter,system-ui;margin:0;min-height:100vh;color:#fff;overflow-x:hidden;perspective:1400px}
+body::before{content:'';position:fixed;top:-90px;left:18%;width:400px;height:400px;background:radial-gradient(circle,rgba(124,58,237,.65),transparent 70%);filter:blur(45px);z-index:0;animation:floatAI 6s ease-in-out infinite}
+body::after{content:'';position:fixed;bottom:-110px;right:8%;width:460px;height:460px;background:radial-gradient(circle,rgba(37,99,235,.6),transparent 70%);filter:blur(50px);z-index:0;animation:floatAI 8s ease-in-out infinite reverse}
+@keyframes floatAI{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-32px) scale(1.12)}}
+@keyframes shinePro{0%{transform:translateX(-130%) skewX(-15deg);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateX(260%) skewX(-15deg);opacity:0}}
+@keyframes orbPro{0%,100%{transform:scale(1) rotate(0deg);box-shadow:0 0 28px rgba(167,139,250,.9),0 0 70px rgba(124,58,237,.6)}50%{transform:scale(1.12) rotate(8deg);box-shadow:0 0 42px rgba(167,139,250,1),0 0 100px rgba(124,58,237,.8)}}
+@keyframes aiGlow{0%,100%{box-shadow:0 22px 42px rgba(0,0,0,.42),0 0 20px rgba(124,58,237,.25)}50%{box-shadow:0 22px 42px rgba(0,0,0,.42),0 0 38px rgba(124,58,237,.45)}}
+@keyframes iconFloat{0%,100%{transform:translateY(0) rotate(0deg) scale(1)}25%{transform:translateY(-6px) rotate(-4deg) scale(1.08)}50%{transform:translateY(-10px) rotate(3deg) scale(1.12)}75%{transform:translateY(-4px) rotate(-2deg) scale(1.06)}}
+@keyframes folderLux{0%,100%{transform:translateY(0) rotateX(0deg) scale(1)}50%{transform:translateY(-6px) rotateX(4deg) scale(1.02)}}
+.icon-anim{animation:iconFloat 3.5s ease-in-out infinite}
 .sidebar-wrap{position:relative;flex-shrink:0;z-index:50}
-.sidebar{background:linear-gradient(180deg,rgba(20,26,65,.96),rgba(7,10,30,.99));backdrop-filter:blur(22px);border-left:1px solid rgba(255,255,255,.16);box-shadow:-25px 0 60px rgba(0,0,0,.55),inset -1px 0 0 rgba(255,255,255,.14);transition:.4s cubic-bezier(.4,0,.2,1);width:290px;height:100vh;position:sticky;top:0;overflow-y:auto;overflow-x:hidden}
-.sidebar.collapsed{width:72px}
-.sidebar.collapsed .hide-text{display:none!important}
-.sidebar.collapsed .side{justify-content:center;padding:10px 6px}
-.sidebar.collapsed .brand-sub{display:none}
-.sidebar-toggle{position:absolute;top:108px;right:-19px;left:auto;width:38px;height:38px;border-radius:50%;border:2px solid #a78bfa;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(124,58,237,.7),inset 0 2px 4px rgba(255,255,255,.5);z-index:60;transition:.3s}
-.sidebar-toggle:hover{transform:scale(1.15) rotate(5deg)}
-.stat{background:linear-gradient(145deg,#1c2658 0%,#0d1230 55%,#141b48 100%);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:16px 10px;text-align:center;position:relative;overflow:hidden;box-shadow:0 20px 38px rgba(0,0,0,.5),0 10px 20px rgba(99,102,241,.25),inset 0 1px 0 rgba(255,255,255,.3);transition:.4s}
-.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#2563eb,#22c55e)}
-.stat::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);animation:shine 4s ease-in-out infinite}
-.stat:hover{transform:translateY(-9px) rotateX(7deg) scale(1.03)}
-.side{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 12px;border-radius:14px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer;white-space:nowrap;transition:.3s;border:1px solid transparent}
-.side:hover{background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(37,99,235,.22));color:#fff;transform:translateX(-4px) scale(1.02);border-color:rgba(255,255,255,.16)}
-.side.active{background:linear-gradient(135deg,#4f46e5,#7c3aed,#a78bfa);color:#fff;box-shadow:0 12px 25px rgba(124,58,237,.6),inset 0 2px 4px rgba(255,255,255,.45)}
-.ico{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:linear-gradient(145deg,var(--c2),var(--c) 60%,var(--c));box-shadow:0 8px 16px var(--glow),inset 0 2px 4px rgba(255,255,255,.6),inset 0 -3px 6px rgba(0,0,0,.25);transition:.3s}
-.grid-ico{background:linear-gradient(145deg,#1c2658,#0d1230 60%,#161d4d);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:18px 8px;text-align:center;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 18px 32px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.25);transition:.35s}
-.grid-ico:hover{transform:translateY(-10px) rotateX(9deg) scale(1.05)}
-.grid-ico:hover .ico{transform:scale(1.3) rotate(-10deg)}
-.card{background:linear-gradient(180deg,#ffffff,#eef2ff);color:#0f172a;border-radius:22px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.35),inset 0 1px 0 #fff}
-.input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:12px;font-size:14px;outline:none;background:#fff;color:#0f172a}
-.btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;box-shadow:0 12px 22px rgba(124,58,237,.45),inset 0 2px 4px rgba(255,255,255,.45)}
-.btn-blue{background:linear-gradient(145deg,#60a5fa,#2563eb 55%,#1d4ed8);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;width:100%;box-shadow:0 12px 22px rgba(37,99,235,.45),inset 0 2px 4px rgba(255,255,255,.45)}
+.sidebar{background:linear-gradient(180deg,rgba(20,26,65,.96),rgba(7,10,30,.99));backdrop-filter:blur(22px);border-left:1px solid rgba(255,255,255,.18);box-shadow:-25px 0 60px rgba(0,0,0,.55);transition:.4s;width:290px;height:100vh;position:sticky;top:0;overflow-y:auto;overflow-x:hidden}
+.sidebar.collapsed{width:72px}.sidebar.collapsed .hide-text{display:none!important}.sidebar.collapsed .side{justify-content:center;padding:10px 6px}.sidebar.collapsed .brand-sub{display:none}
+.sidebar-toggle{position:absolute;top:108px;right:-19px;left:auto;width:38px;height:38px;border-radius:50%;border:2px solid #a78bfa;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(124,58,237,.7);z-index:60;transition:.3s;animation:iconFloat 4s ease-in-out infinite}
+.sidebar-toggle:hover{transform:scale(1.15)}
+.stat{background:linear-gradient(145deg,#1c2658 0%,#0d1230 55%,#141b48 100%);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:16px 10px;text-align:center;position:relative;overflow:hidden;box-shadow:0 20px 38px rgba(0,0,0,.5);transition:.4s}
+.stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#2563eb,#22c55e,#f59e0b)}
+.stat::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);animation:shinePro 4.5s ease-in-out infinite}
+.stat:hover{transform:translateY(-10px) rotateX(10deg) scale(1.05)}
+.side{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 12px;border-radius:14px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer;white-space:nowrap;border:1px solid transparent;transition:.3s;position:relative;overflow:hidden}
+.side::after{content:'';position:absolute;top:0;left:-80%;width:40%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);animation:shinePro 5s ease-in-out infinite;pointer-events:none}
+.side:hover{background:linear-gradient(135deg,rgba(124,58,237,.32),rgba(37,99,235,.26));color:#fff;transform:translateX(-5px) scale(1.03)}
+.side.active{background:linear-gradient(135deg,#4f46e5,#7c3aed,#a78bfa);color:#fff;box-shadow:0 12px 25px rgba(124,58,237,.65)}
+.ico{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:linear-gradient(145deg,var(--c2),var(--c) 60%,var(--c));box-shadow:0 8px 16px var(--glow),inset 0 2px 4px rgba(255,255,255,.6);transition:.3s;animation:iconFloat 3.8s ease-in-out infinite}
+.grid-ico{background:linear-gradient(145deg,#1c2658,#0d1230 60%,#161d4d);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:18px 8px;text-align:center;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 18px 32px rgba(0,0,0,.45);transition:.35s}
+.grid-ico::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);animation:shinePro 4.5s ease-in-out infinite;pointer-events:none}
+.grid-ico:hover{transform:translateY(-12px) rotateX(12deg) scale(1.07)}
+.card{background:linear-gradient(180deg,#ffffff,#eef2ff);color:#0f172a;border-radius:22px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.35),0 0 28px rgba(124,58,237,.22),0 0 18px rgba(37,99,235,.16);position:relative;overflow:hidden}
+.card::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:shinePro 4.5s ease-in-out infinite;pointer-events:none;z-index:1}
+/* Posting - فخامة AI احترافية */
+.posting-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:16px;margin-top:14px;box-shadow:0 14px 28px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.8);position:relative;z-index:2}
+.posting-input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:13px 14px;font-size:14px;outline:none;background:#fff;color:#0f172a;box-shadow:0 6px 14px rgba(0,0,0,.06);transition:.3s;position:relative;z-index:2}
+.posting-input:focus{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(167,139,250,.18),0 10px 20px rgba(124,58,237,.15)}
+.posting-btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:14px;border-radius:14px;font-weight:900;border:none;cursor:pointer;box-shadow:0 16px 28px rgba(124,58,237,.5),0 0 22px rgba(124,58,237,.35),inset 0 1px 2px rgba(255,255,255,.5);position:relative;overflow:hidden;transition:.3s;font-size:14px}
+.posting-btn::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:shinePro 3.8s ease-in-out infinite;pointer-events:none}
+.account-box{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:14px;margin-top:12px;box-shadow:0 10px 20px rgba(0,0,0,.07);position:relative;z-index:2}
+.account-head{display:flex;align-items:center;justify-content:space-between;gap:8px;background:linear-gradient(135deg,#f5f3ff,#eff6ff);border:1px solid #e0e7ff;border-radius:12px;padding:10px 12px;font-weight:900;font-size:13px}
+.account-sub{margin-top:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px}
+.media-btn{flex:1;background:#fff;border:2px dashed #c7d2fe;color:#4338ca;padding:11px;border-radius:14px;font-weight:900;cursor:pointer;font-size:13px;box-shadow:0 8px 16px rgba(99,102,241,.12)}
+.media-btn:hover{border-color:#7c3aed;background:#f5f3ff}
+.publish-btn{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:8px 16px;border-radius:99px;font-weight:900;cursor:pointer;box-shadow:0 10px 18px rgba(37,99,235,.45),0 0 14px rgba(37,99,235,.3);white-space:nowrap;font-size:12px}
+.input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:12px;font-size:14px;outline:none;background:#fff;color:#0f172a;position:relative;z-index:2}
+.btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;box-shadow:0 12px 22px rgba(124,58,237,.5);position:relative;overflow:hidden}
+.btn::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shinePro 4s ease-in-out infinite;pointer-events:none}
+.btn-blue{background:linear-gradient(145deg,#60a5fa,#2563eb 55%,#1d4ed8);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;width:100%;box-shadow:0 12px 22px rgba(37,99,235,.5);position:relative;overflow:hidden}
+.btn-blue::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shinePro 4s ease-in-out infinite;pointer-events:none}
 .badge{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:800}
-.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:45;display:none}
-.backdrop.show{display:block}
+.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:45;display:none}.backdrop.show{display:block}
 .stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:16px;position:relative;z-index:2}
 .icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:14px}
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;position:relative;z-index:2}
-.glass-panel{background:linear-gradient(145deg,rgba(28,38,88,.92),rgba(13,18,48,.96));border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:18px;box-shadow:0 22px 42px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.25);position:relative;overflow:hidden}
-.ai-orb{width:58px;height:58px;border-radius:50%;background:conic-gradient(from 0deg,#7c3aed,#2563eb,#22c55e,#ec4899,#f59e0b,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:26px;animation:orbPulse 2.2s ease-in-out infinite;position:relative;flex-shrink:0;cursor:pointer}
-.ai-input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:12px 16px;color:#fff;outline:none;font-size:14px}
-.ai-input::placeholder{color:#94a3b8}
-.chart-ultra{background:linear-gradient(180deg,#ffffff 0%,#f1f5ff 55%,#e0e7ff 100%);border-radius:26px;padding:18px;color:#0f172a;position:relative;overflow:hidden;box-shadow:0 28px 55px rgba(0,0,0,.4),0 14px 28px rgba(37,99,235,.22),inset 0 1px 0 #fff}
-.chart-ultra:hover{transform:translateY(-7px) rotateX(3deg) scale(1.01)}
-.chart-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ec4899,#7c3aed)}
-.donut-ultra{width:178px;height:178px;border-radius:50%;margin:14px auto 0;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 28px 50px rgba(34,197,94,.45),0 10px 20px rgba(0,0,0,.25),inset 0 -14px 24px rgba(0,0,0,.28),inset 0 12px 20px rgba(255,255,255,.85)}
-.donut-ultra::after{content:'';position:absolute;top:13px;left:24px;width:66px;height:28px;background:rgba(255,255,255,.8);border-radius:99px;filter:blur(7px);transform:rotate(-20deg)}
-.donut-in-ultra{width:108px;height:108px;background:radial-gradient(circle at 32% 28%,#ffffff 0%,#eef2ff 55%,#dbeafe 100%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a;box-shadow:inset 0 6px 16px rgba(0,0,0,.14);position:relative;z-index:2}
-.pulse-dot{animation:pulseAI 1.6s ease-in-out infinite}
-@keyframes pulseAI{0%,100%{r:7;opacity:1}50%{r:12;opacity:.5}}
-.bar-ultra{border-radius:16px 16px 6px 6px;flex:1;position:relative;box-shadow:inset 0 6px 10px rgba(255,255,255,.7),inset 0 -10px 14px rgba(0,0,0,.22),0 18px 26px rgba(37,99,235,.35);transition:.35s;overflow:hidden}
-.bar-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,.7),transparent)}
-.bar-ultra:hover{transform:translateY(-7px) scale(1.04);filter:brightness(1.12)}
-.launch-ultra{background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;border:none;padding:10px 18px;border-radius:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 25px rgba(124,58,237,.55),inset 0 2px 4px rgba(255,255,255,.5);white-space:nowrap}
+.glass-panel{background:linear-gradient(145deg,rgba(28,38,88,.92),rgba(13,18,48,.96));border:1px solid rgba(255,255,255,.2);border-radius:24px;padding:18px;box-shadow:0 22px 42px rgba(0,0,0,.42);position:relative;overflow:hidden;animation:aiGlow 3.5s ease-in-out infinite}
+.glass-panel::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);animation:shinePro 5s ease-in-out infinite;pointer-events:none}
+.ai-orb{width:62px;height:62px;border-radius:50%;background:conic-gradient(from 0deg,#7c3aed,#2563eb,#22c55e,#ec4899,#f59e0b,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:28px;animation:orbPro 2.2s ease-in-out infinite;position:relative;flex-shrink:0;cursor:pointer}
+.ai-input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.22);border-radius:99px;padding:12px 16px;color:#fff;outline:none;font-size:14px}.ai-input::placeholder{color:#94a3b8}
+.chart-ultra{background:linear-gradient(180deg,#ffffff 0%,#f1f5ff 55%,#e0e7ff 100%);border-radius:26px;padding:18px;color:#0f172a;position:relative;overflow:hidden;box-shadow:0 28px 55px rgba(0,0,0,.4);transition:.35s}
+.chart-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ec4899,#7c3aed);z-index:2}
+.chart-ultra::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);animation:shinePro 4.5s ease-in-out infinite;pointer-events:none;z-index:1}
+.donut-ultra{width:184px;height:184px;border-radius:50%;margin:14px auto 0;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 28px 50px rgba(34,197,94,.5);animation:iconFloat 5s ease-in-out infinite}
+.donut-ultra::after{content:'';position:absolute;top:13px;left:24px;width:66px;height:28px;background:rgba(255,255,255,.85);border-radius:99px;filter:blur(7px);transform:rotate(-20deg)}
+.donut-in-ultra{width:108px;height:108px;background:radial-gradient(circle at 32% 28%,#ffffff 0%,#eef2ff 55%,#dbeafe 100%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a;position:relative;z-index:2}
+.bar-ultra{border-radius:16px 16px 6px 6px;flex:1;position:relative;box-shadow:inset 0 6px 10px rgba(255,255,255,.7);transition:.35s;overflow:hidden;animation:iconFloat 4s ease-in-out infinite}
+.bar-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,.75),transparent)}
+.launch-ultra{background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;border:none;padding:10px 18px;border-radius:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 25px rgba(124,58,237,.55);white-space:nowrap;position:relative;overflow:hidden;animation:iconFloat 3s ease-in-out infinite}
+.launch-ultra::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:shinePro 3.5s ease-in-out infinite;pointer-events:none}
 .fab-wrap{position:fixed;left:14px;top:18px;z-index:9999;display:flex;flex-direction:column;align-items:center;gap:10px}
-.fab-ai{width:62px;height:62px;border-radius:50%;background:linear-gradient(145deg,#8b5cf6,#7c3aed 55%,#5b21b6);display:flex;align-items:center;justify-content:center;font-size:28px;color:#fff;cursor:pointer;position:relative;box-shadow:0 14px 28px rgba(124,58,237,.55),0 6px 14px rgba(0,0,0,.35),inset 0 3px 6px rgba(255,255,255,.55),inset 0 -4px 8px rgba(0,0,0,.25);transition:.3s;border:2px solid rgba(255,255,255,.25)}
-.fab-ai:hover{transform:scale(1.1) rotate(-5deg)}
-.fab-ai::after{content:'';position:absolute;top:5px;right:6px;width:10px;height:10px;background:#22c55e;border:2px solid #fff;border-radius:50%;box-shadow:0 0 8px #22c55e}
-.fab-wa{width:62px;height:62px;border-radius:50%;background:linear-gradient(145deg,#4ade80,#22c55e 55%,#15803d);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;box-shadow:0 14px 28px rgba(34,197,94,.5),0 6px 14px rgba(0,0,0,.35),inset 0 3px 6px rgba(255,255,255,.55),inset 0 -4px 8px rgba(0,0,0,.25);transition:.3s;border:2px solid rgba(255,255,255,.25)}
-.fab-wa:hover{transform:scale(1.1) rotate(5deg)}
-.fab-wa svg{width:34px;height:34px;fill:#fff;filter:drop-shadow(0 2px 3px rgba(0,0,0,.3))}
-.fab-count{font-size:13px;font-weight:900;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.5);margin-top:-2px}
-.fab-label{font-size:10px;font-weight:800;color:#fff;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);padding:3px 8px;border-radius:99px;white-space:nowrap;border:1px solid rgba(255,255,255,.2)}
-.ai-popup{position:fixed;left:86px;top:18px;width:320px;max-width:calc(100vw - 110px);background:linear-gradient(180deg,#1a2456,#0d1230);border:1px solid rgba(167,139,250,.4);border-radius:20px;padding:16px;z-index:9999;display:none;box-shadow:0 25px 50px rgba(0,0,0,.6)}
-.ai-popup.show{display:block}
-.wa-popup{position:fixed;left:86px;top:92px;width:320px;max-width:calc(100vw - 110px);background:#fff;color:#0f172a;border-radius:20px;padding:16px;z-index:9999;display:none;box-shadow:0 25px 50px rgba(0,0,0,.6)}
-.wa-popup.show{display:block}
-table.farag-table{width:100%;border-collapse:collapse;background:#fff;color:#0f172a;border-radius:16px;overflow:hidden}
+.fab-ai{width:64px;height:64px;border-radius:50%;background:linear-gradient(145deg,#8b5cf6,#7c3aed 55%,#5b21b6);display:flex;align-items:center;justify-content:center;font-size:29px;color:#fff;cursor:pointer;position:relative;box-shadow:0 14px 28px rgba(124,58,237,.6);transition:.3s;border:2px solid rgba(255,255,255,.3);overflow:hidden;animation:iconFloat 3s ease-in-out infinite}
+.fab-ai::before{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shinePro 3s ease-in-out infinite;pointer-events:none}
+.fab-ai:hover{transform:scale(1.15) rotate(-8deg)}
+.fab-ai::after{content:'';position:absolute;top:5px;right:6px;width:11px;height:11px;background:#22c55e;border:2px solid #fff;border-radius:50%;z-index:2}
+.fab-wa{width:64px;height:64px;border-radius:50%;background:linear-gradient(145deg,#4ade80,#22c55e 55%,#15803d);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;box-shadow:0 14px 28px rgba(34,197,94,.55);transition:.3s;border:2px solid rgba(255,255,255,.3);overflow:hidden;animation:iconFloat 3.4s ease-in-out infinite;animation-delay:.4s}
+.fab-wa::before{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent);animation:shinePro 3s ease-in-out infinite;pointer-events:none}
+.fab-wa:hover{transform:scale(1.15) rotate(8deg)}
+.fab-wa svg{width:35px;height:35px;fill:#fff;position:relative;z-index:2}.fab-count{font-size:13px;font-weight:900;color:#fff;margin-top:-2px}
+.ai-popup{position:fixed;left:86px;top:18px;width:320px;max-width:calc(100vw - 110px);background:linear-gradient(180deg,#1a2456,#0d1230);border:1px solid rgba(167,139,250,.5);border-radius:20px;padding:16px;z-index:9999;display:none;box-shadow:0 25px 50px rgba(0,0,0,.6)}.ai-popup.show{display:block}
+.wa-popup{position:fixed;left:86px;top:92px;width:320px;max-width:calc(100vw - 110px);background:#fff;color:#0f172a;border-radius:20px;padding:16px;z-index:9999;display:none;box-shadow:0 25px 50px rgba(0,0,0,.6)}.wa-popup.show{display:block}
+table.farag-table{width:100%;border-collapse:collapse;background:#fff;color:#0f172a;border-radius:16px;overflow:hidden;position:relative;z-index:2}
 table.farag-table th{background:#f1f5f9;padding:12px;text-align:right;font-size:12px;font-weight:900;color:#475569}
 table.farag-table td{padding:12px;border-top:1px solid #e2e8f0;font-size:13px;font-weight:700}
+.switch{width:64px;height:34px;background:#22c55e;border-radius:99px;position:relative;cursor:pointer;flex-shrink:0;border:2px solid #fff;box-shadow:0 4px 12px rgba(0,0,0,.25);display:inline-block;min-width:64px}
+.switch.off{background:#94a3b8}
+.switch::after{content:'';position:absolute;top:3px;right:3px;width:24px;height:24px;background:#fff;border-radius:50%;transition:.3s}
+.switch.off::after{right:33px}
+.delete-btn{background:#fee2e2;color:#dc2626;border:1px solid #fecaca;padding:6px 10px;border-radius:99px;font-weight:800;cursor:pointer;font-size:11px;margin-right:8px;position:relative;z-index:2}
+.choice-card{background:#fff;border:2px solid #e2e8f0;border-radius:16px;padding:12px;cursor:pointer;transition:.3s}.choice-card.active{border-color:#7c3aed;background:#f5f3ff}
+.folder-card{background:linear-gradient(180deg,#ffffff,#eef2ff);color:#0f172a;border-radius:20px;padding:14px;cursor:pointer;box-shadow:0 14px 26px rgba(0,0,0,.25);border:2px solid transparent;position:relative;overflow:hidden;animation:folderLux 4s ease-in-out infinite;transition:.3s}
+.folder-card::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);animation:shinePro 4s ease-in-out infinite;pointer-events:none}
+.folder-card:hover{transform:translateY(-5px) scale(1.02)}
+.folder-card.active{border-color:#7c3aed;box-shadow:0 18px 30px rgba(124,58,237,.4)}
+.folder-ico{font-size:38px;animation:iconFloat 3.2s ease-in-out infinite;display:inline-block}
+.media-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:12px;text-align:center;transition:.3s;animation:folderLux 4.5s ease-in-out infinite}
+.media-item:hover{transform:translateY(-4px);border-color:#a78bfa}
+.use-btn{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;padding:5px 12px;border-radius:99px;font-size:11px;font-weight:800;cursor:pointer;margin-top:6px}
 @media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr)}.icons-grid{grid-template-columns:repeat(3,1fr)}.charts-grid{grid-template-columns:1fr}}
-@media(max-width:768px){
-.sidebar-wrap{position:fixed;right:0;top:0;height:100vh;transform:translateX(105%);transition:.4s;box-shadow:-20px 0 50px rgba(0,0,0,.5)}
-.sidebar-wrap.open{transform:translateX(0)}
-.sidebar{width:290px!important}.sidebar.collapsed{width:290px!important}.sidebar.collapsed .hide-text{display:flex!important}.sidebar.collapsed .side{justify-content:space-between;padding:10px 12px}.sidebar.collapsed .brand-sub{display:block!important}
-.sidebar-toggle{right:-19px;top:108px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}.icons-grid{grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:10px 6px}.stat div:last-child{font-size:16px!important}
-.fab-wrap{left:10px;top:12px}.fab-ai,.fab-wa{width:56px;height:56px}.ai-popup,.wa-popup{left:72px;width:calc(100vw - 90px)}
-}
+@media(max-width:768px){.sidebar-wrap{position:fixed;right:0;top:0;height:100vh;transform:translateX(105%);transition:.4s}.sidebar-wrap.open{transform:translateX(0)}.sidebar{width:290px!important}.sidebar.collapsed{width:290px!important}.sidebar.collapsed .hide-text{display:flex!important}.sidebar-toggle{right:-19px;top:108px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}.icons-grid{grid-template-columns:repeat(2,1fr);gap:8px}.fab-wrap{left:10px;top:12px}.fab-ai,.fab-wa{width:58px;height:58px}.ai-popup,.wa-popup{left:72px;width:calc(100vw - 90px)}}
 </style>
 </head>
 <body>
@@ -89,269 +109,204 @@ table.farag-table td{padding:12px;border-top:1px solid #e2e8f0;font-size:13px;fo
 <div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
 <div class="sidebar-wrap" id="sidebarWrap">
 <div class="sidebar" id="sidebar">
-<div style="text-align:center;padding:16px 0 6px"><div style="display:flex;align-items:center;justify-content:center;gap:9px"><div style="width:42px;height:42px;background:linear-gradient(145deg,#a78bfa,#4f46e5 60%,#312e81);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;box-shadow:0 12px 22px rgba(124,58,237,.6),inset 0 2px 4px rgba(255,255,255,.5)">F</div><div class="hide-text" style="text-align:right"><div style="font-weight:900;font-size:22px;line-height:1;text-shadow:0 4px 12px rgba(124,58,237,.5)">FARAG<span style="color:#a78bfa">.com</span></div><div class="brand-sub" style="font-size:10px;color:#94a3b8">منصة فرج - Farag AI 🌍 #1 in the World</div></div></div></div>
+<div style="text-align:center;padding:16px 0 6px"><div style="display:flex;align-items:center;justify-content:center;gap:9px"><div class="icon-anim" style="width:42px;height:42px;background:linear-gradient(145deg,#a78bfa,#4f46e5 60%,#312e81);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px">F</div><div class="hide-text" style="text-align:right"><div style="font-weight:900;font-size:22px;line-height:1">FARAG<span style="color:#a78bfa">.com</span></div><div class="brand-sub" style="font-size:10px;color:#94a3b8">منصة فرج - Farag AI 🌍 #1 in the World</div></div></div></div>
 <div id="menu" style="padding:8px 12px 0"></div>
-<button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" class="hide-text" style="margin:16px 12px 0;width:calc(100% - 24px);background:linear-gradient(145deg,#f87171,#ef4444);color:#fff;padding:11px;border:none;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 10px 20px rgba(239,68,68,.4)">Reset / تصفير الكل</button>
+<button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" class="hide-text" style="margin:16px 12px 0;width:calc(100% - 24px);background:linear-gradient(145deg,#f87171,#ef4444);color:#fff;padding:11px;border:none;border-radius:14px;font-weight:800;cursor:pointer">Reset / تصفير الكل</button>
 </div>
-<button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="فتح / قفل القايمة">☰</button>
+<button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
 </div>
 <div style="flex:1;min-width:0;padding:16px;max-width:1150px;margin:0 auto;padding-bottom:60px;width:100%;position:relative;z-index:2">
-<div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-<div><h1 style="font-size:28px;font-weight:900;margin:0;text-shadow:0 6px 18px rgba(124,58,237,.5)">Dashboard - فرج 🤖🌍</h1><p style="color:#94a3b8;font-size:11px;margin:4px 0 0">Farag AI - Best AI Platform in the World • بعون الله هنوصل للعالمية</p></div>
-<button class="launch-ultra" onclick="go('broadcasting',null)">Launch 🚀</button>
-</div>
-<div class="glass-panel" style="margin-top:14px;display:flex;align-items:center;gap:12px;padding:12px 14px">
-<div class="ai-orb" onclick="aiAsk()"><span style="position:relative;z-index:2">✦</span></div>
-<div style="flex:1;min-width:0"><div style="font-weight:900;font-size:13px">اسأل فرج AI أي حاجة ✨</div><input id="aiInput" class="ai-input" style="margin-top:6px" placeholder="اكتب مثلا: ابعت حملة لـ 1000 واحد... أو اعمل قالب ترحيب..." onkeydown="if(event.key==='Enter')aiAsk()"></div>
-<button onclick="aiAsk()" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer;box-shadow:0 10px 20px rgba(124,58,237,.5);white-space:nowrap">اسأل AI ✦</button>
-</div>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><h1 style="font-size:28px;font-weight:900;margin:0">Dashboard - فرج 🤖🌍</h1><p style="color:#94a3b8;font-size:11px;margin:4px 0 0">FARAG.com - Best AI Platform in the World • بعون الله هنوصل للعالمية</p></div><button class="launch-ultra" onclick="go('broadcasting',null)">Launch 🚀</button></div>
+<div class="glass-panel" style="margin-top:14px;display:flex;align-items:center;gap:12px;padding:12px 14px"><div class="ai-orb" onclick="aiAsk()"><span style="position:relative;z-index:2">✦</span></div><div style="flex:1;min-width:0"><div style="font-weight:900;font-size:13px">اسأل فرج AI أي حاجة ✨</div><input id="aiInput" class="ai-input" style="margin-top:6px" placeholder="اكتب مثلا: ابعت حملة لـ 1000 واحد..." onkeydown="if(event.key==='Enter')aiAsk()"></div><button onclick="aiAsk()" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer">اسأل AI ✦</button></div>
 <div id="aiAnswer" style="display:none;margin-top:10px;background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(37,99,235,.14));border:1px solid rgba(167,139,250,.35);border-radius:16px;padding:12px 14px;font-size:13px;line-height:1.8"></div>
 <div id="app"></div>
 </div>
 </div>
-<div class="fab-wrap">
-<div class="fab-ai" onclick="toggleAiPopup()" title="Farag AI">✦</div>
-<div class="fab-wa" onclick="toggleWaPopup()" title="WhatsApp">
-<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-</div>
-<div class="fab-count">0</div>
-</div>
-<div class="ai-popup" id="aiPopup">
-<div style="display:flex;justify-content:space-between;align-items:center"><b>✦ Farag AI</b><span onclick="toggleAiPopup()" style="cursor:pointer;font-size:18px">✕</span></div>
-<p style="font-size:13px;color:#cbd5e1;line-height:1.8;margin:10px 0 0">أنا فرج AI 🤖<br>اسألني أي حاجة، هقولك تعملها ازاي، بعون الله هنخليها أفخم منصة في العالم.</p>
-<input id="fabAiInput" class="ai-input" style="margin-top:10px" placeholder="اكتب سؤالك هنا..." onkeydown="if(event.key==='Enter')fabAiSend()">
-<button onclick="fabAiSend()" style="width:100%;margin-top:8px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:10px;border-radius:99px;font-weight:900;cursor:pointer">ابعت لـ AI ✦</button>
-<div id="fabAiAns" style="display:none;margin-top:10px;background:rgba(255,255,255,.08);border-radius:12px;padding:10px;font-size:13px;line-height:1.7"></div>
-</div>
-<div class="wa-popup" id="waPopup">
-<div style="display:flex;justify-content:space-between;align-items:center"><b>💬 WhatsApp</b><span onclick="toggleWaPopup()" style="cursor:pointer;font-size:18px">✕</span></div>
-<p style="font-size:13px;color:#475569;margin:10px 0">كلم عملاءك على الواتساب على طول، من غير ما تطلع من المنصة.</p>
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px;font-size:13px">🟢 <b>متصل الآن</b><br>0 رسايل جديدة - كل حاجة مترد عليها</div>
-<button onclick="alert('📱 بيفتح الواتساب...')" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#22c55e,#15803d);color:#fff;border:none;padding:11px;border-radius:99px;font-weight:900;cursor:pointer">افتح واتساب 📱</button>
-</div>
+<div class="fab-wrap"><div class="fab-ai" onclick="toggleAiPopup()">✦</div><div class="fab-wa" onclick="toggleWaPopup()"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div><div class="fab-count">0</div></div>
+<div class="ai-popup" id="aiPopup"><div style="display:flex;justify-content:space-between;align-items:center"><b>✦ Farag AI</b><span onclick="toggleAiPopup()" style="cursor:pointer;font-size:18px">✕</span></div><p style="font-size:13px;color:#cbd5e1;line-height:1.8;margin:10px 0 0">أنا فرج AI 🤖 اسألني أي حاجة.</p><input id="fabAiInput" class="ai-input" style="margin-top:10px" placeholder="اكتب سؤالك هنا..." onkeydown="if(event.key==='Enter')fabAiSend()"><button onclick="fabAiSend()" style="width:100%;margin-top:8px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:10px;border-radius:99px;font-weight:900;cursor:pointer">ابعت لـ AI ✦</button><div id="fabAiAns" style="display:none;margin-top:10px;background:rgba(255,255,255,.08);border-radius:12px;padding:10px;font-size:13px;line-height:1.7"></div></div>
+<div class="wa-popup" id="waPopup"><div style="display:flex;justify-content:space-between;align-items:center"><b>💬 WhatsApp</b><span onclick="toggleWaPopup()" style="cursor:pointer;font-size:18px">✕</span></div><p style="font-size:13px;color:#475569;margin:10px 0">كلم عملاءك على الواتساب على طول.</p><div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px;font-size:13px">🟢 <b>متصل الآن</b><br>0 رسايل جديدة</div><button onclick="alert('📱 بيفتح الواتساب...')" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#22c55e,#15803d);color:#fff;border:none;padding:11px;border-radius:99px;font-weight:900;cursor:pointer">افتح واتساب 📱</button></div>
 <script>
 function toggleAiPopup(){document.getElementById('aiPopup').classList.toggle('show');document.getElementById('waPopup').classList.remove('show');}
 function toggleWaPopup(){document.getElementById('waPopup').classList.toggle('show');document.getElementById('aiPopup').classList.remove('show');}
-function fabAiSend(){let v=document.getElementById('fabAiInput').value.trim();let b=document.getElementById('fabAiAns');b.style.display='block';if(!v){b.innerHTML='اكتب سؤالك وانا هجاوبك.';return;}b.innerHTML='🤖 <b>فرج AI:</b> فهمتك: "'+v+'". أحسن خطوة: روح Create Template اعمل قالب، وبعدين Broadcasting ابعته. ولو عايز، اكتب في شريط AI فوق وهو هيوجهك.';}
+function fabAiSend(){let v=document.getElementById('fabAiInput').value.trim();let b=document.getElementById('fabAiAns');b.style.display='block';if(!v){b.innerHTML='اكتب سؤالك وانا هجاوبك.';return;}b.innerHTML='🤖 <b>فرج AI:</b> فهمتك: "'+v+'". أحسن خطوة: روح Create Template اعمل قالب، وبعدين Broadcasting ابعته.';}
 let DB={get:function(k,d){try{let v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set:function(k,v){localStorage.setItem(k,JSON.stringify(v))}};
-function aiAsk(){
-let v=(document.getElementById('aiInput').value||'').trim();
-let box=document.getElementById('aiAnswer');box.style.display='block';
-if(!v){box.innerHTML='🤖 <b>فرج AI:</b> اكتبلي انت عايز ايه، وانا هقولك تعملها ازاي بالظبط، بعون الله هنخليها أفخم منصة في العالم.';return;}
-if(v.includes('حملة')||v.includes('ابعت')||v.includes('broadcast')){box.innerHTML='🤖 <b>فرج AI:</b> تمام! روح <b>Broadcasting</b>، اختار الصفحة، اختار قالب MARKETING، ودوس Launch. لو عايز خدمية روح <b>Launch Utility</b>.'}
-else if(v.includes('قالب')||v.includes('template')){box.innerHTML='🤖 <b>فرج AI:</b> روح <b>Create Template</b>، اكتب اسم القالب، اختار UTILITY لو خدمية أو MARKETING لو دعائية، واحفظه.'}
-else if(v.includes('بوست')||v.includes('نشر')){box.innerHTML='🤖 <b>فرج AI:</b> روح <b>Social Posting</b>، اكتب البوست مرة واحدة، وهيتنشر على انغام وبهية وجنه مع بعض.'}
-else{box.innerHTML='🤖 <b>فرج AI:</b> فهمتك: "'+v+'". أحسن خطوة دلوقتي: افتح <b>Create Template</b> اعمل قالب، وبعدين <b>Broadcasting</b> ابعته. ولو عايز رأيي، النهاردة أحسن وقت تبعت فيه هو 8 بالليل.'}
-}
-function toggleSidebar(){
-let sb=document.getElementById('sidebar');let wrap=document.getElementById('sidebarWrap');let back=document.getElementById('backdrop');
-if(window.innerWidth<=768){let open=wrap.classList.toggle('open');back.classList.toggle('show',open);}
-else{let col=sb.classList.toggle('collapsed');try{localStorage.setItem('farag_sidebar',col?'collapsed':'open')}catch(e){}}
-}
+function aiAsk(){let v=(document.getElementById('aiInput').value||'').trim();let box=document.getElementById('aiAnswer');box.style.display='block';if(!v){box.innerHTML='🤖 <b>فرج AI:</b> اكتبلي انت عايز ايه.';return;}box.innerHTML='🤖 <b>فرج AI:</b> فهمتك: "'+v+'". افتح <b>Create Template</b> اعمل قالب، وبعدين <b>Broadcasting</b> ابعته.'}
+function toggleSidebar(){let sb=document.getElementById('sidebar');let wrap=document.getElementById('sidebarWrap');let back=document.getElementById('backdrop');if(window.innerWidth<=768){let open=wrap.classList.toggle('open');back.classList.toggle('show',open);}else{let col=sb.classList.toggle('collapsed');try{localStorage.setItem('farag_sidebar',col?'collapsed':'open')}catch(e){}}}
 try{if(localStorage.getItem('farag_sidebar')==='collapsed' && window.innerWidth>768){document.getElementById('sidebar').classList.add('collapsed')}}catch(e){}
-let MENU=[
-{t:'Dashboard',p:'dashboard',i:'📊',c:'#2563eb',c2:'#60a5fa',g:'rgba(37,99,235,.5)'},
-{t:'Facebook & Instagram',p:'facebook',i:'🔗',c:'#0284c7',c2:'#38bdf8',g:'rgba(2,132,199,.5)'},
-{t:'Comment growth tools',p:'comment',i:'💬',c:'#f59e0b',c2:'#fbbf24',g:'rgba(245,158,11,.5)'},
-{t:'Subscriber Manager',p:'subscriber',i:'🫂',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'},
-{t:'Broadcasting',p:'broadcasting',i:'📣',c:'#ec4899',c2:'#f472b6',g:'rgba(236,72,153,.5)'},
-{t:'Broadcast Job History',p:'history',i:'🕘',c:'#64748b',c2:'#94a3b8',g:'rgba(100,116,139,.5)'},
-{t:'Launch Utility',p:'utility',i:'🚀',c:'#f97316',c2:'#fb923c',g:'rgba(249,115,22,.5)'},
-{t:'Social Posting',p:'posting',i:'📝',c:'#9333ea',c2:'#c084fc',g:'rgba(147,51,234,.5)'},
-{t:'Create Template',p:'template',i:'🎨',c:'#eab308',c2:'#facc15',g:'rgba(234,179,8,.5)'},
-{t:'Media & Content',p:'media',i:'🎬',c:'#06b6d4',c2:'#22d3ee',g:'rgba(6,182,212,.5)'},
-{t:'Bot manager',p:'bot',i:'🤖',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'},
-{t:'AI Sales Agent',p:'ai',i:'✦',c:'#ec4899',c2:'#f472b6',g:'rgba(236,72,153,.5)'},
-{t:'Comment Analytics',p:'analytics',i:'📈',c:'#22c55e',c2:'#4ade80',g:'rgba(34,197,94,.5)'},
-{t:'Page Restrictions',p:'restrictions',i:'🛡️',c:'#f97316',c2:'#fb923c',g:'rgba(249,115,22,.5)'},
-{t:'Token Checker',p:'token',i:'🔑',c:'#eab308',c2:'#facc15',g:'rgba(234,179,8,.5)'},
-{t:'API channels',p:'api',i:'🔌',c:'#0284c7',c2:'#38bdf8',g:'rgba(2,132,199,.5)'},
-{t:'Migrate',p:'migrate',i:'↔️',c:'#7c3aed',c2:'#a78bfa',g:'rgba(124,58,237,.5)'},
-{t:'Blocked Pages',p:'blocked',i:'🚫',c:'#ef4444',c2:'#f87171',g:'rgba(239,68,68,.5)'},
-{t:'Payment',p:'payment',i:'💳',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'},
-];
+let MENU=[{t:'Dashboard',p:'dashboard',i:'📊',c:'#2563eb',c2:'#60a5fa',g:'rgba(37,99,235,.5)'},{t:'Facebook & Instagram',p:'facebook',i:'🔗',c:'#0284c7',c2:'#38bdf8',g:'rgba(2,132,199,.5)'},{t:'Comment growth tools',p:'comment',i:'💬',c:'#f59e0b',c2:'#fbbf24',g:'rgba(245,158,11,.5)'},{t:'Subscriber Manager',p:'subscriber',i:'🫂',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'},{t:'Broadcasting',p:'broadcasting',i:'📣',c:'#ec4899',c2:'#f472b6',g:'rgba(236,72,153,.5)'},{t:'Broadcast Job History',p:'history',i:'🕘',c:'#64748b',c2:'#94a3b8',g:'rgba(100,116,139,.5)'},{t:'Launch Utility',p:'utility',i:'🚀',c:'#f97316',c2:'#fb923c',g:'rgba(249,115,22,.5)'},{t:'Social Posting',p:'posting',i:'📝',c:'#9333ea',c2:'#c084fc',g:'rgba(147,51,234,.5)'},{t:'Create Template',p:'template',i:'🎨',c:'#eab308',c2:'#facc15',g:'rgba(234,179,8,.5)'},{t:'Media & Content',p:'media',i:'🎬',c:'#06b6d4',c2:'#22d3ee',g:'rgba(6,182,212,.5)'},{t:'Bot manager',p:'bot',i:'🤖',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'},{t:'AI Sales Agent',p:'ai',i:'✦',c:'#ec4899',c2:'#f472b6',g:'rgba(236,72,153,.5)'},{t:'Comment Analytics',p:'analytics',i:'📈',c:'#22c55e',c2:'#4ade80',g:'rgba(34,197,94,.5)'},{t:'Page Restrictions',p:'restrictions',i:'🛡️',c:'#f97316',c2:'#fb923c',g:'rgba(249,115,22,.5)'},{t:'Token Checker',p:'token',i:'🔑',c:'#eab308',c2:'#facc15',g:'rgba(234,179,8,.5)'},{t:'API channels',p:'api',i:'🔌',c:'#0284c7',c2:'#38bdf8',g:'rgba(2,132,199,.5)'},{t:'Migrate',p:'migrate',i:'↔️',c:'#7c3aed',c2:'#a78bfa',g:'rgba(124,58,237,.5)'},{t:'Blocked Pages',p:'blocked',i:'🚫',c:'#ef4444',c2:'#f87171',g:'rgba(239,68,68,.5)'},{t:'Payment',p:'payment',i:'💳',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'}];
 function renderMenu(active){document.getElementById('menu').innerHTML=MENU.map(function(m){return '<div class="side '+(active===m.p?'active':'')+'" onclick="go(\''+m.p+'\',this)"><span class="hide-text">'+m.t+'</span><span class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+'">'+m.i+'</span></div>'}).join('');}
-function go(p,el){
-renderMenu(p);
-if(window.innerWidth<=768){document.getElementById('sidebarWrap').classList.remove('open');document.getElementById('backdrop').classList.remove('show')}
-if(p==='dashboard') renderDashboard();
-else if(p==='template') renderTemplate();
-else if(p==='broadcasting') renderBroadcast('MARKETING');
-else if(p==='utility') renderBroadcast('UTILITY');
-else if(p==='posting') renderPosting();
-else if(p==='media') renderMedia();
-else if(p==='subscriber') renderSimple('🫂 Subscriber Manager','بتشوف هنبعت لمين - 1,592,739 مشترك - 75,177 Subscribers');
-else if(p==='history') renderSimple('🕘 Broadcast Job History','بنشوف الحملة حصل فيها ايه - وصفات 15/15 Done - جونام 1/1 Done');
-else if(p==='facebook') renderFacebook();
-else if(p==='comment') renderSimple('💬 Comment growth tools','1,141 تعليق النهاردة - 97.5% اترد عليه');
-else if(p==='bot') renderSimple('🤖 Bot manager','البوت شغال - بيرد على التعليقات والرسايل');
-else if(p==='ai') renderSimple('✦ AI Sales Agent','وكيل المبيعات - جاهز يبيع بدالك - بعون الله هنبيع للعالم كله');
-else if(p==='analytics') renderSimple('📈 Comment Analytics','تحليل التعليقات');
-else if(p==='restrictions') renderSimple('🛡️ Page Restrictions','مفيش صفحات محظورة');
-else if(p==='token') renderSimple('🔑 Token Checker','كل التوكنات سليمة - 177/177');
-else if(p==='api') renderSimple('🔌 API channels','API مربوط - WhatsApp + Messenger');
-else if(p==='migrate') renderSimple('↔️ Migrate','1,109,765 جاهزين يتحولوا لـ Subscribers');
-else if(p==='blocked') renderSimple('🚫 Blocked Pages','0 صفحات محظورة');
-else if(p==='payment') renderSimple('💳 Payment','خطة فرج - الدفع شغال');
-else renderDashboard();
-window.scrollTo(0,0);
-}
+function go(p,el){renderMenu(p);if(window.innerWidth<=768){document.getElementById('sidebarWrap').classList.remove('open');document.getElementById('backdrop').classList.remove('show')}if(p==='dashboard')renderDashboard();else if(p==='facebook')renderFacebook();else if(p==='comment')renderComment();else if(p==='template')renderTemplate();else if(p==='broadcasting')renderBroadcast('MARKETING');else if(p==='utility')renderBroadcast('UTILITY');else if(p==='posting')renderPosting();else if(p==='media')renderMedia();else if(p==='subscriber')renderSimple('🫂 Subscriber Manager','بتشوف هنبعت لمين - 1,592,739 مشترك - 75,177 Subscribers - دول جايين من Comment growth tools');else if(p==='history')renderSimple('🕘 Broadcast Job History','بنشوف الحملة حصل فيها ايه');else if(p==='bot')renderSimple('🤖 Bot manager','البوت شغال');else if(p==='ai')renderSimple('✦ AI Sales Agent','وكيل المبيعات');else if(p==='analytics')renderSimple('📈 Comment Analytics','تحليل التعليقات');else if(p==='restrictions')renderSimple('🛡️ Page Restrictions','مفيش صفحات محظورة');else if(p==='token')renderSimple('🔑 Token Checker','كل التوكنات سليمة - 177/177');else if(p==='api')renderSimple('🔌 API channels','API مربوط');else if(p==='migrate')renderSimple('↔️ Migrate','1,109,765 جاهزين يتحولوا');else if(p==='blocked')renderSimple('🚫 Blocked Pages','0 صفحات محظورة');else if(p==='payment')renderSimple('💳 Payment','خطة فرج');else renderDashboard();window.scrollTo(0,0);}
 function renderSimple(t,s){document.getElementById('app').innerHTML='<div class="glass-panel" style="padding:36px;text-align:center;margin-top:16px"><h2 style="font-weight:900;font-size:24px;margin:0">'+t+'</h2><p style="color:#94a3b8;margin-top:10px">'+s+'</p><button class="btn" style="max-width:250px;margin:16px auto 0" onclick="go(\'dashboard\')">Back to Dashboard</button></div>';}
 function renderDashboard(){
 let icons=MENU.map(function(m){return '<div class="grid-ico" onclick="go(\''+m.p+'\')"><div class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+';width:52px;height:52px;font-size:23px;margin:0 auto">'+m.i+'</div><div style="font-size:12px;font-weight:800;margin-top:11px;line-height:1.3">'+m.t+'</div></div>'}).join('');
 document.getElementById('app').innerHTML=`
-<div class="stats-grid">
-<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Jobs</div><div style="font-size:22px;font-weight:900;margin-top:4px">1060</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Completed</div><div style="font-size:22px;font-weight:900;margin-top:4px">1013</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Pending</div><div style="font-size:22px;font-weight:900;margin-top:4px">19</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Scheduled</div><div style="font-size:22px;font-weight:900;margin-top:4px">28</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Sent</div><div style="font-size:22px;font-weight:900;margin-top:4px">1,101,208</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Recipients</div><div style="font-size:22px;font-weight:900;margin-top:4px">1,423,473</div></div>
-</div>
-<div class="glass-panel" style="margin-top:14px;border-color:rgba(167,139,250,.35)">
-<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">🤖</span><h2 style="font-weight:900;font-size:18px;margin:0">Farag AI Insights - المنصة بتنصحك ✨</h2><span style="background:linear-gradient(135deg,#7c3aed,#a78bfa);padding:4px 10px;border-radius:99px;font-size:11px;font-weight:900">NEW</span></div>
-<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px">
-<div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">🔥 أحسن وقت تبعت فيه</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">النهاردة 8 بالليل - 1,109,765 واحد فاتح</div></div>
-<div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">💡 قالب هيبيع</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">اعمل قالب UTILITY بعنوان "صلي على النبي"</div></div>
-<div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">📈 توقع AI</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">لو بعت النهاردة هتوصل لـ 75,177 مشترك</div></div>
-</div>
-</div>
-<div class="glass-panel" style="margin-top:14px;text-align:right">
-<h2 style="font-weight:900;font-size:20px;margin:0">المعادلة - منصة فرج 🤖🌍</h2>
-<div style="color:#e2e8f0;font-size:14px;line-height:2;margin-top:8px"><div>Create Template = بتعمل القالب</div><div>Subscriber Manager = بتشوف هنبعت لمين</div><div>Launch Utility / Broadcasting = بتبعت الحملة</div><div>Broadcast Job History = بنشوف الحملة حصل فيها ايه</div></div>
-</div>
-<div class="glass-panel" style="margin-top:14px">
-<h2 style="font-weight:900;font-size:18px;margin:0;text-align:right">كل الايقونات ✨</h2>
-<div class="icons-grid">${icons}</div>
-</div>
-<div class="charts-grid">
-<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● 7-Day Activity - Line Chart</b><span style="font-size:10px;background:#eff6ff;color:#2563eb;padding:4px 8px;border-radius:99px;font-weight:800">LIVE 🔴 AI</span></div>
-<svg viewBox="0 0 600 230" style="width:100%;height:195px;margin-top:8px;filter:drop-shadow(0 14px 18px rgba(37,99,235,.25))">
-<defs><linearGradient id="lgBlueW" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.45"/><stop offset="55%" stop-color="#60a5fa" stop-opacity="0.16"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient><linearGradient id="lgGreenW" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.35"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient><filter id="glowBW"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,230 L0,230 Z" fill="url(#lgBlueW)"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110 L600,230 L0,230 Z" fill="url(#lgGreenW)"/>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" filter="url(#glowBW)"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" filter="url(#glowBW)"/>
-<circle class="pulse-dot" cx="0" cy="20" r="7" fill="#fff" stroke="#2563eb" stroke-width="3.5"/><circle cx="0" cy="20" r="3" fill="#2563eb"/>
-<circle class="pulse-dot" cx="600" cy="110" r="7" fill="#fff" stroke="#22c55e" stroke-width="3.5"/><circle cx="600" cy="110" r="3" fill="#22c55e"/>
-</svg><div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;font-weight:800"><span>🟢 Comments</span><span>🔵 Broadcast</span></div></div>
-<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Broadcast Campaigns - Donut</b><span class="badge" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d">677 Completed</span></div>
-<div class="donut-ultra" style="background:conic-gradient(from 200deg,#16a34a 0 55%,#22c55e 55% 92%,#4ade80 92% 96%,#ef4444 96% 100%)"><div class="donut-in-ultra"><b style="font-size:26px">705</b><span style="font-size:10px;color:#64748b;font-weight:800">Total</span></div></div>
-<div style="display:flex;justify-content:space-between;font-size:12px;font-weight:900;margin-top:14px"><span style="background:#f0fdf4;padding:5px 10px;border-radius:99px">🟢 677</span><span style="background:#fef2f2;padding:5px 10px;border-radius:99px">🔴 28</span><span style="background:#fff7ed;padding:5px 10px;border-radius:99px">🟠 0</span></div></div>
-</div>
-<div class="charts-grid">
-<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● New Subscribers - Bar Chart</b><span style="font-size:10px;background:#eff6ff;color:#1d4ed8;padding:4px 8px;border-radius:99px;font-weight:800">+41.7% 🔥</span></div>
-<div style="display:flex;align-items:end;gap:10px;height:180px;margin-top:12px">
-<div class="bar-ultra" style="height:30%;background:linear-gradient(180deg,#dbeafe,#93c5fd 45%,#60a5fa 85%,#3b82f6)"></div>
-<div class="bar-ultra" style="height:45%;background:linear-gradient(180deg,#bfdbfe,#93c5fd 45%,#3b82f6 85%,#2563eb)"></div>
-<div class="bar-ultra" style="height:35%;background:linear-gradient(180deg,#dbeafe,#93c5fd 45%,#60a5fa 85%,#3b82f6)"></div>
-<div class="bar-ultra" style="height:60%;background:linear-gradient(180deg,#93c5fd,#60a5fa 45%,#2563eb 85%,#1d4ed8)"></div>
-<div class="bar-ultra" style="height:80%;background:linear-gradient(180deg,#60a5fa,#3b82f6 45%,#1d4ed8 85%,#1e40af)"></div>
-<div class="bar-ultra" style="height:95%;background:linear-gradient(180deg,#3b82f6,#2563eb 45%,#1e40af 85%,#172a6b)"></div>
-<div class="bar-ultra" style="height:100%;background:linear-gradient(180deg,#2563eb,#1d4ed8 45%,#1e40af 85%,#0f1f5a)"></div>
-</div><div style="display:flex;justify-content:space-between;font-size:10px;color:#64748b;font-weight:800;margin-top:10px"><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div>
-<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Subscribers Rate - Radial</b><span class="badge" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1d4ed8">4.7% of leads</span></div>
-<div class="donut-ultra" style="background:conic-gradient(from 270deg,#2563eb 0 4.7%,#60a5fa 4.7% 5.8%,#e5e7eb 5.8% 100%);box-shadow:0 28px 50px rgba(37,99,235,.4),0 10px 20px rgba(0,0,0,.25),inset 0 -14px 24px rgba(0,0,0,.22),inset 0 12px 20px rgba(255,255,255,.85)"><div class="donut-in-ultra"><b style="font-size:24px">4.7%</b><span style="font-size:10px;color:#64748b;font-weight:800">Subscribers</span></div></div>
-<div style="text-align:center;font-size:12px;color:#64748b;margin-top:14px;font-weight:800"><b style="color:#0f172a;font-size:13px">75,177</b> / 1,592,739</div></div>
-</div>
-`;
+<div class="stats-grid"><div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Jobs</div><div style="font-size:22px;font-weight:900;margin-top:4px">1060</div></div><div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Completed</div><div style="font-size:22px;font-weight:900;margin-top:4px">1013</div></div><div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Pending</div><div style="font-size:22px;font-weight:900;margin-top:4px">19</div></div><div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Scheduled</div><div style="font-size:22px;font-weight:900;margin-top:4px">28</div></div><div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Sent</div><div style="font-size:22px;font-weight:900;margin-top:4px">1,101,208</div></div><div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Recipients</div><div style="font-size:22px;font-weight:900;margin-top:4px">1,423,473</div></div></div>
+<div class="glass-panel" style="margin-top:14px"><div style="display:flex;align-items:center;gap:10px"><span class="icon-anim" style="font-size:24px">🤖</span><h2 style="font-weight:900;font-size:18px;margin:0">Farag AI Insights ✨</h2></div><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px"><div style="background:rgba(255,255,255,.07);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">🔥 أحسن وقت</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">النهاردة 8 بالليل</div></div><div style="background:rgba(255,255,255,.07);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">💡 قالب هيبيع</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">UTILITY "صلي على النبي"</div></div><div style="background:rgba(255,255,255,.07);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">📈 توقع AI</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">هتوصل لـ 75,177 مشترك</div></div></div></div>
+<div class="glass-panel" style="margin-top:14px;text-align:right"><h2 style="font-weight:900;font-size:20px;margin:0">المعادلة - منصة فرج 🤖🌍</h2><div style="color:#e2e8f0;font-size:14px;line-height:2;margin-top:8px"><div><b>DM:</b> في Create Template - المخزن الرئيسي لكل رسائل الخاص</div><div><b>REPLY:</b> في Comment growth tools بس</div><div><b>Posting:</b> في Social Posting بس</div><div>Comment growth tools = لو حد علق بكلمة، هعمل ايه؟</div></div></div>
+<div class="glass-panel" style="margin-top:14px"><h2 style="font-weight:900;font-size:18px;margin:0;text-align:right">كل الايقونات ✨</h2><div class="icons-grid">${icons}</div></div>
+<div class="charts-grid"><div class="chart-ultra"><b>● 7-Day Activity - Line Chart</b><svg viewBox="0 0 600 230" style="width:100%;height:195px;margin-top:8px"><path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,230 L0,230 Z" fill="rgba(37,99,235,.25)"/><path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round"/><path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round"/></svg></div><div class="chart-ultra"><b>● Broadcast Campaigns - Donut</b> <span class="badge" style="background:#dcfce7;color:#15803d">677 Completed</span><div class="donut-ultra" style="background:conic-gradient(from 200deg,#16a34a 0 55%,#22c55e 55% 92%,#4ade80 92% 96%,#ef4444 96% 100%)"><div class="donut-in-ultra"><b style="font-size:26px">705</b><span style="font-size:10px;color:#64748b;font-weight:800">Total</span></div></div></div></div>
+<div class="charts-grid"><div class="chart-ultra"><b>● New Subscribers - Bar Chart</b><div style="display:flex;align-items:end;gap:10px;height:180px;margin-top:12px"><div class="bar-ultra" style="height:30%;background:linear-gradient(180deg,#dbeafe,#93c5fd 45%,#60a5fa 85%,#3b82f6)"></div><div class="bar-ultra" style="height:45%;background:linear-gradient(180deg,#bfdbfe,#93c5fd 45%,#3b82f6 85%,#2563eb)"></div><div class="bar-ultra" style="height:35%;background:linear-gradient(180deg,#dbeafe,#93c5fd 45%,#60a5fa 85%,#3b82f6)"></div><div class="bar-ultra" style="height:60%;background:linear-gradient(180deg,#93c5fd,#60a5fa 45%,#2563eb 85%,#1d4ed8)"></div><div class="bar-ultra" style="height:80%;background:linear-gradient(180deg,#60a5fa,#3b82f6 45%,#1d4ed8 85%,#1e40af)"></div><div class="bar-ultra" style="height:95%;background:linear-gradient(180deg,#3b82f6,#2563eb 45%,#1e40af 85%,#172a6b)"></div><div class="bar-ultra" style="height:100%;background:linear-gradient(180deg,#2563eb,#1d4ed8 45%,#1e40af 85%,#0f1f5a)"></div></div></div><div class="chart-ultra"><b>● Subscribers Rate - Radial</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">4.7% of leads</span><div class="donut-ultra" style="background:conic-gradient(from 270deg,#2563eb 0 4.7%,#60a5fa 4.7% 5.8%,#e5e7eb 5.8% 100%)"><div class="donut-in-ultra"><b style="font-size:24px">4.7%</b><span style="font-size:10px;color:#64748b;font-weight:800">Subscribers</span></div></div><div style="text-align:center;font-size:12px;color:#64748b;margin-top:14px;font-weight:800"><b style="color:#0f172a">75,177</b> / 1,592,739</div></div></div>`;
 }
 /* ===== Facebook & Instagram - زي ما عملناها ===== */
 let fbConnectType='facebook';
 function renderFacebook(){
 let pages=DB.get('farag_pages',[{n:'انغام',t:'Facebook',s:'Connected',e:'🎤',c:'#1877F2'},{n:'بهية',t:'Instagram',s:'Connected',e:'💃',c:'#E1306C'}]);
 let rows=pages.map(function(p){return '<tr><td style="display:flex;align-items:center;gap:10px"><span style="width:36px;height:36px;border-radius:50%;background:'+p.c+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px">'+p.e+'</span><b>'+p.n+'</b></td><td>'+p.t+'</td><td><span class="badge" style="background:#dcfce7;color:#15803d">● '+p.s+'</span></td></tr>'}).join('');
-document.getElementById('app').innerHTML=`
-<div class="glass-panel" style="margin-top:14px">
-<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">
-<div><h2 style="font-weight:900;font-size:22px;margin:0">🔗 Facebook & Instagram - FARAG.com</h2><p style="color:#94a3b8;font-size:13px;margin:6px 0 0">دي اهم صفحة في المنصة كلها 👌 • دلوقتي: ${pages.length} صفحات مربوطة</p></div>
-<div style="display:flex;gap:8px;flex-wrap:wrap">
-<button onclick="openFbConnect('facebook')" style="background:linear-gradient(135deg,#1877F2,#60a5fa);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer;box-shadow:0 10px 20px rgba(24,119,242,.4)">+ Connect Page</button>
-<button onclick="openFbConnect('instagram')" style="background:linear-gradient(135deg,#E1306C,#F472B6);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer;box-shadow:0 10px 20px rgba(225,48,108,.4)">+ Connect Instagram</button>
-</div></div>
-<div id="fbConnectBox" style="display:none;margin-top:14px;background:rgba(255,255,255,.07);border:1px solid rgba(167,139,250,.4);border-radius:16px;padding:14px"></div>
-</div>
-<div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>PAGE</th><th>TYPE</th><th>STATUS</th></tr></thead><tbody>${rows}</tbody></table></div>
-<div class="card" style="margin-top:12px"><b>الربط الحقيقي بيتعمل ازاي؟ - 4 خطوات، مفيش غيرهم</b>
-<div style="font-size:13px;color:#475569;line-height:2;margin-top:8px">
-<div><b>الخطوة 1:</b> بتدوس Connect Page - المنصة بتفتحلك صفحة فيسبوك، بتقولك "سجل دخول بالفيسبوك بتاعك"</div>
-<div><b>الخطوة 2:</b> بتختار الصفحات - فيسبوك بيوريك كل الصفحات اللي انت ادمن فيها، وانت بتختار: انغام ولا بهية ولا الاتنين؟</div>
-<div><b>الخطوة 3:</b> فيسبوك بيدينا التوكن - Page Access Token، زي كلمة سر الصفحة. من غيرها المنصة متقدرش تبعت ولا ترد. الورقة دي بتتخزن في Token Checker</div>
-<div><b>الخطوة 4:</b> الصفحة بتتضاف هنا - اول ما الورقة تتخزن، الصفحة بتظهر هنا في الجدول، وحالتها بتبقى Connected</div>
-<div style="margin-top:8px;background:#fef3c7;border-radius:12px;padding:10px"><b>الانستجرام نفس الكلام بالظبط،</b> بس لازم الانستجرام يكون مربوط بصفحة فيسبوك الاول، عشان فيسبوك هو اللي بيدينا توكن الانستجرام.</div>
-</div></div>
-<div class="card" style="margin-top:12px;background:linear-gradient(180deg,#fefce8,#fff7ed)"><b>كل الصفحات ولا تختار بايدك؟</b>
-<div style="font-size:13px;color:#475569;line-height:1.9;margin-top:8px">
-<div><b>الاختيار الاول - كل الصفحات:</b> الاكونت ده هيشترك بكل الصفحات اللي انت انشأتها قبل كده، واللي هتنشئها في المستقبل. اي صفحة جديدة هتتربط لوحدها.</div>
-<div><b>الاختيار التاني - اختار بايدك:</b> تختار الصفحات اللي انت عايزها بس. مثلا انغام بس، وتسيب باقي الصفحات.</div>
-<div style="margin-top:6px"><b>نصيحة فرج:</b> اختار <b>اختار بايدك</b> في الاول، عشان تتحكم في انهي صفحة تتربط، وبعد ما الدنيا تستقر، نبقى نعملها كل الصفحات.</div>
-</div></div>
-`;
+document.getElementById('app').innerHTML='<div class="glass-panel" style="margin-top:14px"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap"><div><h2 style="font-weight:900;font-size:22px;margin:0">🔗 Facebook & Instagram - FARAG.com</h2><p style="color:#94a3b8;font-size:13px;margin:6px 0 0">دي اهم صفحة في المنصة كلها 👌 • دلوقتي: '+pages.length+' صفحات مربوطة</p></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button onclick="openFbConnect(\'facebook\')" style="background:linear-gradient(135deg,#1877F2,#60a5fa);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer">+ Connect Page</button><button onclick="openFbConnect(\'instagram\')" style="background:linear-gradient(135deg,#E1306C,#F472B6);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer">+ Connect Instagram</button></div></div><div id="fbConnectBox" style="display:none;margin-top:14px;background:rgba(255,255,255,.07);border:1px solid rgba(167,139,250,.4);border-radius:16px;padding:14px"></div></div><div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>PAGE</th><th>TYPE</th><th>STATUS</th></tr></thead><tbody>'+rows+'</tbody></table></div><div class="card" style="margin-top:12px"><b>الربط الحقيقي - 4 خطوات</b><div style="font-size:13px;color:#475569;line-height:2;margin-top:8px"><div><b>1:</b> تدوس Connect Page - سجل دخول بالفيسبوك</div><div><b>2:</b> تختار الصفحات - انغام ولا بهية ولا الاتنين؟</div><div><b>3:</b> فيسبوك بيدينا التوكن - Page Access Token - بتتخزن في Token Checker</div><div><b>4:</b> الصفحة بتتضاف هنا - Connected</div></div></div><div class="card" style="margin-top:12px;background:linear-gradient(180deg,#fefce8,#fff7ed)"><b>كل الصفحات ولا تختار بايدك؟</b><div style="font-size:13px;color:#475569;line-height:1.9;margin-top:8px"><div><b>كل الصفحات:</b> كل اللي انشأتها واللي هتنشئها بعد كده</div><div><b>اختار بايدك:</b> تختار الصفحات اللي انت عايزها بس</div><div><b>نصيحة فرج:</b> اختار بايدك في الاول</div></div></div>';
 }
-function openFbConnect(type){
-fbConnectType=type;
-let box=document.getElementById('fbConnectBox');box.style.display='block';
-box.innerHTML='<b>'+(type==='facebook'?'+ Connect Page - ربط صفحة فيسبوك':'+ Connect Instagram - ربط اكونت انستجرام')+'</b><p style="font-size:13px;color:#cbd5e1;line-height:1.9;margin:8px 0 0">الخطوة 1: سجل دخول بالفيسبوك بتاعك<br>الخطوة 2: اختار: كل الصفحات ولا تختار بايدك؟</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><label style="background:rgba(255,255,255,.08);border:2px solid rgba(255,255,255,.2);border-radius:14px;padding:12px;cursor:pointer;display:block"><input type="radio" name="fbChoice" value="all"> <b>كل الصفحات</b><div style="font-size:11px;color:#94a3b8;margin-top:4px">كل اللي انشأتها واللي هتنشئها بعد كده</div></label><label style="background:rgba(255,255,255,.08);border:2px solid #a78bfa;border-radius:14px;padding:12px;cursor:pointer;display:block"><input type="radio" name="fbChoice" value="manual" checked> <b>اختار بايدك ✅</b><div style="font-size:11px;color:#94a3b8;margin-top:4px">اختار الصفحات اللي انت عايزها بس</div></label></div><input id="newPageName" class="input" style="margin-top:10px;background:rgba(255,255,255,.95)" placeholder="اكتب اسم الصفحة... مثلا: جنه"><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><label style="color:#e2e8f0;font-size:13px"><input type="checkbox" checked> صفحة انغام</label><label style="color:#e2e8f0;font-size:13px"><input type="checkbox"> صفحة بهية</label><label style="color:#e2e8f0;font-size:13px"><input type="checkbox"> صفحة جنه</label></div><button onclick="doFbConnect()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px;border-radius:99px;font-weight:900;cursor:pointer">ابدأ الربط - Connect</button><div style="font-size:11px;color:#94a3b8;margin-top:8px;text-align:center">دلوقتي ده ربط تجريبي جوة المنصة - الربط الحقيقي بفيسبوك هنعمله بعدين، وهيبقى فيه نفس الاختيارين دول بالظبط.</div>';
-box.scrollIntoView({behavior:'smooth'});
+function openFbConnect(type){fbConnectType=type;let box=document.getElementById('fbConnectBox');box.style.display='block';box.innerHTML='<b>'+(type==='facebook'?'+ Connect Page':'+ Connect Instagram')+'</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><label style="background:rgba(255,255,255,.08);border-radius:14px;padding:12px;display:block"><input type="radio" name="fbChoice" value="all"> <b>كل الصفحات</b></label><label style="background:rgba(255,255,255,.08);border:2px solid #a78bfa;border-radius:14px;padding:12px;display:block"><input type="radio" name="fbChoice" value="manual" checked> <b>اختار بايدك ✅</b></label></div><input id="newPageName" class="input" style="margin-top:10px;background:rgba(255,255,255,.95)" placeholder="اكتب اسم الصفحة... مثلا: جنه"><button onclick="doFbConnect()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px;border-radius:99px;font-weight:900;cursor:pointer">ابدأ الربط - Connect</button>';box.scrollIntoView({behavior:'smooth'});}
+function doFbConnect(){let n=(document.getElementById('newPageName').value||'').trim();if(!n){alert('اكتب اسم الصفحة');return;}let a=DB.get('farag_pages',[]);let isIg=fbConnectType==='instagram';a.push({n:n,t:isIg?'Instagram':'Facebook',s:'Connected',e:isIg?'💃':'✨',c:isIg?'#E1306C':'#1877F2'});DB.set('farag_pages',a);alert('✅ اتربطت: '+n);renderFacebook();}
+let commentChoice='both';
+function setCommentChoice(c,el){commentChoice=c;document.querySelectorAll('.choice-card').forEach(function(x){x.classList.remove('active')});el.classList.add('active');}
+function renderComment(){
+let tools=DB.get('farag_comment_tools',null);
+if(tools===null){tools=[{id:1,post:'بوست الكورس',kw:'تم',reply:'بعتلك التفاصيل',dm:'قالب الترحيب',on:true}];DB.set('farag_comment_tools',tools);}
+let replyTpls=DB.get('farag_reply_tpls',[{id:1,text:'بعتلك التفاصيل في الخاص ❤️'},{id:2,text:'تم الرد عليك، شوف الخاص'},{id:3,text:'اهلا بيك، بعتلك العرض'}]);
+let dmTpls=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',type:'UTILITY'},{id:2,name:'قالب السعر',type:'UTILITY'},{id:3,name:'قالب العرض',type:'MARKETING'}]);
+let rows=tools.map(function(t){return '<tr><td><b>'+t.post+'</b></td><td><span class="badge" style="background:#fef3c7;color:#92400e">🔑 '+t.kw+'</span></td><td>'+t.reply+'</td><td><span class="badge" style="background:#e0e7ff;color:#3730a3">✉️ '+t.dm+'</span></td><td><div style="display:flex;align-items:center;gap:10px"><div><div class="switch '+(t.on?'':'off')+'" onclick="toggleTool('+t.id+')"></div><div style="font-size:11px;font-weight:900;text-align:center;margin-top:4px;color:'+(t.on?'#16a34a':'#94a3b8')+'">'+(t.on?'ON - شغالة':'OFF - مطفية')+'</div></div><button class="delete-btn" onclick="delTool('+t.id+')">🗑 مسح</button></div></td></tr>'}).join('');
+document.getElementById('app').innerHTML='<div class="glass-panel" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">💬 Comment growth tools - FARAG.com</h2><p style="font-size:13px;color:#94a3b8;margin:6px 0 0">دي اللي بتجيبلك المشتركين - لو حد علق بكلمة، هعمل ايه؟</p></div><div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>POST</th><th>KEYWORD</th><th>REPLY</th><th>DM</th><th>STATUS</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
 }
-function doFbConnect(){
-let n=(document.getElementById('newPageName').value||'').trim();
-let choice=document.querySelector('input[name="fbChoice"]:checked');
-let mode=choice?choice.value:'manual';
-if(!n){alert('اكتب اسم الصفحة الاول - مثلا: جنه');return;}
-let a=DB.get('farag_pages',[]);
-let isIg=fbConnectType==='instagram';
-a.push({n:n,t:isIg?'Instagram':'Facebook',s:'Connected',e:isIg?'💃':'✨',c:isIg?'#E1306C':'#1877F2'});
-DB.set('farag_pages',a);
-alert('✅ اتربطت: '+n+' - '+(mode==='all'?'كل الصفحات':'اختار بايدك')+' - التوكن اتخزن في Token Checker');
-renderFacebook();
+function toggleTool(id){let a=DB.get('farag_comment_tools',[]);a=a.map(function(t){if(t.id===id)t.on=!t.on;return t});DB.set('farag_comment_tools',a);renderComment();}
+function delTool(id){if(!confirm('هتمسح الأداة دي؟'))return;DB.set('farag_comment_tools',DB.get('farag_comment_tools',[]).filter(function(x){return x.id!==id}));renderComment();}
+/* ===== Social Posting - بنصك بالظبط + فخامة AI احترافية ===== */
+let postingSel={all:true,fbAll:true,igAll:true,fb:{angham:true,behiya:true,ganna:true},ig:{angham:true}};
+let postingMedia={img:null,vid:null};
+function togglePostingAll(checked){
+postingSel.all=checked;postingSel.fbAll=checked;postingSel.igAll=checked;
+postingSel.fb.angham=checked;postingSel.fb.behiya=checked;postingSel.fb.ganna=checked;postingSel.ig.angham=checked;
+renderPosting();
 }
-/* ===== Social Posting + Posting Templates - التبويبة دي بس اللي اتعدلت دلوقتي ===== */
+function togglePostingFbAll(checked){
+postingSel.fbAll=checked;postingSel.fb.angham=checked;postingSel.fb.behiya=checked;postingSel.fb.ganna=checked;
+postingSel.all=postingSel.fbAll&&postingSel.igAll;
+renderPosting();
+}
+function togglePostingIgAll(checked){
+postingSel.igAll=checked;postingSel.ig.angham=checked;
+postingSel.all=postingSel.fbAll&&postingSel.igAll;
+renderPosting();
+}
+function togglePostingPage(group,key,checked){
+postingSel[group][key]=checked;
+if(group==='fb'){postingSel.fbAll=postingSel.fb.angham&&postingSel.fb.behiya&&postingSel.fb.ganna;}
+if(group==='ig'){postingSel.igAll=postingSel.ig.angham;}
+postingSel.all=postingSel.fbAll&&postingSel.igAll;
+renderPosting();
+}
 function renderPosting(){
-let posts=DB.get('farag_post_tpl',[{id:1,title:'بوست الترحيب',text:'صلي على النبي واذكر الله ❤️',time:'النهاردة 8 بالليل'}]);
-let items=posts.map(function(p){return '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:12px 14px;margin-top:10px;box-shadow:0 8px 16px rgba(0,0,0,.06)"><div style="text-align:right;flex:1;min-width:0"><div style="font-weight:900;font-size:14px">'+p.title+'</div><div style="font-size:12px;color:#64748b;margin-top:3px">'+(p.text||'')+' • 🕘 '+(p.time||'')+'</div></div><div style="display:flex;gap:6px;flex-shrink:0"><button onclick="publishPost('+p.id+')" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:8px 16px;border-radius:99px;font-weight:900;cursor:pointer;font-size:12px;box-shadow:0 8px 14px rgba(37,99,235,.4)">📣 نشر</button><button onclick="delPostTpl('+p.id+')" style="background:none;border:none;color:#ef4444;font-weight:800;cursor:pointer;font-size:16px">🗑</button></div></div>'}).join('');
-document.getElementById('app').innerHTML=`
+let templates=DB.get('farag_posting_templates',[{id:1,title:'بوست العرض',text:'العرض الجديد وصل، الحق قبل ما يخلص...',media:'صورة من المخزن + فيديو'}]);
+let posts=DB.get('farag_posts',[{id:1,title:'بوست العرض',page:'انغام',status:'Published',likes:124}]);
+let tplOpts=templates.map(function(t){return '<option value="'+t.id+'">'+t.title+' - '+t.text.substring(0,30)+'</option>'}).join('');
+let postRows=posts.map(function(p){return '<tr><td><b>'+p.title+'</b></td><td>'+p.page+'</td><td><span class="badge" style="background:#dcfce7;color:#15803d">● '+p.status+'</span></td><td><b>❤️ '+p.likes+'</b></td></tr>'}).join('');
+let html=`
 <div class="card" style="margin-top:14px">
-<h2 style="font-weight:900;font-size:22px;margin:0">Social Posting ✍️ - FARAG.com</h2>
-<p style="font-size:12px;color:#64748b;margin:10px 0 0;line-height:1.9;text-align:right">
-<b style="color:#0f172a">النوع الاول - قوالب حملات الارسال - Broadcast Templates:</b> دي اللي موجودة في Create Template. دي رسالة بتتبعت في الخاص - في الماسنجر. مكوناتها: Body - نص الرسالة + Button - زرار + Image - صورة<br>
-<b style="color:#0f172a">النوع التاني - قوالب النشر - Posting Templates:</b> دي اللي هنا 👇 دي مش رسالة خاص، دي بوست بيتنشر على الصفحة نفسها. مكوناتها مختلفة خالص: عنوان البوست + نص البوست + صورة / فيديو + ميعاد النشر
-</p>
-<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:16px;margin-top:14px">
-<b style="font-size:14px">✏️ Posting Templates - قوالب النشر</b>
-<input id="pt-title" class="input" style="margin-top:12px" placeholder="عنوان البوست">
-<textarea id="pt-text" class="input" rows="3" style="margin-top:10px" placeholder="نص البوست..."></textarea>
-<input id="pt-time" class="input" style="margin-top:10px" placeholder="ميعاد النشر - مثلا: النهاردة 8 بالليل">
-<div style="font-size:13px;font-weight:700;margin-top:10px">الصفحات: ✅ انغام ✅ بهية ✅ جنه</div>
-<button class="btn" style="margin-top:12px" onclick="savePostTpl()">💾 حفظ قالب النشر</button>
-<div style="font-size:11px;color:#94a3b8;margin-top:8px;text-align:center">بتحفظ القالب مرة واحدة، وبعد كده تنشره على اي صفحة بضغطة واحدة - مش هتكتب البوست كل مرة من الصفر</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">
+<div><h2 style="font-weight:900;font-size:22px;margin:0;text-align:right"><span class="icon-anim" style="display:inline-block">✍️</span> Social Posting - FARAG.com</h2>
+<p style="font-size:12px;color:#64748b;margin:8px 0 0;line-height:1.9;text-align:right">دي رقم 10 في الترتيب • دي الصفحة اللي بننزل منها بوست على الصفحات، مش رسالة في الخاص<br><b style="color:#0f172a">Social Posting = هكتب ايه؟ وهنزله على انهي صفحات؟</b> = عنوان + نص + صورة من Media & Content + اختيار الصفحات + نشر</p></div>
+<span class="badge" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#5b21b6;padding:6px 12px">رقم 10 • بوست عام</span>
 </div>
-<div style="margin-top:16px"><b style="font-size:14px">القوالب المحفوظة (${posts.length})</b>${items||'<div style="text-align:center;color:#94a3b8;font-size:13px;padding:12px">مفيش قوالب لسه - اعمل اول قالب فوق 👆</div>'}</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:12px"><b style="font-size:13px;color:#15803d">Create Template = رسالة خاص</b><div style="font-size:12px;color:#475569;margin-top:4px">بتتبعت في الماسنجر، لواحد واحد، العميل بس هو اللي بيشوفها. مكوناتها: Body + صورة + زرار</div></div>
+<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:12px"><b style="font-size:13px;color:#1d4ed8">Social Posting = بوست عام</b><div style="font-size:12px;color:#475569;margin-top:4px">بينزل على الصفحة نفسها، كل الناس بتشوفه. مكوناتها: عنوان البوست + نص البوست + صورة / فيديو</div></div>
 </div>
+<div style="text-align:center;font-size:12px;font-weight:800;color:#7c3aed;margin-top:10px">واحدة خاص، والتانية عام. مينفعش نخلطهم على بعض.</div>
+<div class="posting-box" style="border:2px solid #ddd6fe;background:linear-gradient(180deg,#faf5ff,#f8fafc)">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:14px">📚 Posting Templates - قوالب النشر</b><span class="badge" style="background:#ede9fe;color:#5b21b6">اتثبت خلاص</span></div>
+<p style="font-size:12px;color:#64748b;line-height:1.8;margin:8px 0 0">تعمل قالب نشر مرة واحدة، وتحفظه: عنوان + نص + صورة من المخزن + فيديو. القالب يتحفظ في <b>STATE.postingTemplates</b>. بعد كده تختار القالب من القايمة، وتختار الصفحة، وتدوس نشر، خلاص. بدل ما تكتب البوست 100 مرة، تكتبه مرة واحدة، وتنشره 100 مرة على اي صفحة.</p>
+<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><select id="tplSelect" class="posting-input" style="flex:1;min-width:200px"><option value="">-- اختار قالب نشر محفوظ --</option>${tplOpts}</select><button onclick="usePostingTpl()" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px 16px;border-radius:14px;font-weight:900;cursor:pointer;white-space:nowrap">استخدم القالب ⬇️</button></div>
+<div style="display:flex;gap:8px;margin-top:8px"><button onclick="savePostingTemplate()" style="flex:1;background:#fff;border:2px solid #ddd6fe;color:#5b21b6;padding:11px;border-radius:14px;font-weight:900;cursor:pointer">💾 حفظ اللي تحت كـ قالب نشر</button></div>
+<div style="font-size:11px;color:#94a3b8;text-align:center;margin-top:6px">القوالب المحفوظة: ${templates.length} قالب</div>
+</div>
+<div class="posting-box">
+<b style="font-size:14px">✍️ الكارت اللي فوق - ده اللي بنكتب فيه البوست</b>
+<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">1 - عنوان البوست - اللي على اليمين</label>
+<input id="pt-title" class="posting-input" style="margin-top:6px" placeholder="عنوان البوست - مثلا: بوست العرض">
+<div style="font-size:11px;color:#94a3b8;margin-top:4px;text-align:right">ده اسم داخلي ليك انت بس، مش بيظهر للناس. زي بوست العرض، عشان تفتكره.</div>
+<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">2 - اختيار الصفحات - شلنا القايمة الواحدة [ Facebook ▼ ] وحطينا ده مكانها</label>
+<div class="account-box">
+<div class="account-head"><label style="display:flex;gap:8px;align-items:center;cursor:pointer"><input type="checkbox" ${postingSel.all?'checked':''} onchange="togglePostingAll(this.checked)"> ✅ تحديد الكل - كل الاكونتات وكل الصفحات</label><span class="badge" style="background:#dcfce7;color:#15803d">3 مستويات</span></div>
+<div class="account-sub">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:13px">اكونت 1 - اكونت فيسبوك بتاعك</b><label style="display:flex;gap:6px;font-size:12px;font-weight:800;cursor:pointer"><input type="checkbox" ${postingSel.fbAll?'checked':''} onchange="togglePostingFbAll(this.checked)"> ✅ تحديد الكل بتاع الاكونت ده</label></div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px"><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.angham?'checked':''} onchange="togglePostingPage('fb','angham',this.checked)"> صفحة انغام</label><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.behiya?'checked':''} onchange="togglePostingPage('fb','behiya',this.checked)"> صفحة بهية</label><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.ganna?'checked':''} onchange="togglePostingPage('fb','ganna',this.checked)"> صفحة جنه</label></div>
+</div>
+<div class="account-sub">
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:13px">اكونت 2 - اكونت انستجرام بتاعك</b><label style="display:flex;gap:6px;font-size:12px;font-weight:800;cursor:pointer"><input type="checkbox" ${postingSel.igAll?'checked':''} onchange="togglePostingIgAll(this.checked)"> ✅ تحديد الكل بتاع الاكونت ده</label></div>
+<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px"><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.ig.angham?'checked':''} onchange="togglePostingPage('ig','angham',this.checked)"> انستجرام انغام</label></div>
+</div>
+<div style="font-size:11px;color:#64748b;line-height:1.8;margin-top:8px;text-align:right"><b>1 - تختار الكل كله:</b> تدوس تحديد الكل اللي فوق خالص، كل الاكونتات وكل الصفحات تتحدد مرة واحدة.<br><b>2 - تختار اكونت كامل:</b> تدوس تحديد الكل اللي جنب الاكونت، كل الصفحات اللي جوه الاكونت ده بس تتحدد. مثال: عايز تبعت من اكونت فيسبوك بس، ومتخليش انستجرام يبعت.<br><b>3 - تختار صفحة صفحة بايدك:</b> تسيب تحديد الكل، وتدوس صح على الصفحة اللي انت عايزها بس. مثال: عايز انغام بس من جوه اكونت فيسبوك، وتسيب بهية.</div>
+</div>
+<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">3 - نص البوست - اللي تحت</label>
+<textarea id="pt-text" class="posting-input" rows="3" style="margin-top:6px;resize:vertical" placeholder="نص البوست... مثلا: العرض الجديد وصل، الحق قبل ما يخلص..."></textarea>
+<div style="font-size:11px;color:#94a3b8;margin-top:4px;text-align:right">هنا بتكتب الكلام اللي الناس هتشوفه.</div>
+<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">صورة / فيديو - من Media & Content، مش رفع جديد من هنا</label>
+<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="media-btn" onclick="pickPostingMedia('img')">🖼️ اختر صورة من المخزن</button><button class="media-btn" onclick="pickPostingMedia('vid')">🎬 اختر فيديو من المخزن</button></div>
+<div id="postingMediaBox" style="display:${postingMedia.img||postingMedia.vid?'block':'none'};margin-top:8px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px;font-size:13px;text-align:center">${postingMedia.img?('🖼️ الصورة المختارة: '+postingMedia.img+'<br>'):''}${postingMedia.vid?('🎬 الفيديو المختار: '+postingMedia.vid):''}</div>
+<div style="font-size:11px;color:#64748b;margin-top:6px;text-align:center">Media & Content = هو المخزن الرئيسي لكل الصور والفيديوهات • Social Posting = بياخد منه، مش بيرفع صور جديدة من هنا</div>
+<input id="pt-time" class="posting-input" style="margin-top:10px" placeholder="ميعاد النشر - مثلا: النهاردة 8 بالليل - او بكرة الساعة 8">
+<div style="display:flex;gap:8px;margin-top:12px"><button class="posting-btn" onclick="publishPosting()">نشر 📤 - البنفسجي</button><button onclick="schedulePosting()" style="flex:1;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 24px rgba(245,158,11,.4)">جدولة 🕘 - بكرة الساعة 8</button></div>
+<div style="font-size:11px;color:#94a3b8;text-align:center;margin-top:6px">الخطوة 1 - بتكتب البوست • الخطوة 2 - بتختار هتنشر فين • الخطوة 3 - بتدوس نشر</div>
+</div>
+<div style="margin-top:16px"><b style="font-size:14px">الجدول اللي تحت - البوستات اللي اتنشرت</b></div>
+</div>
+<div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>TITLE</th><th>PAGE</th><th>STATUS</th><th>LIKES</th></tr></thead><tbody>${postRows}</tbody></table></div>
+<div class="card" style="margin-top:12px;background:linear-gradient(180deg,#fefce8,#fff7ed)"><b>الخلاصة:</b><p style="font-size:13px;color:#475569;line-height:1.9;margin:8px 0 0"><b>Social Posting = هكتب ايه؟ وهنزله على انهي صفحات؟</b> = عنوان + نص + صورة من Media & Content + اختيار الصفحات + نشر<br><b>Broadcasting و Launch Utility =</b> رسالة في الخاص، بتروح لواحد واحد في الخاص. <b>Social Posting =</b> بوست على الصفحة، بيشوفه كل اللي بيتابعوا الصفحة.</p></div>
 `;
-}
-function savePostTpl(){let t=document.getElementById('pt-title').value.trim();if(!t){alert('اكتب عنوان البوست');return;}let a=DB.get('farag_post_tpl',[]);a.unshift({id:Date.now(),title:t,text:document.getElementById('pt-text').value||'نص البوست',time:document.getElementById('pt-time').value||'النهاردة 8 بالليل'});DB.set('farag_post_tpl',a);alert('✅ اتحفظ قالب النشر: '+t);renderPosting();}
-function delPostTpl(id){if(!confirm('تمسح القالب ده؟'))return;DB.set('farag_post_tpl',DB.get('farag_post_tpl',[]).filter(function(x){return x.id!==id}));renderPosting();}
-function publishPost(id){let a=DB.get('farag_post_tpl',[]);let p=a.find(function(x){return x.id===id});if(!p){alert('القالب مش موجود');return;}alert('📣 تم نشر: '+p.title+' - '+p.time+' - على انغام وبهية وجنه');}
-function renderTemplate(){
-let list=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);
-let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Create Template - المخزن الرئيسي - فرج 🤖🌍</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b><div style="margin-top:10px">';
-list.forEach(function(t){html+='<div style="display:flex;justify-content:space-between;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:10px;margin-bottom:8px"><div><b>'+t.name+'</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">'+t.type+'</span><div style="font-size:12px;color:#64748b">'+(t.title||'')+' - '+(t.subtitle||'')+'</div></div><button onclick="delTpl('+t.id+')" style="background:none;border:none;color:#ef4444;font-weight:800;cursor:pointer">🗑 Delete</button></div>'});
-html+='</div></div>';
 document.getElementById('app').innerHTML=html;
 }
-function saveTpl(){let n=document.getElementById('t-name').value.trim();if(!n){alert('اكتب اسم القالب');return;}let a=DB.get('farag_tpl',[]);a.unshift({id:Date.now(),name:n,title:document.getElementById('t-title').value,subtitle:document.getElementById('t-sub').value,type:document.getElementById('t-type').value.split(' - ')[0]});DB.set('farag_tpl',a);alert('✅ تم حفظ القالب '+n);renderTemplate();}
+function usePostingTpl(){
+let sel=document.getElementById('tplSelect');let id=parseInt(sel.value);if(!id){alert('اختار قالب الاول');return;}
+let t=DB.get('farag_posting_templates',[]).find(function(x){return x.id===id});if(!t){alert('القالب مش موجود');return;}
+document.getElementById('pt-title').value=t.title;document.getElementById('pt-text').value=t.text;alert('✅ اتحمل القالب: '+t.title+' - اختار الصفحات ودوس نشر');
+}
+function savePostingTemplate(){
+let title=(document.getElementById('pt-title').value||'').trim();let text=(document.getElementById('pt-text').value||'').trim();
+if(!title){alert('اكتب عنوان البوست الاول');return;}
+let a=DB.get('farag_posting_templates',[]);a.unshift({id:Date.now(),title:title,text:text||'نص البوست',media:'صورة من المخزن + فيديو'});DB.set('farag_posting_templates',a);alert('✅ اتحفظ قالب النشر: '+title+' - في STATE.postingTemplates');renderPosting();
+}
+function pickPostingMedia(kind){
+if(kind==='img'){postingMedia.img='صورة من المخزن - فولدر عروض رمضان - صورة 1';}
+else{postingMedia.vid='فيديو من المخزن - فولدر فيديوهات بهية - فيديو 1';}
+alert('✅ اخترت من Media & Content - ترفع مرة واحدة، وتستخدم 100 مرة - هيفتح المخزن كامل بعد ما نخلص Media & Content');
+renderPosting();
+}
+function getSelectedPages(){
+let pages=[];if(postingSel.fb.angham)pages.push('انغام');if(postingSel.fb.behiya)pages.push('بهية');if(postingSel.fb.ganna)pages.push('جنه');if(postingSel.ig.angham)pages.push('انستجرام انغام');return pages;
+}
+function publishPosting(){
+let title=(document.getElementById('pt-title').value||'').trim()||'بوست العرض';let text=(document.getElementById('pt-text').value||'').trim()||'العرض الجديد وصل';
+let pages=getSelectedPages();if(pages.length===0){alert('اختار صفحة واحدة على الاقل - من مربع اختيار الصفحات فوق');return;}
+let a=DB.get('farag_posts',[]);pages.forEach(function(pg){a.unshift({id:Date.now()+Math.random(),title:title,page:pg,status:'Published',likes:0});});
+DB.set('farag_posts',a);
+let media=DB.get('farag_media_items',{});let all=Object.values(media).flat();all.push({id:Date.now(),icon:'📝',name:title+' - '+text.substring(0,20)});DB.set('farag_media_posts',all);
+alert('📤 تم نشر: '+title+' - على: '+pages.join(' + ')+' - اتسجل في الجدول، واتخزن في Media & Content في فولدر بوستات');
+renderPosting();
+}
+function schedulePosting(){
+let title=(document.getElementById('pt-title').value||'').trim()||'بوست العرض';let pages=getSelectedPages();if(pages.length===0){alert('اختار صفحة واحدة على الاقل');return;}
+alert('🕘 تم جدولة: '+title+' - بكرة الساعة 8 - على: '+pages.join(' + '));
+}
+function renderTemplate(){let list=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Create Template - المخزن الرئيسي لكل رسائل الخاص - FARAG.com</h2><p style="font-size:13px;color:#64748b;margin:8px 0 0">رسالة في الخاص - Body + Button + Image - بتستخدم في Broadcasting و Comment growth tools</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Body - Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Button - Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b>';list.forEach(function(t){html+='<div style="display:flex;justify-content:space-between;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:10px;margin-top:8px"><div><b>'+t.name+'</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">'+t.type+'</span><div style="font-size:12px;color:#64748b">'+(t.title||'')+'</div></div><button onclick="delTpl('+t.id+')" style="background:none;border:none;color:#ef4444;font-weight:800;cursor:pointer">🗑 Delete</button></div>'});html+='</div>';document.getElementById('app').innerHTML=html;}
+function saveTpl(){let n=document.getElementById('t-name').value.trim();if(!n){alert('اكتب اسم القالب');return;}let a=DB.get('farag_tpl',[]);a.unshift({id:Date.now(),name:n,title:document.getElementById('t-title').value,subtitle:document.getElementById('t-sub').value,type:document.getElementById('t-type').value.split(' - ')[0]});DB.set('farag_tpl',a);alert('تم حفظ القالب '+n);renderTemplate();}
 function delTpl(id){if(!confirm('تمسح؟'))return;DB.set('farag_tpl',DB.get('farag_tpl',[]).filter(function(x){return x.id!==id}));renderTemplate();}
-function renderBroadcast(type){
-let list=DB.get('farag_tpl',[]);
-let f=list.filter(function(t){return (t.type||'UTILITY')===type});
-document.getElementById('app').innerHTML='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">'+(type==='MARKETING'?'Broadcasting - دعائية 📡 - فرج':'Launch Utility - خدمية ⚡ - فرج')+'</h2><label style="font-size:12px;font-weight:800;display:block;margin-top:12px">اختار الصفحة</label><select class="input" style="margin-top:6px"><option>صفحة انغام</option><option>صفحة بهية</option><option>صفحة جنه</option></select><label style="font-size:12px;font-weight:800;display:block;margin-top:12px">اختار القالب - بيظهرلك '+type+' بس</label><select class="input" style="margin-top:6px"><option>'+(f.length?f.map(function(t){return t.name}).join(' - '):'مفيش قوالب '+type+' - روح Create Template واعمل واحد')+'</option></select><button class="btn-blue" style="margin-top:14px" onclick="alert(\'🚀 تم إطلاق الحملة - '+type+'\')">Launch 🚀</button></div><div class="card" style="margin-top:12px;font-size:13px;color:#475569">'+(type==='MARKETING'?'⚠️ MARKETING: مينفعش تبعت غير للي كلمك اخر 24 ساعة':'✅ UTILITY: مسموح تبعت حتى لو العميل مردش بقاله فترة')+'</div>';
-}
+function renderBroadcast(type){let list=DB.get('farag_tpl',[]);let f=list.filter(function(t){return (t.type||'UTILITY')===type});document.getElementById('app').innerHTML='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">'+(type==='MARKETING'?'Broadcasting - دعائية 📡 - FARAG.com':'Launch Utility - خدمية ⚡ - FARAG.com')+'</h2><label style="font-size:12px;font-weight:800;display:block;margin-top:12px">اختار الصفحة</label><select class="input" style="margin-top:6px"><option>انغام</option><option>بهية</option><option>جنه</option></select><label style="font-size:12px;font-weight:800;display:block;margin-top:12px">اختار القالب - بيظهرلك '+type+' بس</label><select class="input" style="margin-top:6px"><option>'+(f.length?f.map(function(t){return t.name}).join(' - '):'مفيش قوالب '+type+' - روح Create Template واعمل واحد')+'</option></select><button class="btn-blue" style="margin-top:14px" onclick="alert(\'🚀 تم إطلاق الحملة - '+type+'\')">Launch 🚀</button></div><div class="card" style="margin-top:12px;font-size:13px;color:#475569">'+(type==='MARKETING'?'⚠️ MARKETING: مينفعش تبعت غير للي كلمك اخر 24 ساعة':'UTILITY: مسموح تبعت حتى لو العميل مردش بقاله فترة')+'</div>';}
+let activeFolderId=1;
 function renderMedia(){
-document.getElementById('app').innerHTML='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Media & Content 🎬 - فرج</h2><div onclick="document.getElementById(\'up\').click()" style="border:2px dashed #cbd5e1;border-radius:18px;padding:28px;text-align:center;cursor:pointer;margin-top:12px">📤 دوس هنا ارفع صورة / فيديو<input type="file" id="up" style="display:none" onchange="alert(\'✅ تم رفع الملف\')"></div></div>';
+let folders=DB.get('farag_folders',[{id:1,name:'عروض رمضان',count:12},{id:2,name:'منتجات انغام',count:8},{id:3,name:'فيديوهات بهية',count:5}]);
+let items=DB.get('farag_media_items',null);
+if(items===null){items={1:[{id:11,icon:'🖼️',name:'صورة 1'},{id:12,icon:'🎬',name:'فيديو 1'},{id:13,icon:'📝',name:'بوست كامل'}],2:[{id:21,icon:'🖼️',name:'صورة انغام'},{id:22,icon:'🎬',name:'فيديو انغام'}],3:[{id:31,icon:'🎬',name:'فيديو بهية 1'},{id:32,icon:'🖼️',name:'صورة بهية'}]};DB.set('farag_media_items',items);}
+let cur=items[activeFolderId]||items[1]||[];
+let curFolder=folders.find(function(f){return f.id===activeFolderId})||folders[0];
+let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0;text-align:center">Media & Content 🎬 - مخزن المنصة - FARAG.com</h2><p style="font-size:13px;color:#64748b;margin:8px 0 0;text-align:center">مخزن + فولدرات بعدد مفتوح - ترفع مرة واحدة، وتستخدم 100 مرة - صور + فيديوهات + بوستات</p><div style="display:flex;gap:8px;margin-top:14px"><input id="newFolder" class="input" placeholder="اسم فولدر جديد..."><button onclick="addFolder()" style="background:linear-gradient(135deg,#06b6d4,#0891b2);color:#fff;border:none;padding:11px 16px;border-radius:14px;font-weight:900;cursor:pointer;white-space:nowrap">+ فولدر جديد 📂</button></div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px">';
+folders.forEach(function(f){html+='<div class="folder-card '+(f.id===activeFolderId?'active':'')+'" onclick="selectFolder('+f.id+')"><div style="text-align:center"><div class="folder-ico">📂</div><div style="font-weight:900;font-size:14px;margin-top:4px">'+f.name+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+f.count+' ملف</div></div></div>'});
+html+='</div><div style="margin-top:16px"><div style="font-weight:900;font-size:14px;text-align:right;margin-bottom:10px">📂 جوه الفولدر - '+(curFolder?curFolder.name:'')+'</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">';
+cur.forEach(function(it){html+='<div class="media-item"><div style="font-size:28px" class="icon-anim">'+it.icon+'</div><div style="font-size:12px;font-weight:800;margin-top:4px">'+it.name+'</div><button class="use-btn" onclick="useMedia(\''+it.name+'\')">✅ استخدام</button></div>'});
+html+='</div></div><div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:12px;margin-top:14px;font-size:13px;text-align:center">Create Template و Posting Templates بياخدوا من المخزن ده - ترفع مرة، تستخدم 100 مرة</div></div>';
+document.getElementById('app').innerHTML=html;
 }
-renderMenu('dashboard');
-renderDashboard();
+function selectFolder(id){activeFolderId=id;renderMedia();}
+function useMedia(name){alert('تم اختيار: '+name+' - هيتستخدم في Create Template و Posting');go('template');}
+function addFolder(){let n=document.getElementById('newFolder').value.trim();if(!n){alert('اكتب اسم الفولدر');return;}let a=DB.get('farag_folders',[]);let nid=Date.now();a.push({id:nid,name:n,count:0});DB.set('farag_folders',a);let items=DB.get('farag_media_items',{});items[nid]=[{id:Date.now(),icon:'🖼️',name:'صورة 1'},{id:Date.now()+1,icon:'🎬',name:'فيديو 1'}];DB.set('farag_media_items',items);activeFolderId=nid;alert('اتعمل فولدر: '+n);renderMedia();}
+renderMenu('dashboard');renderDashboard();
 </script>
 </body>
 </html>
