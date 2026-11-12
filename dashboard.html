@@ -36,18 +36,16 @@ body::after{content:'';position:fixed;bottom:-110px;right:8%;width:460px;height:
 .grid-ico:hover{transform:translateY(-12px) rotateX(12deg) scale(1.07)}
 .card{background:linear-gradient(180deg,#ffffff,#eef2ff);color:#0f172a;border-radius:22px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.35),0 0 28px rgba(124,58,237,.22),0 0 18px rgba(37,99,235,.16);position:relative;overflow:hidden}
 .card::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);animation:shinePro 4.5s ease-in-out infinite;pointer-events:none;z-index:1}
-/* Posting - فخامة AI احترافية */
-.posting-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:16px;margin-top:14px;box-shadow:0 14px 28px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.8);position:relative;z-index:2}
-.posting-input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:13px 14px;font-size:14px;outline:none;background:#fff;color:#0f172a;box-shadow:0 6px 14px rgba(0,0,0,.06);transition:.3s;position:relative;z-index:2}
-.posting-input:focus{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(167,139,250,.18),0 10px 20px rgba(124,58,237,.15)}
-.posting-btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:14px;border-radius:14px;font-weight:900;border:none;cursor:pointer;box-shadow:0 16px 28px rgba(124,58,237,.5),0 0 22px rgba(124,58,237,.35),inset 0 1px 2px rgba(255,255,255,.5);position:relative;overflow:hidden;transition:.3s;font-size:14px}
+.posting-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:16px;margin-top:14px;box-shadow:0 14px 28px rgba(0,0,0,.12);position:relative;z-index:2}
+.posting-input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:13px 14px;font-size:14px;outline:none;background:#fff;color:#0f172a;box-shadow:0 6px 14px rgba(0,0,0,.06);position:relative;z-index:2}
+.posting-input:focus{border-color:#a78bfa;box-shadow:0 0 0 3px rgba(167,139,250,.18)}
+.posting-btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:14px;border-radius:14px;font-weight:900;border:none;cursor:pointer;box-shadow:0 16px 28px rgba(124,58,237,.5);position:relative;overflow:hidden;font-size:14px}
 .posting-btn::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:shinePro 3.8s ease-in-out infinite;pointer-events:none}
 .account-box{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:14px;margin-top:12px;box-shadow:0 10px 20px rgba(0,0,0,.07);position:relative;z-index:2}
 .account-head{display:flex;align-items:center;justify-content:space-between;gap:8px;background:linear-gradient(135deg,#f5f3ff,#eff6ff);border:1px solid #e0e7ff;border-radius:12px;padding:10px 12px;font-weight:900;font-size:13px}
 .account-sub{margin-top:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:12px;padding:10px 12px}
-.media-btn{flex:1;background:#fff;border:2px dashed #c7d2fe;color:#4338ca;padding:11px;border-radius:14px;font-weight:900;cursor:pointer;font-size:13px;box-shadow:0 8px 16px rgba(99,102,241,.12)}
-.media-btn:hover{border-color:#7c3aed;background:#f5f3ff}
-.publish-btn{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:8px 16px;border-radius:99px;font-weight:900;cursor:pointer;box-shadow:0 10px 18px rgba(37,99,235,.45),0 0 14px rgba(37,99,235,.3);white-space:nowrap;font-size:12px}
+.media-btn{flex:1;background:#fff;border:2px dashed #c7d2fe;color:#4338ca;padding:11px;border-radius:14px;font-weight:900;cursor:pointer;font-size:13px}
+.publish-btn{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:8px 16px;border-radius:99px;font-weight:900;cursor:pointer;white-space:nowrap;font-size:12px}
 .input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:12px;font-size:14px;outline:none;background:#fff;color:#0f172a;position:relative;z-index:2}
 .btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;box-shadow:0 12px 22px rgba(124,58,237,.5);position:relative;overflow:hidden}
 .btn::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shinePro 4s ease-in-out infinite;pointer-events:none}
@@ -100,7 +98,10 @@ table.farag-table td{padding:12px;border-top:1px solid #e2e8f0;font-size:13px;fo
 .media-item{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:12px;text-align:center;transition:.3s;animation:folderLux 4.5s ease-in-out infinite}
 .media-item:hover{transform:translateY(-4px);border-color:#a78bfa}
 .use-btn{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0;padding:5px 12px;border-radius:99px;font-size:11px;font-weight:800;cursor:pointer;margin-top:6px}
-@media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr)}.icons-grid{grid-template-columns:repeat(3,1fr)}.charts-grid{grid-template-columns:1fr}}
+.sub-card{background:linear-gradient(180deg,#ffffff,#f8fafc);border:1px solid #e2e8f0;border-radius:20px;padding:16px;text-align:center;box-shadow:0 16px 28px rgba(0,0,0,.12);position:relative;overflow:hidden}
+.sub-card::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);animation:shinePro 4s ease-in-out infinite;pointer-events:none}
+.sub-ava{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;margin:0 auto;box-shadow:0 10px 18px rgba(0,0,0,.2)}
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(6,1fr)}.icons-grid{grid-template-columns:repeat(3,1fr)}.charts-grid{grid-template-columns:1fr}}
 @media(max-width:768px){.sidebar-wrap{position:fixed;right:0;top:0;height:100vh;transform:translateX(105%);transition:.4s}.sidebar-wrap.open{transform:translateX(0)}.sidebar{width:290px!important}.sidebar.collapsed{width:290px!important}.sidebar.collapsed .hide-text{display:flex!important}.sidebar-toggle{right:-19px;top:108px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}.icons-grid{grid-template-columns:repeat(2,1fr);gap:8px}.fab-wrap{left:10px;top:12px}.fab-ai,.fab-wa{width:58px;height:58px}.ai-popup,.wa-popup{left:72px;width:calc(100vw - 90px)}}
 </style>
 </head>
@@ -135,7 +136,7 @@ function toggleSidebar(){let sb=document.getElementById('sidebar');let wrap=docu
 try{if(localStorage.getItem('farag_sidebar')==='collapsed' && window.innerWidth>768){document.getElementById('sidebar').classList.add('collapsed')}}catch(e){}
 let MENU=[{t:'Dashboard',p:'dashboard',i:'📊',c:'#2563eb',c2:'#60a5fa',g:'rgba(37,99,235,.5)'},{t:'Facebook & Instagram',p:'facebook',i:'🔗',c:'#0284c7',c2:'#38bdf8',g:'rgba(2,132,199,.5)'},{t:'Comment growth tools',p:'comment',i:'💬',c:'#f59e0b',c2:'#fbbf24',g:'rgba(245,158,11,.5)'},{t:'Subscriber Manager',p:'subscriber',i:'🫂',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'},{t:'Broadcasting',p:'broadcasting',i:'📣',c:'#ec4899',c2:'#f472b6',g:'rgba(236,72,153,.5)'},{t:'Broadcast Job History',p:'history',i:'🕘',c:'#64748b',c2:'#94a3b8',g:'rgba(100,116,139,.5)'},{t:'Launch Utility',p:'utility',i:'🚀',c:'#f97316',c2:'#fb923c',g:'rgba(249,115,22,.5)'},{t:'Social Posting',p:'posting',i:'📝',c:'#9333ea',c2:'#c084fc',g:'rgba(147,51,234,.5)'},{t:'Create Template',p:'template',i:'🎨',c:'#eab308',c2:'#facc15',g:'rgba(234,179,8,.5)'},{t:'Media & Content',p:'media',i:'🎬',c:'#06b6d4',c2:'#22d3ee',g:'rgba(6,182,212,.5)'},{t:'Bot manager',p:'bot',i:'🤖',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'},{t:'AI Sales Agent',p:'ai',i:'✦',c:'#ec4899',c2:'#f472b6',g:'rgba(236,72,153,.5)'},{t:'Comment Analytics',p:'analytics',i:'📈',c:'#22c55e',c2:'#4ade80',g:'rgba(34,197,94,.5)'},{t:'Page Restrictions',p:'restrictions',i:'🛡️',c:'#f97316',c2:'#fb923c',g:'rgba(249,115,22,.5)'},{t:'Token Checker',p:'token',i:'🔑',c:'#eab308',c2:'#facc15',g:'rgba(234,179,8,.5)'},{t:'API channels',p:'api',i:'🔌',c:'#0284c7',c2:'#38bdf8',g:'rgba(2,132,199,.5)'},{t:'Migrate',p:'migrate',i:'↔️',c:'#7c3aed',c2:'#a78bfa',g:'rgba(124,58,237,.5)'},{t:'Blocked Pages',p:'blocked',i:'🚫',c:'#ef4444',c2:'#f87171',g:'rgba(239,68,68,.5)'},{t:'Payment',p:'payment',i:'💳',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'}];
 function renderMenu(active){document.getElementById('menu').innerHTML=MENU.map(function(m){return '<div class="side '+(active===m.p?'active':'')+'" onclick="go(\''+m.p+'\',this)"><span class="hide-text">'+m.t+'</span><span class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+'">'+m.i+'</span></div>'}).join('');}
-function go(p,el){renderMenu(p);if(window.innerWidth<=768){document.getElementById('sidebarWrap').classList.remove('open');document.getElementById('backdrop').classList.remove('show')}if(p==='dashboard')renderDashboard();else if(p==='facebook')renderFacebook();else if(p==='comment')renderComment();else if(p==='template')renderTemplate();else if(p==='broadcasting')renderBroadcast('MARKETING');else if(p==='utility')renderBroadcast('UTILITY');else if(p==='posting')renderPosting();else if(p==='media')renderMedia();else if(p==='subscriber')renderSimple('🫂 Subscriber Manager','بتشوف هنبعت لمين - 1,592,739 مشترك - 75,177 Subscribers - دول جايين من Comment growth tools');else if(p==='history')renderSimple('🕘 Broadcast Job History','بنشوف الحملة حصل فيها ايه');else if(p==='bot')renderSimple('🤖 Bot manager','البوت شغال');else if(p==='ai')renderSimple('✦ AI Sales Agent','وكيل المبيعات');else if(p==='analytics')renderSimple('📈 Comment Analytics','تحليل التعليقات');else if(p==='restrictions')renderSimple('🛡️ Page Restrictions','مفيش صفحات محظورة');else if(p==='token')renderSimple('🔑 Token Checker','كل التوكنات سليمة - 177/177');else if(p==='api')renderSimple('🔌 API channels','API مربوط');else if(p==='migrate')renderSimple('↔️ Migrate','1,109,765 جاهزين يتحولوا');else if(p==='blocked')renderSimple('🚫 Blocked Pages','0 صفحات محظورة');else if(p==='payment')renderSimple('💳 Payment','خطة فرج');else renderDashboard();window.scrollTo(0,0);}
+function go(p,el){renderMenu(p);if(window.innerWidth<=768){document.getElementById('sidebarWrap').classList.remove('open');document.getElementById('backdrop').classList.remove('show')}if(p==='dashboard')renderDashboard();else if(p==='facebook')renderFacebook();else if(p==='comment')renderComment();else if(p==='subscriber')renderSubscriber();else if(p==='template')renderTemplate();else if(p==='broadcasting')renderBroadcast('MARKETING');else if(p==='utility')renderBroadcast('UTILITY');else if(p==='posting')renderPosting();else if(p==='media')renderMedia();else if(p==='history')renderSimple('🕘 Broadcast Job History','بنشوف الحملة حصل فيها ايه');else if(p==='bot')renderSimple('🤖 Bot manager','البوت شغال');else if(p==='ai')renderSimple('✦ AI Sales Agent','وكيل المبيعات');else if(p==='analytics')renderSimple('📈 Comment Analytics','تحليل التعليقات');else if(p==='restrictions')renderSimple('🛡️ Page Restrictions','مفيش صفحات محظورة');else if(p==='token')renderSimple('🔑 Token Checker','كل التوكنات سليمة - 177/177');else if(p==='api')renderSimple('🔌 API channels','API مربوط');else if(p==='migrate')renderSimple('↔️ Migrate','1,109,765 جاهزين يتحولوا');else if(p==='blocked')renderSimple('🚫 Blocked Pages','0 صفحات محظورة');else if(p==='payment')renderSimple('💳 Payment','خطة فرج');else renderDashboard();window.scrollTo(0,0);}
 function renderSimple(t,s){document.getElementById('app').innerHTML='<div class="glass-panel" style="padding:36px;text-align:center;margin-top:16px"><h2 style="font-weight:900;font-size:24px;margin:0">'+t+'</h2><p style="color:#94a3b8;margin-top:10px">'+s+'</p><button class="btn" style="max-width:250px;margin:16px auto 0" onclick="go(\'dashboard\')">Back to Dashboard</button></div>';}
 function renderDashboard(){
 let icons=MENU.map(function(m){return '<div class="grid-ico" onclick="go(\''+m.p+'\')"><div class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+';width:52px;height:52px;font-size:23px;margin:0 auto">'+m.i+'</div><div style="font-size:12px;font-weight:800;margin-top:11px;line-height:1.3">'+m.t+'</div></div>'}).join('');
@@ -156,135 +157,134 @@ document.getElementById('app').innerHTML='<div class="glass-panel" style="margin
 }
 function openFbConnect(type){fbConnectType=type;let box=document.getElementById('fbConnectBox');box.style.display='block';box.innerHTML='<b>'+(type==='facebook'?'+ Connect Page':'+ Connect Instagram')+'</b><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px"><label style="background:rgba(255,255,255,.08);border-radius:14px;padding:12px;display:block"><input type="radio" name="fbChoice" value="all"> <b>كل الصفحات</b></label><label style="background:rgba(255,255,255,.08);border:2px solid #a78bfa;border-radius:14px;padding:12px;display:block"><input type="radio" name="fbChoice" value="manual" checked> <b>اختار بايدك ✅</b></label></div><input id="newPageName" class="input" style="margin-top:10px;background:rgba(255,255,255,.95)" placeholder="اكتب اسم الصفحة... مثلا: جنه"><button onclick="doFbConnect()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px;border-radius:99px;font-weight:900;cursor:pointer">ابدأ الربط - Connect</button>';box.scrollIntoView({behavior:'smooth'});}
 function doFbConnect(){let n=(document.getElementById('newPageName').value||'').trim();if(!n){alert('اكتب اسم الصفحة');return;}let a=DB.get('farag_pages',[]);let isIg=fbConnectType==='instagram';a.push({n:n,t:isIg?'Instagram':'Facebook',s:'Connected',e:isIg?'💃':'✨',c:isIg?'#E1306C':'#1877F2'});DB.set('farag_pages',a);alert('✅ اتربطت: '+n);renderFacebook();}
+/* ===== Comment growth tools - قوالب الرد جوهها نفسها ===== */
 let commentChoice='both';
 function setCommentChoice(c,el){commentChoice=c;document.querySelectorAll('.choice-card').forEach(function(x){x.classList.remove('active')});el.classList.add('active');}
 function renderComment(){
 let tools=DB.get('farag_comment_tools',null);
-if(tools===null){tools=[{id:1,post:'بوست الكورس',kw:'تم',reply:'بعتلك التفاصيل',dm:'قالب الترحيب',on:true}];DB.set('farag_comment_tools',tools);}
-let replyTpls=DB.get('farag_reply_tpls',[{id:1,text:'بعتلك التفاصيل في الخاص ❤️'},{id:2,text:'تم الرد عليك، شوف الخاص'},{id:3,text:'اهلا بيك، بعتلك العرض'}]);
-let dmTpls=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',type:'UTILITY'},{id:2,name:'قالب السعر',type:'UTILITY'},{id:3,name:'قالب العرض',type:'MARKETING'}]);
+if(tools===null){tools=[{id:1,post:'بوست الكورس',kw:'تم',reply:'تم الرد عليك في الخاص يا فندم ❤️',dm:'اهلا بيك، العرض النهارده...',on:true}];DB.set('farag_comment_tools',tools);}
+let replyTpls=DB.get('farag_reply_tpls',[{id:1,kw:'تم',reply:'تم الرد عليك في الخاص يا فندم ❤️',dm:'اهلا بيك، العرض النهارده...'},{id:2,kw:'السعر',reply:'بعتلك السعر في الخاص ❤️',dm:'السعر النهارده عليه خصم...'},{id:3,kw:'عايز',reply:'تمام يا فندم، بعتلك التفاصيل ❤️',dm:'اهلا بيك، التفاصيل كلها هنا...'}]);
 let rows=tools.map(function(t){return '<tr><td><b>'+t.post+'</b></td><td><span class="badge" style="background:#fef3c7;color:#92400e">🔑 '+t.kw+'</span></td><td>'+t.reply+'</td><td><span class="badge" style="background:#e0e7ff;color:#3730a3">✉️ '+t.dm+'</span></td><td><div style="display:flex;align-items:center;gap:10px"><div><div class="switch '+(t.on?'':'off')+'" onclick="toggleTool('+t.id+')"></div><div style="font-size:11px;font-weight:900;text-align:center;margin-top:4px;color:'+(t.on?'#16a34a':'#94a3b8')+'">'+(t.on?'ON - شغالة':'OFF - مطفية')+'</div></div><button class="delete-btn" onclick="delTool('+t.id+')">🗑 مسح</button></div></td></tr>'}).join('');
-document.getElementById('app').innerHTML='<div class="glass-panel" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">💬 Comment growth tools - FARAG.com</h2><p style="font-size:13px;color:#94a3b8;margin:6px 0 0">دي اللي بتجيبلك المشتركين - لو حد علق بكلمة، هعمل ايه؟</p></div><div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>POST</th><th>KEYWORD</th><th>REPLY</th><th>DM</th><th>STATUS</th></tr></thead><tbody>'+rows+'</tbody></table></div>';
+let tplRows=replyTpls.map(function(t){return '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:12px;margin-top:8px"><div style="flex:1;text-align:right"><b>🔑 '+t.kw+'</b> • <span style="font-size:12px;color:#475569">رد عام: '+t.reply+'</span><div style="font-size:12px;color:#64748b;margin-top:3px">رسالة خاص: '+t.dm+'</div></div><button class="delete-btn" onclick="delReplyTpl('+t.id+')">🗑</button></div>'}).join('');
+document.getElementById('app').innerHTML=`
+<div class="glass-panel" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">💬 Comment growth tools - FARAG.com</h2><p style="font-size:13px;color:#94a3b8;margin:6px 0 0">دي اللي بتجيبلك المشتركين - لو حد علق بكلمة، هعمل ايه؟</p></div>
+<div class="card" style="margin-top:12px">
+<b>📚 قوالب الرد على الكومنتات - جوه Comment growth tools نفسها، مش في حتة تانية</b>
+<p style="font-size:12px;color:#64748b;line-height:1.8;margin:8px 0 0">القالب هنا = <b>كلمة + رد عام + رسالة خاص</b><br>• قالب الرد العام: الرد اللي بيظهر تحت الكومنت نفسه، اللي كل الناس بتشوفه. مثال: تم الرد عليك في الخاص يا فندم ❤️<br>• قالب الرسالة الخاصة: الرسالة اللي بتتبعتله في الخاص بعد ما يعلق. مثال: اهلا بيك، العرض النهارده...</p>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px"><input id="reply-kw" class="input" placeholder="الكلمة - مثلا: تم / السعر / عايز"><input id="reply-public" class="input" placeholder="رد عام - اللي كل الناس هتشوفه"><input id="reply-dm" class="input" placeholder="رسالة خاص - اللي هتتبعتله في الخاص"></div>
+<button class="btn" style="margin-top:10px" onclick="saveReplyTpl()">💾 حفظ قالب رد</button>
+<div style="margin-top:10px">${tplRows}</div>
+<div style="font-size:11px;color:#94a3b8;text-align:center;margin-top:8px">الخلاصة: قالب الارسال في Create Template • قالب النشر في Social Posting • قالب الرد على الكومنت في Comment growth tools</div>
+</div>
+<div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>POST</th><th>KEYWORD</th><th>REPLY</th><th>DM</th><th>STATUS</th></tr></thead><tbody>${rows}</tbody></table></div>
+`;
 }
+function saveReplyTpl(){let kw=(document.getElementById('reply-kw').value||'').trim();let rp=(document.getElementById('reply-public').value||'').trim();let dm=(document.getElementById('reply-dm').value||'').trim();if(!kw){alert('اكتب الكلمة - مثلا: تم');return;}let a=DB.get('farag_reply_tpls',[]);a.unshift({id:Date.now(),kw:kw,reply:rp||'تم الرد عليك في الخاص يا فندم ❤️',dm:dm||'اهلا بيك، العرض النهارده...'});DB.set('farag_reply_tpls',a);alert('✅ اتحفظ قالب الرد: '+kw);renderComment();}
+function delReplyTpl(id){if(!confirm('هتمسح قالب الرد ده؟'))return;DB.set('farag_reply_tpls',DB.get('farag_reply_tpls',[]).filter(function(x){return x.id!==id}));renderComment();}
 function toggleTool(id){let a=DB.get('farag_comment_tools',[]);a=a.map(function(t){if(t.id===id)t.on=!t.on;return t});DB.set('farag_comment_tools',a);renderComment();}
 function delTool(id){if(!confirm('هتمسح الأداة دي؟'))return;DB.set('farag_comment_tools',DB.get('farag_comment_tools',[]).filter(function(x){return x.id!==id}));renderComment();}
-/* ===== Social Posting - بنصك بالظبط + فخامة AI احترافية ===== */
+/* ===== Subscriber Manager - بنصك بالظبط + فخامة AI احترافية ===== */
+let subSel={all:true,fbAll:true,igAll:true,fb:{angham:true,behiya:true,ganna:true},ig:{angham:true}};
+let subFilter={q:'',label:'All'};
+function toggleSubAll(c){subSel.all=c;subSel.fbAll=c;subSel.igAll=c;subSel.fb.angham=c;subSel.fb.behiya=c;subSel.fb.ganna=c;subSel.ig.angham=c;renderSubscriber();}
+function toggleSubFbAll(c){subSel.fbAll=c;subSel.fb.angham=c;subSel.fb.behiya=c;subSel.fb.ganna=c;subSel.all=subSel.fbAll&&subSel.igAll;renderSubscriber();}
+function toggleSubIgAll(c){subSel.igAll=c;subSel.ig.angham=c;subSel.all=subSel.fbAll&&subSel.igAll;renderSubscriber();}
+function toggleSubPage(g,k,c){subSel[g][k]=c;if(g==='fb')subSel.fbAll=subSel.fb.angham&&subSel.fb.behiya&&subSel.fb.ganna;if(g==='ig')subSel.igAll=subSel.ig.angham;subSel.all=subSel.fbAll&&subSel.igAll;renderSubscriber();}
+function renderSubscriber(){
+let all=DB.get('farag_subscribers',null);
+if(all===null){all=[{id:123,name:'انغام',page:'انغام',label:'VIP',ava:'🎤',color:'#1877F2',src:'من تعليق',account:'فيسبوك'},{id:124,name:'بهية',page:'بهية',label:'New',ava:'💃',color:'#E1306C',src:'من رسالة',account:'فيسبوك'},{id:125,name:'جنه',page:'جنه',label:'VIP',ava:'🌸',color:'#9333ea',src:'من البوت',account:'فيسبوك'}];DB.set('farag_subscribers',all);}
+let labels=DB.get('farag_labels',['VIP','New','اشترى','مهتم','سأل ومكملش','من رمضان']);
+let filtered=all.filter(function(s){
+let matchPage=true;
+if(s.page==='انغام')matchPage=subSel.fb.angham||subSel.ig.angham;
+if(s.page==='بهية')matchPage=subSel.fb.behiya;
+if(s.page==='جنه')matchPage=subSel.fb.ganna;
+let matchQ=!subFilter.q||s.name.includes(subFilter.q)||String(s.id).includes(subFilter.q);
+let matchL=subFilter.label==='All'||s.label===subFilter.label;
+return matchPage&&matchQ&&matchL;
+});
+let rows=filtered.map(function(s){
+let labelColor=s.label==='VIP'?'background:#fef3c7;color:#92400e':s.label==='New'?'background:#dcfce7;color:#15803d':'background:#e0e7ff;color:#3730a3';
+return '<tr><td><span style="width:38px;height:38px;border-radius:50%;background:'+s.color+';color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px">'+s.ava+'</span></td><td><b>'+s.id+'</b></td><td><b>'+s.name+'</b><div style="font-size:11px;color:#94a3b8;font-weight:500">'+s.src+' • '+s.account+'</div></td><td>'+s.page+'</td><td><span class="badge" style="'+labelColor+'">'+s.label+'</span></td><td><button class="delete-btn" onclick="delSub('+s.id+')">🗑</button></td></tr>';
+}).join('');
+let labelOpts=labels.map(function(l){return '<option value="'+l+'" '+(subFilter.label===l?'selected':'')+'>'+l+'</option>'}).join('');
+document.getElementById('app').innerHTML=`
+<div class="card" style="margin-top:14px">
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">
+<div><h2 style="font-weight:900;font-size:22px;margin:0;text-align:right"><span class="icon-anim" style="display:inline-block">🫂</span> Subscriber Manager - FARAG.com</h2>
+<p style="font-size:12px;color:#64748b;margin:8px 0 0;line-height:1.9;text-align:right">دي رقم 5 في الترتيب • دي الصفحة اللي بتقولك: <b style="color:#0f172a">هنبعت لمين؟</b><br><b style="color:#0f172a">Subscriber Manager = مين الناس اللي عندي؟</b> = الاسم + الصفحة + الاكونت + Label • وبعد كده في Broadcasting بنختار هنبعت لمين فيهم.</p></div>
+<span class="badge" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d;padding:6px 12px">رقم 5 • هنبعت لمين؟</span>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px">
+<div class="sub-card"><div style="font-size:11px;color:#64748b;font-weight:800">PAGES</div><div style="font-size:28px;font-weight:900;margin-top:4px">19</div><div style="font-size:11px;color:#94a3b8;margin-top:2px">عدد الصفحات المربوطة - انغام و بهية و جنه وغيرهم</div></div>
+<div class="sub-card"><div style="font-size:11px;color:#64748b;font-weight:800">24H SUBSCRIBER</div><div style="font-size:28px;font-weight:900;margin-top:4px;color:#2563eb">${all.length}</div><div style="font-size:11px;color:#94a3b8;margin-top:2px">كلمتك اخر 24 ساعة - فيسبوك بيسمح تبعتلهم على طول</div></div>
+<div class="sub-card"><div style="font-size:11px;color:#64748b;font-weight:800">BOT SUBSCRIBER</div><div style="font-size:28px;font-weight:900;margin-top:4px;color:#16a34a">${all.length}</div><div style="font-size:11px;color:#94a3b8;margin-top:2px">اشتركوا عن طريق البوت - دخلوا كلموا البوت فاتسجلوا</div></div>
+</div>
+<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:12px;margin-top:12px;font-size:12px;line-height:1.9;text-align:right"><b>المشتركين دول جايين منين؟</b> المشترك مش بيجي لوحده، بيجي من 3 حتت: <b>1. من تعليق</b> - علق بـ تم، البوت رد عليه، فاتسجل مشترك. <b>2. من رسالة</b> - بعتلك رسالة في الخاص، فاتسجل. <b>3. من البوت</b> - داس على زرار في البوت، فاتسجل. وكل واحد بيتسجل معاه هو جاي من انهي صفحة، وانهي اكونت.</div>
+<div class="account-box">
+<div class="account-head"><label style="display:flex;gap:8px;align-items:center;cursor:pointer"><input type="checkbox" ${subSel.all?'checked':''} onchange="toggleSubAll(this.checked)"> ✅ تحديد الكل - كل الاكونتات وكل الصفحات</label><span class="badge" style="background:#dcfce7;color:#15803d">نفس الشكل في كل صفحة</span></div>
+<div class="account-sub"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:13px">اكونت 1 - اكونت فيسبوك بتاعك</b><label style="display:flex;gap:6px;font-size:12px;font-weight:800;cursor:pointer"><input type="checkbox" ${subSel.fbAll?'checked':''} onchange="toggleSubFbAll(this.checked)"> ✅ تحديد الكل بتاع الاكونت ده</label></div><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px"><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${subSel.fb.angham?'checked':''} onchange="toggleSubPage('fb','angham',this.checked)"> صفحة انغام</label><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${subSel.fb.behiya?'checked':''} onchange="toggleSubPage('fb','behiya',this.checked)"> صفحة بهية</label><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${subSel.fb.ganna?'checked':''} onchange="toggleSubPage('fb','ganna',this.checked)"> صفحة جنه</label></div></div>
+<div class="account-sub"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:13px">اكونت 2 - اكونت انستجرام بتاعك</b><label style="display:flex;gap:6px;font-size:12px;font-weight:800;cursor:pointer"><input type="checkbox" ${subSel.igAll?'checked':''} onchange="toggleSubIgAll(this.checked)"> ✅ تحديد الكل بتاع الاكونت ده</label></div><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px"><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${subSel.ig.angham?'checked':''} onchange="toggleSubPage('ig','angham',this.checked)"> انستجرام انغام</label></div></div>
+<div style="font-size:11px;color:#64748b;line-height:1.8;margin-top:8px;text-align:right">تختار اكونت فيسبوك، تشوف مشتركينه بس. تختار صفحة انغام بس، تشوف مشتركين انغام بس. تدوس تحديد الكل، تشوف الكل. نفس الشكل في كل صفحة، مفيش اختلاف.</div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:12px">
+<input id="subSearch" class="input" placeholder="Search subscriber... - دور باسمه او بالـ ID" value="${subFilter.q}" oninput="subFilter.q=this.value;renderSubscriber()">
+<select id="subLabelFilter" class="input" onchange="subFilter.label=this.value;renderSubscriber()"><option value="All">All Labels - الكل</option>${labelOpts}</select>
+<button onclick="openAddSub()" style="background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;padding:12px;border-radius:14px;font-weight:900;cursor:pointer">Add Subscriber +</button>
+</div>
+<div id="addSubBox" style="display:none;margin-top:10px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:12px"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><input id="newLabel" class="input" style="flex:1" placeholder="اعمل Label جديد - مثلا: اشترى - مهتم - من رمضان"><button onclick="addLabel()" style="background:#fff;border:2px solid #bbf7d0;color:#15803d;padding:11px 16px;border-radius:14px;font-weight:900;cursor:pointer;white-space:nowrap">+ Label جديد</button></div>
+<div style="font-size:11px;color:#64748b;margin-top:6px;text-align:right">الـ Label ده زي استيكر بتحطه على المشترك، عشان تصنفه براحتك. <b>VIP = عميل مهم، اشترى قبل كده • New = عميل جديد، لسه اول مرة</b> • وانت براحتك تعمل Labels تانية.</div>
+</div>
+<div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>AVATAR</th><th>SUBSCRIBER ID</th><th>FIRST NAME</th><th>PAGE</th><th>LABEL</th><th></th></tr></thead><tbody>${rows||'<tr><td colspan="6" style="text-align:center;color:#94a3b8">مفيش مشتركين بالفلتر ده - غير الفلتر او دوس تحديد الكل</td></tr>'}</tbody></table></div>
+<div class="card" style="margin-top:12px;background:linear-gradient(180deg,#f0fdf4,#fefce8)"><b>الخلاصة:</b><p style="font-size:13px;color:#475569;line-height:1.9;margin:8px 0 0">في Broadcasting مش هتبعت للكل وخلاص، لأ. هتقول: <b>ابعت لـ VIP بس، او ابعت لـ New بس، او ابعت للي من صفحة انغام بس.</b> وده اللي بيوفر عليك، وبيخلي الرسالة توصل للصح.</p></div>
+`;
+}
+function openAddSub(){
+let box=document.getElementById('addSubBox');box.style.display='block';
+box.innerHTML='<b>➕ Add Subscriber - اضافة مشترك بايدك</b><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:10px"><input id="as-name" class="input" placeholder="الاسم - مثلا: انغام"><input id="as-id" class="input" placeholder="ID - مثلا: 126"><select id="as-page" class="input"><option>انغام</option><option>بهية</option><option>جنه</option></select></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px"><select id="as-label" class="input"><option>VIP</option><option>New</option><option>اشترى</option><option>مهتم</option></select><select id="as-src" class="input"><option>من تعليق</option><option>من رسالة</option><option>من البوت</option></select></div><button onclick="doAddSub()" style="width:100%;margin-top:10px;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border:none;padding:11px;border-radius:99px;font-weight:900;cursor:pointer">حفظ المشترك ✅</button>';
+}
+function doAddSub(){
+let n=(document.getElementById('as-name').value||'').trim();let id=parseInt(document.getElementById('as-id').value||'');if(!n||!id){alert('اكتب الاسم والـ ID');return;}
+let a=DB.get('farag_subscribers',[]);a.unshift({id:id,name:n,page:document.getElementById('as-page').value,label:document.getElementById('as-label').value,ava:'✨',color:'#7c3aed',src:document.getElementById('as-src').value,account:'فيسبوك'});DB.set('farag_subscribers',a);alert('✅ اتضاف: '+n+' - ID '+id+' - اتحفظ');renderSubscriber();
+}
+function delSub(id){if(!confirm('هتمسح المشترك ده؟'))return;DB.set('farag_subscribers',DB.get('farag_subscribers',[]).filter(function(x){return x.id!==id}));renderSubscriber();}
+function addLabel(){let v=(document.getElementById('newLabel').value||'').trim();if(!v){alert('اكتب اسم الـ Label');return;}let a=DB.get('farag_labels',[]);if(!a.includes(v))a.push(v);DB.set('farag_labels',a);alert('✅ اتعمل Label: '+v);renderSubscriber();}
+/* ===== Social Posting - زي ما عملناها ===== */
 let postingSel={all:true,fbAll:true,igAll:true,fb:{angham:true,behiya:true,ganna:true},ig:{angham:true}};
 let postingMedia={img:null,vid:null};
-function togglePostingAll(checked){
-postingSel.all=checked;postingSel.fbAll=checked;postingSel.igAll=checked;
-postingSel.fb.angham=checked;postingSel.fb.behiya=checked;postingSel.fb.ganna=checked;postingSel.ig.angham=checked;
-renderPosting();
-}
-function togglePostingFbAll(checked){
-postingSel.fbAll=checked;postingSel.fb.angham=checked;postingSel.fb.behiya=checked;postingSel.fb.ganna=checked;
-postingSel.all=postingSel.fbAll&&postingSel.igAll;
-renderPosting();
-}
-function togglePostingIgAll(checked){
-postingSel.igAll=checked;postingSel.ig.angham=checked;
-postingSel.all=postingSel.fbAll&&postingSel.igAll;
-renderPosting();
-}
-function togglePostingPage(group,key,checked){
-postingSel[group][key]=checked;
-if(group==='fb'){postingSel.fbAll=postingSel.fb.angham&&postingSel.fb.behiya&&postingSel.fb.ganna;}
-if(group==='ig'){postingSel.igAll=postingSel.ig.angham;}
-postingSel.all=postingSel.fbAll&&postingSel.igAll;
-renderPosting();
-}
+function togglePostingAll(checked){postingSel.all=checked;postingSel.fbAll=checked;postingSel.igAll=checked;postingSel.fb.angham=checked;postingSel.fb.behiya=checked;postingSel.fb.ganna=checked;postingSel.ig.angham=checked;renderPosting();}
+function togglePostingFbAll(checked){postingSel.fbAll=checked;postingSel.fb.angham=checked;postingSel.fb.behiya=checked;postingSel.fb.ganna=checked;postingSel.all=postingSel.fbAll&&postingSel.igAll;renderPosting();}
+function togglePostingIgAll(checked){postingSel.igAll=checked;postingSel.ig.angham=checked;postingSel.all=postingSel.fbAll&&postingSel.igAll;renderPosting();}
+function togglePostingPage(group,key,checked){postingSel[group][key]=checked;if(group==='fb'){postingSel.fbAll=postingSel.fb.angham&&postingSel.fb.behiya&&postingSel.fb.ganna;}if(group==='ig'){postingSel.igAll=postingSel.ig.angham;}postingSel.all=postingSel.fbAll&&postingSel.igAll;renderPosting();}
 function renderPosting(){
 let templates=DB.get('farag_posting_templates',[{id:1,title:'بوست العرض',text:'العرض الجديد وصل، الحق قبل ما يخلص...',media:'صورة من المخزن + فيديو'}]);
 let posts=DB.get('farag_posts',[{id:1,title:'بوست العرض',page:'انغام',status:'Published',likes:124}]);
 let tplOpts=templates.map(function(t){return '<option value="'+t.id+'">'+t.title+' - '+t.text.substring(0,30)+'</option>'}).join('');
 let postRows=posts.map(function(p){return '<tr><td><b>'+p.title+'</b></td><td>'+p.page+'</td><td><span class="badge" style="background:#dcfce7;color:#15803d">● '+p.status+'</span></td><td><b>❤️ '+p.likes+'</b></td></tr>'}).join('');
-let html=`
+document.getElementById('app').innerHTML=`
 <div class="card" style="margin-top:14px">
-<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap">
-<div><h2 style="font-weight:900;font-size:22px;margin:0;text-align:right"><span class="icon-anim" style="display:inline-block">✍️</span> Social Posting - FARAG.com</h2>
-<p style="font-size:12px;color:#64748b;margin:8px 0 0;line-height:1.9;text-align:right">دي رقم 10 في الترتيب • دي الصفحة اللي بننزل منها بوست على الصفحات، مش رسالة في الخاص<br><b style="color:#0f172a">Social Posting = هكتب ايه؟ وهنزله على انهي صفحات؟</b> = عنوان + نص + صورة من Media & Content + اختيار الصفحات + نشر</p></div>
-<span class="badge" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#5b21b6;padding:6px 12px">رقم 10 • بوست عام</span>
-</div>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px">
-<div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:12px"><b style="font-size:13px;color:#15803d">Create Template = رسالة خاص</b><div style="font-size:12px;color:#475569;margin-top:4px">بتتبعت في الماسنجر، لواحد واحد، العميل بس هو اللي بيشوفها. مكوناتها: Body + صورة + زرار</div></div>
-<div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:12px"><b style="font-size:13px;color:#1d4ed8">Social Posting = بوست عام</b><div style="font-size:12px;color:#475569;margin-top:4px">بينزل على الصفحة نفسها، كل الناس بتشوفه. مكوناتها: عنوان البوست + نص البوست + صورة / فيديو</div></div>
-</div>
-<div style="text-align:center;font-size:12px;font-weight:800;color:#7c3aed;margin-top:10px">واحدة خاص، والتانية عام. مينفعش نخلطهم على بعض.</div>
-<div class="posting-box" style="border:2px solid #ddd6fe;background:linear-gradient(180deg,#faf5ff,#f8fafc)">
-<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:14px">📚 Posting Templates - قوالب النشر</b><span class="badge" style="background:#ede9fe;color:#5b21b6">اتثبت خلاص</span></div>
-<p style="font-size:12px;color:#64748b;line-height:1.8;margin:8px 0 0">تعمل قالب نشر مرة واحدة، وتحفظه: عنوان + نص + صورة من المخزن + فيديو. القالب يتحفظ في <b>STATE.postingTemplates</b>. بعد كده تختار القالب من القايمة، وتختار الصفحة، وتدوس نشر، خلاص. بدل ما تكتب البوست 100 مرة، تكتبه مرة واحدة، وتنشره 100 مرة على اي صفحة.</p>
-<div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><select id="tplSelect" class="posting-input" style="flex:1;min-width:200px"><option value="">-- اختار قالب نشر محفوظ --</option>${tplOpts}</select><button onclick="usePostingTpl()" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px 16px;border-radius:14px;font-weight:900;cursor:pointer;white-space:nowrap">استخدم القالب ⬇️</button></div>
-<div style="display:flex;gap:8px;margin-top:8px"><button onclick="savePostingTemplate()" style="flex:1;background:#fff;border:2px solid #ddd6fe;color:#5b21b6;padding:11px;border-radius:14px;font-weight:900;cursor:pointer">💾 حفظ اللي تحت كـ قالب نشر</button></div>
-<div style="font-size:11px;color:#94a3b8;text-align:center;margin-top:6px">القوالب المحفوظة: ${templates.length} قالب</div>
-</div>
-<div class="posting-box">
-<b style="font-size:14px">✍️ الكارت اللي فوق - ده اللي بنكتب فيه البوست</b>
-<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">1 - عنوان البوست - اللي على اليمين</label>
-<input id="pt-title" class="posting-input" style="margin-top:6px" placeholder="عنوان البوست - مثلا: بوست العرض">
-<div style="font-size:11px;color:#94a3b8;margin-top:4px;text-align:right">ده اسم داخلي ليك انت بس، مش بيظهر للناس. زي بوست العرض، عشان تفتكره.</div>
-<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">2 - اختيار الصفحات - شلنا القايمة الواحدة [ Facebook ▼ ] وحطينا ده مكانها</label>
-<div class="account-box">
-<div class="account-head"><label style="display:flex;gap:8px;align-items:center;cursor:pointer"><input type="checkbox" ${postingSel.all?'checked':''} onchange="togglePostingAll(this.checked)"> ✅ تحديد الكل - كل الاكونتات وكل الصفحات</label><span class="badge" style="background:#dcfce7;color:#15803d">3 مستويات</span></div>
-<div class="account-sub">
-<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:13px">اكونت 1 - اكونت فيسبوك بتاعك</b><label style="display:flex;gap:6px;font-size:12px;font-weight:800;cursor:pointer"><input type="checkbox" ${postingSel.fbAll?'checked':''} onchange="togglePostingFbAll(this.checked)"> ✅ تحديد الكل بتاع الاكونت ده</label></div>
-<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px"><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.angham?'checked':''} onchange="togglePostingPage('fb','angham',this.checked)"> صفحة انغام</label><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.behiya?'checked':''} onchange="togglePostingPage('fb','behiya',this.checked)"> صفحة بهية</label><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.ganna?'checked':''} onchange="togglePostingPage('fb','ganna',this.checked)"> صفحة جنه</label></div>
-</div>
-<div class="account-sub">
-<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:13px">اكونت 2 - اكونت انستجرام بتاعك</b><label style="display:flex;gap:6px;font-size:12px;font-weight:800;cursor:pointer"><input type="checkbox" ${postingSel.igAll?'checked':''} onchange="togglePostingIgAll(this.checked)"> ✅ تحديد الكل بتاع الاكونت ده</label></div>
-<div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px"><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.ig.angham?'checked':''} onchange="togglePostingPage('ig','angham',this.checked)"> انستجرام انغام</label></div>
-</div>
-<div style="font-size:11px;color:#64748b;line-height:1.8;margin-top:8px;text-align:right"><b>1 - تختار الكل كله:</b> تدوس تحديد الكل اللي فوق خالص، كل الاكونتات وكل الصفحات تتحدد مرة واحدة.<br><b>2 - تختار اكونت كامل:</b> تدوس تحديد الكل اللي جنب الاكونت، كل الصفحات اللي جوه الاكونت ده بس تتحدد. مثال: عايز تبعت من اكونت فيسبوك بس، ومتخليش انستجرام يبعت.<br><b>3 - تختار صفحة صفحة بايدك:</b> تسيب تحديد الكل، وتدوس صح على الصفحة اللي انت عايزها بس. مثال: عايز انغام بس من جوه اكونت فيسبوك، وتسيب بهية.</div>
-</div>
-<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">3 - نص البوست - اللي تحت</label>
-<textarea id="pt-text" class="posting-input" rows="3" style="margin-top:6px;resize:vertical" placeholder="نص البوست... مثلا: العرض الجديد وصل، الحق قبل ما يخلص..."></textarea>
-<div style="font-size:11px;color:#94a3b8;margin-top:4px;text-align:right">هنا بتكتب الكلام اللي الناس هتشوفه.</div>
-<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">صورة / فيديو - من Media & Content، مش رفع جديد من هنا</label>
-<div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="media-btn" onclick="pickPostingMedia('img')">🖼️ اختر صورة من المخزن</button><button class="media-btn" onclick="pickPostingMedia('vid')">🎬 اختر فيديو من المخزن</button></div>
-<div id="postingMediaBox" style="display:${postingMedia.img||postingMedia.vid?'block':'none'};margin-top:8px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px;font-size:13px;text-align:center">${postingMedia.img?('🖼️ الصورة المختارة: '+postingMedia.img+'<br>'):''}${postingMedia.vid?('🎬 الفيديو المختار: '+postingMedia.vid):''}</div>
-<div style="font-size:11px;color:#64748b;margin-top:6px;text-align:center">Media & Content = هو المخزن الرئيسي لكل الصور والفيديوهات • Social Posting = بياخد منه، مش بيرفع صور جديدة من هنا</div>
+<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap"><div><h2 style="font-weight:900;font-size:22px;margin:0;text-align:right"><span class="icon-anim" style="display:inline-block">✍️</span> Social Posting - FARAG.com</h2><p style="font-size:12px;color:#64748b;margin:8px 0 0;line-height:1.9;text-align:right">دي رقم 10 في الترتيب • دي الصفحة اللي بننزل منها بوست على الصفحات، مش رسالة في الخاص<br><b style="color:#0f172a">Social Posting = هكتب ايه؟ وهنزله على انهي صفحات؟</b> = عنوان + نص + صورة من Media & Content + اختيار الصفحات + نشر</p></div><span class="badge" style="background:linear-gradient(135deg,#ede9fe,#ddd6fe);color:#5b21b6;padding:6px 12px">رقم 10 • بوست عام</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:14px;padding:12px"><b style="font-size:13px;color:#15803d">Create Template = رسالة خاص</b><div style="font-size:12px;color:#475569;margin-top:4px">بتتبعت في الماسنجر، لواحد واحد، العميل بس هو اللي بيشوفها. مكوناتها: Body + صورة + زرار</div></div><div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:14px;padding:12px"><b style="font-size:13px;color:#1d4ed8">Social Posting = بوست عام</b><div style="font-size:12px;color:#475569;margin-top:4px">بينزل على الصفحة نفسها، كل الناس بتشوفه. مكوناتها: عنوان البوست + نص البوست + صورة / فيديو</div></div></div>
+<div class="posting-box" style="border:2px solid #ddd6fe;background:linear-gradient(180deg,#faf5ff,#f8fafc)"><b style="font-size:14px">📚 Posting Templates - قوالب النشر</b><p style="font-size:12px;color:#64748b;line-height:1.8;margin:8px 0 0">تعمل قالب نشر مرة واحدة، وتحفظه: عنوان + نص + صورة من المخزن + فيديو. القالب يتحفظ في <b>STATE.postingTemplates</b>.</p><div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap"><select id="tplSelect" class="posting-input" style="flex:1;min-width:200px"><option value="">-- اختار قالب نشر محفوظ --</option>${tplOpts}</select><button onclick="usePostingTpl()" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px 16px;border-radius:14px;font-weight:900;cursor:pointer">استخدم القالب ⬇️</button></div><button onclick="savePostingTemplate()" style="width:100%;margin-top:8px;background:#fff;border:2px solid #ddd6fe;color:#5b21b6;padding:11px;border-radius:14px;font-weight:900;cursor:pointer">💾 حفظ اللي تحت كـ قالب نشر</button></div>
+<div class="posting-box"><b style="font-size:14px">✍️ الكارت اللي فوق - ده اللي بنكتب فيه البوست</b><label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">1 - عنوان البوست</label><input id="pt-title" class="posting-input" style="margin-top:6px" placeholder="عنوان البوست - مثلا: بوست العرض"><div style="font-size:11px;color:#94a3b8;margin-top:4px;text-align:right">ده اسم داخلي ليك انت بس، مش بيظهر للناس.</div>
+<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">2 - اختيار الصفحات - شلنا القايمة الواحدة [ Facebook ▼ ]</label>
+<div class="account-box"><div class="account-head"><label style="display:flex;gap:8px;align-items:center;cursor:pointer"><input type="checkbox" ${postingSel.all?'checked':''} onchange="togglePostingAll(this.checked)"> ✅ تحديد الكل - كل الاكونتات وكل الصفحات</label><span class="badge" style="background:#dcfce7;color:#15803d">3 مستويات</span></div><div class="account-sub"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:13px">اكونت 1 - اكونت فيسبوك</b><label style="display:flex;gap:6px;font-size:12px;font-weight:800;cursor:pointer"><input type="checkbox" ${postingSel.fbAll?'checked':''} onchange="togglePostingFbAll(this.checked)"> ✅ تحديد الكل بتاع الاكونت ده</label></div><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px"><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.angham?'checked':''} onchange="togglePostingPage('fb','angham',this.checked)"> صفحة انغام</label><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.behiya?'checked':''} onchange="togglePostingPage('fb','behiya',this.checked)"> صفحة بهية</label><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.fb.ganna?'checked':''} onchange="togglePostingPage('fb','ganna',this.checked)"> صفحة جنه</label></div></div><div class="account-sub"><div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap"><b style="font-size:13px">اكونت 2 - اكونت انستجرام</b><label style="display:flex;gap:6px;font-size:12px;font-weight:800;cursor:pointer"><input type="checkbox" ${postingSel.igAll?'checked':''} onchange="togglePostingIgAll(this.checked)"> ✅ تحديد الكل بتاع الاكونت ده</label></div><div style="display:flex;gap:14px;flex-wrap:wrap;margin-top:8px;font-size:13px"><label style="display:flex;gap:6px;cursor:pointer"><input type="checkbox" ${postingSel.ig.angham?'checked':''} onchange="togglePostingPage('ig','angham',this.checked)"> انستجرام انغام</label></div></div></div>
+<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">3 - نص البوست</label><textarea id="pt-text" class="posting-input" rows="3" style="margin-top:6px" placeholder="نص البوست... مثلا: العرض الجديد وصل، الحق قبل ما يخلص..."></textarea>
+<label style="font-size:12px;font-weight:900;display:block;margin-top:12px;text-align:right">صورة / فيديو - من Media & Content</label><div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap"><button class="media-btn" onclick="pickPostingMedia('img')">🖼️ اختر صورة من المخزن</button><button class="media-btn" onclick="pickPostingMedia('vid')">🎬 اختر فيديو من المخزن</button></div>
+<div id="postingMediaBox" style="display:${postingMedia.img||postingMedia.vid?'block':'none'};margin-top:8px;background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:10px;font-size:13px;text-align:center">${postingMedia.img?('🖼️ الصورة: '+postingMedia.img+'<br>'):''}${postingMedia.vid?('🎬 الفيديو: '+postingMedia.vid):''}</div>
 <input id="pt-time" class="posting-input" style="margin-top:10px" placeholder="ميعاد النشر - مثلا: النهاردة 8 بالليل - او بكرة الساعة 8">
-<div style="display:flex;gap:8px;margin-top:12px"><button class="posting-btn" onclick="publishPosting()">نشر 📤 - البنفسجي</button><button onclick="schedulePosting()" style="flex:1;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 24px rgba(245,158,11,.4)">جدولة 🕘 - بكرة الساعة 8</button></div>
-<div style="font-size:11px;color:#94a3b8;text-align:center;margin-top:6px">الخطوة 1 - بتكتب البوست • الخطوة 2 - بتختار هتنشر فين • الخطوة 3 - بتدوس نشر</div>
-</div>
-<div style="margin-top:16px"><b style="font-size:14px">الجدول اللي تحت - البوستات اللي اتنشرت</b></div>
-</div>
+<div style="display:flex;gap:8px;margin-top:12px"><button class="posting-btn" onclick="publishPosting()">نشر 📤 - البنفسجي</button><button onclick="schedulePosting()" style="flex:1;background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#fff;border:none;padding:14px;border-radius:14px;font-weight:900;cursor:pointer">جدولة 🕘 - بكرة الساعة 8</button></div></div>
+<div style="margin-top:16px"><b style="font-size:14px">الجدول اللي تحت - البوستات اللي اتنشرت</b></div></div>
 <div class="card" style="margin-top:12px;padding:0;overflow:hidden"><table class="farag-table"><thead><tr><th>TITLE</th><th>PAGE</th><th>STATUS</th><th>LIKES</th></tr></thead><tbody>${postRows}</tbody></table></div>
-<div class="card" style="margin-top:12px;background:linear-gradient(180deg,#fefce8,#fff7ed)"><b>الخلاصة:</b><p style="font-size:13px;color:#475569;line-height:1.9;margin:8px 0 0"><b>Social Posting = هكتب ايه؟ وهنزله على انهي صفحات؟</b> = عنوان + نص + صورة من Media & Content + اختيار الصفحات + نشر<br><b>Broadcasting و Launch Utility =</b> رسالة في الخاص، بتروح لواحد واحد في الخاص. <b>Social Posting =</b> بوست على الصفحة، بيشوفه كل اللي بيتابعوا الصفحة.</p></div>
 `;
-document.getElementById('app').innerHTML=html;
 }
-function usePostingTpl(){
-let sel=document.getElementById('tplSelect');let id=parseInt(sel.value);if(!id){alert('اختار قالب الاول');return;}
-let t=DB.get('farag_posting_templates',[]).find(function(x){return x.id===id});if(!t){alert('القالب مش موجود');return;}
-document.getElementById('pt-title').value=t.title;document.getElementById('pt-text').value=t.text;alert('✅ اتحمل القالب: '+t.title+' - اختار الصفحات ودوس نشر');
-}
-function savePostingTemplate(){
-let title=(document.getElementById('pt-title').value||'').trim();let text=(document.getElementById('pt-text').value||'').trim();
-if(!title){alert('اكتب عنوان البوست الاول');return;}
-let a=DB.get('farag_posting_templates',[]);a.unshift({id:Date.now(),title:title,text:text||'نص البوست',media:'صورة من المخزن + فيديو'});DB.set('farag_posting_templates',a);alert('✅ اتحفظ قالب النشر: '+title+' - في STATE.postingTemplates');renderPosting();
-}
-function pickPostingMedia(kind){
-if(kind==='img'){postingMedia.img='صورة من المخزن - فولدر عروض رمضان - صورة 1';}
-else{postingMedia.vid='فيديو من المخزن - فولدر فيديوهات بهية - فيديو 1';}
-alert('✅ اخترت من Media & Content - ترفع مرة واحدة، وتستخدم 100 مرة - هيفتح المخزن كامل بعد ما نخلص Media & Content');
-renderPosting();
-}
-function getSelectedPages(){
-let pages=[];if(postingSel.fb.angham)pages.push('انغام');if(postingSel.fb.behiya)pages.push('بهية');if(postingSel.fb.ganna)pages.push('جنه');if(postingSel.ig.angham)pages.push('انستجرام انغام');return pages;
-}
-function publishPosting(){
-let title=(document.getElementById('pt-title').value||'').trim()||'بوست العرض';let text=(document.getElementById('pt-text').value||'').trim()||'العرض الجديد وصل';
-let pages=getSelectedPages();if(pages.length===0){alert('اختار صفحة واحدة على الاقل - من مربع اختيار الصفحات فوق');return;}
-let a=DB.get('farag_posts',[]);pages.forEach(function(pg){a.unshift({id:Date.now()+Math.random(),title:title,page:pg,status:'Published',likes:0});});
-DB.set('farag_posts',a);
-let media=DB.get('farag_media_items',{});let all=Object.values(media).flat();all.push({id:Date.now(),icon:'📝',name:title+' - '+text.substring(0,20)});DB.set('farag_media_posts',all);
-alert('📤 تم نشر: '+title+' - على: '+pages.join(' + ')+' - اتسجل في الجدول، واتخزن في Media & Content في فولدر بوستات');
-renderPosting();
-}
-function schedulePosting(){
-let title=(document.getElementById('pt-title').value||'').trim()||'بوست العرض';let pages=getSelectedPages();if(pages.length===0){alert('اختار صفحة واحدة على الاقل');return;}
-alert('🕘 تم جدولة: '+title+' - بكرة الساعة 8 - على: '+pages.join(' + '));
-}
+function usePostingTpl(){let sel=document.getElementById('tplSelect');let id=parseInt(sel.value);if(!id){alert('اختار قالب الاول');return;}let t=DB.get('farag_posting_templates',[]).find(function(x){return x.id===id});if(!t){alert('القالب مش موجود');return;}document.getElementById('pt-title').value=t.title;document.getElementById('pt-text').value=t.text;alert('✅ اتحمل القالب: '+t.title);}
+function savePostingTemplate(){let title=(document.getElementById('pt-title').value||'').trim();if(!title){alert('اكتب عنوان البوست');return;}let a=DB.get('farag_posting_templates',[]);a.unshift({id:Date.now(),title:title,text:document.getElementById('pt-text').value||'نص البوست',media:'صورة من المخزن + فيديو'});DB.set('farag_posting_templates',a);alert('✅ اتحفظ قالب النشر: '+title);renderPosting();}
+function pickPostingMedia(kind){if(kind==='img'){postingMedia.img='صورة من المخزن - فولدر عروض رمضان - صورة 1';}else{postingMedia.vid='فيديو من المخزن - فولدر فيديوهات بهية - فيديو 1';}alert('✅ اخترت من Media & Content');renderPosting();}
+function getSelectedPages(){let pages=[];if(postingSel.fb.angham)pages.push('انغام');if(postingSel.fb.behiya)pages.push('بهية');if(postingSel.fb.ganna)pages.push('جنه');if(postingSel.ig.angham)pages.push('انستجرام انغام');return pages;}
+function publishPosting(){let title=(document.getElementById('pt-title').value||'').trim()||'بوست العرض';let pages=getSelectedPages();if(pages.length===0){alert('اختار صفحة واحدة على الاقل');return;}let a=DB.get('farag_posts',[]);pages.forEach(function(pg){a.unshift({id:Date.now()+Math.random(),title:title,page:pg,status:'Published',likes:0});});DB.set('farag_posts',a);alert('📤 تم نشر: '+title+' - على: '+pages.join(' + '));renderPosting();}
+function schedulePosting(){let title=(document.getElementById('pt-title').value||'').trim()||'بوست العرض';let pages=getSelectedPages();if(pages.length===0){alert('اختار صفحة واحدة على الاقل');return;}alert('🕘 تم جدولة: '+title+' - بكرة الساعة 8 - على: '+pages.join(' + '));}
 function renderTemplate(){let list=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Create Template - المخزن الرئيسي لكل رسائل الخاص - FARAG.com</h2><p style="font-size:13px;color:#64748b;margin:8px 0 0">رسالة في الخاص - Body + Button + Image - بتستخدم في Broadcasting و Comment growth tools</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Body - Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Button - Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b>';list.forEach(function(t){html+='<div style="display:flex;justify-content:space-between;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:10px;margin-top:8px"><div><b>'+t.name+'</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">'+t.type+'</span><div style="font-size:12px;color:#64748b">'+(t.title||'')+'</div></div><button onclick="delTpl('+t.id+')" style="background:none;border:none;color:#ef4444;font-weight:800;cursor:pointer">🗑 Delete</button></div>'});html+='</div>';document.getElementById('app').innerHTML=html;}
 function saveTpl(){let n=document.getElementById('t-name').value.trim();if(!n){alert('اكتب اسم القالب');return;}let a=DB.get('farag_tpl',[]);a.unshift({id:Date.now(),name:n,title:document.getElementById('t-title').value,subtitle:document.getElementById('t-sub').value,type:document.getElementById('t-type').value.split(' - ')[0]});DB.set('farag_tpl',a);alert('تم حفظ القالب '+n);renderTemplate();}
 function delTpl(id){if(!confirm('تمسح؟'))return;DB.set('farag_tpl',DB.get('farag_tpl',[]).filter(function(x){return x.id!==id}));renderTemplate();}
