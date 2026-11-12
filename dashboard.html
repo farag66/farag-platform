@@ -33,17 +33,22 @@ body{background:#070b1f;background:radial-gradient(600px 300px at 80% 0%,#1a2456
 .backdrop.show{display:block}
 .stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:16px}
 .icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
-.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-/* ===== الرسومات - 12D فخمة - نفس الألوان بالظبط ===== */
-.chart-card{background:linear-gradient(180deg,#ffffff 0%,#f8faff 100%);border-radius:22px;padding:18px;color:#0f172a;box-shadow:0 18px 40px rgba(0,0,0,.35),inset 0 1px 0 #fff,0 0 0 1px rgba(255,255,255,.6);transition:.4s;position:relative;overflow:hidden}
-.chart-card:hover{transform:translateY(-5px);box-shadow:0 28px 55px rgba(37,99,235,.35),inset 0 1px 0 #fff}
-.chart-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ec4899)}
-.donut-12d{width:158px;height:158px;border-radius:50%;margin:12px auto 0;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 18px 35px rgba(34,197,94,.35),inset 0 -8px 18px rgba(0,0,0,.18),inset 0 6px 12px rgba(255,255,255,.7)}
-.donut-12d::after{content:'';position:absolute;top:10px;left:18px;width:52px;height:22px;background:rgba(255,255,255,.65);border-radius:99px;filter:blur(6px);transform:rotate(-18deg)}
-.donut-in-12d{width:102px;height:102px;background:radial-gradient(circle at 35% 30%,#ffffff,#eef2ff 70%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a;box-shadow:inset 0 4px 12px rgba(0,0,0,.12),0 6px 14px rgba(0,0,0,.12);position:relative;z-index:2}
-.bar-12d{border-radius:12px 12px 4px 4px;flex:1;position:relative;box-shadow:inset 0 4px 8px rgba(255,255,255,.55),inset 0 -6px 10px rgba(0,0,0,.15),0 10px 18px rgba(37,99,235,.25);transition:.4s;overflow:hidden}
-.bar-12d::after{content:'';position:absolute;top:4px;left:6px;right:6px;height:10px;background:rgba(255,255,255,.45);border-radius:99px;filter:blur(1px)}
-.bar-12d:hover{transform:scaleY(1.03);filter:brightness(1.1)}
+.charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+/* ===== الرسومات - أتقل وأتقل وأتقل - ULTRA 12D ===== */
+.chart-ultra{background:linear-gradient(180deg,#ffffff 0%,#f1f5ff 55%,#e8edff 100%);border-radius:24px;padding:18px;color:#0f172a;position:relative;overflow:hidden;box-shadow:0 24px 50px rgba(0,0,0,.4),0 10px 25px rgba(37,99,235,.18),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(37,99,235,.12),0 0 0 1px rgba(255,255,255,.7);transition:.4s}
+.chart-ultra:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 35px 70px rgba(37,99,235,.35),0 18px 35px rgba(0,0,0,.35),inset 0 1px 0 #fff}
+.chart-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ec4899,#7c3aed);box-shadow:0 2px 12px rgba(37,99,235,.5)}
+.chart-ultra::after{content:'';position:absolute;top:18px;left:18px;width:90px;height:50px;background:radial-gradient(ellipse,rgba(255,255,255,.9),transparent 70%);filter:blur(8px);pointer-events:none}
+.donut-ultra{width:172px;height:172px;border-radius:50%;margin:14px auto 0;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 24px 45px rgba(34,197,94,.4),0 8px 18px rgba(0,0,0,.25),inset 0 -12px 22px rgba(0,0,0,.25),inset 0 10px 18px rgba(255,255,255,.8),inset 0 0 0 3px rgba(255,255,255,.35)}
+.donut-ultra::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(34,197,94,.25);box-shadow:0 0 22px rgba(34,197,94,.25)}
+.donut-ultra::after{content:'';position:absolute;top:12px;left:22px;width:62px;height:26px;background:rgba(255,255,255,.75);border-radius:99px;filter:blur(7px);transform:rotate(-20deg)}
+.donut-in-ultra{width:106px;height:106px;background:radial-gradient(circle at 32% 28%,#ffffff 0%,#eef2ff 55%,#dbeafe 100%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a;box-shadow:inset 0 6px 16px rgba(0,0,0,.14),inset 0 -4px 10px rgba(255,255,255,.9),0 10px 20px rgba(0,0,0,.18),0 0 0 1px rgba(255,255,255,.8);position:relative;z-index:2}
+.pulse-dot{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{r:7;opacity:1}50%{r:11;opacity:.55}}
+.bar-ultra{border-radius:14px 14px 5px 5px;flex:1;position:relative;box-shadow:inset 0 6px 10px rgba(255,255,255,.7),inset 0 -10px 14px rgba(0,0,0,.22),inset -6px 0 10px rgba(0,0,0,.12),0 16px 24px rgba(37,99,235,.32);transition:.35s;overflow:hidden}
+.bar-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,.65),transparent);border-radius:14px 14px 0 0}
+.bar-ultra::after{content:'';position:absolute;top:6px;left:8px;right:8px;height:10px;background:rgba(255,255,255,.6);border-radius:99px;filter:blur(1px)}
+.bar-ultra:hover{transform:translateY(-6px) scale(1.03);filter:brightness(1.12);box-shadow:inset 0 6px 10px rgba(255,255,255,.8),0 22px 32px rgba(37,99,235,.45)}
 @media(max-width:900px){
 .stats-grid{grid-template-columns:repeat(3,1fr)}
 .icons-grid{grid-template-columns:repeat(3,1fr)}
@@ -173,44 +178,43 @@ document.getElementById('app').innerHTML=`
 <div class="icons-grid">${icons}</div>
 </div>
 
-<!-- ===== الرسومات الأربعة - 12D فخمة - نفس الألوان ===== -->
+<!-- ===== الرسومات - ULTRA أتقل وأتقل ===== -->
 <div class="charts-grid">
-<!-- 1 - Line Chart 12D -->
-<div class="chart-card"><div style="display:flex;justify-content:space-between;align-items:center"><b>● 7-Day Activity - Line Chart</b></div>
-<svg viewBox="0 0 600 230" style="width:100%;height:190px;margin-top:8px;filter:drop-shadow(0 10px 14px rgba(37,99,235,.18))">
-<defs><linearGradient id="lgBlue" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.32"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0.02"/></linearGradient><linearGradient id="lgGreen" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.22"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient><filter id="glowB"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,230 L0,230 Z" fill="url(#lgBlue)"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110 L600,230 L0,230 Z" fill="url(#lgGreen)"/>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" filter="url(#glowB)"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="3.5" stroke-linecap="round" filter="url(#glowB)"/>
-<circle cx="0" cy="20" r="7" fill="#fff" stroke="#2563eb" stroke-width="3"/><circle cx="0" cy="20" r="3" fill="#2563eb"/>
-<circle cx="600" cy="110" r="7" fill="#fff" stroke="#22c55e" stroke-width="3"/><circle cx="600" cy="110" r="3" fill="#22c55e"/>
-<circle cx="510" cy="175" r="6" fill="#fff" stroke="#2563eb" stroke-width="2.5"/>
-</svg><div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;font-weight:700"><span>🟢 Comments</span><span>🔵 Broadcast</span></div></div>
+<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● 7-Day Activity - Line Chart</b><span style="font-size:10px;background:#eff6ff;color:#2563eb;padding:4px 8px;border-radius:99px;font-weight:800;box-shadow:0 4px 10px rgba(37,99,235,.2)">LIVE 🔴</span></div>
+<svg viewBox="0 0 600 230" style="width:100%;height:195px;margin-top:8px;filter:drop-shadow(0 14px 18px rgba(37,99,235,.22))">
+<defs><linearGradient id="lgBlue2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.42"/><stop offset="55%" stop-color="#60a5fa" stop-opacity="0.14"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient><linearGradient id="lgGreen2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.32"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient><filter id="glowB2"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="glowG2"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,230 L0,230 Z" fill="url(#lgBlue2)"/>
+<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110 L600,230 L0,230 Z" fill="url(#lgGreen2)"/>
+<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" filter="url(#glowB2)"/>
+<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" filter="url(#glowG2)"/>
+<circle class="pulse-dot" cx="0" cy="20" r="7" fill="#fff" stroke="#2563eb" stroke-width="3.5"/>
+<circle cx="0" cy="20" r="3" fill="#2563eb"/>
+<circle class="pulse-dot" cx="600" cy="110" r="7" fill="#fff" stroke="#22c55e" stroke-width="3.5"/>
+<circle cx="600" cy="110" r="3" fill="#22c55e"/>
+<circle cx="510" cy="175" r="6" fill="#fff" stroke="#2563eb" stroke-width="3"/>
+<circle cx="340" cy="175" r="5" fill="#fff" stroke="#2563eb" stroke-width="2.5"/>
+</svg><div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;font-weight:800"><span>🟢 Comments</span><span>🔵 Broadcast</span></div></div>
 
-<!-- 2 - Donut 12D -->
-<div class="chart-card"><div style="display:flex;justify-content:space-between;align-items:center"><b>● Broadcast Campaigns - Donut</b><span class="badge" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d;box-shadow:0 4px 10px rgba(34,197,94,.25)">677 Completed</span></div>
-<div class="donut-12d" style="background:conic-gradient(from 200deg,#22c55e 0 92%,#4ade80 92% 96%,#ef4444 96% 100%)"><div class="donut-in-12d"><b style="font-size:24px;letter-spacing:-.5px">705</b><span style="font-size:10px;color:#64748b;font-weight:700">Total</span></div></div>
-<div style="display:flex;justify-content:space-between;font-size:12px;font-weight:800;margin-top:12px"><span>🟢 677</span><span>🔴 28</span><span>🟠 0</span></div></div>
+<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Broadcast Campaigns - Donut</b><span class="badge" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d;box-shadow:0 6px 14px rgba(34,197,94,.35)">677 Completed</span></div>
+<div class="donut-ultra" style="background:conic-gradient(from 200deg,#16a34a 0 55%,#22c55e 55% 92%,#4ade80 92% 96%,#ef4444 96% 100%)"><div class="donut-in-ultra"><b style="font-size:26px;letter-spacing:-.5px;text-shadow:0 2px 8px rgba(0,0,0,.1)">705</b><span style="font-size:10px;color:#64748b;font-weight:800">Total</span></div></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;font-weight:900;margin-top:14px"><span style="background:#f0fdf4;padding:5px 10px;border-radius:99px">🟢 677</span><span style="background:#fef2f2;padding:5px 10px;border-radius:99px">🔴 28</span><span style="background:#fff7ed;padding:5px 10px;border-radius:99px">🟠 0</span></div></div>
 </div>
 
 <div class="charts-grid">
-<!-- 3 - Bar Chart 12D -->
-<div class="chart-card"><div style="display:flex;justify-content:space-between;align-items:center"><b>● New Subscribers - Bar Chart</b></div>
-<div style="display:flex;align-items:end;gap:9px;height:175px;margin-top:12px">
-<div class="bar-12d" style="height:30%;background:linear-gradient(180deg,#bfdbfe,#93c5fd 55%,#60a5fa)"></div>
-<div class="bar-12d" style="height:45%;background:linear-gradient(180deg,#a5c8fd,#93c5fd 50%,#3b82f6)"></div>
-<div class="bar-12d" style="height:35%;background:linear-gradient(180deg,#bfdbfe,#93c5fd 55%,#60a5fa)"></div>
-<div class="bar-12d" style="height:60%;background:linear-gradient(180deg,#60a5fa,#3b82f6 55%,#2563eb)"></div>
-<div class="bar-12d" style="height:80%;background:linear-gradient(180deg,#3b82f6,#2563eb 55%,#1d4ed8)"></div>
-<div class="bar-12d" style="height:95%;background:linear-gradient(180deg,#2563eb,#1d4ed8 55%,#1e40af)"></div>
-<div class="bar-12d" style="height:100%;background:linear-gradient(180deg,#1e40af,#1d4ed8 40%,#172a6b)"></div>
-</div><div style="display:flex;justify-content:space-between;font-size:10px;color:#64748b;font-weight:700;margin-top:8px"><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div>
+<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● New Subscribers - Bar Chart</b><span style="font-size:10px;background:#eff6ff;color:#1d4ed8;padding:4px 8px;border-radius:99px;font-weight:800">+41.7% 🔥</span></div>
+<div style="display:flex;align-items:end;gap:10px;height:180px;margin-top:12px">
+<div class="bar-ultra" style="height:30%;background:linear-gradient(180deg,#dbeafe,#93c5fd 45%,#60a5fa 85%,#3b82f6)"></div>
+<div class="bar-ultra" style="height:45%;background:linear-gradient(180deg,#bfdbfe,#93c5fd 45%,#3b82f6 85%,#2563eb)"></div>
+<div class="bar-ultra" style="height:35%;background:linear-gradient(180deg,#dbeafe,#93c5fd 45%,#60a5fa 85%,#3b82f6)"></div>
+<div class="bar-ultra" style="height:60%;background:linear-gradient(180deg,#93c5fd,#60a5fa 45%,#2563eb 85%,#1d4ed8)"></div>
+<div class="bar-ultra" style="height:80%;background:linear-gradient(180deg,#60a5fa,#3b82f6 45%,#1d4ed8 85%,#1e40af)"></div>
+<div class="bar-ultra" style="height:95%;background:linear-gradient(180deg,#3b82f6,#2563eb 45%,#1e40af 85%,#172a6b)"></div>
+<div class="bar-ultra" style="height:100%;background:linear-gradient(180deg,#2563eb,#1d4ed8 45%,#1e40af 85%,#0f1f5a)"></div>
+</div><div style="display:flex;justify-content:space-between;font-size:10px;color:#64748b;font-weight:800;margin-top:10px"><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div>
 
-<!-- 4 - Radial 12D -->
-<div class="chart-card"><div style="display:flex;justify-content:space-between;align-items:center"><b>● Subscribers Rate - Radial</b><span class="badge" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1d4ed8;box-shadow:0 4px 10px rgba(37,99,235,.22)">4.7% of leads</span></div>
-<div class="donut-12d" style="background:conic-gradient(from 270deg,#2563eb 0 4.7%,#60a5fa 4.7% 5.5%,#e5e7eb 5.5% 100%);box-shadow:0 18px 35px rgba(37,99,235,.28),inset 0 -8px 18px rgba(0,0,0,.12),inset 0 6px 12px rgba(255,255,255,.7)"><div class="donut-in-12d"><b style="font-size:22px">4.7%</b><span style="font-size:10px;color:#64748b;font-weight:700">Subscribers</span></div></div>
-<div style="text-align:center;font-size:12px;color:#64748b;margin-top:12px;font-weight:700"><b style="color:#0f172a">75,177</b> / 1,592,739</div></div>
+<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Subscribers Rate - Radial</b><span class="badge" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1d4ed8;box-shadow:0 6px 14px rgba(37,99,235,.3)">4.7% of leads</span></div>
+<div class="donut-ultra" style="background:conic-gradient(from 270deg,#2563eb 0 4.7%,#60a5fa 4.7% 5.8%,#e5e7eb 5.8% 100%);box-shadow:0 24px 45px rgba(37,99,235,.38),0 8px 18px rgba(0,0,0,.25),inset 0 -12px 22px rgba(0,0,0,.22),inset 0 10px 18px rgba(255,255,255,.8)"><div class="donut-in-ultra"><b style="font-size:24px">4.7%</b><span style="font-size:10px;color:#64748b;font-weight:800">Subscribers</span></div></div>
+<div style="text-align:center;font-size:12px;color:#64748b;margin-top:14px;font-weight:800"><b style="color:#0f172a;font-size:13px">75,177</b> / 1,592,739</div></div>
 </div>
 `;
 }
