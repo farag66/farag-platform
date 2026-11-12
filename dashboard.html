@@ -256,7 +256,7 @@ document.getElementById('app').innerHTML=`
 </div>
 `;
 }
-/* ===== Facebook & Instagram - التبويبة دي بس اللي اتعدلت ===== */
+/* ===== Facebook & Instagram - زي ما عملناها ===== */
 let fbConnectType='facebook';
 function renderFacebook(){
 let pages=DB.get('farag_pages',[{n:'انغام',t:'Facebook',s:'Connected',e:'🎤',c:'#1877F2'},{n:'بهية',t:'Instagram',s:'Connected',e:'💃',c:'#E1306C'}]);
@@ -306,6 +306,33 @@ DB.set('farag_pages',a);
 alert('✅ اتربطت: '+n+' - '+(mode==='all'?'كل الصفحات':'اختار بايدك')+' - التوكن اتخزن في Token Checker');
 renderFacebook();
 }
+/* ===== Social Posting + Posting Templates - التبويبة دي بس اللي اتعدلت دلوقتي ===== */
+function renderPosting(){
+let posts=DB.get('farag_post_tpl',[{id:1,title:'بوست الترحيب',text:'صلي على النبي واذكر الله ❤️',time:'النهاردة 8 بالليل'}]);
+let items=posts.map(function(p){return '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:12px 14px;margin-top:10px;box-shadow:0 8px 16px rgba(0,0,0,.06)"><div style="text-align:right;flex:1;min-width:0"><div style="font-weight:900;font-size:14px">'+p.title+'</div><div style="font-size:12px;color:#64748b;margin-top:3px">'+(p.text||'')+' • 🕘 '+(p.time||'')+'</div></div><div style="display:flex;gap:6px;flex-shrink:0"><button onclick="publishPost('+p.id+')" style="background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff;border:none;padding:8px 16px;border-radius:99px;font-weight:900;cursor:pointer;font-size:12px;box-shadow:0 8px 14px rgba(37,99,235,.4)">📣 نشر</button><button onclick="delPostTpl('+p.id+')" style="background:none;border:none;color:#ef4444;font-weight:800;cursor:pointer;font-size:16px">🗑</button></div></div>'}).join('');
+document.getElementById('app').innerHTML=`
+<div class="card" style="margin-top:14px">
+<h2 style="font-weight:900;font-size:22px;margin:0">Social Posting ✍️ - FARAG.com</h2>
+<p style="font-size:12px;color:#64748b;margin:10px 0 0;line-height:1.9;text-align:right">
+<b style="color:#0f172a">النوع الاول - قوالب حملات الارسال - Broadcast Templates:</b> دي اللي موجودة في Create Template. دي رسالة بتتبعت في الخاص - في الماسنجر. مكوناتها: Body - نص الرسالة + Button - زرار + Image - صورة<br>
+<b style="color:#0f172a">النوع التاني - قوالب النشر - Posting Templates:</b> دي اللي هنا 👇 دي مش رسالة خاص، دي بوست بيتنشر على الصفحة نفسها. مكوناتها مختلفة خالص: عنوان البوست + نص البوست + صورة / فيديو + ميعاد النشر
+</p>
+<div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:18px;padding:16px;margin-top:14px">
+<b style="font-size:14px">✏️ Posting Templates - قوالب النشر</b>
+<input id="pt-title" class="input" style="margin-top:12px" placeholder="عنوان البوست">
+<textarea id="pt-text" class="input" rows="3" style="margin-top:10px" placeholder="نص البوست..."></textarea>
+<input id="pt-time" class="input" style="margin-top:10px" placeholder="ميعاد النشر - مثلا: النهاردة 8 بالليل">
+<div style="font-size:13px;font-weight:700;margin-top:10px">الصفحات: ✅ انغام ✅ بهية ✅ جنه</div>
+<button class="btn" style="margin-top:12px" onclick="savePostTpl()">💾 حفظ قالب النشر</button>
+<div style="font-size:11px;color:#94a3b8;margin-top:8px;text-align:center">بتحفظ القالب مرة واحدة، وبعد كده تنشره على اي صفحة بضغطة واحدة - مش هتكتب البوست كل مرة من الصفر</div>
+</div>
+<div style="margin-top:16px"><b style="font-size:14px">القوالب المحفوظة (${posts.length})</b>${items||'<div style="text-align:center;color:#94a3b8;font-size:13px;padding:12px">مفيش قوالب لسه - اعمل اول قالب فوق 👆</div>'}</div>
+</div>
+`;
+}
+function savePostTpl(){let t=document.getElementById('pt-title').value.trim();if(!t){alert('اكتب عنوان البوست');return;}let a=DB.get('farag_post_tpl',[]);a.unshift({id:Date.now(),title:t,text:document.getElementById('pt-text').value||'نص البوست',time:document.getElementById('pt-time').value||'النهاردة 8 بالليل'});DB.set('farag_post_tpl',a);alert('✅ اتحفظ قالب النشر: '+t);renderPosting();}
+function delPostTpl(id){if(!confirm('تمسح القالب ده؟'))return;DB.set('farag_post_tpl',DB.get('farag_post_tpl',[]).filter(function(x){return x.id!==id}));renderPosting();}
+function publishPost(id){let a=DB.get('farag_post_tpl',[]);let p=a.find(function(x){return x.id===id});if(!p){alert('القالب مش موجود');return;}alert('📣 تم نشر: '+p.title+' - '+p.time+' - على انغام وبهية وجنه');}
 function renderTemplate(){
 let list=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);
 let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Create Template - المخزن الرئيسي - فرج 🤖🌍</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b><div style="margin-top:10px">';
@@ -319,9 +346,6 @@ function renderBroadcast(type){
 let list=DB.get('farag_tpl',[]);
 let f=list.filter(function(t){return (t.type||'UTILITY')===type});
 document.getElementById('app').innerHTML='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">'+(type==='MARKETING'?'Broadcasting - دعائية 📡 - فرج':'Launch Utility - خدمية ⚡ - فرج')+'</h2><label style="font-size:12px;font-weight:800;display:block;margin-top:12px">اختار الصفحة</label><select class="input" style="margin-top:6px"><option>صفحة انغام</option><option>صفحة بهية</option><option>صفحة جنه</option></select><label style="font-size:12px;font-weight:800;display:block;margin-top:12px">اختار القالب - بيظهرلك '+type+' بس</label><select class="input" style="margin-top:6px"><option>'+(f.length?f.map(function(t){return t.name}).join(' - '):'مفيش قوالب '+type+' - روح Create Template واعمل واحد')+'</option></select><button class="btn-blue" style="margin-top:14px" onclick="alert(\'🚀 تم إطلاق الحملة - '+type+'\')">Launch 🚀</button></div><div class="card" style="margin-top:12px;font-size:13px;color:#475569">'+(type==='MARKETING'?'⚠️ MARKETING: مينفعش تبعت غير للي كلمك اخر 24 ساعة':'✅ UTILITY: مسموح تبعت حتى لو العميل مردش بقاله فترة')+'</div>';
-}
-function renderPosting(){
-document.getElementById('app').innerHTML='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Social Posting ✍️ - فرج</h2><input class="input" style="margin-top:12px" placeholder="عنوان البوست"><textarea class="input" rows="3" style="margin-top:10px" placeholder="نص البوست..."></textarea><div style="font-size:13px;font-weight:700;margin-top:10px">الصفحات: ✅ انغام ✅ بهية ✅ جنه</div><div style="display:flex;gap:10px;margin-top:12px"><button class="btn-blue" onclick="alert(\'📤 تم نشر البوست\')">نشر 📤</button><button class="btn" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)" onclick="alert(\'🕘 تم جدولة البوست لبكرة 8\')">جدولة 🕘</button></div></div>';
 }
 function renderMedia(){
 document.getElementById('app').innerHTML='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Media & Content 🎬 - فرج</h2><div onclick="document.getElementById(\'up\').click()" style="border:2px dashed #cbd5e1;border-radius:18px;padding:28px;text-align:center;cursor:pointer;margin-top:12px">📤 دوس هنا ارفع صورة / فيديو<input type="file" id="up" style="display:none" onchange="alert(\'✅ تم رفع الملف\')"></div></div>';
