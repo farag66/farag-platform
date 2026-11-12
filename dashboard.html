@@ -14,10 +14,10 @@ body{background:#070b1f;background:radial-gradient(600px 300px at 80% 0%,#1a2456
 .sidebar.collapsed .hide-text{display:none!important}
 .sidebar.collapsed .side{justify-content:center;padding:10px 6px}
 .sidebar.collapsed .brand-sub{display:none}
-/* === السحبة - لازقة في القايمة من ناحية التبويبة === */
-.sidebar-toggle{position:absolute;top:78px;left:-19px;width:38px;height:38px;border-radius:50%;border:2px solid #a78bfa;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(124,58,237,.6);z-index:60;transition:.3s}
+/* === السحبة - في المكان اللي انت معلم عليه بالظبط === */
+/* على حرف القايمة من ناحية التبويبة - جنب Dashboard - مش في أي حتة تانية */
+.sidebar-toggle{position:absolute;top:108px;right:-19px;left:auto;width:38px;height:38px;border-radius:50%;border:2px solid #a78bfa;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 20px rgba(124,58,237,.6);z-index:60;transition:.3s}
 .sidebar-toggle:hover{transform:scale(1.12)}
-.sidebar.collapsed + .sidebar-toggle{transform:rotate(180deg)}
 .stat{background:linear-gradient(180deg,#11173a,#0d1230);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:14px;text-align:center;transition:.35s}
 .stat:hover{transform:translateY(-5px);box-shadow:0 18px 35px rgba(99,102,241,.45)}
 .side{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 12px;border-radius:12px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer;white-space:nowrap}
@@ -36,7 +36,6 @@ body{background:#070b1f;background:radial-gradient(600px 300px at 80% 0%,#1a2456
 .donut-in{width:100px;height:100px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a}
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:45;display:none}
 .backdrop.show{display:block}
-/* === تظبيط الموبايل === */
 .stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:16px}
 .icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:14px}
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
@@ -53,7 +52,7 @@ body{background:#070b1f;background:radial-gradient(600px 300px at 80% 0%,#1a2456
 .sidebar.collapsed .hide-text{display:flex!important}
 .sidebar.collapsed .side{justify-content:space-between;padding:10px 12px}
 .sidebar.collapsed .brand-sub{display:block!important}
-.sidebar-toggle{left:-19px}
+.sidebar-toggle{right:-19px;top:108px}
 .stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}
 .icons-grid{grid-template-columns:repeat(2,1fr);gap:8px}
 .stat{padding:10px 6px}
@@ -64,15 +63,15 @@ body{background:#070b1f;background:radial-gradient(600px 300px at 80% 0%,#1a2456
 <body>
 <div style="display:flex;flex-direction:row-reverse">
 <div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
-<!-- SIDEBAR + السحبة لازقة فيها -->
+<!-- SIDEBAR + السحبة لازقة فيها في المكان اللي علمت عليه -->
 <div class="sidebar-wrap" id="sidebarWrap">
 <div class="sidebar" id="sidebar">
 <div style="text-align:center;padding:14px 0 6px"><div style="display:flex;align-items:center;justify-content:center;gap:8px"><div style="width:38px;height:38px;background:linear-gradient(135deg,#4f46e5,#a78bfa);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;box-shadow:0 8px 20px rgba(124,58,237,.6)">F</div><div class="hide-text" style="text-align:right"><div style="font-weight:900;font-size:22px;line-height:1">FARAG<span style="color:#a78bfa">.com</span></div><div class="brand-sub" style="font-size:10px;color:#94a3b8">منصة فرج - Farag Platform</div></div></div></div>
 <div id="menu" style="padding:8px 12px 0"></div>
 <button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" class="hide-text" style="margin:16px 12px 0;width:calc(100% - 24px);background:linear-gradient(135deg,#ef4444,#f87171);color:#fff;padding:10px;border:none;border-radius:12px;font-weight:800;cursor:pointer">Reset / تصفير الكل</button>
 </div>
-<!-- السحبة هنا - بين القايمة والتبويبة -->
-<button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="فتح / قفل القايمة">‹</button>
+<!-- السحبة هنا - في الدايرة اللي انت معلم عليها بالظبط -->
+<button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="فتح / قفل القايمة">☰</button>
 </div>
 
 <div style="flex:1;min-width:0;padding:16px;max-width:1150px;margin:0 auto;padding-bottom:60px;width:100%">
@@ -90,18 +89,15 @@ function toggleSidebar(){
 let sb=document.getElementById('sidebar');
 let wrap=document.getElementById('sidebarWrap');
 let back=document.getElementById('backdrop');
-let btn=document.getElementById('sidebarToggle');
 if(window.innerWidth<=768){
 let open=wrap.classList.toggle('open');
 back.classList.toggle('show',open);
-btn.textContent=open?'›':'‹';
 }else{
 let col=sb.classList.toggle('collapsed');
-btn.textContent=col?'›':'‹';
 try{localStorage.setItem('farag_sidebar',col?'collapsed':'open')}catch(e){}
 }
 }
-try{if(localStorage.getItem('farag_sidebar')==='collapsed' && window.innerWidth>768){document.getElementById('sidebar').classList.add('collapsed');document.getElementById('sidebarToggle').textContent='›'}}catch(e){}
+try{if(localStorage.getItem('farag_sidebar')==='collapsed' && window.innerWidth>768){document.getElementById('sidebar').classList.add('collapsed')}}catch(e){}
 let MENU=[
 {t:'Dashboard',p:'dashboard',i:'📊',c:'#2563eb',c2:'#60a5fa',g:'rgba(37,99,235,.5)'},
 {t:'Facebook & Instagram',p:'facebook',i:'🔗',c:'#0284c7',c2:'#38bdf8',g:'rgba(2,132,199,.5)'},
