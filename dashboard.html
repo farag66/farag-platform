@@ -3,116 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Farag - Platform + Pro Charts</title>
+<title>Farag - Dashboard Lux</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 *{box-sizing:border-box}body{background:#eef1f6;font-family:Inter,system-ui;margin:0}
-.card12{background:#fff;border-radius:22px;box-shadow:0 4px 20px rgba(15,23,42,.06);padding:18px}
-.side-item{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;font-size:13px;font-weight:700;color:#334155;cursor:pointer}
+.card12{background:#fff;border-radius:22px;box-shadow:0 4px 20px rgba(15,23,42,.06),0 0 0 1px #f1f5f9;transition:.45s cubic-bezier(.34,1.56,.64,1);position:relative;overflow:hidden}
+.card12:hover{transform:translateY(-8px) scale(1.02);box-shadow:0 24px 44px var(--glow,rgba(37,99,235,.25))}
+.mini12{background:#fff;border-radius:18px;padding:14px;box-shadow:0 4px 14px rgba(15,23,42,.05);transition:.45s}
+.mini12:hover{transform:translateY(-6px) scale(1.03);box-shadow:0 18px 30px var(--glow)}
+.side-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;font-size:13px;font-weight:600;color:#334155;cursor:pointer;white-space:nowrap}
 .side-item:hover{background:#eef4ff}.side-item.active{background:#e8f0ff;color:#1d4ed8}
-.input{width:100%;border:1px solid #e2e8f0;border-radius:12px;padding:11px;font-size:14px}
-.btn{width:100%;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer}
-#sidebar{width:280px;flex-shrink:0;height:100vh;position:sticky;top:0;background:#fff;overflow-y:auto;border-right:1px solid #e5e7eb}
-#layout{display:flex}#main{flex:1;min-width:0}
-.chart-box{height:220px;position:relative}
-.chart-box-small{height:180px;position:relative}
-.badge{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:700}
+.ico{width:34px;height:34px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;position:relative;transition:.4s cubic-bezier(.34,1.56,.64,1);background:linear-gradient(135deg,var(--c),var(--c2));color:#fff;box-shadow:0 6px 14px var(--glow)}
+.side-item:hover .ico{transform:translateY(-6px) scale(1.18) rotate(-5deg);box-shadow:0 14px 26px var(--glow);animation:f1 1.6s infinite}
+@keyframes f1{0%,100%{transform:translateY(-6px) scale(1.18) rotate(-5deg)}50%{transform:translateY(-11px) scale(1.18) rotate(-5deg)}}
+.cloud{position:absolute;left:100%;top:50%;transform:translateY(-50%) translateX(4px) scale(.85);background:linear-gradient(135deg,var(--c),var(--c2));color:#fff;font-size:11px;font-weight:800;white-space:nowrap;padding:8px 11px;border-radius:999px;opacity:0;pointer-events:none;transition:.35s;z-index:50;box-shadow:0 10px 24px var(--glow)}
+.side-item:hover .ico .cloud{opacity:1;transform:translateY(-50%) translateX(14px) scale(1)}
+.icon-cloud{width:44px;height:44px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;position:relative;transition:.4s;background:linear-gradient(135deg,var(--c),var(--c2));color:#fff;box-shadow:0 6px 14px var(--glow);cursor:pointer}
+.icon-cloud:hover{transform:translateY(-6px) scale(1.18) rotate(-5deg);box-shadow:0 14px 26px var(--glow);animation:f1 1.6s infinite}
+.icon-cloud .cloud{left:50%;bottom:calc(100% + 10px);top:auto;transform:translateX(-50%) translateY(8px)}
+.icon-cloud:hover .cloud{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+.top-ico{width:34px;height:34px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-size:16px;cursor:pointer;position:relative;transition:.4s;background:linear-gradient(135deg,var(--c),var(--c2));color:#fff;box-shadow:0 6px 14px var(--glow)}
+.top-ico:hover{transform:translateY(-5px) scale(1.15) rotate(-5deg);animation:f1 1.6s infinite}
+.top-ico .cloud{left:50%;top:calc(100% + 10px);transform:translateX(-50%) translateY(-6px)}
+.top-ico:hover .cloud{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}
+.float-btn{width:48px;height:48px;border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;cursor:pointer;position:relative;background:linear-gradient(135deg,var(--c),var(--c2));box-shadow:0 10px 22px var(--glow)}
+.float-btn:hover{transform:translateY(-6px) scale(1.15) rotate(-5deg);animation:f1 1.6s infinite}
+.float-btn .cloud{left:auto;right:calc(100% + 10px);top:50%;transform:translateY(-50%) translateX(6px)}
+.float-btn:hover .cloud{opacity:1;transform:translateY(-50%) translateX(0) scale(1)}
+.input{width:100%;border:1px solid #e2e8f0;border-radius:12px;padding:11px 12px;font-size:14px;outline:none;background:#fff}
+.btn{width:100%;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;font-size:14px;border:none;cursor:pointer;box-shadow:0 8px 18px rgba(37,99,235,.25)}
+.badge{font-size:11px;padding:3px 8px;border-radius:99px;font-weight:700}
+.chart-box{height:230px;position:relative}.chart-small{height:190px;position:relative}
+.sec{font-size:9px;letter-spacing:2px;font-weight:800;color:#94a3b8;margin:16px 0 8px 10px}
 </style>
 </head>
 <body>
-<div id="layout">
-<div id="sidebar">
-<div class="flex items-center gap-2 px-3 pt-4 pb-3"><div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-black">F</div><div><div class="font-black text-[20px]">farag <span class="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">ChatBot AI</span></div><div class="text-[10px] text-gray-400">Farag Platform</div></div></div>
-<div class="px-2" id="menu"></div>
-<button onclick="doReset()" class="mx-2 mt-6 w-[calc(100%-16px)] bg-red-500 text-white py-2.5 rounded-xl font-bold text-sm">Reset / تصفير الكل</button>
+<div class="flex">
+<div class="w-[290px] shrink-0 h-screen sticky top-0 bg-white overflow-y-auto border-l">
+<div class="flex items-center gap-2 px-3 pt-4 pb-3"><div class="w-9 h-9 bg-blue-600 rounded-full flex items-center justify-center text-white font-black text-lg">F</div><div><div class="font-black text-[20px]">farag <span class="text-[9px] bg-blue-100 text-blue-700 px-1.5 py-0.5 rounded">ChatBot AI</span></div><div class="text-[10px] text-gray-400">Farag Platform</div></div></div>
+<div class="px-2">
+<div class="sec">FARAG TOOLS</div>
+<div class="side-item active"><span class="ico" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.4)">💠<span class="cloud">Dashboard</span></span>Dashboard</div>
+<div class="side-item"><span class="ico" style="--c:#9333ea;--c2:#c084fc;--glow:rgba(147,51,234,.4)">🫂<span class="cloud">Contacts</span></span>Contacts</div>
+<div class="side-item"><span class="ico" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.4)">📣<span class="cloud">Campaigns</span></span>Campaigns</div>
+<div class="sec">MESSENGER TOOLS</div>
+<div class="side-item"><span class="ico" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.4)">📡<span class="cloud">Broadcasting</span></span>Broadcasting</div>
+<div class="side-item"><span class="ico" style="--c:#0284c7;--c2:#38bdf8;--glow:rgba(2,132,199,.4)">🕘<span class="cloud">Broadcast Job History</span></span>Broadcast Job History</div>
+<div class="sec">UTILITY MESSAGING</div>
+<div class="side-item"><span class="ico" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.4)">⚡<span class="cloud">Launch Utility</span></span>Launch Utility</div>
+<div class="sec">POSTING FEATURE</div>
+<div class="side-item"><span class="ico" style="--c:#9333ea;--c2:#c084fc;--glow:rgba(147,51,234,.4)">✍️<span class="cloud">Social Posting</span></span>Social Posting</div>
+<div class="side-item"><span class="ico" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.4)">📝<span class="cloud">Create Template</span></span>Create Template</div>
 </div>
-<div id="main">
-<div class="bg-white shadow-sm sticky top-0 z-30 flex justify-between px-4 py-3"><button class="text-2xl">☰</button><div class="font-bold text-sm">فرج ⌄</div></div>
-<div class="p-4 md:p-6 max-w-[1100px] mx-auto pb-24" id="app"></div>
+<button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" class="mx-2 mt-6 w-[calc(100%-16px)] text-white py-2.5 rounded-xl font-bold text-sm btn" style="background:linear-gradient(135deg,#ef4444,#f87171)">Reset / تصفير الكل</button>
 </div>
+
+<div class="flex-1 min-w-0">
+<div class="bg-white shadow-sm sticky top-0 z-30 flex items-center justify-between px-3 py-3"><button class="text-2xl px-2">☰</button><div class="flex items-center gap-2"><span class="top-ico" style="--c:#0284c7;--c2:#38bdf8;--glow:rgba(2,132,199,.4)">AR<span class="cloud">Language - Arabic</span></span><span class="top-ico" style="--c:#64748b;--c2:#94a3b8;--glow:rgba(100,116,139,.4)">🌙<span class="cloud">Dark Mode</span></span><span class="top-ico" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.4)">🔔<span class="cloud">Notifications</span></span><div class="bg-orange-50 px-2 py-1 rounded-full flex items-center gap-1"><span class="w-6 h-6 rounded-full flex items-center justify-center text-[12px]" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);color:#fff">👤</span><span class="text-xs font-bold">فرج ⌄</span></div></div></div>
+
+<div class="p-3 md:p-6 max-w-[1100px] mx-auto pb-24">
+<div class="flex justify-between gap-2"><div><h1 class="text-[26px] font-black">Command Center</h1><p class="text-gray-500 text-[12px]">Thursday, November 12, 2026</p></div><div class="flex gap-2 shrink-0"><span class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm flex items-center gap-1.5"><span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>Live · <span class="font-mono font-bold">11:00:21 م</span></span><button onclick="location.reload()" class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow-sm font-bold">⟳ Refresh</button></div></div>
+
+<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud" style="--c:#9333ea;--c2:#c084fc;--glow:rgba(147,51,234,.35);width:28px;height:28px;font-size:14px">🫂<span class="cloud">Subscribers</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">SUBSCRIBERS</span><div class="flex-1 h-px bg-gray-200"></div></div>
+
+<div class="card12 p-4 md:p-5" style="--c:#9333ea;--glow:rgba(147,51,234,.2)"><div class="grid grid-cols-2 md:grid-cols-4 gap-4"><div class="col-span-2 md:col-span-1"><div class="text-[10px] tracking-wider text-gray-500 font-bold">TOTAL SUBSCRIBERS</div><div class="text-[32px] md:text-[36px] font-black leading-none mt-1">1,592,739</div><div class="flex gap-1.5 mt-2"><span class="bg-blue-50 text-[11px] px-2 py-0.5 rounded-full font-bold">f 1,592,739 FB</span><span class="bg-gray-50 text-[11px] px-2 py-0.5 rounded-full font-bold">◎ 0 IG</span></div></div><div class="mini12" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="text-[10px] font-bold text-gray-500">🚩 PAGES</div><div class="text-xl font-black">177</div><div class="text-[11px] mt-1"><span class="text-green-600 font-bold">● 177 Enabled</span> · <span class="text-red-500 font-bold">● 0 Disabled</span></div><div class="text-[11px] text-gray-500 mt-1">✅ All pages scanned · 05:10 م</div></div><div class="mini12" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><div class="text-[10px] font-bold text-gray-500">TODAY</div><div class="text-xl font-black">180</div><div class="text-[11px] text-gray-500">180 FB · 0 IG</div><div class="bg-green-100 text-green-700 text-[11px] font-bold px-2 py-1 rounded-lg mt-2 inline-block">↑ +41.7%<br>vs yesterday</div></div><div><div class="grid gap-3"><div class="mini12" style="--c:#f59e0b;--glow:rgba(245,158,11,.2)"><div class="text-[10px] font-bold text-gray-500">YESTERDAY</div><div class="text-xl font-black">127</div><div class="text-[11px] text-gray-500">New subscribers</div></div><div class="mini12 hidden md:block" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="text-[10px] font-bold text-gray-500">7-DAY GROWTH</div><svg viewBox="0 0 100 40" class="w-full h-[40px]"><path d="M0,32 L35,32 L60,32 L78,32 L88,18 L95,8 L100,4" fill="none" stroke="#2563eb" stroke-width="2.5"/><circle cx="100" cy="4" r="3" fill="#2563eb"/></svg></div></div></div></div></div>
+
+<div class="card12 p-4 mt-3" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><div class="flex justify-between items-center"><div class="flex items-center gap-3"><span class="icon-cloud" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.35)">✈️<span class="cloud">Subscribers - broadcasts go to these only</span></span><div><span class="text-[24px] font-black">75,177</span><span class="text-gray-500 text-sm"> / 1,592,739</span><div class="text-[11px] text-gray-500">Subscribers — broadcasts go to these only</div></div></div><span class="bg-green-100 text-green-700 text-[11px] font-bold px-3 py-1.5 rounded-full">4.7% of leads</span></div><div class="flex h-[12px] rounded-full overflow-hidden bg-gray-200 mt-3"><div style="width:4.7%;background:#22c55e"></div><div style="width:69.7%;background:#f59e0b"></div><div style="width:25.6%;background:#f43f5e"></div></div><div class="flex flex-wrap gap-x-4 gap-y-1 mt-2 text-[11px] text-gray-600"><span>🟢 Subscribers <b>75,177</b></span><span>🟡 Ready to migrate <b>1,109,765</b></span><span>🔴 Unavailable <b>407,797</b></span></div></div>
+
+<div class="flex items-center gap-2 mt-6 mb-3"><span class="icon-cloud" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35);width:28px;height:28px;font-size:14px">📊<span class="cloud">Campaign Overview</span></span><span class="text-[11px] font-black tracking-wider text-gray-500">CAMPAIGN OVERVIEW</span><div class="flex-1 h-px bg-gray-200"></div></div>
+
+<div class="grid grid-cols-2 gap-3">
+<div class="card12 p-4 flex gap-3" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><span class="icon-cloud" style="--c:#2563eb;--c2:#60a5fa;--glow:rgba(37,99,235,.35)">✈️<span class="cloud">Messages Sent</span></span><div><div class="text-[22px] font-black">865,990</div><div class="text-[11px] text-gray-500">Messages Sent</div><div class="text-[11px] text-gray-400">Broadcast · 30 days</div></div></div>
+<div class="card12 p-4 flex gap-3" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><span class="icon-cloud" style="--c:#16a34a;--c2:#4ade80;--glow:rgba(22,163,74,.35)">💬<span class="cloud">Comments Today</span></span><div><div class="text-[22px] font-black text-green-600">1,141</div><div class="text-[11px] text-gray-500">Comments Today</div><div class="text-[11px] font-bold">97.5% replied</div></div></div>
+<div class="card12 p-4 flex gap-3" style="--c:#f59e0b;--glow:rgba(245,158,11,.25)"><span class="icon-cloud" style="--c:#f59e0b;--c2:#fbbf24;--glow:rgba(245,158,11,.4)">🚀<span class="cloud">Running Now</span></span><div><div class="text-[22px] font-black text-yellow-500">0</div><div class="text-[11px] text-gray-500">Running Now</div><div class="text-[11px] text-gray-400">Active campaigns</div></div></div>
+<div class="card12 p-4 flex gap-3" style="--c:#ec4899;--glow:rgba(236,72,153,.2)"><span class="icon-cloud" style="--c:#ec4899;--c2:#f472b6;--glow:rgba(236,72,153,.4)">⛔<span class="cloud">Failed Items</span></span><div><div class="text-[22px] font-black text-pink-600">0</div><div class="text-[11px] text-gray-500">Failed Items</div><div class="text-[11px] text-pink-600 font-bold">Tap to retry →</div></div></div>
 </div>
-<div id="toast" class="fixed left-1/2 bottom-6 -translate-x-1/2 bg-gray-900 text-white px-5 py-2.5 rounded-full text-[13px] font-bold opacity-0 transition z-50">تم ✅</div>
+
+<div class="grid md:grid-cols-2 gap-3 mt-3">
+<div class="card12 p-4" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="flex justify-between"><b class="text-sm">● 7-Day Activity - Line Chart</b><span class="text-[11px]">🔵 Broadcast 🟢 Comments</span></div><div class="chart-box mt-3"><canvas id="chLine"></canvas></div></div>
+<div class="card12 p-4" style="--c:#16a34a;--glow:rgba(22,163,74,.2)"><div class="flex justify-between"><b class="text-sm">● Broadcast Campaigns - Donut</b><span class="badge bg-green-100 text-green-700">677 Completed</span></div><div class="chart-small mt-3"><canvas id="chDonut"></canvas></div><div class="flex justify-between text-[12px] mt-2"><span>🟢 Completed <b>677</b></span><span>🔴 Failed <b>28</b></span><span>🟠 Pending <b>0</b></span></div></div>
+</div>
+
+<div class="grid md:grid-cols-2 gap-3 mt-3">
+<div class="card12 p-4" style="--c:#f59e0b;--glow:rgba(245,158,11,.25)"><div class="flex justify-between"><b class="text-sm">● New Subscribers - Bar Chart</b><span class="text-[11px] text-slate-500">آخر 7 أيام</span></div><div class="chart-box mt-3"><canvas id="chBar"></canvas></div></div>
+<div class="card12 p-4" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="flex justify-between"><b class="text-sm">● Subscribers Rate - Radial</b><span class="badge bg-blue-100 text-blue-700">4.7% of leads</span></div><div class="chart-small mt-3"><canvas id="chRadial"></canvas></div><div class="text-center text-[12px] text-slate-500 mt-1"><b class="text-slate-900">75,177</b> / 1,592,739</div></div>
+</div>
+
+<div class="card12 p-4 mt-3" style="--c:#2563eb;--glow:rgba(37,99,235,.2)"><div class="flex justify-between"><div class="font-bold text-sm">● Recent Broadcasts</div><span class="text-blue-600 text-xs font-bold">View all →</span></div><table class="w-full text-left text-[13px] mt-2"><thead class="text-[10px] text-gray-500 border-y bg-gray-50"><tr><th class="px-3 py-2">CAMPAIGN</th><th class="px-3 py-2 text-center">SENT / TOTAL</th><th class="px-3 py-2 text-right">STATUS</th></tr></thead><tbody><tr class="border-b"><td class="px-3 py-3"><div class="font-bold">وصفات · 18:28 30-10-2026</div><div class="text-[11px] text-gray-400">2026-10-30 18:28:03</div></td><td class="px-3 py-3 text-center font-bold">15 / 15</td><td class="px-3 py-3 text-right"><span class="bg-green-50 text-green-700 text-[11px] px-2.5 py-1 rounded-full font-bold">● Done</span></td></tr><tr><td class="px-3 py-3"><div class="font-bold">جونام · 18:28 30-10-2026</div><div class="text-[11px] text-gray-400">2026-10-30 18:28:03</div></td><td class="px-3 py-3 text-center font-bold">1 / 1</td><td class="px-3 py-3 text-right"><span class="bg-green-50 text-green-700 text-[11px] px-2.5 py-1 rounded-full font-bold">● Done</span></td></tr></tbody></table></div>
+
+</div></div></div>
+<div class="fixed bottom-5 right-4 flex flex-col gap-3 z-40"><button class="float-btn" style="--c:#7c3aed;--c2:#a78bfa;--glow:rgba(124,58,237,.5)">✦<span class="cloud">AI Assistant</span></button><button class="float-btn" style="--c:#22c55e;--c2:#4ade80;--glow:rgba(34,197,94,.5)">💬<span class="cloud">WhatsApp Chat</span></button></div>
 <script>
-const DB={get(k,d){try{let v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){localStorage.setItem(k,JSON.stringify(v))}};
-let S={page:'dashboard'};
-let CHARTS=[];
-function toast(m){let t=document.getElementById('toast');t.textContent=m;t.style.opacity=1;setTimeout(()=>t.style.opacity=0,2000)}
-function doReset(){if(!confirm('تصفر كل حاجة؟'))return;localStorage.clear();localStorage.setItem('farag_zeroed','1');['farag_broadcasts','farag_reply_tpl','farag_posts'].forEach(k=>localStorage.setItem(k,'[]'));toast('✅ تم التصفير');setTimeout(()=>location.reload(),500)}
-function killCharts(){CHARTS.forEach(c=>c.destroy());CHARTS=[]}
-const MENU=[
-{s:'FARAG TOOLS'},{t:'Dashboard',p:'dashboard',i:'💠'},{t:'Contacts',p:'contacts',i:'🫂'},{t:'Campaigns',p:'campaigns',i:'📣'},
-{s:'MESSENGER TOOLS'},{t:'Broadcasting',p:'broadcasting',i:'📡'},{t:'Broadcast Job History',p:'history',i:'🕘'},
-{s:'UTILITY MESSAGING'},{t:'Launch Utility',p:'utility',i:'⚡'},
-{s:'POSTING FEATURE'},{t:'Social Posting',p:'posting',i:'✍️'},{t:'Create Template',p:'template',i:'📝'},
-{s:'MEDIA & CONTENT'},{t:'Media & Content',p:'media',i:'🎬'},
-];
-function renderMenu(){let h='';MENU.forEach(m=>{if(m.s)h+=`<div class="text-[9px] tracking-[2px] font-black text-slate-400 px-2 mt-4 mb-2">${m.s}</div>`;else h+=`<div class="side-item ${S.page===m.p?'active':''}" onclick="openPage('${m.p}')">${m.i} ${m.t}</div>`});document.getElementById('menu').innerHTML=h}
-function openPage(p){S.page=p;render()}
-function render(){
-killCharts();renderMenu();
-let h='';
-if(S.page==='dashboard') h=dashboard();
-else if(S.page==='template') h=templatePage();
-else if(S.page==='broadcasting') h=broadcastPage('MARKETING');
-else if(S.page==='utility') h=broadcastPage('UTILITY');
-else if(S.page==='posting') h=postingPage();
-else if(S.page==='media') h=mediaPage();
-else h=`<div class="card12 text-center"><h2 class="font-black text-xl">${S.page}</h2><p class="text-slate-500 text-sm mt-2">الصفحة دي متثبتة وهنكملها بعد Dashboard - دوس Dashboard</p><button onclick="openPage('dashboard')" class="btn mt-4">Back to Dashboard</button></div>`;
-document.getElementById('app').innerHTML=h;
-if(S.page==='dashboard') initDashboardCharts();
-}
-function dashboard(){
-let zero=localStorage.getItem('farag_zeroed')==='1';
-let total=zero?0:1592739, sub=zero?0:75177;
-return `
-<div class="flex justify-between"><div><h1 class="text-[26px] font-black">Command Center</h1><p class="text-slate-500 text-xs">Thursday, November 12, 2026</p></div><span class="bg-white px-3 py-1.5 rounded-full text-[11px] shadow">🟢 Live</span></div>
-
-<div class="grid grid-cols-2 md:grid-cols-4 gap-3 mt-5">
-<div class="card12"><div class="text-[10px] font-bold text-slate-500">TOTAL SUBSCRIBERS</div><div class="text-[30px] font-black">${total.toLocaleString()}</div><div class="text-[11px]">f ${total.toLocaleString()} FB · 0 IG</div></div>
-<div class="card12"><div class="text-[10px] font-bold text-slate-500">PAGES</div><div class="text-[30px] font-black">${zero?0:177}</div><div class="text-[11px] text-green-600 font-bold">● ${zero?0:177} Enabled</div></div>
-<div class="card12"><div class="text-[10px] font-bold text-slate-500">TODAY</div><div class="text-[30px] font-black">${zero?0:180}</div><div class="text-[11px] bg-green-100 text-green-700 inline-block px-2 py-1 rounded-lg font-bold">↑ +41.7% vs yesterday</div></div>
-<div class="card12"><div class="text-[10px] font-bold text-slate-500">MESSAGES SENT</div><div class="text-[30px] font-black">865,990</div><div class="text-[11px] text-slate-500">Broadcast · 30 days</div></div>
-</div>
-
-<div class="grid md:grid-cols-2 gap-3 mt-3">
-<div class="card12"><div class="flex justify-between"><b class="text-sm">● 7-Day Activity - Line Chart</b><span class="text-[11px]">🔵 Broadcast 🟢 Comments</span></div><div class="chart-box mt-3"><canvas id="chLine"></canvas></div></div>
-<div class="card12"><div class="flex justify-between"><b class="text-sm">● Broadcast Campaigns - Donut</b><span class="badge bg-green-100 text-green-700">677 Completed</span></div><div class="chart-box-small mt-3"><canvas id="chDonut"></canvas></div><div class="flex justify-between text-[12px] mt-2"><span>🟢 Completed <b>677</b></span><span>🔴 Failed <b>28</b></span><span>🟠 Pending <b>0</b></span></div></div>
-</div>
-
-<div class="grid md:grid-cols-2 gap-3 mt-3">
-<div class="card12"><div class="flex justify-between"><b class="text-sm">● New Subscribers - Bar Chart</b><span class="text-[11px] text-slate-500">آخر 7 أيام</span></div><div class="chart-box mt-3"><canvas id="chBar"></canvas></div></div>
-<div class="card12"><div class="flex justify-between"><b class="text-sm">● Subscribers Rate - Radial</b><span class="badge bg-blue-100 text-blue-700">4.7% of leads</span></div><div class="chart-box-small mt-3"><canvas id="chRadial"></canvas></div><div class="text-center text-[12px] text-slate-500 mt-1"><b class="text-slate-900">${sub.toLocaleString()}</b> / ${total.toLocaleString()} - broadcasts go to these only</div></div>
-</div>
-
-<div class="card12 mt-3"><div class="flex justify-between"><b class="text-sm">● Recent Broadcasts</b><a class="text-blue-600 text-xs font-bold cursor-pointer" onclick="openPage('broadcasting')">View all →</a></div><div class="overflow-x-auto mt-3"><table class="w-full text-left text-[13px]"><thead class="text-[10px] text-slate-500 border-y bg-slate-50"><tr><th class="px-3 py-2">CAMPAIGN</th><th class="px-3 py-2 text-center">SENT / TOTAL</th><th class="px-3 py-2 text-right">STATUS</th></tr></thead><tbody><tr class="border-b"><td class="px-3 py-3 font-bold">وصفات · 18:28 30-10-2026</td><td class="px-3 py-3 text-center font-bold">15 / 15</td><td class="px-3 py-3 text-right"><span class="badge bg-green-100 text-green-700">● Done</span></td></tr><tr><td class="px-3 py-3 font-bold">جونام · 18:28 30-10-2026</td><td class="px-3 py-3 text-center font-bold">1 / 1</td><td class="px-3 py-3 text-right"><span class="badge bg-green-100 text-green-700">● Done</span></td></tr></tbody></table></div></div>
-`;
-}
-function initDashboardCharts(){
-let c1=new Chart(document.getElementById('chLine'),{type:'line',data:{labels:['Nov 06','Nov 07','Nov 08','Nov 09','Nov 10','Nov 11','Nov 12'],datasets:[{label:'Broadcast',data:[4000,1200,300,200,180,220,350],borderColor:'#2563eb',backgroundColor:'rgba(37,99,235,.15)',fill:true,tension:.4},{label:'Comments',data:[100,150,200,300,800,1100,1141],borderColor:'#22c55e',backgroundColor:'rgba(34,197,94,.1)',fill:true,tension:.4}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
-let c2=new Chart(document.getElementById('chDonut'),{type:'doughnut',data:{labels:['Completed','Failed','Pending'],datasets:[{data:[677,28,0],backgroundColor:['#22c55e','#f43f5e','#f59e0b'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'68%',plugins:{legend:{position:'bottom'}}}});
-let c3=new Chart(document.getElementById('chBar'),{type:'bar',data:{labels:['Sat','Sun','Mon','Tue','Wed','Thu','Fri'],datasets:[{label:'New Subscribers',data:[95,110,127,180,165,190,210],backgroundColor:['#cbd5e1','#cbd5e1','#cbd5e1','#2563eb','#60a5fa','#93c5fd','#2563eb'],borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}}}});
-let c4=new Chart(document.getElementById('chRadial'),{type:'doughnut',data:{labels:['Subscribers','Rest'],datasets:[{data:[4.7,95.3],backgroundColor:['#7c3aed','#eef2f7'],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,cutout:'78%',plugins:{legend:{display:false}}}});
-CHARTS=[c1,c2,c3,c4];
-}
-function templatePage(){
-let list=DB.get('farag_reply_tpl',[{id:1,name:'A',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);
-return `<h2 class="text-[22px] font-black">Create Template - المخزن الرئيسي</h2>
-<div class="card12 mt-3"><div class="grid md:grid-cols-2 gap-3"><input id="t-name" class="input" placeholder="Template name - مثال: قالب الترحيب"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input mt-3" placeholder="Title"><input id="t-sub" class="input mt-3" placeholder="Sub-title"><button onclick="saveTpl()" class="btn mt-3">💾 حفظ القالب</button></div>
-<div class="card12 mt-3"><b>القوالب المحفوظة (${list.length})</b><div class="mt-3 space-y-2">${list.map(t=>`<div class="flex justify-between border rounded-xl p-3"><div><b>${t.name}</b> <span class="badge bg-blue-100 text-blue-700">${t.type||'UTILITY'}</span><div class="text-[12px] text-slate-500">${t.title||''} - ${t.subtitle||''}</div></div><button onclick="delTpl(${t.id})" class="text-red-500 font-bold">🗑 Delete</button></div>`).join('')||'لسه مفيش قوالب'}</div></div>`;
-}
-function saveTpl(){let n=document.getElementById('t-name').value.trim();if(!n)return alert('اكتب اسم القالب');let a=DB.get('farag_reply_tpl',[]);a.unshift({id:Date.now(),name:n,title:document.getElementById('t-title').value,subtitle:document.getElementById('t-sub').value,type:document.getElementById('t-type').value.split(' - ')[0]});DB.set('farag_reply_tpl',a);toast('✅ تم حفظ القالب '+n);render()}
-function delTpl(id){if(!confirm('تمسح؟'))return;DB.set('farag_reply_tpl',DB.get('farag_reply_tpl',[]).filter(x=>x.id!==id));render()}
-function broadcastPage(type){
-let list=DB.get('farag_reply_tpl',[]);
-let filtered=list.filter(t=>(t.type||'UTILITY')===type);
-return `<h2 class="text-[22px] font-black">${type==='MARKETING'?'Broadcasting - دعائية':'Launch Utility - خدمية'} 🚀</h2>
-<div class="card12 mt-3"><label class="text-[12px] font-bold">اختار الصفحة</label><select class="input mt-1"><option>صفحة انغام</option><option>صفحة بهية</option><option>صفحة جنه</option></select><label class="text-[12px] font-bold block mt-3">اختار القالب - بيظهرلك ${type} بس</label><select class="input mt-1"><option>${filtered.length?filtered.map(t=>t.name).join(' - '):'مفيش قوالب '+type+' - روح Create Template واعمل واحد'}</option></select><label class="text-[12px] font-bold block mt-3">Labels</label><select class="input mt-1"><option>All Labels</option><option>VIP</option><option>New</option></select><button onclick="toast('🚀 تم إطلاق الحملة - ${type}')" class="btn mt-4">Launch 🚀</button></div>
-<div class="card12 mt-3 text-[13px] text-slate-600">${type==='MARKETING'?'⚠️ MARKETING: مينفعش تبعت غير للي كلمك اخر 24 ساعة':'✅ UTILITY: مسموح تبعت حتى لو العميل مردش بقاله فترة، لانها خدمية' }</div>`;
-}
-function postingPage(){return `<h2 class="text-[22px] font-black">Social Posting ✍️</h2><div class="card12 mt-3"><input class="input" placeholder="عنوان البوست"><textarea class="input mt-3" rows="3" placeholder="نص البوست..."></textarea><div class="mt-3 text-[13px] font-bold">الصفحات: ✅ انغام ✅ بهية ✅ جنه - تكتب مرة واحدة وينزل على الكل</div><div class="flex gap-2 mt-3"><button onclick="toast('📤 تم نشر البوست')" class="btn">نشر 📤</button><button onclick="toast('🕘 تم جدولة البوست لبكرة الساعة 8')" class="btn" style="background:linear-gradient(135deg,#f59e0b,#fbbf24)">جدولة 🕘</button></div></div>`}
-function mediaPage(){return `<h2 class="text-[22px] font-black">Media & Content 🎬</h2><div class="card12 mt-3"><div class="border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer" onclick="document.getElementById('up').click()">📤 دوس هنا ارفع صورة / فيديو<input type="file" id="up" class="hidden" onchange="toast('✅ تم رفع الملف')"></div><p class="text-[12px] text-slate-500 mt-2">ده المخزن - Social Posting و Create Template بياخدوا منه</p></div>`}
-render();
+new Chart(document.getElementById('chLine'),{type:'line',data:{labels:['Nov 06','Nov 07','Nov 08','Nov 09','Nov 10','Nov 11','Nov 12'],datasets:[{label:'Broadcast',data:[4000,[STRIPPED]
+new Chart(document.getElementById('chDonut'),{type:'doughnut',data:{labels:['Completed',[STRIPPED]
+new Chart(document.getElementById('chBar'),{type:'bar',data:{labels:['Sat',[STRIPPED] Subscribers',data:[95,[STRIPPED]
+new Chart(document.getElementById('chRadial'),{type:'doughnut',data:{labels:['Subscribers',[STRIPPED]
 </script>
 </body>
 </html>
