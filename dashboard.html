@@ -3,40 +3,52 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Farag - Dashboard</title>
+<title>Farag - Dashboard Fixed</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 body{background:#eef1f6;font-family:Inter,system-ui;margin:0}
 .card{background:#fff;border-radius:22px;box-shadow:0 4px 20px rgba(15,23,42,.06);padding:18px;transition:.35s}
 .card:hover{transform:translateY(-5px);box-shadow:0 20px 40px rgba(37,99,235,.2)}
 .side{display:flex;align-items:center;gap:10px;padding:10px;border-radius:12px;font-weight:700;font-size:13px;color:#334155;cursor:pointer}
-.side.active{background:#e8f0ff;color:#1d4ed8}
+.side:hover{background:#eef4ff}.side.active{background:#e8f0ff;color:#1d4ed8}
 .badge{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:700}
-.box{height:220px;position:relative}
-.small{height:190px;position:relative}
+.bar{border-radius:8px 8px 0 0;min-width:28px;flex:1}
+.donut{width:150px;height:150px;border-radius:50%;margin:0 auto;display:flex;align-items:center;justify-content:center}
+.donut-in{width:100px;height:100px;background:#fff;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.btn{width:100%;background:linear-gradient(135deg,#2563eb,#60a5fa);color:#fff;padding:12px;border-radius:12px;font-weight:800;border:none;cursor:pointer}
 </style>
 </head>
 <body>
 <div style="display:flex">
 <div style="width:280px;flex-shrink:0;height:100vh;position:sticky;top:0;background:#fff;padding:10px">
 <div style="display:flex;align-items:center;gap:8px;padding:10px"><div style="width:36px;height:36px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900">F</div><div><div style="font-weight:900;font-size:20px">farag</div><div style="font-size:10px;color:#94a3b8">Farag Platform</div></div></div>
-<div class="side active">💠 Dashboard</div>
-<div class="side">🫂 Contacts</div>
-<div class="side">📣 Campaigns</div>
-<div class="side">📡 Broadcasting</div>
-<div class="side">⚡ Launch Utility</div>
-<div class="side">✍️ Social Posting</div>
-<div class="side">📝 Create Template</div>
+<div class="side active" onclick="go('dashboard',this)">💠 Dashboard</div>
+<div class="side" onclick="go('template',this)">📝 Create Template</div>
+<div class="side" onclick="go('broadcasting',this)">📡 Broadcasting</div>
+<div class="side" onclick="go('utility',this)">⚡ Launch Utility</div>
+<div class="side" onclick="go('posting',this)">✍️ Social Posting</div>
+<div class="side" onclick="go('media',this)">🎬 Media & Content</div>
 <button onclick="localStorage.clear();location.reload()" style="margin:20px 8px 0;width:calc(100% - 16px);background:#ef4444;color:#fff;padding:10px;border:none;border-radius:12px;font-weight:800;cursor:pointer">Reset / تصفير الكل</button>
 </div>
 
 <div style="flex:1;min-width:0">
 <div style="background:#fff;padding:12px 16px;display:flex;justify-content:space-between;position:sticky;top:0"><span style="font-size:22px">☰</span><b>فرج ⌄</b></div>
-<div style="padding:16px;max-width:1100px;margin:0 auto">
+<div id="app" style="padding:16px;max-width:1100px;margin:0 auto"></div>
+</div>
+</div>
 
+<script>
+function go(p,el){
+document.querySelectorAll('.side').forEach(s=>s.classList.remove('active'));
+if(el) el.classList.add('active');
+if(p==='dashboard'){renderDashboard();return;}
+document.getElementById('app').innerHTML='<div class="card" style="text-align:center;padding:40px"><h2 style="font-weight:900;font-size:22px">'+p+'</h2><p style="color:#64748b">الصفحة دي هنكملها بعد الداشبورد - دوس Dashboard عشان ترجع</p><button class="btn" style="max-width:250px;margin:16px auto 0" onclick="location.reload()">Back to Dashboard</button></div>';
+}
+
+function renderDashboard(){
+document.getElementById('app').innerHTML=`
 <h1 style="font-size:26px;font-weight:900;margin:0">Command Center</h1>
-<p style="color:#64748b;font-size:12px;margin:4px 0 16px">Thursday, November 12, 2026</p>
+<p style="color:#64748b;font-size:12px;margin:4px 0 16px">Thursday, November 12, 2026 - شغال ✅</p>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
 <div class="card"><div style="font-size:10px;font-weight:800;color:#64748b">TOTAL SUBSCRIBERS</div><div style="font-size:30px;font-weight:900">1,592,739</div><div style="font-size:11px">f 1,592,739 FB · 0 IG</div></div>
@@ -46,26 +58,43 @@ body{background:#eef1f6;font-family:Inter,system-ui;margin:0}
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-<div class="card"><b>● 7-Day Activity</b><div class="box" style="margin-top:10px"><canvas id="chLine"></canvas></div></div>
-<div class="card"><b>● Broadcast Campaigns</b> <span class="badge" style="background:#dcfce7;color:#15803d">677 Completed</span><div class="small" style="margin-top:10px"><canvas id="chDonut"></canvas></div><div style="display:flex;justify-content:space-between;font-size:12px;margin-top:8px"><span>🟢 677</span><span>🔴 28</span><span>🟠 0</span></div></div>
+<div class="card"><b>● 7-Day Activity - Line Chart ✅</b>
+<svg viewBox="0 0 600 220" style="width:100%;height:200px;margin-top:10px">
+<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,220 L0,220 Z" fill="#2563eb" opacity="0.12"/>
+<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="3"/>
+<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="3"/>
+<circle cx="0" cy="20" r="5" fill="#fff" stroke="#2563eb" stroke-width="2"/>
+<circle cx="600" cy="110" r="5" fill="#fff" stroke="#22c55e" stroke-width="2"/>
+</svg>
+<div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b"><span>🔵 Broadcast</span><span>🟢 Comments</span></div></div>
+
+<div class="card"><b>● Broadcast Campaigns - Donut ✅</b> <span class="badge" style="background:#dcfce7;color:#15803d">677 Completed</span>
+<div class="donut" style="background:conic-gradient(#22c55e 0 96%, #ef4444 96% 100%);margin-top:12px"><div class="donut-in"><b style="font-size:22px">705</b><span style="font-size:10px;color:#64748b">Total</span></div></div>
+<div style="display:flex;justify-content:space-between;font-size:12px;margin-top:10px"><span>🟢 Completed <b>677</b></span><span>🔴 Failed <b>28</b></span><span>🟠 Pending <b>0</b></span></div></div>
 </div>
 
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-<div class="card"><b>● New Subscribers - Bar</b><div class="box" style="margin-top:10px"><canvas id="chBar"></canvas></div></div>
-<div class="card"><b>● Subscribers Rate</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">4.7% of leads</span><div class="small" style="margin-top:10px"><canvas id="chRadial"></canvas></div><div style="text-align:center;font-size:12px;color:#64748b;margin-top:8px"><b style="color:#0f172a">75,177</b> / 1,592,739</div></div>
+<div class="card"><b>● New Subscribers - Bar Chart ✅</b>
+<div style="display:flex;align-items:end;gap:8px;height:180px;margin-top:12px">
+<div class="bar" style="height:30%;background:#93c5fd"></div>
+<div class="bar" style="height:45%;background:#60a5fa"></div>
+<div class="bar" style="height:35%;background:#93c5fd"></div>
+<div class="bar" style="height:60%;background:#3b82f6"></div>
+<div class="bar" style="height:80%;background:#2563eb"></div>
+<div class="bar" style="height:95%;background:#1d4ed8"></div>
+<div class="bar" style="height:100%;background:#1e40af"></div>
+</div>
+<div style="display:flex;justify-content:space-between;font-size:10px;color:#64748b;margin-top:6px"><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div>
+
+<div class="card"><b>● Subscribers Rate - Radial ✅</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">4.7% of leads</span>
+<div class="donut" style="background:conic-gradient(#2563eb 0 4.7%, #e5e7eb 4.7% 100%);margin-top:12px"><div class="donut-in"><b style="font-size:20px">4.7%</b><span style="font-size:10px;color:#64748b">Subscribers</span></div></div>
+<div style="text-align:center;font-size:12px;color:#64748b;margin-top:10px"><b style="color:#0f172a">75,177</b> / 1,592,739 - broadcasts go to these only</div></div>
 </div>
 
 <div class="card" style="margin-top:12px"><b>● Recent Broadcasts</b><table style="width:100%;text-align:left;font-size:13px;margin-top:10px"><tr style="color:#64748b;font-size:11px"><th>CAMPAIGN</th><th style="text-align:center">SENT</th><th style="text-align:right">STATUS</th></tr><tr><td style="padding:10px 0;font-weight:700">وصفات · 18:28 30-10-2026</td><td style="text-align:center;font-weight:700">15 / 15</td><td style="text-align:right"><span class="badge" style="background:#dcfce7;color:#15803d">● Done</span></td></tr><tr><td style="padding:10px 0;font-weight:700">جونام · 18:28 30-10-2026</td><td style="text-align:center;font-weight:700">1 / 1</td><td style="text-align:right"><span class="badge" style="background:#dcfce7;color:#15803d">● Done</span></td></tr></table></div>
-
-</div>
-</div>
-</div>
-
-<script>
-new Chart(document.getElementById('chLine'),{type:'line',data:{labels:['Nov 06','Nov 07','Nov 08','Nov 09','Nov 10','Nov 11','Nov 12'],datasets:[{label:'Broadcast',data:[4000,[STRIPPED]
-new Chart(document.getElementById('chDonut'),{type:'doughnut',data:{labels:['Completed',[STRIPPED]
-new Chart(document.getElementById('chBar'),{type:'bar',data:{labels:['Sat',[STRIPPED] Subscribers',data:[95,[STRIPPED]
-new Chart(document.getElementById('chRadial'),{type:'doughnut',data:{labels:['Subscribers',[STRIPPED]
+`;
+}
+renderDashboard();
 </script>
 </body>
 </html>
