@@ -3,16 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cavaliy - Dashboard - Farag Platform</title>
+<title>Cavaliy - المنصة كاملة - 12D</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
 body{background:#070b1a;color:#fff}
 .app{display:flex;min-height:100vh}
-.sidebar{width:280px;background:linear-gradient(180deg,#0b1130,#0a0e24);padding:16px 12px;position:sticky;top:0;height:100vh;overflow-y:auto;border-left:1px solid #ffffff14}
-.logo{font-size:23px;font-weight:900;text-align:center;margin-bottom:6px}
+.sidebar{width:270px;background:linear-gradient(180deg,#0b1130,#0a0e24);padding:18px 12px;position:sticky;top:0;height:100vh;overflow-y:auto;border-left:1px solid #ffffff14}
+.logo{font-size:23px;font-weight:900;text-align:center;margin-bottom:16px}
 .logo span{color:#7c5cff}
-.logo small{display:block;font-size:11px;color:#94a3b8;font-weight:400;margin-top:4px}
-.nav-btn{width:100%;display:flex;align-items:center;gap:10px;padding:8px 7px;border:none;border-radius:14px;background:transparent;color:#cbd5e1;cursor:pointer;font-size:13px;font-weight:700;text-align:right}
+.nav-btn{width:100%;display:flex;align-items:center;gap:10px;padding:9px 8px;border:none;border-radius:14px;background:transparent;color:#cbd5e1;cursor:pointer;font-size:13px;font-weight:700;text-align:right}
 .nav-btn.active{background:#ffffff14;color:#fff;outline:1px solid #ffffff2a}
 .nav-btn:hover{background:#ffffff0d}
 .ico{width:40px;height:40px;min-width:40px;border-radius:50%;display:grid;place-items:center;font-size:18px;position:relative;animation:float 3s ease-in-out infinite;box-shadow:0 10px 25px var(--glow),inset 0 -6px 12px rgba(0,0,0,.35),inset 0 6px 10px rgba(255,255,255,.6)}
@@ -26,33 +25,31 @@ body{background:#070b1a;color:#fff}
 .btn-p{background:#7c5cff;color:#fff}
 .btn-d{background:#ff2d55;color:#fff}
 .btn-g{background:#22c55e;color:#fff}
-.btn-o{background:#ffffff14;color:#fff;border:1px solid #ffffff22}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:11px;margin-bottom:14px}
 .card{background:linear-gradient(145deg,#121a3d,#0e1430);border:1px solid #ffffff14;border-radius:16px;padding:14px;box-shadow:0 15px 30px rgba(0,0,0,.35)}
 .card b{font-size:20px;display:block;margin-top:5px}
 .card span{color:#94a3b8;font-size:12px}
 .panel{background:#0d1330;border:1px solid #ffffff14;border-radius:16px;padding:14px;overflow-x:auto;margin-bottom:12px}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:620px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:600px}
 th{color:#94a3b8;text-align:right;padding:9px;border-bottom:1px solid #ffffff14}
 td{padding:10px 9px;border-bottom:1px solid #ffffff0a}
-.pill{padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800;display:inline-block}
+.pill{padding:4px 10px;border-radius:20px;font-size:12px;font-weight:800}
 .ok{background:#22c55e22;color:#4ade80}
 .util{background:#06b6d422;color:#22d3ee}
 .warn{background:#f59e0b22;color:#fbbf24}
 .bad{background:#ff2d5522;color:#ff8fa3}
 input,select,textarea{padding:10px 12px;border-radius:11px;border:1px solid #ffffff22;background:#0a0f28;color:#fff;outline:none;font-size:13px}
-.row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:11px;align-items:center}
+.row{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:11px}
 .empty{padding:35px;text-align:center;color:#94a3b8}
-.flow{border:1px solid #ffffff14;border-radius:12px;padding:12px;margin-bottom:10px;background:#0a0f28}
+.sec{font-size:12px;color:#94a3b8;margin:14px 4px 8px;font-weight:800;letter-spacing:.5px}
 </style>
 </head>
 <body>
 <div class="app">
 <div class="sidebar">
-<div class="logo">CAVALIY<span>.com</span><small>Farag Platform - 12D - STATE واحد</small></div>
+<div class="logo">CAVALIY<span>.com</span></div>
 <div id="nav"></div>
 <button class="nav-btn" style="margin-top:14px;background:#ff2d5522;color:#ff8fa3" onclick="doReset()">🔄 RESET - تصفير الكل</button>
-<button class="nav-btn" style="background:#ffffff0d" onclick="logout()">🚪 تسجيل خروج</button>
 </div>
 <div class="main">
 <div class="top"><div><h1 id="pageTitle"></h1><p id="pageSub"></p></div><button class="btn btn-p" onclick="quickLaunch()">🚀 Launch</button></div>
@@ -60,18 +57,9 @@ input,select,textarea{padding:10px 12px;border-radius:11px;border:1px solid #fff
 </div>
 </div>
 <script>
-// ===== DB - نفس اسماء القديم عشان مفيش حاجة تضيع =====
-const DB={
-get(k,def){try{let v=localStorage.getItem(k);return v?JSON.parse(v):(def||null)}catch(e){return def||null}},
-set(k,v){localStorage.setItem(k,JSON.stringify(v))}
-};
-// ===== STATE واحد = S - نفس اسم القديم =====
-let S=DB.get('farag_state')||{
-page:'dashboard',
-templates:DB.get('farag_reply_tpl')||[{name:'رسالة 2026-11-11 20:44',type:'UTILITY',body:'اهلا بيك في Cavaliy'}],
-subscribers:[{id:'123',first:'انغام',page:'انغام',label:'VIP'},{id:'124',first:'بهية',page:'بهية',label:'New'},{id:'125',first:'جنه',page:'جنه',label:'VIP'}],
-jobs:[{id:1,campaign:'رسالة 2026-11-11 20:44',page:'انغام',status:'Completed',schedule:'2026-11-11 20:44',progress:'0 / 0 (100%)',sent:0,errors:0,completedAt:'2026-11-11 20:44'},{id:2,campaign:'رسالة 2026-11-11 20:44',page:'بهية',status:'Completed',schedule:'2026-11-11 20:44',progress:'0 / 0 (100%)',sent:0,errors:0,completedAt:'2026-11-11 20:44'},{id:3,campaign:'رسالة 2026-11-11 20:44',page:'جنه',status:'Completed',schedule:'2026-11-11 20:44',progress:'0 / 0 (100%)',sent:0,errors:0,completedAt:'2026-11-11 20:44'}],
-stats:{total:1059,pending:19,processing:0,completed:1012,paused:0,scheduled:28,totalSent:1101207,recipients:1423473},
+// ===== STATE واحد = مصدر الحقيقة =====
+let STATE={
+current:'dashboard',
 pages:[
 {id:'dashboard',name:'Dashboard',icon:'📊',color:'#7c5cff'},
 {id:'facebook',name:'Facebook & Instagram',icon:'🔗',color:'#1877f2'},
@@ -93,89 +81,59 @@ pages:[
 {id:'blocked',name:'Blocked Pages',icon:'🚫',color:'#ef4444'},
 {id:'payment',name:'Payment',icon:'💳',color:'#22c55e'},
 ],
-// Bot manager - الجديد
-bots:[
-{name:'بوت انغام',page:'انغام',status:'Active',on:true,flows:[{keyword:'تم',reply:'بعتلك التفاصيل يا انغام ❤️',dm:'قالب الترحيب'},{keyword:'السعر',reply:'السعر 499ج والعرض شغال دلوقتي',dm:'قالب السعر'}]},
-{name:'بوت بهية',page:'بهية',status:'Active',on:true,flows:[{keyword:'تم',reply:'بعتلك التفاصيل',dm:'قالب الترحيب'}]},
-{name:'بوت جنه',page:'جنه',status:'Paused',on:false,flows:[]}
-],
+stats:{total:1059,pending:19,processing:0,completed:1012,paused:0,scheduled:28,totalSent:1101207,recipients:1423473},
+templates:[{name:'رسالة 2026-11-11 20:44',type:'UTILITY'}],
+subscribers:[{id:'123',first:'انغام',page:'انغام',label:'VIP'},{id:'124',first:'بهية',page:'بهية',label:'New'},{id:'125',first:'جنه',page:'جنه',label:'VIP'}],
+jobs:[{id:1,campaign:'رسالة 2026-11-11 20:44',page:'انغام',status:'Completed',schedule:'2026-11-11 20:44',progress:'0 / 0 (100%)',sent:0,errors:0,completedAt:'2026-11-11 20:44'},{id:2,campaign:'رسالة 2026-11-11 20:44',page:'بهية',status:'Completed',schedule:'2026-11-11 20:44',progress:'0 / 0 (100%)',sent:0,errors:0,completedAt:'2026-11-11 20:44'},{id:3,campaign:'رسالة 2026-11-11 20:44',page:'جنه',status:'Completed',schedule:'2026-11-11 20:44',progress:'0 / 0 (100%)',sent:0,errors:0,completedAt:'2026-11-11 20:44'}],
 commentTools:[{post:'بوست الكورس',keyword:'تم',reply:'بعتلك التفاصيل',dm:'قالب الترحيب',on:true}],
+bots:[{name:'بوت انغام',page:'انغام',status:'Active',flows:5,on:true},{name:'بوت بهية',page:'بهية',status:'Active',flows:3,on:true}],
 media:[{name:'صورة المنتج 1',type:'IMAGE',size:'1.2 MB'},{name:'فيديو العرض',type:'VIDEO',size:'8.4 MB'}],
 agents:[{name:'وكيل المبيعات',page:'انغام',product:'كورس',conv:124,on:true}],
 posts:[{title:'بوست العرض',page:'انغام',status:'Published',likes:124}],
 analytics:[{page:'انغام',comments:342,replies:310,dm:280},{page:'بهية',comments:180,replies:160,dm:140}],
 tokens:[{page:'انغام',status:'Valid',exp:'2027-01-01'},{page:'بهية',status:'Expired',exp:'2026-10-01'}],
 blockedPages:[{page:'صفحة محظورة 1',reason:'Policy'}],
-payments:[{plan:'PRO',amount:'499 ج',status:'Paid',date:'2026-11-11'}],
-autoReplies:[{keyword:'تم',reply:'بعتلك التفاصيل',page:'انغام'}]
+payments:[{plan:'PRO',amount:'499 ج',status:'Paid',date:'2026-11-11'}]
 };
-function save(){DB.set('farag_state',S);DB.set('farag_reply_tpl',S.templates)}
-function renderNav(){document.getElementById('nav').innerHTML=S.pages.map(p=>`<button class="nav-btn ${p.id===S.page?'active':''}" onclick="go('${p.id}')"><span class="ico" style="--glow:${p.color}55;background:linear-gradient(145deg,${p.color},#0b1130)">${p.icon}</span>${p.name}</button>`).join('')}
-function go(id){S.page=id;save();render()}
-function cardsHTML(){return `<div class="cards"><div class="card"><span>Total Jobs</span><b>${S.stats.total}</b></div><div class="card"><span>Completed</span><b>${S.stats.completed}</b></div><div class="card"><span>Pending</span><b>${S.stats.pending}</b></div><div class="card"><span>Scheduled</span><b>${S.stats.scheduled}</b></div><div class="card"><span>Total Sent</span><b>${S.stats.totalSent.toLocaleString()}</b></div><div class="card"><span>Recipients</span><b>${S.stats.recipients.toLocaleString()}</b></div></div>`}
+// ===== RENDER واحد =====
+function renderNav(){document.getElementById('nav').innerHTML=STATE.pages.map(p=>`<button class="nav-btn ${p.id===STATE.current?'active':''}" onclick="go('${p.id}')"><span class="ico" style="--glow:${p.color}55;background:linear-gradient(145deg,${p.color},#0b1130)">${p.icon}</span>${p.name}</button>`).join('')}
+function go(id){STATE.current=id;render()}
+function cardsHTML(){return `<div class="cards"><div class="card"><span>Total Jobs</span><b>${STATE.stats.total}</b></div><div class="card"><span>Completed</span><b>${STATE.stats.completed}</b></div><div class="card"><span>Pending</span><b>${STATE.stats.pending}</b></div><div class="card"><span>Scheduled</span><b>${STATE.stats.scheduled}</b></div><div class="card"><span>Total Sent</span><b>${STATE.stats.totalSent.toLocaleString()}</b></div><div class="card"><span>Recipients</span><b>${STATE.stats.recipients.toLocaleString()}</b></div></div>`}
 function render(){
 renderNav();
-let p=S.pages.find(x=>x.id===S.page)||S.pages[0];
+let p=STATE.pages.find(x=>x.id===STATE.current);
 document.getElementById('pageTitle').textContent=p.name;
-document.getElementById('pageSub').textContent='Cavaliy - Farag Platform - 12D - STATE واحد - S.page';
+document.getElementById('pageSub').textContent='Cavaliy - 12D - Cloud + Glow + Float - STATE واحد';
 let v=document.getElementById('view');
-if(S.page==='dashboard'){v.innerHTML=cardsHTML()+`<div class="panel"><h3>المعادلة</h3><p style="margin-top:8px;line-height:1.9">Create Template = بنعمل القالب<br>Subscriber Manager = بنشوف هنبعت لمين<br>Launch Utility / Broadcasting = بنبعت الحملة<br>Broadcast Job History = بنشوف الحملة حصل فيها ايه<br><b>Bot manager = هو اللي بيرد على الناس اوتوماتيك</b></p></div><div class="panel"><h3>كل الايقونات</h3><div class="cards" style="margin-top:12px">${S.pages.map(x=>`<div class="card" style="cursor:pointer" onclick="go('${x.id}')"><span class="ico" style="--glow:${x.color}55;background:linear-gradient(145deg,${x.color},#0b1130)">${x.icon}</span><b style="font-size:14px;margin-top:10px">${x.name}</b></div>`).join('')}</div></div>`}
-else if(S.page==='bot'){v.innerHTML=renderBotManager()}
-else if(S.page==='facebook'){v.innerHTML=renderFacebook()}
-else if(S.page==='template'){v.innerHTML=renderTemplateList()}
-else if(S.page==='comment'){v.innerHTML=renderAutoReplyCreate()+renderGrowth()}
-else if(S.page==='broadcasting'||S.page==='launch'){v.innerHTML=renderBulkNew()+renderBroadcast()}
-else if(S.page==='history'){v.innerHTML=cardsHTML()+`<div class="panel"><div class="row"><input placeholder="Search..."><select><option>All Statuses</option></select><select><option>All Pages</option></select></div><table><tr><th>#</th><th>CAMPAIGN</th><th>PAGE</th><th>STATUS</th><th>SCHEDULE</th><th>PROGRESS</th><th>SENT</th><th>ERRORS</th><th>COMPLETED AT</th></tr>${S.jobs.map(j=>`<tr><td>${j.id}</td><td>${j.campaign}<br><span class="pill util">UTILITY</span></td><td>${j.page}</td><td><span class="pill ok">${j.status}</span></td><td>${j.schedule}</td><td>${j.progress}</td><td>${j.sent}</td><td>${j.errors}</td><td>${j.completedAt}</td></tr>`).join('')||'<tr><td colspan="9" class="empty">لا توجد حملات</td></tr>'}</table></div>`}
-else if(S.page==='subscriber'){v.innerHTML=renderCRUD()}
-else if(S.page==='media'){v.innerHTML=renderMedia()}
-else if(S.page==='ai'){v.innerHTML=`<div class="panel"><table><tr><th>AGENT</th><th>PAGE</th><th>PRODUCT</th><th>CONVERSATIONS</th><th>STATUS</th></tr>${S.agents.map(a=>`<tr><td>${a.name}</td><td>${a.page}</td><td>${a.product}</td><td>${a.conv}</td><td><span class="pill ok">Active</span></td></tr>`).join('')}</table></div><div class="panel"><h3>ربط الـ AI بالبوت</h3><p style="color:#94a3b8;margin-top:6px">الـ AI بيشتغل جوه الـ Bot manager. اختار البوت من صفحة Bot manager، وبعدين فعل الـ AI عليه.</p></div>`}
-else if(S.page==='analytics'){v.innerHTML=`<div class="panel"><table><tr><th>PAGE</th><th>COMMENTS</th><th>REPLIES</th><th>DM SENT</th></tr>${S.analytics.map(a=>`<tr><td>${a.page}</td><td>${a.comments}</td><td>${a.replies}</td><td>${a.dm}</td></tr>`).join('')}</table></div>`}
-else if(S.page==='posting'){v.innerHTML=`<div class="panel"><h3>📝 Social Posting</h3><div class="row"><input id="postTitle" placeholder="عنوان البوست" style="flex:1"><select><option>Facebook</option><option>Instagram</option></select></div><textarea id="postBody" rows="3" style="width:100%" placeholder="نص البوست..."></textarea><br><br><button class="btn btn-p" onclick="addPost()">📤 نشر</button></div><div class="panel"><table><tr><th>TITLE</th><th>PAGE</th><th>STATUS</th><th>LIKES</th></tr>${S.posts.map(x=>`<tr><td>${x.title}</td><td>${x.page}</td><td><span class="pill ok">${x.status}</span></td><td>${x.likes}</td></tr>`).join('')}</table></div>`}
-else if(S.page==='token'){v.innerHTML=`<div class="panel"><table><tr><th>PAGE</th><th>TOKEN STATUS</th><th>EXPIRES</th><th>ACTION</th></tr>${S.tokens.map(t=>`<tr><td>${t.page}</td><td><span class="pill ${t.status==='Valid'?'ok':'bad'}">${t.status}</span></td><td>${t.exp}</td><td><button class="btn btn-p">Refresh</button></td></tr>`).join('')}</table></div>`}
-else if(S.page==='api'){v.innerHTML=`<div class="panel"><h3>🔌 API channels</h3><br><div class="row"><input placeholder="API Key - farag_xxx" style="flex:1"><button class="btn btn-p">Copy Key</button><button class="btn btn-g">Generate New</button></div><p style="color:#94a3b8;font-size:12px">الـ Webhook موجود في /api/webhook.js</p></div>`}
-else if(S.page==='migrate'){v.innerHTML=`<div class="panel"><h3>🔄 Migrate</h3><p style="color:#94a3b8">انقل المشتركين والقوالب من منصة قديمة</p><br><div class="row"><select><option>من ManyChat</option><option>من Chatfuel</option></select><button class="btn btn-p">ابدأ النقل</button></div></div>`}
-else if(S.page==='blocked'){v.innerHTML=`<div class="panel"><table><tr><th>PAGE</th><th>REASON</th></tr>${S.blockedPages.map(b=>`<tr><td>${b.page}</td><td>${b.reason}</td></tr>`).join('')}</table></div>`}
-else if(S.page==='payment'){v.innerHTML=`<div class="panel"><h3>💳 Payment</h3><table><tr><th>PLAN</th><th>AMOUNT</th><th>STATUS</th><th>DATE</th></tr>${S.payments.map(x=>`<tr><td>${x.plan}</td><td>${x.amount}</td><td><span class="pill ok">${x.status}</span></td><td>${x.date}</td></tr>`).join('')}</table></div>`}
-else if(S.page==='restrict'){v.innerHTML=`<div class="panel"><h3>🛡️ Page Restrictions</h3><table><tr><th>PAGE</th><th>RESTRICTION</th></tr><tr><td>انغام</td><td><span class="pill ok">No Restriction</span></td></tr></table></div>`}
-else{v.innerHTML=`<div class="panel"><h3>${p.name}</h3><p style="color:#94a3b8">الصفحة دي شغالة بنفس النظام: S واحد + render واحد</p></div>`}
-}
-// ===== الدوال القديمة - بنفس الاسماء =====
-function renderFacebook(){return `<div class="panel"><h3>🔗 Facebook & Instagram</h3><div class="row"><button class="btn btn-p">+ Connect Page</button><button class="btn btn-p">+ Connect Instagram</button></div><table><tr><th>PAGE</th><th>TYPE</th><th>STATUS</th></tr><tr><td>انغام</td><td>Facebook</td><td><span class="pill ok">Connected</span></td></tr><tr><td>بهية</td><td>Instagram</td><td><span class="pill ok">Connected</span></td></tr></table></div>`}
-function renderTemplateList(){return `<div class="panel"><h3>🎨 Create Template</h3><br><div class="row"><input id="tName" placeholder="اسم القالب - farag_reply_tpl" style="flex:1"><button class="btn btn-p">+ Add Image</button></div><textarea id="tBody" rows="4" style="width:100%" placeholder="Body - نص الرسالة..."></textarea><br><br><div class="row"><button class="btn btn-p">+ Add Button</button><button class="btn btn-g" onclick="saveTemplate()">💾 حفظ القالب</button></div><br><table><tr><th>NAME</th><th>TYPE</th><th>BODY</th></tr>${S.templates.map(t=>`<tr><td>${t.name}</td><td><span class="pill util">${t.type||'UTILITY'}</span></td><td>${t.body||''}</td></tr>`).join('')}</table></div>`}
-function renderAutoReplyCreate(){return `<div class="panel"><h3>💬 Auto Reply - Comment growth tools</h3><div class="row"><input id="arKey" placeholder="الكلمة - مثلا تم"><input id="arReply" placeholder="الرد"><button class="btn btn-p" onclick="addAutoReply()">+ اضافة رد تلقائي</button></div><table><tr><th>KEYWORD</th><th>REPLY</th><th>PAGE</th></tr>${S.autoReplies.map(a=>`<tr><td>${a.keyword}</td><td>${a.reply}</td><td>${a.page}</td></tr>`).join('')}</table></div>`}
-function renderGrowth(){return `<div class="panel"><h3>📈 Growth Tools</h3><table><tr><th>POST</th><th>KEYWORD</th><th>REPLY</th><th>DM</th><th>STATUS</th></tr>${S.commentTools.map(c=>`<tr><td>${c.post}</td><td>${c.keyword}</td><td>${c.reply}</td><td>${c.dm}</td><td><span class="pill ok">ON</span></td></tr>`).join('')}</table></div>`}
-function renderBulkNew(){return `<div class="panel"><h3>🚀 Launch Utility / Broadcasting - Bulk New</h3><p style="color:#94a3b8;margin:8px 0">اختار الصفحة + القالب + Labels وبعدين Launch</p><div class="row"><select id="bulkPage"><option>انغام</option><option>بهية</option><option>جنه</option></select><select id="bulkTpl"><option>${S.templates[0]?S.templates[0].name:'قالب'}</option></select><select><option>All Labels</option><option>VIP</option><option>New</option></select></div><button class="btn btn-p" onclick="quickLaunch()">🚀 Launch</button></div>`}
-function renderBroadcast(){return `<div class="panel"><h3>📣 Broadcasting</h3><p style="color:#94a3b8">الحملات بتتسجل في Broadcast Job History اوتوماتيك بعد الـ Launch</p></div>`}
-function renderMedia(){return `<div class="panel"><div class="row"><button class="btn btn-p" onclick="addMedia()">+ Upload Media</button></div><table><tr><th>NAME</th><th>TYPE</th><th>SIZE</th></tr>${S.media.map(m=>`<tr><td>${m.name}</td><td>${m.type}</td><td>${m.size}</td></tr>`).join('')}</table></div>`}
-function renderCRUD(){return `<div class="panel"><div class="row"><input id="subName" placeholder="اسم المشترك"><button class="btn btn-p" onclick="addSub()">+ Add Subscriber</button></div><table><tr><th>AVATAR</th><th>ID</th><th>NAME</th><th>PAGE</th><th>LABEL</th></tr>${S.subscribers.map(s=>`<tr><td>👤</td><td>${s.id}</td><td>${s.first}</td><td>${s.page}</td><td>${s.label}</td></tr>`).join('')}</table></div>`}
-// ===== Bot manager - الجديد كله هنا =====
-function renderBotManager(){
-let html=`<div class="cards"><div class="card"><span>اجمالي البوتات</span><b>${S.bots.length}</b></div><div class="card"><span>شغالين</span><b>${S.bots.filter(b=>b.on).length}</b></div><div class="card"><span>اجمالي Flows</span><b>${S.bots.reduce((a,b)=>a+b.flows.length,0)}</b></div></div>`;
-html+=`<div class="panel"><h3>🤖 Bot manager - اختار البوت وعدل فيه</h3><br><div class="row"><input id="botName" placeholder="اسم بوت جديد - مثلا بوت انغام"><select id="botPage"><option>انغام</option><option>بهية</option><option>جنه</option></select><button class="btn btn-p" onclick="addBot()">+ New Bot</button></div></div>`;
-S.bots.forEach((b,bi)=>{
-html+=`<div class="panel"><div class="row" style="justify-content:space-between"><b>${b.name} - ${b.page}</b><span class="pill ${b.on?'ok':'bad'}">${b.status}</span></div><div class="row"><button class="btn ${b.on?'btn-d':'btn-g'}" onclick="toggleBot(${bi})">${b.on?'⏸️ ايقاف البوت':'▶️ تشغيل البوت'}</button><button class="btn btn-o" onclick="testBot(${bi})">🧪 جرب البوت</button></div><h4 style="margin:8px 0">الـ Flows بتاعة البوت ده:</h4>`;
-if(b.flows.length===0) html+=`<p class="empty">مفيش Flows لسه - ضيف اول Flow</p>`;
-b.flows.forEach((f,fi)=>{html+=`<div class="flow"><b>لو العميل كتب: ${f.keyword}</b><p style="color:#94a3b8;margin:6px 0">البوت يرد: ${f.reply}</p><p style="font-size:12px">DM: ${f.dm}</p><button class="btn btn-d" style="margin-top:8px" onclick="delFlow(${bi},${fi})">حذف Flow</button></div>`});
-html+=`<div class="row"><input id="kw-${bi}" placeholder="الكلمة - مثلا تم"><input id="rp-${bi}" placeholder="الرد - مثلا بعتلك التفاصيل" style="flex:1"><button class="btn btn-p" onclick="addFlow(${bi})">+ Add Flow</button></div><div class="panel" style="background:#070b1a;margin-top:10px"><b>🧪 محاكاة:</b><p style="color:#94a3b8;font-size:12px;margin:6px 0">جرب تكتب كلمة وشوف البوت هيرد بايه</p><div class="row"><input id="test-${bi}" placeholder="اكتب هنا - مثلا تم"><button class="btn btn-g" onclick="simulateBot(${bi})">جرب</button></div><p id="sim-${bi}" style="margin-top:6px"></p></div></div>`;
-});
-html+=`<div class="panel"><h3>المعادلة بتاعة Bot manager</h3><p style="line-height:1.9;margin-top:8px">البوت = صفحة + Flows<br>Flow = كلمة + رد + DM<br>لو العميل كتب الكلمة، البوت يرد بالرد ويبعت الـ DM<br>لو شغلت AI Sales Agent، هو اللي بيرد بدل الـ Flow البسيط</p></div>`;
-return html;
+if(STATE.current==='dashboard'){v.innerHTML=cardsHTML()+`<div class="panel"><h3>المعادلة</h3><p style="margin-top:8px;line-height:1.9">Create Template = بنعمل القالب<br>Subscriber Manager = بنشوف هنبعت لمين<br>Launch Utility / Broadcasting = بنبعت الحملة<br>Broadcast Job History = بنشوف الحملة حصل فيها ايه</p></div><div class="panel"><h3>كل الايقونات</h3><div class="cards" style="margin-top:12px">${STATE.pages.map(x=>`<div class="card" style="cursor:pointer" onclick="go('${x.id}')"><span class="ico" style="--glow:${x.color}55;background:linear-gradient(145deg,${x.color},#0b1130)">${x.icon}</span><b style="font-size:14px;margin-top:10px">${x.name}</b></div>`).join('')}</div></div>`}
+else if(STATE.current==='history'){v.innerHTML=cardsHTML()+`<div class="panel"><div class="row"><input placeholder="Search..."><select><option>All Statuses</option></select><select><option>All Pages</option></select><input type="date"></div><table><tr><th>#</th><th>CAMPAIGN</th><th>PAGE</th><th>STATUS</th><th>SCHEDULE</th><th>PROGRESS</th><th>SENT</th><th>ERRORS</th><th>COMPLETED AT</th></tr>${STATE.jobs.map(j=>`<tr><td>${j.id}</td><td>${j.campaign}<br><span class="pill util">UTILITY</span></td><td>${j.page}</td><td><span class="pill ok">Completed</span></td><td>${j.schedule}</td><td>${j.progress}</td><td>${j.sent}</td><td>${j.errors}</td><td>${j.completedAt}</td></tr>`).join('')||'<tr><td colspan="9" class="empty">لا توجد حملات - STATE صفر</td></tr>'}</table></div>`}
+else if(STATE.current==='subscriber'){v.innerHTML=`<div class="cards"><div class="card"><span>BOT SUBSCRIBER</span><b>${STATE.subscribers.length}</b></div><div class="card"><span>24H SUBSCRIBER</span><b>${STATE.subscribers.length}</b></div><div class="card"><span>PAGES</span><b>${STATE.pages.length}</b></div></div><div class="panel"><div class="row"><input placeholder="Search subscriber..."><select><option>All Labels</option></select><button class="btn btn-p" onclick="addSub()">+ Add Subscriber</button></div><table><tr><th>AVATAR</th><th>SUBSCRIBER ID</th><th>FIRST NAME</th><th>PAGE</th><th>LABEL</th></tr>${STATE.subscribers.map(s=>`<tr><td>👤</td><td>${s.id}</td><td>${s.first}</td><td>${s.page}</td><td>${s.label}</td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا يوجد مشتركين</td></tr>'}</table></div>`}
+else if(STATE.current==='template'){v.innerHTML=`<div class="panel"><h3>🎨 Create Template</h3><br><div class="row"><input id="tName" placeholder="اسم القالب" style="flex:1"><button class="btn btn-p">+ Add Image</button></div><textarea id="tBody" rows="4" style="width:100%" placeholder="Body - نص الرسالة..."></textarea><br><br><div class="row"><button class="btn btn-p">+ Add Button</button><button class="btn btn-g" onclick="saveTemplate()">💾 حفظ القالب</button></div><p style="color:#94a3b8;font-size:12px;margin-top:8px">القوالب المحفوظة: ${STATE.templates.map(t=>t.name).join(' - ')||'لا يوجد'}</p></div>`}
+else if(STATE.current==='launch'||STATE.current==='broadcasting'){v.innerHTML=`<div class="panel"><h3>🚀 ${p.name}</h3><p style="color:#94a3b8;margin:8px 0">اختار الصفحة + القالب + Labels وبعدين Launch</p><div class="row"><select><option>اختار الصفحة</option>${STATE.pages.map(x=>`<option>${x.name}</option>`).join('')}</select><select><option>اختار القالب</option>${STATE.templates.map(t=>`<option>${t.name}</option>`).join('')}</select><select><option>All Labels</option><option>VIP</option><option>New</option></select></div><button class="btn btn-p" onclick="quickLaunch()">🚀 Launch</button></div>`}
+else if(STATE.current==='comment'){v.innerHTML=`<div class="panel"><div class="row"><button class="btn btn-p" onclick="addCommentTool()">+ New Comment Tool</button></div><table><tr><th>POST</th><th>KEYWORD</th><th>REPLY</th><th>DM</th><th>STATUS</th></tr>${STATE.commentTools.map(c=>`<tr><td>${c.post}</td><td>${c.keyword}</td><td>${c.reply}</td><td>${c.dm}</td><td><span class="pill ok">ON</span></td></tr>`).join('')}</table></div>`}
+else if(STATE.current==='bot'){v.innerHTML=`<div class="panel"><table><tr><th>BOT</th><th>PAGE</th><th>STATUS</th><th>FLOWS</th><th>ON/OFF</th></tr>${STATE.bots.map(b=>`<tr><td>${b.name}</td><td>${b.page}</td><td><span class="pill ok">${b.status}</span></td><td>${b.flows}</td><td><button class="btn btn-p" onclick="toggleBot('${b.name}')">${b.on?'ON':'OFF'}</button></td></tr>`).join('')}</table></div>`}
+else if(STATE.current==='media'){v.innerHTML=`<div class="panel"><div class="row"><button class="btn btn-p" onclick="addMedia()">+ Upload Media</button></div><table><tr><th>NAME</th><th>TYPE</th><th>SIZE</th><th>USE</th></tr>${STATE.media.map(m=>`<tr><td>${m.name}</td><td>${m.type}</td><td>${m.size}</td><td><button class="btn btn-p">استخدم في قالب</button></td></tr>`).join('')}</table></div>`}
+else if(STATE.current==='ai'){v.innerHTML=`<div class="panel"><table><tr><th>AGENT</th><th>PAGE</th><th>PRODUCT</th><th>CONVERSATIONS</th><th>STATUS</th></tr>${STATE.agents.map(a=>`<tr><td>${a.name}</td><td>${a.page}</td><td>${a.product}</td><td>${a.conv}</td><td><span class="pill ok">Active</span></td></tr>`).join('')}</table></div>`}
+else if(STATE.current==='analytics'){v.innerHTML=`<div class="panel"><table><tr><th>PAGE</th><th>COMMENTS</th><th>REPLIES</th><th>DM SENT</th></tr>${STATE.analytics.map(a=>`<tr><td>${a.page}</td><td>${a.comments}</td><td>${a.replies}</td><td>${a.dm}</td></tr>`).join('')}</table></div>`}
+else if(STATE.current==='facebook'){v.innerHTML=`<div class="panel"><h3>🔗 Facebook & Instagram - INTEGRATIONS</h3><div class="row"><button class="btn btn-p">+ Connect Page</button><button class="btn btn-p">+ Connect Instagram</button></div><table><tr><th>PAGE</th><th>TYPE</th><th>STATUS</th></tr><tr><td>انغام</td><td>Facebook</td><td><span class="pill ok">Connected</span></td></tr><tr><td>بهية</td><td>Instagram</td><td><span class="pill ok">Connected</span></td></tr></table></div>`}
+else if(STATE.current==='posting'){v.innerHTML=`<div class="panel"><h3>📝 Social Posting</h3><div class="row"><input placeholder="عنوان البوست" style="flex:1"><select><option>Facebook</option><option>Instagram</option></select></div><textarea rows="3" style="width:100%" placeholder="نص البوست..."></textarea><br><br><button class="btn btn-p" onclick="addPost()">📤 نشر</button></div><div class="panel"><table><tr><th>TITLE</th><th>PAGE</th><th>STATUS</th><th>LIKES</th></tr>${STATE.posts.map(x=>`<tr><td>${x.title}</td><td>${x.page}</td><td><span class="pill ok">${x.status}</span></td><td>${x.likes}</td></tr>`).join('')}</table></div>`}
+else if(STATE.current==='restrict'){v.innerHTML=`<div class="panel"><h3>🛡️ Page Restrictions</h3><p style="color:#94a3b8;margin:8px 0">الصفحات اللي عليها قيود من فيسبوك بتظهر هنا</p><table><tr><th>PAGE</th><th>RESTRICTION</th><th>ACTION</th></tr><tr><td>انغام</td><td><span class="pill ok">No Restriction</span></td><td>فحص</td></tr></table></div>`}
+else if(STATE.current==='token'){v.innerHTML=`<div class="panel"><table><tr><th>PAGE</th><th>TOKEN STATUS</th><th>EXPIRES</th><th>ACTION</th></tr>${STATE.tokens.map(t=>`<tr><td>${t.page}</td><td><span class="pill ${t.status==='Valid'?'ok':'bad'}">${t.status}</span></td><td>${t.exp}</td><td><button class="btn btn-p">Refresh</button></td></tr>`).join('')}</table></div>`}
+else if(STATE.current==='api'){v.innerHTML=`<div class="panel"><h3>🔌 API channels</h3><p style="color:#94a3b8">ربط المنصة باي نظام خارجي عن طريق API</p><br><div class="row"><input placeholder="API Key" style="flex:1"><button class="btn btn-p">Copy Key</button><button class="btn btn-g">Generate New</button></div></div>`}
+else if(STATE.current==='migrate'){v.innerHTML=`<div class="panel"><h3>🔄 Migrate</h3><p style="color:#94a3b8">انقل المشتركين والقوالب من منصة قديمة للمنصة دي</p><br><div class="row"><select><option>من ManyChat</option><option>من Chatfuel</option></select><button class="btn btn-p">ابدأ النقل</button></div></div>`}
+else if(STATE.current==='blocked'){v.innerHTML=`<div class="panel"><table><tr><th>PAGE</th><th>REASON</th></tr>${STATE.blockedPages.map(b=>`<tr><td>${b.page}</td><td>${b.reason}</td></tr>`).join('')||'<tr><td colspan="2" class="empty">لا توجد صفحات محظورة</td></tr>'}</table></div>`}
+else if(STATE.current==='payment'){v.innerHTML=`<div class="panel"><h3>💳 Payment</h3><table><tr><th>PLAN</th><th>AMOUNT</th><th>STATUS</th><th>DATE</th></tr>${STATE.payments.map(x=>`<tr><td>${x.plan}</td><td>${x.amount}</td><td><span class="pill ok">${x.status}</span></td><td>${x.date}</td></tr>`).join('')}</table><br><div class="row"><button class="btn btn-p">ترقية PRO</button></div></div>`}
+else{v.innerHTML=`<div class="panel"><h3>${p.name}</h3><p style="color:#94a3b8;margin-top:8px">الصفحة دي شغالة بنفس النظام: STATE واحد + RENDER واحد + 12D</p></div>`}
 }
 // ===== ACTIONS =====
-function doReset(){if(!confirm('متأكد تصفر الكل؟'))return;S.stats={total:0,pending:0,processing:0,completed:0,paused:0,scheduled:0,totalSent:0,recipients:0};S.jobs=[];S.subscribers=[];S.templates=[];save();render();alert('تم RESET')}
-function logout(){localStorage.removeItem('farag_user');window.location.href='login.html'}
-function saveTemplate(){let n=document.getElementById('tName').value||'قالب جديد';let b=document.getElementById('tBody').value||'';S.templates.push({name:n,type:'UTILITY',body:b});save();render();alert('تم حفظ القالب في farag_reply_tpl')}
-function quickLaunch(){let pg=document.getElementById('bulkPage')?document.getElementById('bulkPage').value:'انغام';S.jobs.unshift({id:S.jobs.length+1,campaign:S.templates[0]?S.templates[0].name:'رسالة جديدة',page:pg,status:'Completed',schedule:new Date().toLocaleString(),progress:'0 / 0 (100%)',sent:0,errors:0,completedAt:new Date().toLocaleString()});S.stats.total++;S.stats.completed++;S.stats.totalSent+=1;save();render();alert('تم Launch - اتضافت في Job History')}
-function addSub(){let n=document.getElementById('subName').value||'مشترك جديد';S.subscribers.push({id:String(Math.floor(Math.random()*1000)),first:n,page:'انغام',label:'New'});save();render()}
-function addAutoReply(){let k=document.getElementById('arKey').value||'تم';let r=document.getElementById('arReply').value||'بعتلك التفاصيل';S.autoReplies.push({keyword:k,reply:r,page:'انغام'});save();render()}
-function addBot(){let n=document.getElementById('botName').value||'بوت جديد';let pg=document.getElementById('botPage').value;S.bots.push({name:n,page:pg,status:'Active',on:true,flows:[]});save();render()}
-function toggleBot(i){S.bots[i].on=!S.bots[i].on;S.bots[i].status=S.bots[i].on?'Active':'Paused';save();render()}
-function addFlow(i){let kw=document.getElementById('kw-'+i).value;let rp=document.getElementById('rp-'+i).value;if(!kw||!rp){alert('اكتب الكلمة والرد');return}S.bots[i].flows.push({keyword:kw,reply:rp,dm:'قالب الترحيب'});save();render()}
-function delFlow(bi,fi){S.bots[bi].flows.splice(fi,1);save();render()}
-function testBot(i){alert('البوت '+S.bots[i].name+' - '+(S.bots[i].on?'شغال ✅':'مطفي ⏸️')+' - عنده '+S.bots[i].flows.length+' Flow')}
-function simulateBot(i){let txt=document.getElementById('test-'+i).value.trim();let f=S.bots[i].flows.find(x=>x.keyword===txt);document.getElementById('sim-'+i).innerHTML=f?`🤖 البوت: ${f.reply}`:'🤖 البوت: مش فاهم الكلمة دي، ضيف Flow ليها';}
-function addMedia(){S.media.push({name:'ملف جديد',type:'IMAGE',size:'0.8 MB'});save();render()}
-function addPost(){let t=document.getElementById('postTitle').value||'بوست جديد';S.posts.push({title:t,page:'انغام',status:'Published',likes:0});save();render()}
+function doReset(){STATE.stats={total:0,pending:0,processing:0,completed:0,paused:0,scheduled:0,totalSent:0,recipients:0};STATE.jobs=[];STATE.subscribers=[];STATE.templates=[];STATE.posts=[];render();alert('تم RESET - كل حاجة بقت صفر')}
+function saveTemplate(){let n=document.getElementById('tName').value||'قالب جديد';STATE.templates.push({name:n,type:'UTILITY'});alert('تم حفظ القالب');render()}
+function quickLaunch(){STATE.jobs.unshift({id:STATE.jobs.length+1,campaign:'رسالة جديدة',page:'انغام',status:'Completed',schedule:new Date().toLocaleString(),progress:'0 / 0 (100%)',sent:0,errors:0,completedAt:new Date().toLocaleString()});STATE.stats.total++;STATE.stats.completed++;STATE.stats.totalSent+=1;render();alert('تم Launch - اتضافت في Job History')}
+function addSub(){STATE.subscribers.push({id:String(Math.floor(Math.random()*1000)),first:'مشترك جديد',page:'انغام',label:'New'});render()}
+function addCommentTool(){STATE.commentTools.push({post:'بوست جديد',keyword:'تم',reply:'بعتلك',dm:'قالب',on:true});render()}
+function toggleBot(n){let b=STATE.bots.find(x=>x.name===n);b.on=!b.on;b.status=b.on?'Active':'Paused';render()}
+function addMedia(){STATE.media.push({name:'ملف جديد',type:'IMAGE',size:'0.8 MB'});render()}
+function addPost(){STATE.posts.push({title:'بوست جديد',page:'انغام',status:'Published',likes:0});render()}
 render();
 </script>
 </body>
