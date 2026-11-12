@@ -3,86 +3,69 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Farag AI - 50D Platform</title>
+<title>Farag AI - Best AI Platform in the World 🌍</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 *{box-sizing:border-box}
-body{background:#04061a;background:radial-gradient(800px 400px at 15% 0%,rgba(124,58,237,.45) 0%,transparent 60%),radial-gradient(700px 400px at 90% 20%,rgba(37,99,235,.5) 0%,transparent 60%),radial-gradient(600px 400px at 50% 100%,rgba(34,197,94,.25) 0%,transparent 60%),linear-gradient(180deg,#04061a,#070b1f 40%,#04061a);font-family:Inter,system-ui;margin:0;min-height:100vh;color:#fff;overflow-x:hidden;perspective:1200px}
-/* كرات نيون طايرة في الخلفية - AI */
-body::before{content:'';position:fixed;top:-80px;left:20%;width:320px;height:320px;background:radial-gradient(circle,rgba(124,58,237,.5),transparent 70%);filter:blur(40px);z-index:0;animation:floatAI 7s ease-in-out infinite}
-body::after{content:'';position:fixed;bottom:-100px;right:10%;width:380px;height:380px;background:radial-gradient(circle,rgba(37,99,235,.45),transparent 70%);filter:blur(45px);z-index:0;animation:floatAI 9s ease-in-out infinite reverse}
-@keyframes floatAI{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-25px) scale(1.08)}}
-/* ===== سايد بار مجسم 50D ===== */
+body{background:#02010f;background:radial-gradient(900px 450px at 10% 0%,rgba(124,58,237,.55) 0%,transparent 60%),radial-gradient(800px 450px at 95% 10%,rgba(37,99,235,.55) 0%,transparent 60%),radial-gradient(700px 500px at 50% 110%,rgba(34,197,94,.3) 0%,transparent 60%),radial-gradient(500px 300px at 80% 70%,rgba(236,72,153,.25) 0%,transparent 60%),linear-gradient(180deg,#02010f,#070b1f 40%,#02010f);font-family:Inter,system-ui;margin:0;min-height:100vh;color:#fff;overflow-x:hidden;perspective:1400px}
+body::before{content:'';position:fixed;top:-90px;left:18%;width:340px;height:340px;background:radial-gradient(circle,rgba(124,58,237,.55),transparent 70%);filter:blur(45px);z-index:0;animation:floatAI 7s ease-in-out infinite}
+body::after{content:'';position:fixed;bottom:-110px;right:8%;width:400px;height:400px;background:radial-gradient(circle,rgba(37,99,235,.5),transparent 70%);filter:blur(50px);z-index:0;animation:floatAI 9s ease-in-out infinite reverse}
+@keyframes floatAI{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-28px) scale(1.1)}}
+@keyframes shine{0%{transform:translateX(-120%) skewX(-15deg)}100%{transform:translateX(250%) skewX(-15deg)}}
+@keyframes orbPulse{0%,100%{transform:scale(1);box-shadow:0 0 25px rgba(167,139,250,.8),0 0 60px rgba(124,58,237,.5),inset 0 3px 8px rgba(255,255,255,.6)}50%{transform:scale(1.08);box-shadow:0 0 35px rgba(167,139,250,1),0 0 90px rgba(124,58,237,.7),inset 0 3px 8px rgba(255,255,255,.7)}}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
 .sidebar-wrap{position:relative;flex-shrink:0;z-index:50}
-.sidebar{background:linear-gradient(180deg,rgba(18,24,60,.95),rgba(8,12,35,.98));backdrop-filter:blur(20px);border-left:1px solid rgba(255,255,255,.14);box-shadow:-20px 0 50px rgba(0,0,0,.5),inset -1px 0 0 rgba(255,255,255,.12),inset 0 1px 0 rgba(255,255,255,.12);transition:.4s cubic-bezier(.4,0,.2,1);width:290px;height:100vh;position:sticky;top:0;overflow-y:auto;overflow-x:hidden;transform-style:preserve-3d}
+.sidebar{background:linear-gradient(180deg,rgba(20,26,65,.96),rgba(7,10,30,.99));backdrop-filter:blur(22px);border-left:1px solid rgba(255,255,255,.16);box-shadow:-25px 0 60px rgba(0,0,0,.55),inset -1px 0 0 rgba(255,255,255,.14);transition:.4s cubic-bezier(.4,0,.2,1);width:290px;height:100vh;position:sticky;top:0;overflow-y:auto;overflow-x:hidden}
 .sidebar.collapsed{width:72px}
 .sidebar.collapsed .hide-text{display:none!important}
 .sidebar.collapsed .side{justify-content:center;padding:10px 6px}
 .sidebar.collapsed .brand-sub{display:none}
-.sidebar-toggle{position:absolute;top:108px;right:-19px;left:auto;width:38px;height:38px;border-radius:50%;border:2px solid #a78bfa;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(124,58,237,.7),inset 0 2px 4px rgba(255,255,255,.5),inset 0 -3px 6px rgba(0,0,0,.3);z-index:60;transition:.3s}
+.sidebar-toggle{position:absolute;top:108px;right:-19px;left:auto;width:38px;height:38px;border-radius:50%;border:2px solid #a78bfa;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:19px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 25px rgba(124,58,237,.7),inset 0 2px 4px rgba(255,255,255,.5);z-index:60;transition:.3s}
 .sidebar-toggle:hover{transform:scale(1.15) rotate(5deg)}
-/* ===== كروت احصائيات مجسمة ===== */
-.stat{background:linear-gradient(145deg,#1a2456 0%,#0d1230 55%,#11173a 100%);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:16px 10px;text-align:center;position:relative;overflow:hidden;box-shadow:0 18px 35px rgba(0,0,0,.45),0 8px 18px rgba(99,102,241,.22),inset 0 1px 0 rgba(255,255,255,.25),inset 0 -2px 6px rgba(0,0,0,.3);transition:.4s;transform-style:preserve-3d}
+.stat{background:linear-gradient(145deg,#1c2658 0%,#0d1230 55%,#141b48 100%);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:16px 10px;text-align:center;position:relative;overflow:hidden;box-shadow:0 20px 38px rgba(0,0,0,.5),0 10px 20px rgba(99,102,241,.25),inset 0 1px 0 rgba(255,255,255,.3);transition:.4s}
 .stat::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#7c3aed,#2563eb,#22c55e)}
-.stat::after{content:'';position:absolute;top:6px;left:10px;width:50px;height:22px;background:rgba(255,255,255,.18);border-radius:99px;filter:blur(6px)}
-.stat:hover{transform:translateY(-8px) rotateX(6deg) scale(1.03);box-shadow:0 28px 50px rgba(99,102,241,.45),0 14px 25px rgba(0,0,0,.4)}
-.side{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 12px;border-radius:14px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer;white-space:nowrap;position:relative;transition:.3s;border:1px solid transparent}
-.side:hover{background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(37,99,235,.2));color:#fff;transform:translateX(-4px) scale(1.02);border-color:rgba(255,255,255,.15);box-shadow:0 10px 20px rgba(124,58,237,.3),inset 0 1px 0 rgba(255,255,255,.2)}
-.side.active{background:linear-gradient(135deg,#4f46e5,#7c3aed,#a78bfa);color:#fff;box-shadow:0 12px 25px rgba(124,58,237,.55),inset 0 2px 4px rgba(255,255,255,.4),inset 0 -3px 6px rgba(0,0,0,.25);transform:translateX(-3px)}
+.stat::after{content:'';position:absolute;top:0;left:-80%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);animation:shine 4s ease-in-out infinite}
+.stat:hover{transform:translateY(-9px) rotateX(7deg) scale(1.03);box-shadow:0 30px 55px rgba(99,102,241,.5)}
+.side{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 12px;border-radius:14px;font-weight:700;font-size:13px;color:#cbd5e1;cursor:pointer;white-space:nowrap;transition:.3s;border:1px solid transparent}
+.side:hover{background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(37,99,235,.22));color:#fff;transform:translateX(-4px) scale(1.02);border-color:rgba(255,255,255,.16);box-shadow:0 10px 20px rgba(124,58,237,.32)}
+.side.active{background:linear-gradient(135deg,#4f46e5,#7c3aed,#a78bfa);color:#fff;box-shadow:0 12px 25px rgba(124,58,237,.6),inset 0 2px 4px rgba(255,255,255,.45)}
 .ico{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;background:linear-gradient(145deg,var(--c2),var(--c) 60%,var(--c));box-shadow:0 8px 16px var(--glow),inset 0 2px 4px rgba(255,255,255,.6),inset 0 -3px 6px rgba(0,0,0,.25);transition:.3s}
-.side:hover .ico{transform:scale(1.15) rotate(8deg)}
-.grid-ico{background:linear-gradient(145deg,#1a2456,#0d1230 60%,#141b45);border:1px solid rgba(255,255,255,.16);border-radius:20px;padding:18px 8px;text-align:center;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 16px 30px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.22);transition:.35s}
-.grid-ico::before{content:'';position:absolute;top:0;left:15%;width:50px;height:18px;background:rgba(255,255,255,.2);border-radius:99px;filter:blur(6px)}
-.grid-ico:hover{transform:translateY(-9px) rotateX(8deg) scale(1.04);box-shadow:0 28px 45px rgba(99,102,241,.5),inset 0 1px 0 rgba(255,255,255,.3)}
-.grid-ico:hover .ico{transform:scale(1.25) rotate(-10deg)}
+.grid-ico{background:linear-gradient(145deg,#1c2658,#0d1230 60%,#161d4d);border:1px solid rgba(255,255,255,.18);border-radius:22px;padding:18px 8px;text-align:center;cursor:pointer;position:relative;overflow:hidden;box-shadow:0 18px 32px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.25);transition:.35s}
+.grid-ico:hover{transform:translateY(-10px) rotateX(9deg) scale(1.05);box-shadow:0 30px 50px rgba(99,102,241,.55)}
+.grid-ico:hover .ico{transform:scale(1.3) rotate(-10deg)}
 .card{background:linear-gradient(180deg,#ffffff,#eef2ff);color:#0f172a;border-radius:22px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.35),inset 0 1px 0 #fff}
-.input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:12px;font-size:14px;outline:none;background:#fff;color:#0f172a;box-shadow:inset 0 2px 6px rgba(0,0,0,.06)}
-.btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;box-shadow:0 12px 22px rgba(124,58,237,.45),inset 0 2px 4px rgba(255,255,255,.45),inset 0 -3px 6px rgba(0,0,0,.2);transition:.25s}
-.btn:hover{transform:translateY(-2px) scale(1.01)}
-.btn:active{transform:translateY(1px) scale(.98)}
-.btn-blue{background:linear-gradient(145deg,#60a5fa,#2563eb 55%,#1d4ed8);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;width:100%;box-shadow:0 12px 22px rgba(37,99,235,.45),inset 0 2px 4px rgba(255,255,255,.45),inset 0 -3px 6px rgba(0,0,0,.2)}
+.input{width:100%;border:1px solid #e2e8f0;border-radius:14px;padding:12px;font-size:14px;outline:none;background:#fff;color:#0f172a}
+.btn{width:100%;background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;box-shadow:0 12px 22px rgba(124,58,237,.45),inset 0 2px 4px rgba(255,255,255,.45)}
+.btn-blue{background:linear-gradient(145deg,#60a5fa,#2563eb 55%,#1d4ed8);color:#fff;padding:13px;border-radius:14px;font-weight:800;border:none;cursor:pointer;width:100%;box-shadow:0 12px 22px rgba(37,99,235,.45),inset 0 2px 4px rgba(255,255,255,.45)}
 .badge{font-size:11px;padding:4px 9px;border-radius:99px;font-weight:800}
 .backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:45;display:none}
 .backdrop.show{display:block}
 .stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:16px;position:relative;z-index:2}
 .icons-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;margin-top:14px}
 .charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;position:relative;z-index:2}
-.glass-panel{background:linear-gradient(145deg,rgba(26,36,86,.9),rgba(13,18,48,.95));border:1px solid rgba(255,255,255,.16);border-radius:22px;padding:18px;box-shadow:0 20px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.22);position:relative;overflow:hidden}
-.glass-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.5),transparent)}
-/* ===== رسومات ULTRA 50D ===== */
-.chart-ultra{background:linear-gradient(180deg,#ffffff 0%,#f1f5ff 55%,#e0e7ff 100%);border-radius:26px;padding:18px;color:#0f172a;position:relative;overflow:hidden;box-shadow:0 28px 55px rgba(0,0,0,.4),0 14px 28px rgba(37,99,235,.22),inset 0 1px 0 #fff,inset 0 -1px 0 rgba(37,99,235,.15),0 0 0 1px rgba(255,255,255,.7);transition:.4s}
-.chart-ultra:hover{transform:translateY(-7px) rotateX(3deg) scale(1.01);box-shadow:0 40px 75px rgba(37,99,235,.4)}
-.chart-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ec4899,#7c3aed);box-shadow:0 2px 14px rgba(37,99,235,.55)}
-.donut-ultra{width:178px;height:178px;border-radius:50%;margin:14px auto 0;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 28px 50px rgba(34,197,94,.45),0 10px 20px rgba(0,0,0,.25),inset 0 -14px 24px rgba(0,0,0,.28),inset 0 12px 20px rgba(255,255,255,.85),inset 0 0 0 3px rgba(255,255,255,.4)}
-.donut-ultra::before{content:'';position:absolute;inset:-7px;border-radius:50%;border:1px solid rgba(34,197,94,.3);box-shadow:0 0 26px rgba(34,197,94,.3)}
+.glass-panel{background:linear-gradient(145deg,rgba(28,38,88,.92),rgba(13,18,48,.96));border:1px solid rgba(255,255,255,.18);border-radius:24px;padding:18px;box-shadow:0 22px 42px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.25);position:relative;overflow:hidden}
+.ai-orb{width:58px;height:58px;border-radius:50%;background:conic-gradient(from 0deg,#7c3aed,#2563eb,#22c55e,#ec4899,#f59e0b,#7c3aed);display:flex;align-items:center;justify-content:center;font-size:26px;animation:orbPulse 2.2s ease-in-out infinite;position:relative;flex-shrink:0;cursor:pointer}
+.ai-orb::after{content:'';position:absolute;inset:7px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff,#a78bfa 60%,#4c1d95);display:flex;align-items:center;justify-content:center}
+.ai-input{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:12px 16px;color:#fff;outline:none;font-size:14px}
+.ai-input::placeholder{color:#94a3b8}
+.chart-ultra{background:linear-gradient(180deg,#ffffff 0%,#f1f5ff 55%,#e0e7ff 100%);border-radius:26px;padding:18px;color:#0f172a;position:relative;overflow:hidden;box-shadow:0 28px 55px rgba(0,0,0,.4),0 14px 28px rgba(37,99,235,.22),inset 0 1px 0 #fff}
+.chart-ultra:hover{transform:translateY(-7px) rotateX(3deg) scale(1.01)}
+.chart-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,#2563eb,#22c55e,#f59e0b,#ec4899,#7c3aed)}
+.donut-ultra{width:178px;height:178px;border-radius:50%;margin:14px auto 0;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 28px 50px rgba(34,197,94,.45),0 10px 20px rgba(0,0,0,.25),inset 0 -14px 24px rgba(0,0,0,.28),inset 0 12px 20px rgba(255,255,255,.85)}
 .donut-ultra::after{content:'';position:absolute;top:13px;left:24px;width:66px;height:28px;background:rgba(255,255,255,.8);border-radius:99px;filter:blur(7px);transform:rotate(-20deg)}
-.donut-in-ultra{width:108px;height:108px;background:radial-gradient(circle at 32% 28%,#ffffff 0%,#eef2ff 55%,#dbeafe 100%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a;box-shadow:inset 0 6px 16px rgba(0,0,0,.14),inset 0 -4px 10px rgba(255,255,255,.9),0 12px 22px rgba(0,0,0,.18);position:relative;z-index:2}
+.donut-in-ultra{width:108px;height:108px;background:radial-gradient(circle at 32% 28%,#ffffff 0%,#eef2ff 55%,#dbeafe 100%);border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#0f172a;box-shadow:inset 0 6px 16px rgba(0,0,0,.14);position:relative;z-index:2}
 .pulse-dot{animation:pulseAI 1.6s ease-in-out infinite}
 @keyframes pulseAI{0%,100%{r:7;opacity:1}50%{r:12;opacity:.5}}
-.bar-ultra{border-radius:16px 16px 6px 6px;flex:1;position:relative;box-shadow:inset 0 6px 10px rgba(255,255,255,.7),inset 0 -10px 14px rgba(0,0,0,.22),inset -6px 0 10px rgba(0,0,0,.12),0 18px 26px rgba(37,99,235,.35);transition:.35s;overflow:hidden}
+.bar-ultra{border-radius:16px 16px 6px 6px;flex:1;position:relative;box-shadow:inset 0 6px 10px rgba(255,255,255,.7),inset 0 -10px 14px rgba(0,0,0,.22),0 18px 26px rgba(37,99,235,.35);transition:.35s;overflow:hidden}
 .bar-ultra::before{content:'';position:absolute;top:0;left:0;right:0;height:42%;background:linear-gradient(180deg,rgba(255,255,255,.7),transparent)}
-.bar-ultra::after{content:'';position:absolute;top:6px;left:8px;right:8px;height:10px;background:rgba(255,255,255,.6);border-radius:99px}
 .bar-ultra:hover{transform:translateY(-7px) scale(1.04);filter:brightness(1.12)}
-.launch-ultra{background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;border:none;padding:10px 18px;border-radius:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 25px rgba(124,58,237,.55),inset 0 2px 4px rgba(255,255,255,.5),inset 0 -3px 6px rgba(0,0,0,.25);transition:.3s;white-space:nowrap}
-.launch-ultra:hover{transform:translateY(-3px) scale(1.05)}
-@media(max-width:900px){
-.stats-grid{grid-template-columns:repeat(3,1fr)}
-.icons-grid{grid-template-columns:repeat(3,1fr)}
-.charts-grid{grid-template-columns:1fr}
-}
+.launch-ultra{background:linear-gradient(145deg,#a78bfa,#7c3aed 55%,#5b21b6);color:#fff;border:none;padding:10px 18px;border-radius:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 25px rgba(124,58,237,.55),inset 0 2px 4px rgba(255,255,255,.5);white-space:nowrap}
+@media(max-width:900px){.stats-grid{grid-template-columns:repeat(3,1fr)}.icons-grid{grid-template-columns:repeat(3,1fr)}.charts-grid{grid-template-columns:1fr}}
 @media(max-width:768px){
 .sidebar-wrap{position:fixed;right:0;top:0;height:100vh;transform:translateX(105%);transition:.4s;box-shadow:-20px 0 50px rgba(0,0,0,.5)}
 .sidebar-wrap.open{transform:translateX(0)}
-.sidebar{width:290px!important}
-.sidebar.collapsed{width:290px!important}
-.sidebar.collapsed .hide-text{display:flex!important}
-.sidebar.collapsed .side{justify-content:space-between;padding:10px 12px}
-.sidebar.collapsed .brand-sub{display:block!important}
-.sidebar-toggle{right:-19px;top:108px}
-.stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}
-.icons-grid{grid-template-columns:repeat(2,1fr);gap:8px}
-.stat{padding:10px 6px}
-.stat div:last-child{font-size:16px!important}
+.sidebar{width:290px!important}.sidebar.collapsed{width:290px!important}.sidebar.collapsed .hide-text{display:flex!important}.sidebar.collapsed .side{justify-content:space-between;padding:10px 12px}.sidebar.collapsed .brand-sub{display:block!important}
+.sidebar-toggle{right:-19px;top:108px}.stats-grid{grid-template-columns:repeat(2,1fr);gap:8px}.icons-grid{grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:10px 6px}.stat div:last-child{font-size:16px!important}
 }
 </style>
 </head>
@@ -91,35 +74,46 @@ body::after{content:'';position:fixed;bottom:-100px;right:10%;width:380px;height
 <div class="backdrop" id="backdrop" onclick="toggleSidebar()"></div>
 <div class="sidebar-wrap" id="sidebarWrap">
 <div class="sidebar" id="sidebar">
-<div style="text-align:center;padding:16px 0 6px"><div style="display:flex;align-items:center;justify-content:center;gap:9px"><div style="width:42px;height:42px;background:linear-gradient(145deg,#a78bfa,#4f46e5 60%,#312e81);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;box-shadow:0 12px 22px rgba(124,58,237,.6),inset 0 2px 4px rgba(255,255,255,.5)">F</div><div class="hide-text" style="text-align:right"><div style="font-weight:900;font-size:22px;line-height:1;text-shadow:0 4px 12px rgba(124,58,237,.5)">FARAG<span style="color:#a78bfa">.com</span></div><div class="brand-sub" style="font-size:10px;color:#94a3b8">منصة فرج - Farag AI Platform 🤖</div></div></div></div>
+<div style="text-align:center;padding:16px 0 6px"><div style="display:flex;align-items:center;justify-content:center;gap:9px"><div style="width:42px;height:42px;background:linear-gradient(145deg,#a78bfa,#4f46e5 60%,#312e81);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:19px;box-shadow:0 12px 22px rgba(124,58,237,.6),inset 0 2px 4px rgba(255,255,255,.5)">F</div><div class="hide-text" style="text-align:right"><div style="font-weight:900;font-size:22px;line-height:1;text-shadow:0 4px 12px rgba(124,58,237,.5)">FARAG<span style="color:#a78bfa">.com</span></div><div class="brand-sub" style="font-size:10px;color:#94a3b8">منصة فرج - Farag AI 🌍 #1 in the World</div></div></div></div>
 <div id="menu" style="padding:8px 12px 0"></div>
-<button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" class="hide-text" style="margin:16px 12px 0;width:calc(100% - 24px);background:linear-gradient(145deg,#f87171,#ef4444);color:#fff;padding:11px;border:none;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 10px 20px rgba(239,68,68,.4),inset 0 2px 4px rgba(255,255,255,.4)">Reset / تصفير الكل</button>
+<button onclick="if(confirm('تصفر كل حاجة؟')){localStorage.clear();location.reload()}" class="hide-text" style="margin:16px 12px 0;width:calc(100% - 24px);background:linear-gradient(145deg,#f87171,#ef4444);color:#fff;padding:11px;border:none;border-radius:14px;font-weight:800;cursor:pointer;box-shadow:0 10px 20px rgba(239,68,68,.4)">Reset / تصفير الكل</button>
 </div>
 <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="فتح / قفل القايمة">☰</button>
 </div>
 
 <div style="flex:1;min-width:0;padding:16px;max-width:1150px;margin:0 auto;padding-bottom:60px;width:100%;position:relative;z-index:2">
 <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-<div><h1 style="font-size:28px;font-weight:900;margin:0;text-shadow:0 6px 18px rgba(124,58,237,.5)">Dashboard - فرج 🤖</h1><p style="color:#94a3b8;font-size:11px;margin:4px 0 0">Farag AI - 50D • Cloud + Glow + Float + STATE • ✨</p></div>
+<div><h1 style="font-size:28px;font-weight:900;margin:0;text-shadow:0 6px 18px rgba(124,58,237,.5)">Dashboard - فرج 🤖🌍</h1><p style="color:#94a3b8;font-size:11px;margin:4px 0 0">Farag AI - Best AI Platform in the World • بعون الله هنوصل للعالمية</p></div>
 <button class="launch-ultra" onclick="go('broadcasting',null)">Launch 🚀</button>
 </div>
+
+<!-- AI Command Bar -->
+<div class="glass-panel" style="margin-top:14px;display:flex;align-items:center;gap:12px;padding:12px 14px">
+<div class="ai-orb" onclick="aiAsk()"><span style="position:relative;z-index:2">✦</span></div>
+<div style="flex:1;min-width:0"><div style="font-weight:900;font-size:13px">اسأل فرج AI أي حاجة ✨</div><input id="aiInput" class="ai-input" style="margin-top:6px" placeholder="اكتب مثلا: ابعت حملة لـ 1000 واحد... أو اعمل قالب ترحيب..." onkeydown="if(event.key==='Enter')aiAsk()"></div>
+<button onclick="aiAsk()" style="background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;border:none;padding:11px 16px;border-radius:99px;font-weight:900;cursor:pointer;box-shadow:0 10px 20px rgba(124,58,237,.5);white-space:nowrap">اسأل AI ✦</button>
+</div>
+<div id="aiAnswer" style="display:none;margin-top:10px;background:linear-gradient(135deg,rgba(124,58,237,.18),rgba(37,99,235,.14));border:1px solid rgba(167,139,250,.35);border-radius:16px;padding:12px 14px;font-size:13px;line-height:1.8"></div>
+
 <div id="app"></div>
 </div>
 </div>
 
 <script>
 let DB={get:function(k,d){try{let v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set:function(k,v){localStorage.setItem(k,JSON.stringify(v))}};
-function toggleSidebar(){
-let sb=document.getElementById('sidebar');
-let wrap=document.getElementById('sidebarWrap');
-let back=document.getElementById('backdrop');
-if(window.innerWidth<=768){
-let open=wrap.classList.toggle('open');
-back.classList.toggle('show',open);
-}else{
-let col=sb.classList.toggle('collapsed');
-try{localStorage.setItem('farag_sidebar',col?'collapsed':'open')}catch(e){}
+function aiAsk(){
+let v=(document.getElementById('aiInput').value||'').trim();
+let box=document.getElementById('aiAnswer');box.style.display='block';
+if(!v){box.innerHTML='🤖 <b>فرج AI:</b> اكتبلي انت عايز ايه، وانا هقولك تعملها ازاي بالظبط، بعون الله هنخليها أفخم منصة في العالم.';return;}
+if(v.includes('حملة')||v.includes('ابعت')||v.includes('broadcast')){box.innerHTML='🤖 <b>فرج AI:</b> تمام! روح <b>Broadcasting</b>، اختار الصفحة، اختار قالب MARKETING، ودوس Launch. لو عايز خدمية روح <b>Launch Utility</b>. عايزني أجهزلك القالب؟ روح <b>Create Template</b>.'}
+else if(v.includes('قالب')||v.includes('template')){box.innerHTML='🤖 <b>فرج AI:</b> روح <b>Create Template</b>، اكتب اسم القالب، اختار UTILITY لو خدمية أو MARKETING لو دعائية، واحفظه. هيظهر لوحده في المكان الصح.'}
+else if(v.includes('بوست')||v.includes('نشر')){box.innerHTML='🤖 <b>فرج AI:</b> روح <b>Social Posting</b>، اكتب البوست مرة واحدة، وهيتنشر على انغام وبهية وجنه مع بعض.'}
+else{box.innerHTML='🤖 <b>فرج AI:</b> فهمتك: "'+v+'". أحسن خطوة دلوقتي: افتح <b>Create Template</b> اعمل قالب، وبعدين <b>Broadcasting</b> ابعته. ولو عايز رأيي، النهاردة أحسن وقت تبعت فيه هو 8 بالليل، الناس كلها فاتحة.'}
 }
+function toggleSidebar(){
+let sb=document.getElementById('sidebar');let wrap=document.getElementById('sidebarWrap');let back=document.getElementById('backdrop');
+if(window.innerWidth<=768){let open=wrap.classList.toggle('open');back.classList.toggle('show',open);}
+else{let col=sb.classList.toggle('collapsed');try{localStorage.setItem('farag_sidebar',col?'collapsed':'open')}catch(e){}}
 }
 try{if(localStorage.getItem('farag_sidebar')==='collapsed' && window.innerWidth>768){document.getElementById('sidebar').classList.add('collapsed')}}catch(e){}
 let MENU=[
@@ -143,9 +137,7 @@ let MENU=[
 {t:'Blocked Pages',p:'blocked',i:'🚫',c:'#ef4444',c2:'#f87171',g:'rgba(239,68,68,.5)'},
 {t:'Payment',p:'payment',i:'💳',c:'#16a34a',c2:'#4ade80',g:'rgba(22,163,74,.5)'},
 ];
-function renderMenu(active){
-document.getElementById('menu').innerHTML=MENU.map(function(m){return '<div class="side '+(active===m.p?'active':'')+'" onclick="go(\''+m.p+'\',this)"><span class="hide-text">'+m.t+'</span><span class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+'">'+m.i+'</span></div>'}).join('');
-}
+function renderMenu(active){document.getElementById('menu').innerHTML=MENU.map(function(m){return '<div class="side '+(active===m.p?'active':'')+'" onclick="go(\''+m.p+'\',this)"><span class="hide-text">'+m.t+'</span><span class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+'">'+m.i+'</span></div>'}).join('');}
 function go(p,el){
 renderMenu(p);
 if(window.innerWidth<=768){document.getElementById('sidebarWrap').classList.remove('open');document.getElementById('backdrop').classList.remove('show')}
@@ -160,7 +152,7 @@ else if(p==='history') renderSimple('🕘 Broadcast Job History','بنشوف ا�
 else if(p==='facebook') renderSimple('🔗 Facebook & Instagram','177 صفحة مربوطة - 177 Enabled');
 else if(p==='comment') renderSimple('💬 Comment growth tools','1,141 تعليق النهاردة - 97.5% اترد عليه');
 else if(p==='bot') renderSimple('🤖 Bot manager','البوت شغال - بيرد على التعليقات والرسايل');
-else if(p==='ai') renderSimple('✦ AI Sales Agent','وكيل المبيعات - جاهز يبيع بدالك');
+else if(p==='ai') renderSimple('✦ AI Sales Agent','وكيل المبيعات - جاهز يبيع بدالك - بعون الله هنبيع للعالم كله');
 else if(p==='analytics') renderSimple('📈 Comment Analytics','تحليل التعليقات');
 else if(p==='restrictions') renderSimple('🛡️ Page Restrictions','مفيش صفحات محظورة');
 else if(p==='token') renderSimple('🔑 Token Checker','كل التوكنات سليمة - 177/177');
@@ -171,47 +163,49 @@ else if(p==='payment') renderSimple('💳 Payment','خطة فرج - الدفع �
 else renderDashboard();
 window.scrollTo(0,0);
 }
-function renderSimple(t,s){
-document.getElementById('app').innerHTML='<div class="glass-panel" style="padding:36px;text-align:center;margin-top:16px"><h2 style="font-weight:900;font-size:24px;margin:0">'+t+'</h2><p style="color:#94a3b8;margin-top:10px">'+s+'</p><button class="btn" style="max-width:250px;margin:16px auto 0" onclick="go(\'dashboard\')">Back to Dashboard</button></div>';
-}
+function renderSimple(t,s){document.getElementById('app').innerHTML='<div class="glass-panel" style="padding:36px;text-align:center;margin-top:16px"><h2 style="font-weight:900;font-size:24px;margin:0">'+t+'</h2><p style="color:#94a3b8;margin-top:10px">'+s+'</p><button class="btn" style="max-width:250px;margin:16px auto 0" onclick="go(\'dashboard\')">Back to Dashboard</button></div>';}
 function renderDashboard(){
-let icons=MENU.map(function(m){return '<div class="grid-ico" onclick="go(\''+m.p+'\')"><div class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+';width:52px;height:52px;font-size:23px;margin:0 auto">'+m.i+'</div><div style="font-size:12px;font-weight:800;margin-top:11px;line-height:1.3;text-shadow:0 2px 8px rgba(0,0,0,.4)">'+m.t+'</div></div>'}).join('');
+let icons=MENU.map(function(m){return '<div class="grid-ico" onclick="go(\''+m.p+'\')"><div class="ico" style="--c:'+m.c+';--c2:'+m.c2+';--glow:'+m.g+';width:52px;height:52px;font-size:23px;margin:0 auto">'+m.i+'</div><div style="font-size:12px;font-weight:800;margin-top:11px;line-height:1.3">'+m.t+'</div></div>'}).join('');
 document.getElementById('app').innerHTML=`
 <div class="stats-grid">
-<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Jobs</div><div style="font-size:22px;font-weight:900;margin-top:4px;text-shadow:0 4px 12px rgba(99,102,241,.5)">1060</div></div>
-<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Completed</div><div style="font-size:22px;font-weight:900;margin-top:4px;text-shadow:0 4px 12px rgba(34,197,94,.5)">1013</div></div>
+<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Jobs</div><div style="font-size:22px;font-weight:900;margin-top:4px">1060</div></div>
+<div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Completed</div><div style="font-size:22px;font-weight:900;margin-top:4px">1013</div></div>
 <div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Pending</div><div style="font-size:22px;font-weight:900;margin-top:4px">19</div></div>
 <div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Scheduled</div><div style="font-size:22px;font-weight:900;margin-top:4px">28</div></div>
 <div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Total Sent</div><div style="font-size:22px;font-weight:900;margin-top:4px">1,101,208</div></div>
 <div class="stat"><div style="font-size:11px;color:#94a3b8;font-weight:700">Recipients</div><div style="font-size:22px;font-weight:900;margin-top:4px">1,423,473</div></div>
 </div>
+<div class="glass-panel" style="margin-top:14px;border-color:rgba(167,139,250,.35)">
+<div style="display:flex;align-items:center;gap:10px"><span style="font-size:22px">🤖</span><h2 style="font-weight:900;font-size:18px;margin:0">Farag AI Insights - المنصة بتنصحك ✨</h2><span style="background:linear-gradient(135deg,#7c3aed,#a78bfa);padding:4px 10px;border-radius:99px;font-size:11px;font-weight:900">NEW</span></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px">
+<div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">🔥 أحسن وقت تبعت فيه</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">النهاردة 8 بالليل - 1,109,765 واحد فاتح</div></div>
+<div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">💡 قالب هيبيع</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">اعمل قالب UTILITY بعنوان "صلي على النبي"</div></div>
+<div style="background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px"><div style="font-size:12px;font-weight:900">📈 توقع AI</div><div style="font-size:12px;color:#cbd5e1;margin-top:4px">لو بعت النهاردة هتوصل لـ 75,177 مشترك</div></div>
+</div>
+</div>
 <div class="glass-panel" style="margin-top:14px;text-align:right">
-<h2 style="font-weight:900;font-size:21px;margin:0">المعادلة - منصة فرج 🤖</h2>
+<h2 style="font-weight:900;font-size:20px;margin:0">المعادلة - منصة فرج 🤖🌍</h2>
 <div style="color:#e2e8f0;font-size:14px;line-height:2;margin-top:8px"><div>Create Template = بتعمل القالب</div><div>Subscriber Manager = بتشوف هنبعت لمين</div><div>Launch Utility / Broadcasting = بتبعت الحملة</div><div>Broadcast Job History = بنشوف الحملة حصل فيها ايه</div></div>
 </div>
 <div class="glass-panel" style="margin-top:14px">
 <h2 style="font-weight:900;font-size:18px;margin:0;text-align:right">كل الايقونات ✨</h2>
 <div class="icons-grid">${icons}</div>
 </div>
-
 <div class="charts-grid">
-<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● 7-Day Activity - Line Chart</b><span style="font-size:10px;background:#eff6ff;color:#2563eb;padding:4px 8px;border-radius:99px;font-weight:800;box-shadow:0 4px 10px rgba(37,99,235,.2)">LIVE 🔴 AI</span></div>
+<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● 7-Day Activity - Line Chart</b><span style="font-size:10px;background:#eff6ff;color:#2563eb;padding:4px 8px;border-radius:99px;font-weight:800">LIVE 🔴 AI</span></div>
 <svg viewBox="0 0 600 230" style="width:100%;height:195px;margin-top:8px;filter:drop-shadow(0 14px 18px rgba(37,99,235,.25))">
-<defs><linearGradient id="lgBlue3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.45"/><stop offset="55%" stop-color="#60a5fa" stop-opacity="0.16"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient><linearGradient id="lgGreen3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.35"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient><filter id="glowB3"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,230 L0,230 Z" fill="url(#lgBlue3)"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110 L600,230 L0,230 Z" fill="url(#lgGreen3)"/>
-<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" filter="url(#glowB3)"/>
-<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" filter="url(#glowB3)"/>
+<defs><linearGradient id="lgBlueW" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#2563eb" stop-opacity="0.45"/><stop offset="55%" stop-color="#60a5fa" stop-opacity="0.16"/><stop offset="100%" stop-color="#2563eb" stop-opacity="0"/></linearGradient><linearGradient id="lgGreenW" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.35"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient><filter id="glowBW"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175 L600,230 L0,230 Z" fill="url(#lgBlueW)"/>
+<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110 L600,230 L0,230 Z" fill="url(#lgGreenW)"/>
+<path d="M0,20 L85,110 L170,160 L255,170 L340,175 L425,175 L510,175 L600,175" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" filter="url(#glowBW)"/>
+<path d="M0,190 L85,190 L170,190 L255,190 L340,190 L425,190 L510,160 L600,110" fill="none" stroke="#22c55e" stroke-width="4" stroke-linecap="round" filter="url(#glowBW)"/>
 <circle class="pulse-dot" cx="0" cy="20" r="7" fill="#fff" stroke="#2563eb" stroke-width="3.5"/><circle cx="0" cy="20" r="3" fill="#2563eb"/>
 <circle class="pulse-dot" cx="600" cy="110" r="7" fill="#fff" stroke="#22c55e" stroke-width="3.5"/><circle cx="600" cy="110" r="3" fill="#22c55e"/>
-<circle cx="510" cy="175" r="6" fill="#fff" stroke="#2563eb" stroke-width="3"/>
 </svg><div style="display:flex;justify-content:space-between;font-size:11px;color:#64748b;font-weight:800"><span>🟢 Comments</span><span>🔵 Broadcast</span></div></div>
-
-<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Broadcast Campaigns - Donut</b><span class="badge" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d;box-shadow:0 6px 14px rgba(34,197,94,.35)">677 Completed</span></div>
-<div class="donut-ultra" style="background:conic-gradient(from 200deg,#16a34a 0 55%,#22c55e 55% 92%,#4ade80 92% 96%,#ef4444 96% 100%)"><div class="donut-in-ultra"><b style="font-size:26px;letter-spacing:-.5px">705</b><span style="font-size:10px;color:#64748b;font-weight:800">Total</span></div></div>
+<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Broadcast Campaigns - Donut</b><span class="badge" style="background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d">677 Completed</span></div>
+<div class="donut-ultra" style="background:conic-gradient(from 200deg,#16a34a 0 55%,#22c55e 55% 92%,#4ade80 92% 96%,#ef4444 96% 100%)"><div class="donut-in-ultra"><b style="font-size:26px">705</b><span style="font-size:10px;color:#64748b;font-weight:800">Total</span></div></div>
 <div style="display:flex;justify-content:space-between;font-size:12px;font-weight:900;margin-top:14px"><span style="background:#f0fdf4;padding:5px 10px;border-radius:99px">🟢 677</span><span style="background:#fef2f2;padding:5px 10px;border-radius:99px">🔴 28</span><span style="background:#fff7ed;padding:5px 10px;border-radius:99px">🟠 0</span></div></div>
 </div>
-
 <div class="charts-grid">
 <div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● New Subscribers - Bar Chart</b><span style="font-size:10px;background:#eff6ff;color:#1d4ed8;padding:4px 8px;border-radius:99px;font-weight:800">+41.7% 🔥</span></div>
 <div style="display:flex;align-items:end;gap:10px;height:180px;margin-top:12px">
@@ -223,8 +217,7 @@ document.getElementById('app').innerHTML=`
 <div class="bar-ultra" style="height:95%;background:linear-gradient(180deg,#3b82f6,#2563eb 45%,#1e40af 85%,#172a6b)"></div>
 <div class="bar-ultra" style="height:100%;background:linear-gradient(180deg,#2563eb,#1d4ed8 45%,#1e40af 85%,#0f1f5a)"></div>
 </div><div style="display:flex;justify-content:space-between;font-size:10px;color:#64748b;font-weight:800;margin-top:10px"><span>Sat</span><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span></div></div>
-
-<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Subscribers Rate - Radial</b><span class="badge" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1d4ed8;box-shadow:0 6px 14px rgba(37,99,235,.3)">4.7% of leads</span></div>
+<div class="chart-ultra"><div style="display:flex;justify-content:space-between;align-items:center"><b style="font-size:15px">● Subscribers Rate - Radial</b><span class="badge" style="background:linear-gradient(135deg,#dbeafe,#bfdbfe);color:#1d4ed8">4.7% of leads</span></div>
 <div class="donut-ultra" style="background:conic-gradient(from 270deg,#2563eb 0 4.7%,#60a5fa 4.7% 5.8%,#e5e7eb 5.8% 100%);box-shadow:0 28px 50px rgba(37,99,235,.4),0 10px 20px rgba(0,0,0,.25),inset 0 -14px 24px rgba(0,0,0,.22),inset 0 12px 20px rgba(255,255,255,.85)"><div class="donut-in-ultra"><b style="font-size:24px">4.7%</b><span style="font-size:10px;color:#64748b;font-weight:800">Subscribers</span></div></div>
 <div style="text-align:center;font-size:12px;color:#64748b;margin-top:14px;font-weight:800"><b style="color:#0f172a;font-size:13px">75,177</b> / 1,592,739</div></div>
 </div>
@@ -232,7 +225,7 @@ document.getElementById('app').innerHTML=`
 }
 function renderTemplate(){
 let list=DB.get('farag_tpl',[{id:1,name:'قالب الترحيب',title:'صلي على النبي',subtitle:'واذكر الله',type:'UTILITY'}]);
-let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Create Template - المخزن الرئيسي - فرج 🤖</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b><div style="margin-top:10px">';
+let html='<div class="card" style="margin-top:14px"><h2 style="font-weight:900;font-size:22px;margin:0">Create Template - المخزن الرئيسي - فرج 🤖🌍</h2><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px"><input id="t-name" class="input" placeholder="Template name"><select id="t-type" class="input"><option>UTILITY - خدمية</option><option>MARKETING - دعائية</option></select></div><input id="t-title" class="input" style="margin-top:10px" placeholder="Title"><input id="t-sub" class="input" style="margin-top:10px" placeholder="Sub-title"><button class="btn" style="margin-top:12px" onclick="saveTpl()">💾 حفظ القالب</button></div><div class="card" style="margin-top:12px"><b>القوالب المحفوظة ('+list.length+')</b><div style="margin-top:10px">';
 list.forEach(function(t){html+='<div style="display:flex;justify-content:space-between;align-items:center;border:1px solid #e2e8f0;border-radius:12px;padding:10px;margin-bottom:8px"><div><b>'+t.name+'</b> <span class="badge" style="background:#dbeafe;color:#1d4ed8">'+t.type+'</span><div style="font-size:12px;color:#64748b">'+(t.title||'')+' - '+(t.subtitle||'')+'</div></div><button onclick="delTpl('+t.id+')" style="background:none;border:none;color:#ef4444;font-weight:800;cursor:pointer">🗑 Delete</button></div>'});
 html+='</div></div>';
 document.getElementById('app').innerHTML=html;
