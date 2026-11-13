@@ -302,13 +302,25 @@ function addMediaItem(){let n=(document.getElementById('newMediaName').value||''
 function delMediaItem(id){if(!confirm('هتمسح الملف ده من المخزن؟'))return;let items=DB.get('farag_media_items',{});items[activeFolderId]=(items[activeFolderId]||[]).filter(function(x){return x.id!==id});DB.set('farag_media_items',items);renderMedia();}
 renderMenu('dashboard');renderDashboard();
 </script>
-<script>
-function exportFaragData(){
-let data={};for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k.startsWith('farag_'))data[k]=JSON.parse(localStorage.getItem(k));}
-let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
-let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='farag-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();
-alert('✅ تم التصدير');
+<script>function exportFaragData(){
+let data={};
+for(let i=0;i<localStorage.length;i++){
+let k=localStorage.key(i);
+data[k]=localStorage.getItem(k);
 }
+let txt=JSON.stringify(data,null,2);
+let blob=new Blob([txt],{type:'application/json'});
+let url=URL.createObjectURL(blob);
+let a=document.createElement('a');
+a.href=url;
+a.download='farag-backup-'+new Date().toISOString().slice(0,10)+'.json';
+document.body.appendChild(a);
+a.click();
+a.remove();
+setTimeout(function(){URL.revokeObjectURL(url);},1000);
+alert('تم التصدير - عدد المفاتيح: '+Object.keys(data).length);
+}
+
 function importFaragData(e){
 let file=e.target.files[0];if(!file)return;
 let r=new FileReader();r.onload=function(){
