@@ -324,7 +324,7 @@ alert('تم التصدير - عدد المفاتيح: '+Object.keys(data).length
 function importFaragData(e){
 let file=e.target.files[0];if(!file)return;
 let r=new FileReader();r.onload=function(){
-try{let data=JSON.parse(r.result);Object.keys(data).forEach(function(k){localStorage.setItem(k,JSON.stringify(data[k]));});alert('✅ تم الاستيراد - اعمل Refresh');location.reload();}
+try{let data=JSON.parse(r.result);Object.keys(data).forEach(function(k){localStorage.setItem(k, typeof data[k]==='string' ? data[k] : JSON.stringify(data[k]));});;alert('✅ تم الاستيراد - اعمل Refresh');location.reload();}
 catch(err){alert('الملف ده مش صح');}
 };r.readAsText(file);
 }
