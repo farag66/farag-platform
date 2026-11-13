@@ -195,24 +195,29 @@ function delTool(id){if(!confirm('هتمسح الأداة دي؟'))return;DB.set
 /* ===== Media & Content - مخزن المنصة - نسخة واحدة مظبوطة ===== */
 function renderMedia(){
   // ترحيل مرة واحدة من الشكل القديم للشكل الجديد، عشان مفيش حاجة تضيع
-  let oldFolders = DB.get('farag_folders', null);
-  if(oldFolders && !DB.get('farag_media_migrated', false)){
-    let newFolders = [];
-    let newItems = DB.get('farag_media_items', []);
-    Object.keys(oldFolders).forEach(function(key){
-      let fid = 'old_'+key;
-      newFolders.push({id: fid, name: key});
-      (oldFolders[key]||[]).forEach(function(name){
-        newItems.push({id: String(Date.now())+'_'+Math.random(), name: name, type: 'image', folder: fid});
-      });
-    });
-    if(newFolders.length) DB.set('farag_media_folders', newFolders);
-    if(newItems.length) DB.set('farag_media_items', newItems);
-    DB.set('farag_media_migrated', true);
-  }
-
   let folders = DB.get('farag_media_folders', []);
-  let items = DB.get('farag_media_items', []);
+let items = DB.get('farag_media_items', []);
+if(!Array.isArray(folders)) folders = [];
+if(!Array.isArray(items)){
+  let arr = [];
+  Object.keys(items||{}).forEach(function(fid){
+    (items[fid]||[]).forEach(function(it){
+      arr.push({id:String(it.id||Date.now()), name:it.name, type:it.kind==='فيديو'?'video':it.kind==='بوست'?'post':'image', folder:String(fid)});
+    });
+  });
+  items = arr;
+  DB.set('farag_media_items', items);
+}
+let oldF = DB.get('farag_folders', null);
+if(oldF && Array.isArray(oldF) && !DB.get('farag_media_migrated', false)){
+  oldF.forEach(function(f){
+    if(!folders.find(function(x){return String(x.id)===String(f.id);})){
+      folders.push({id:String(f.id), name:f.name});
+    }
+  });
+  DB.set('farag_media_folders', folders);
+  DB.set('farag_media_migrated', true);
+}
   let cur = window._mediaFolder || 'all';
   let shown = cur === 'all' ? items : items.filter(function(x){ return x.folder === cur; });
 
@@ -297,15 +302,15 @@ document.getElementById('app').innerHTML=`
 `;
 }
 function openTplMedia(){
-let folders=DB.get('farag_folders',[]);
-let items=DB.get('farag_media_items',{});
+let folders=DB.get('farag_media_folders',[]);
+let items=DB.get('farag_media_items',[]);
 let folderOpts=folders.map(function(f){return '<option value="'+f.id+'">'+f.name+'</option>'}).join('');
 let box=document.getElementById('tplMediaBox');box.style.display='block';
 box.innerHTML='<b>🖼️ اختار من Media & Content - المخزن</b><div style="display:flex;gap:8px;margin-top:8px"><select id="tplFolderSel" class="input" style="flex:1" onchange="refreshTplMediaItems()">'+folderOpts+'</select></div><div id="tplMediaItems" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px"></div><div style="font-size:11px;color:#64748b;margin-top:6px">اختار الفولدر، تختار الصورة، وتدوس استخدام. ترفع مرة واحدة، وتستخدم 100 مرة.</div>';
 refreshTplMediaItems();
 }
 function refreshTplMediaItems(){
-let fid=document.getElementById('tplFolderSel').value;let items=DB.get('farag_media_items',{});let cur=items[fid]||[];
+let fid=document.getElementById('tplFolderSel').value;let items=DB.get('farag_media_items',[]);let cur=items.filter(function(x){return String(x.folder)===String(fid);});
 let el=document.getElementById('tplMediaItems');if(!el)return;
 el.innerHTML=cur.map(function(it){return '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:10px;text-align:center;cursor:pointer" onclick="pickTplMedia(\''+it.name+'\')"><div style="font-size:28px">'+it.icon+'</div><div style="font-size:11px;font-weight:800;margin-top:4px">'+it.name+'</div><div style="font-size:11px;color:#16a34a;font-weight:800;margin-top:4px">✅ استخدام</div></div>'}).join('')||'<div style="grid-column:1/-1;text-align:center;color:#94a3b8;font-size:12px">مفيش صور في الفولدر ده - روح Media & Content وضيف</div>';
 }
