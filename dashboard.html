@@ -211,7 +211,7 @@ let a=DB.get('farag_comment_tools',[]);a.unshift({id:Date.now(),post:post,kw:kw,
 function saveReplyTpl(){let kw=(document.getElementById('reply-kw').value||'').trim();let rp=(document.getElementById('reply-public').value||'').trim();let dm=(document.getElementById('reply-dm').value||'').trim();if(!kw){alert('اكتب الكلمة - مثلا: تم');return;}let a=DB.get('farag_reply_tpls',[]);a.unshift({id:Date.now(),kw:kw,reply:rp||'تم الرد عليك في الخاص يا فندم ❤️',dm:dm||'اهلا بيك'});DB.set('farag_reply_tpls',a);alert('✅ اتحفظ قالب الرد: '+kw);renderComment();}
 function delReplyTpl(id){if(!confirm('هتمسح قالب الرد ده؟'))return;DB.set('farag_reply_tpls',DB.get('farag_reply_tpls',[]).filter(function(x){return x.id!==id}));renderComment();}
 function toggleTool(id){let a=DB.get('farag_comment_tools',[]);a=a.map(function(t){if(t.id===id)t.on=!t.on;return t});DB.set('farag_comment_tools',a);renderComment();}
-function delTool(id){if(!confirm('هتمسح الأداة دي؟'))return;DB.set('farag_comment_tools',DB.get('farag_comment_tools',[]).filter(function(x){return x.id!==id}));renderComment();}();}
+function delTool(id){if(!confirm('هتمسح الأداة دي؟'))return;DB.set('farag_comment_tools',DB.get('farag_comment_tools',[]).filter(function(x){return x.id!==id}));renderComment();}
 /* ===== Media & Content - مخزن المنصة - نسخة واحدة مظبوطة ===== */
 function renderMedia(){
   // ترحيل مرة واحدة من الشكل القديم للشكل الجديد، عشان مفيش حاجة تضيع
