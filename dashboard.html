@@ -252,7 +252,7 @@ function doAddSub(){let n=(document.getElementById('as-name').value||'').trim();
 function delSub(id){if(!confirm('هتمسح المشترك ده؟'))return;DB.set('farag_subscribers',DB.get('farag_subscribers',[]).filter(function(x){return x.id!==id}));renderSubscriber();}
 function addLabel(){let v=(document.getElementById('newLabel').value||'').trim();if(!v){alert('اكتب اسم الـ Label');return;}let a=DB.get('farag_labels',[]);if(!a.includes(v))a.push(v);DB.set('farag_labels',a);alert('✅ اتعمل Label: '+v);renderSubscriber();}
 /* ===== Social Posting ===== */
-let postingSel={all:true,fbAll:true,igAll:true,fb:{angham:true,behiya:true,ganna:true},ig:{angham:true}};
+let postingSel={all:true,fbAll:true,igAll:true,fb:{angham:true,behiya:true,ganna:true},ig:{angham:true};
 let postingMedia={img:null,vid:null};
 function togglePostingAll(checked){postingSel.all=checked;postingSel.fbAll=checked;postingSel.igAll=checked;postingSel.fb.angham=checked;postingSel.fb.behiya=checked;postingSel.fb.ganna=checked;postingSel.ig.angham=checked;renderPosting();}
 function togglePostingFbAll(checked){postingSel.fbAll=checked;postingSel.fb.angham=checked;postingSel.fb.behiya=checked;postingSel.fb.ganna=checked;postingSel.all=postingSel.fbAll&&postingSel.igAll;renderPosting();}
