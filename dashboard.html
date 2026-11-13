@@ -242,8 +242,31 @@ el.innerHTML=cur.map(function(it){return '<div style="background:#fff;border:1px
 function pickTplMedia(name){tplSelImg='صورة من المخزن - '+name;let box=document.getElementById('tplMediaBox');box.innerHTML='🖼️ الصورة المختارة: '+tplSelImg+' - من Media & Content';alert('✅ اخترت: '+name+' - من المخزن - هتستخدم في القالب ده');}
 function addTplButton(){let txt=(document.getElementById('t-btn').value||'').trim()||'اطلب دلوقتي';tplSelBtn=txt;let box=document.getElementById('tplBtnBox');box.style.display='block';box.innerHTML='🔘 الزرار: '+tplSelBtn+' - لما العميل يدوس عليه يروح لمكان انت محدده';alert('✅ اتضاف الزرار: '+txt);}
 function saveTpl(){let n=(document.getElementById('t-name').value||'').trim();if(!n){alert('اكتب اسم القالب');return;}let a=DB.get('farag_tpl',[]);a.unshift({id:Date.now(),name:n,title:document.getElementById('t-title').value||'اهلا بيك، العرض النهارده...',subtitle:document.getElementById('t-btn').value||'اطلب دلوقتي',type:(document.getElementById('t-type').value||'UTILITY').split(' - ')[0],img:tplSelImg||'مفيش صورة',btn:tplSelBtn||document.getElementById('t-btn').value||'اطلب دلوقتي',time:new Date().toLocaleString('ar-EG')});DB.set('farag_tpl',a);tplSelImg=null;tplSelBtn=null;alert('✅ تم حفظ القالب: '+n+' - في STATE.templates - هتلاقيه في Broadcasting');renderTemplate();}
-function useTpl(id){let t=DB.get('farag_tpl',[]).find(function(x){return x.id===id});if(!t)return;alert('✅ اخترت القالب: '+t.name+' - روح Broadcasting وابعته');go('broadcasting');}
-function launchTplQuick(){let n=(document.getElementById('t-name').value||'').trim()||'رسالة 2026-11-11';alert('🚀 تم إطلاق القالب: '+n+' - على طول من غير ما تروح Broadcasting - Total Jobs زاد واحد في الـ Dashboard');}
+function useTpl(id){
+  let t=DB.get('farag_tpl',[]).find(function(x){return x.id===id});
+  if(!t) return;
+  bcTplId = t.id;
+  bcType = t.type || 'UTILITY';
+  alert('✅ اخترت القالب: '+t.name+' - هيتفتح في Broadcasting متعلم عليه');
+  go('broadcasting');
+}
+
+function launchTplQuick(){
+  let n=(document.getElementById('t-name').value||'').trim();
+  if(!n){alert('اكتب اسم القالب الاول');return;}
+  let all=DB.get('farag_tpl',[]);
+  let found=all.find(function(x){return x.name===n});
+  if(!found){
+    found={id:Date.now(),name:n,title:document.getElementById('t-title').value||'اهلا بيك، العرض النهارده...',subtitle:document.getElementById('t-btn').value||'اطلب دلوقتي',type:(document.getElementById('t-type').value||'UTILITY').split(' - ')[0],img:tplSelImg||'مفيش صورة',btn:tplSelBtn||document.getElementById('t-btn').value||'اطلب دلوقتي',time:new Date().toLocaleString('ar-EG')};
+    all.unshift(found);
+    DB.set('farag_tpl',all);
+  }
+  let jobs=DB.get('farag_jobs',[]);
+  jobs.unshift({id:Date.now(),type:found.type,tpl:found.name,pages:'Quick Launch',labels:'All',count:DB.get('farag_subscribers',[]).length,status:'تم الإطلاق',time:new Date().toLocaleString('ar-EG')});
+  DB.set('farag_jobs',jobs);
+  alert('🚀 تم إطلاق القالب: '+found.name+' - اتسجل Job جديد، روح Broadcast Job History هتلاقيه');
+  renderTemplate();
+}
 function delTpl(id){if(!confirm('تمسح القالب ده؟'))return;DB.set('farag_tpl',DB.get('farag_tpl',[]).filter(function(x){return x.id!==id}));renderTemplate();}
 function renderBroadcast(type){
 bcType=type||'MARKETING';
