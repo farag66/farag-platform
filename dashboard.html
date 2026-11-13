@@ -302,5 +302,24 @@ function addMediaItem(){let n=(document.getElementById('newMediaName').value||''
 function delMediaItem(id){if(!confirm('هتمسح الملف ده من المخزن؟'))return;let items=DB.get('farag_media_items',{});items[activeFolderId]=(items[activeFolderId]||[]).filter(function(x){return x.id!==id});DB.set('farag_media_items',items);renderMedia();}
 renderMenu('dashboard');renderDashboard();
 </script>
-</body>
+<script>
+function exportFaragData(){
+let data={};for(let i=0;i<localStorage.length;i++){let k=localStorage.key(i);if(k.startsWith('farag_'))data[k]=JSON.parse(localStorage.getItem(k));}
+let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='farag-backup-'+new Date().toISOString().slice(0,10)+'.json';a.click();
+alert('✅ تم التصدير');
+}
+function importFaragData(e){
+let file=e.target.files[0];if(!file)return;
+let r=new FileReader();r.onload=function(){
+try{let data=JSON.parse(r.result);Object.keys(data).forEach(function(k){localStorage.setItem(k,JSON.stringify(data[k]));});alert('✅ تم الاستيراد - اعمل Refresh');location.reload();}
+catch(err){alert('الملف ده مش صح');}
+};r.readAsText(file);
+}
+let _faragBar=document.createElement('div');
+_faragBar.innerHTML='<button onclick="exportFaragData()" style="background:#16a34a;color:#fff;border:none;padding:10px 14px;border-radius:99px;font-weight:900;cursor:pointer">📤 تصدير</button> <label style="background:#2563eb;color:#fff;padding:10px 14px;border-radius:99px;font-weight:900;cursor:pointer">📥 استيراد<input type="file" accept=".json" onchange="importFaragData(event)" style="display:none"></label>';
+_faragBar.style.cssText='position:fixed;bottom:12px;left:12px;z-index:99999;display:flex;gap:8px';
+document.body.appendChild(_faragBar);
+</script></body>
+
 </html>
