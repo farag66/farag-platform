@@ -1477,41 +1477,32 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   transform: rotate(180deg) scale(1.08);
 }
 <style>
-/* فخامة من غير شبورة خالص */
+/* فخامة من غير شبورة - موبايل وكمبيوتر */
 #backdrop{ display:none !important; opacity:0 !important; pointer-events:none !important; }
-#sidebarWrap{
-  transition: transform .7s cubic-bezier(.22,1,.36,1) !important;
-  box-shadow: -35px 0 90px rgba(0,0,0,.7) !important;
-}
+#sidebarWrap{ transition: transform .7s cubic-bezier(.22,1,.36,1) !important; }
 #sidebar{
-  transition: all .7s cubic-bezier(.22,1,.36,1) !important;
-  box-shadow: inset 0 0 70px rgba(124,58,237,.18), -25px 0 70px rgba(0,0,0,.55) !important;
+  transition: width .65s cubic-bezier(.22,1,.36,1), transform .65s cubic-bezier(.22,1,.36,1) !important;
+  box-shadow: inset 0 0 70px rgba(124,58,237,.15), -25px 0 70px rgba(0,0,0,.55) !important;
 }
 #sidebarToggle{
   transition: all .55s cubic-bezier(.34,1.56,.64,1) !important;
   box-shadow: 0 12px 30px rgba(124,58,237,.85), 0 0 0 3px rgba(167,139,250,.35) !important;
 }
-#sidebarWrap.open #sidebarToggle{
-  transform: rotate(180deg) scale(1.1);
-}
 </style>
 
 <script>
-/* افتح واقفل القايمة بس - من غير اي شبورة */
+/* الزرار الصح - يفتح ويقفل في الموبايل والكمبيوتر */
 (function(){
   var wrap = document.getElementById('sidebarWrap');
+  var sidebar = document.getElementById('sidebar');
   var back = document.getElementById('backdrop');
   var btn = document.getElementById('sidebarToggle');
-  if(!wrap || !btn) return;
+  if(!wrap || !sidebar || !btn) return;
 
   // اقتل الشبورة نهائيا
-  if(back){
-    back.style.display = 'none';
-    back.onclick = null;
-    back.remove();
-  }
+  if(back){ back.style.display='none'; back.remove(); }
 
-  // تأكد ان الزرار جوة مكانه الصح
+  // رجّع الزرار لمكانه الصح جوة
   if(btn.parentNode !== wrap) wrap.appendChild(btn);
   btn.style.position = 'absolute';
   btn.style.top = '108px';
@@ -1519,38 +1510,50 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   btn.style.left = 'auto';
   btn.style.zIndex = '60';
 
-  function openSide(){
-    wrap.classList.add('open');
-    btn.innerHTML = '✕';
-  }
-  function closeSide(){
-    wrap.classList.remove('open');
-    btn.innerHTML = '☰';
+  function isMobile(){ return window.innerWidth <= 768; }
+
+  function updateBtn(){
+    if(isMobile()){
+      btn.innerHTML = wrap.classList.contains('open') ? '✕' : '☰';
+      btn.style.transform = wrap.classList.contains('open') ? 'rotate(180deg) scale(1.1)' : 'rotate(0deg)';
+    } else {
+      btn.innerHTML = sidebar.classList.contains('collapsed') ? '☰' : '✕';
+      btn.style.transform = sidebar.classList.contains('collapsed') ? 'rotate(180deg) scale(1.1)' : 'rotate(0deg)';
+    }
   }
 
-  // دي اهم حتة - الزرار يفتح ويقفل بس
   window.toggleSidebar = function(e){
     if(e){ e.preventDefault(); e.stopPropagation(); }
-    if(wrap.classList.contains('open')) closeSide();
-    else openSide();
+    if(isMobile()){
+      // موبايل: افتح واقفل بسحبة
+      wrap.classList.toggle('open');
+    } else {
+      // كمبيوتر: صغّر وكبّر بفخامة
+      sidebar.classList.toggle('collapsed');
+      try{ localStorage.setItem('farag_sidebar', sidebar.classList.contains('collapsed') ? 'collapsed' : 'open'); }catch(err){}
+    }
+    updateBtn();
   };
-  btn.onclick = window.toggleSidebar;
 
-  // سحبة بصباعك: يمين يقفل، من الحافة يفتح
-  var startX = 0, currentX = 0, dragging = false;
-  document.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; dragging = true; }, {passive:true});
-  document.addEventListener('touchmove', function(e){ if(dragging) currentX = e.touches[0].clientX; }, {passive:true});
+  btn.onclick = window.toggleSidebar;
+  updateBtn();
+
+  // سحبة بصباعك في الموبايل بس
+  var startX=0, currentX=0, dragging=false;
+  document.addEventListener('touchstart', function(e){ startX=e.touches[0].clientX; dragging=true; }, {passive:true});
+  document.addEventListener('touchmove', function(e){ if(dragging) currentX=e.touches[0].clientX; }, {passive:true});
   document.addEventListener('touchend', function(){
-    if(!dragging) return; dragging = false;
+    if(!dragging || !isMobile()) return; dragging=false;
     var diff = currentX - startX;
-    if(wrap.classList.contains('open') && diff > 70) closeSide();
-    if(!wrap.classList.contains('open') && startX < 25 && diff < -70) openSide();
+    if(wrap.classList.contains('open') && diff > 70){ wrap.classList.remove('open'); updateBtn(); }
+    if(!wrap.classList.contains('open') && startX < 25 && diff < -70){ wrap.classList.add('open'); updateBtn(); }
   }, {passive:true});
 
-  // دوس على اي تبويبة في القايمة تقفل لوحدها بفخامة
+  // دوس على تبويبة في الموبايل تقفل لوحدها
   wrap.querySelectorAll('.side').forEach(function(item){
-    item.addEventListener('click', function(){ setTimeout(closeSide, 250); });
+    item.addEventListener('click', function(){ if(isMobile()) setTimeout(function(){ wrap.classList.remove('open'); updateBtn(); }, 250); });
   });
+  window.addEventListener('resize', updateBtn);
 })();
 </script>
 </html>
