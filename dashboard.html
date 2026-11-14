@@ -1454,4 +1454,66 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   text-shadow: 0 1px 2px rgba(0,0,0,0.6) !important;
 }
 </style>
+<!-- ===== سايد بار احترافي وذكي ===== -->
+<style>
+  #menuBtn{ transition: all .3s ease; }
+  #menuBtn.open{ transform: rotate(90deg); background:#1e293b !important; color:#fff !important; }
+  .sidebar-overlay{
+    position:fixed; inset:0; background:rgba(0,0,0,.45);
+    backdrop-filter: blur(2px);
+    opacity:0; pointer-events:none; transition:opacity .3s ease; z-index:998;
+  }
+  .sidebar-overlay.show{ opacity:1; pointer-events:auto; }
+  @media(max-width:768px){
+    .sidebar-wrap{ transition: transform .35s cubic-bezier(.2,.9,.3,1) !important; z-index:999 !important; box-shadow:-10px 0 30px rgba(0,0,0,.25); }
+  }
+</style>
+
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+<script>
+  // سايد بار ذكي - احترافي
+  (function(){
+    var btn = document.querySelector('[onclick*="sidebar"]') || document.getElementById('menuBtn') || document.querySelector('.menu-btn');
+    // لو الزرار مالوش id، هندور عليه بالشكل
+    if(!btn){
+      var allBtns = document.querySelectorAll('button');
+      for(var i=0;i<allBtns.length;i++){ if(allBtns[i].textContent.trim()==='☰' || allBtns[i].innerHTML.includes('☰')){ btn=allBtns[i]; break; } }
+    }
+    var sidebar = document.querySelector('.sidebar-wrap');
+    var overlay = document.getElementById('sidebarOverlay');
+    if(!sidebar || !btn) return;
+
+    function openSidebar(){
+      sidebar.classList.add('open');
+      overlay.classList.add('show');
+      btn.classList.add('open');
+      btn.innerHTML = '✕';
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSidebar(){
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      btn.classList.remove('open');
+      btn.innerHTML = '☰';
+      document.body.style.overflow = '';
+    }
+    function toggleSidebar(){
+      if(sidebar.classList.contains('open')) closeSidebar();
+      else openSidebar();
+    }
+
+    btn.onclick = function(e){ e.stopPropagation(); toggleSidebar(); };
+    overlay.onclick = closeSidebar;
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeSidebar(); });
+
+    // لما تدوس على اي لينك جوة السايد بار، يقفل لوحده
+    var links = sidebar.querySelectorAll('a, button, [onclick]');
+    links.forEach(function(l){
+      l.addEventListener('click', function(){
+        if(window.innerWidth <= 768) setTimeout(closeSidebar, 150);
+      });
+    });
+  })();
+</script>
 </html>
