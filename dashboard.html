@@ -1454,4 +1454,40 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   text-shadow: 0 1px 2px rgba(0,0,0,0.6) !important;
 }
 </style>
+<script>
+/* اصلاح السايد بار - من غير شبورة معلقة */
+(function(){
+  var wrap = document.getElementById('sidebarWrap');
+  var back = document.getElementById('backdrop');
+  var btn = document.getElementById('sidebarToggle');
+  if(!wrap || !back || !btn) return;
+
+  // طلع الزرار بره السايد بار عشان يفضل باين على طول
+  if(btn.parentNode !== document.body){
+    document.body.appendChild(btn);
+    btn.style.position = 'fixed';
+    btn.style.top = '108px';
+    btn.style.right = '12px';
+    btn.style.left = 'auto';
+    btn.style.zIndex = '9999';
+  }
+
+  function closeSide(){
+    wrap.classList.remove('open');
+    back.classList.remove('show');
+  }
+  function openSide(){
+    wrap.classList.add('open');
+    back.classList.add('show');
+  }
+  // غيّرنا toggle لـ open/close واضح
+  window.toggleSidebar = function(){
+    if(wrap.classList.contains('open')) closeSide();
+    else openSide();
+  };
+  // الشبورة لما تدوس عليها تقفل بس، مش تفتح تاني
+  back.onclick = function(e){ e.stopPropagation(); closeSide(); };
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeSide(); });
+})();
+</script>
 </html>
