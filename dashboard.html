@@ -720,4 +720,135 @@ function renderPAY(){let links=payLinks();let orders=payOrders();let pages=payPa
 let _oldGoPAY = go;
 go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.includes('pay')){ renderMenu(p); if(window.innerWidth<=768){document.getElementById('sidebarWrap').classList.remove('open');document.getElementById('backdrop').classList.remove('show');} renderPAY(); window.scrollTo(0,0); return; } return _oldGoPAY(p,el); };
 </script>
+<script>
+/* ===== FARAG - الراوتر الموحد - لازم يبقى اخر سكربت قبل </html> ===== */
+(function(){
+  var _baseGo = window.go; // الـ go القديم بكل طبقاته، هنستخدمه fallback بس
+  var _inRouter = false;
+
+  function norm(p){
+    return String(p||'').toLowerCase().trim()
+      .replace(/[\s_\-]+/g,'') // شيل مسافات و _ و -
+      .replace(/\.html$/,'');
+  }
+  function closeMenu(){
+    if(window.innerWidth<=768){
+      var sw=document.getElementById('sidebarWrap');
+      var bd=document.getElementById('backdrop');
+      if(sw) sw.classList.remove('open');
+      if(bd) bd.classList.remove('show');
+    }
+    window.scrollTo(0,0);
+  }
+  function show(p, fnName){
+    var fn = window[fnName];
+    if(typeof fn !== 'function') return false;
+    if(typeof renderMenu === 'function'){ try{ renderMenu(p); }catch(e){} }
+    try{ fn(); }catch(e){ alert('في مشكلة في صفحة '+p+' : '+e.message); return true; }
+    closeMenu();
+    return true;
+  }
+
+  // الترتيب مهم: الاطول والادق الاول، العام في الاخر
+  var ROUTES = [
+    // Comment - الادق الاول
+    ['commentanalytics', 'renderCA'],
+    ['commentanalytic', 'renderCA'],
+    ['analyticscomment', 'renderCA'],
+    ['commentgrowth', 'renderCTG'],
+    ['commentgrowthtools', 'renderCTG'],
+    ['commenttools', 'renderCTG'],
+    ['comment', 'renderCTG'],
+
+    // Facebook & Instagram
+    ['facebookinstagram', 'renderFB'],
+    ['facebook', 'renderFB'],
+    ['instagram', 'renderFB'],
+    ['fb', 'renderFB'],
+    ['connect', 'renderFB'],
+
+    // Subscriber
+    ['subscribermanager', 'renderSub'],
+    ['subscriber', 'renderSub'],
+    ['subscribers', 'renderSub'],
+
+    // Template / Broadcasting / Utility / History
+    ['createtemplate', 'renderCT'],
+    ['template', 'renderCT'],
+    ['templates', 'renderCT'],
+    ['broadcastjobhistory', 'renderJH'],
+    ['jobhistory', 'renderJH'],
+    ['history', 'renderJH'],
+    ['job', 'renderJH'],
+    ['launchutility', 'renderUT'],
+    ['utility', 'renderUT'],
+    ['broadcasting', 'renderBC'],
+    ['broadcast', 'renderBC'],
+
+    // Bot / AI - الادق الاول، و AI لوحده في الاخر عشان ميخطفش
+    ['aisalesagent', 'renderAI'],
+    ['salesagent', 'renderAI'],
+    ['aibot', 'renderAI'],
+    ['botmanager', 'renderBot'],
+    ['bot', 'renderBot'],
+
+    // Posting / Media
+    ['socialposting', 'renderPosting'],
+    ['postingtemplates', 'renderPosting'],
+    ['posting', 'renderPosting'],
+    ['media content', 'renderMC2'],
+    ['mediacontent', 'renderMC2'],
+    ['media', 'renderMedia'],
+
+    // الباقي - كل واحد باسمه الكامل الاول
+    ['token checker', 'renderTK'],
+    ['tokenchecker', 'renderTK'],
+    ['token', 'renderTK'],
+    ['apichannels', 'renderAPI'],
+    ['api', 'renderAPI'],
+    ['channel', 'renderAPI'],
+    ['channels', 'renderAPI'],
+    ['migrate', 'renderMIG'],
+    ['migration', 'renderMIG'],
+    ['blockedpages', 'renderBP'],
+    ['blocked', 'renderBP'],
+    ['payment', 'renderPAY'],
+    ['pay', 'renderPAY'],
+
+    // لو عندك صفحات تانية بنفس الاسماء دي، هتشتغل بنفس الطريقة
+    // لان show() بيتأكد ان الـ render موجودة، ولو مش موجودة بيرجع للـ go القديم
+    ['pagerestrictions', 'renderPR'],
+    ['restrictions', 'renderPR'],
+    ['dashboard', 'renderDash'],
+    ['home', 'renderDash'],
+    ['settings', 'renderSettings'],
+  ];
+
+  window.go = function(p, el){
+    if(_inRouter) return _baseGo ? _baseGo(p, el) : undefined;
+    var k = norm(p);
+    // 1. مطابقة دقيقة - Exact match الاول
+    for(var i=0;i<ROUTES.length;i++){
+      if(k === ROUTES[i][0]){
+        if(show(p, ROUTES[i][1])) return;
+        break;
+      }
+    }
+    // 2. لو مفيش exact، دور على الاطول اللي الكلمة بتبدأ بيه
+    // مش includes عام، عشان 'ai' ميخطفش 'training'
+    for(var j=0;j<ROUTES.length;j++){
+      var key = ROUTES[j][0];
+      if(key.length >= 4 && (k.indexOf(key) === 0 || k.indexOf(key) > 0 && key.length >= 7)){
+        if(show(p, ROUTES[j][1])) return;
+      }
+    }
+    // 3. مفيش حاجة مطابقة - سيب الـ go القديم يتصرف، من غير ما نكسره
+    _inRouter = true;
+    try{ return _baseGo ? _baseGo(p, el) : undefined; }
+    finally{ _inRouter = false; }
+  };
+
+  console.log('✅ FARAG Unified Router شغال - كل الايقونات من مكان واحد');
+})();
+</script>
 </html>
