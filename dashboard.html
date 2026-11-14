@@ -851,4 +851,131 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   console.log('✅ FARAG Unified Router شغال - كل الايقونات من مكان واحد');
 })();
 </script>
+<script>
+/* ===== Create Template - Add Buttons - من غير ما نمس حاجة ===== */
+(function(){
+  // خزن الازرار بتاعة القالب الحالي
+  function ctGetButtons(){
+    var d = DB.get('farag_tpl_buttons', null);
+    if(d) return d;
+    d = [];
+    DB.set('farag_tpl_buttons', d);
+    return d;
+  }
+  function ctSetButtons(d){ DB.set('farag_tpl_buttons', d); }
+
+  // 1. اضافة زر جديد
+  window.ctAddButton = function(){
+    var d = ctGetButtons();
+    d.push({
+      id: Date.now(),
+      title: 'عنوان الزرار',
+      subtitle: 'وصف صغير تحت العنوان',
+      link: 'https://',
+      image: ''
+    });
+    ctSetButtons(d);
+    ctRenderButtons();
+    alert('✅ اتضاف زر جديد\n\nعدّل العنوان والوصف واللينك بتاعه من تحت، وكل تعديل بيتحفظ لوحده');
+  };
+
+  // 2. تعديل اي حقل في اي زر
+  window.ctEditButton = function(id, field, val){
+    var d = ctGetButtons();
+    var b = d.find(function(x){ return x.id == id; });
+    if(!b) return;
+    b[field] = val;
+    ctSetButtons(d);
+    // من غير render كامل عشان الكتابة متقطعش
+    var prev = document.getElementById('ct-preview-'+id);
+    if(prev){
+      prev.querySelector('.ct-b-title').textContent = b.title || 'عنوان الزرار';
+      prev.querySelector('.ct-b-sub').textContent = b.subtitle || '';
+      prev.querySelector('.ct-b-link').textContent = b.link || '';
+      var img = prev.querySelector('.ct-b-img');
+      if(b.image){ img.src = b.image; img.style.display = 'block'; }
+      else { img.style.display = 'none'; }
+    }
+  };
+
+  // 3. مسح زر
+  window.ctDelButton = function(id){
+    if(!confirm('هتمسح الزرار ده؟')) return;
+    ctSetButtons(ctGetButtons().filter(function(x){ return x.id != id; }));
+    ctRenderButtons();
+  };
+
+  // 4. نسخ لينك الزرار
+  window.ctCopyBtnLink = function(id){
+    var b = ctGetButtons().find(function(x){ return x.id == id; });
+    if(!b) return;
+    try{ navigator.clipboard.writeText(b.link); alert('📋 اتنسخ لينك الزرار:\n'+b.link); }
+    catch(e){ prompt('انسخ لينك الزرار:', b.link); }
+  };
+
+  // 5. لينك صورة القالب نفسه
+  window.ctSetTemplateImage = function(val){
+    DB.set('farag_tpl_image', val);
+    var p = document.getElementById('ct-tpl-img-preview');
+    if(p){ if(val){ p.src = val; p.style.display='block'; } else { p.style.display='none'; } }
+  };
+
+  // 6. رسم قسم الازرار
+  window.ctRenderButtons = function(){
+    var box = document.getElementById('ct-buttons-box');
+    if(!box) return; // لو مش في صفحة Create Template، متعملش حاجة
+    var btns = ctGetButtons();
+    var tplImg = DB.get('farag_tpl_image', '');
+
+    var list = btns.map(function(b, idx){
+      return '<div id="ct-preview-'+b.id+'" style="background:#fff;border:1px solid #eee;border-radius:18px;padding:12px;margin-top:10px">'
+                + '<div style="display:flex;justify-content:space-between;align-items:center;gap:8px"><b>🔘 زر رقم '+(idx+1)+'</b><button onclick="ctDelButton('+b.id+')" style="background:#fee2e2;color:#991b1b;border:none;padding:6px 12px;border-radius:99px;font-weight:800;cursor:pointer">🗑️ مسح</button></div>'
+                + '<label style="display:block;font-size:12px;font-weight:800;margin-top:10px">Title - عنوان الزرار *</label>'
+                + '<input value="'+(b.title||'').replace(/"/g,'&quot;')+'" oninput="ctEditButton('+b.id+',\'title\',this.value)" placeholder="مثال: اطلب دلوقتي" style="width:100%;padding:10px;border:1px solid #eee;border-radius:12px;margin-top:4px">'
+                + '<label style="display:block;font-size:12px;font-weight:800;margin-top:10px">Sub Title - وصف تحت العنوان</label>'
+                + '<input value="'+(b.subtitle||'').replace(/"/g,'&quot;')+'" oninput="ctEditButton('+b.id+',\'subtitle\',this.value)" placeholder="مثال: التوصيل مجاني النهارده" style="width:100%;padding:10px;border:1px solid #eee;border-radius:12px;margin-top:4px">'
+                + '<label style="display:block;font-size:12px;font-weight:800;margin-top:10px">🔗 لينك الزرار ده</label>'
+                + '<div style="display:flex;gap:6px"><input value="'+(b.link||'').replace(/"/g,'&quot;')+'" oninput="ctEditButton('+b.id+',\'link\',this.value)" placeholder="https://..." style="flex:1;padding:10px;border:1px solid #eee;border-radius:12px;margin-top:4px"><button onclick="ctCopyBtnLink('+b.id+')" style="background:#e0e7ff;color:#3730a3;border:none;padding:8px 12px;border-radius:12px;font-weight:800;cursor:pointer;margin-top:4px">📋 نسخ</button></div>'
+                + '<label style="display:block;font-size:12px;font-weight:800;margin-top:10px">🖼️ لينك صورة الزرار ده (اختياري)</label>'
+                + '<input value="'+(b.image||'').replace(/"/g,'&quot;')+'" oninput="ctEditButton('+b.id+',\'image\',this.value)" placeholder="https://.../image.jpg" style="width:100%;padding:10px;border:1px solid #eee;border-radius:12px;margin-top:4px">'
+                + '<div style="background:#f8fafc;border-radius:14px;padding:10px;margin-top:10px;text-align:center">'
+                + '<img class="ct-b-img" src="'+(b.image||'')+'" style="width:100%;max-width:220px;border-radius:12px;display:'+(b.image?'block':'none')+';margin:0 auto">'
+                + '<div class="ct-b-title" style="font-weight:900;margin-top:6px">'+(b.title||'عنوان الزرار')+'</div>'
+                + '<div class="ct-b-sub" style="font-size:12px;color:#666">'+(b.subtitle||'')+'</div>'
+                + '<div class="ct-b-link" style="font-size:11px;color:#7c3aed;margin-top:4px;word-break:break-all">'+(b.link||'')+'</div>'
+                + '</div></div>';
+    }).join('') || '<div style="text-align:center;color:#888;padding:16px;background:#fff;border-radius:16px;margin-top:10px">لسه مفيش ازرار - دوس + Add Button وضيف اول زر</div>';
+
+    box.innerHTML =
+      '<div style="background:#fef3c7;border-radius:16px;padding:12px;font-size:12px;line-height:1.9"><b>🖼️ صورة القالب نفسه (فوق الرسالة):</b><br>لو القالب فيه صورة، حط لينكها هنا - هتظهر فوق الرسالة في المعاينة وفي الواتساب'
+            + '<input value="'+(tplImg||'').replace(/"/g,'&quot;')+'" oninput="ctSetTemplateImage(this.value)" placeholder="https://.../template-image.jpg" style="width:100%;padding:10px;border:1px solid #eee;border-radius:12px;margin-top:6px;background:#fff">'
+            + '<img id="ct-tpl-img-preview" src="'+(tplImg||'')+'" style="width:100%;max-width:280px;border-radius:14px;margin-top:8px;display:'+(tplImg?'block':'none')+'">'
+            + '</div>'
+            + '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;flex-wrap:wrap;gap:8px"><b>🔘 أزرار القالب - تحت الرسالة</b><button onclick="ctAddButton()" style="background:#22c55e;color:#fff;border:none;padding:10px 18px;border-radius:99px;font-weight:900;cursor:pointer">+ Add Button</button></div>'
+            + '<div style="font-size:11px;color:#666;margin-top:4px">ضيف اي عدد ازرار - كل زر ليه Title و Sub Title ولينك لوحده ولينك صورة لوحده - وكلهم هيظهروا تحت الرسالة في المعاينة</div>'
+            + list
+            + '<button onclick="ctAddButton()" style="width:100%;margin-top:10px;background:#f1f5f9;border:1px dashed #cbd5e1;padding:12px;border-radius:14px;font-weight:900;cursor:pointer">+ Add Button تاني</button>'
+            + '<div style="background:#dcfce7;border-radius:14px;padding:10px;margin-top:10px;font-size:12px;line-height:1.9"><b>هتشتغل ازاي؟</b><br>1) اكتب رسالة القالب زي ما هي فوق<br>2) ضيف الازرار هنا - كل زر Title + Sub Title + لينك<br>3) لما تحفظ القالب، الازرار دي بتتحفظ معاه في <b>farag_tpl_buttons</b><br>4) لما تبعت القالب في Broadcasting / Launch Utility، الازرار هتظهر تحت الرسالة، والعميل لما يدوس على اي زر، هيروح للينك بتاعه</div>';
+  };
+
+  // 7. اربطها بـ Create Template من غير ما نكسر الـ render الاصلي
+  if(typeof window.renderCT === 'function' && !window._ctPatched){
+    window._ctPatched = true;
+    var _origCT = window.renderCT;
+    window.renderCT = function(){
+      _origCT(); // شغل الاصلي زي ما هو بالظبط
+      // ضيف صندوق الازرار في اخر الصفحة، لو مش موجود
+      var app = document.getElementById('app');
+      if(app && !document.getElementById('ct-buttons-box')){
+        var div = document.createElement('div');
+        div.id = 'ct-buttons-box';
+        div.style.cssText = 'background:#fff;border-radius:22px;padding:14px;margin-top:12px';
+        app.appendChild(div);
+      }
+      ctRenderButtons();
+    };
+    console.log('✅ Add Buttons اتركب على Create Template من غير ما يمس حاجة');
+  }
+})();
+</script>
 </html>
