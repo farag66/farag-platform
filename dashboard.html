@@ -1271,4 +1271,44 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   }, 300);
 })();
 </script>
+<style>
+/* ===== تثبيت الالوان - كتابة فاتحة على خلفية غامقة عشان تبان ===== */
+#app, #app div, #app section, #app main, #app h1, #app h2, #app h3, #app h4, #app p, #app span, #app label, #app b, #app strong {
+  color: #ffffff !important;
+}
+#app p, #app span, #app label, #app div {
+  color: #e2e8f0 !important;
+}
+#app h1, #app h2, #app h3, #app b, #app strong {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+/* العناوين الصغيرة اللي كانت رمادي */
+#app small, #app .muted, #app [style*="color:#94a3b8"], #app [style*="color:#cbd5e1"] {
+  color: #cbd5e1 !important;
+}
+/* الكروت - غمقها اكتر عشان الكتابة تنور عليها */
+#app > div, #app div[style*="background:#14132a"], #app div[style*="background:#1e1b4b"] {
+  background-color: #0f0f1f !important;
+  border-color: #2e2e4a !important;
+}
+/* خانات الكتابة - خلفية غامقة وكتابة بيضا */
+#app input, #app textarea, #app select {
+  background: #0a0a18 !important;
+  color: #ffffff !important;
+  border: 1px solid #3b3b5c !important;
+}
+#app input::placeholder, #app textarea::placeholder {
+  color: #94a3b8 !important;
+  opacity: 1 !important;
+}
+/* زرار Back to Dashboard والزرارات الفاتحة - خلي كتابتها غامقة عشان تبان */
+#app button[style*="background:#e0e7ff"], #app button[style*="background:#fee2e2"] {
+  color: #1e1b4b !important;
+}
+/* عنوان Comment Analytics اللي كان اسود ومش باين */
+#app h1, #app h2 {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8) !important;
+}
+</style>
 </html>
