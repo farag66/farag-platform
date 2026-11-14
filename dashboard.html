@@ -1476,67 +1476,81 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
 #sidebarWrap.open #sidebarToggle{
   transform: rotate(180deg) scale(1.08);
 }
+<style>
+/* فخامة من غير شبورة خالص */
+#backdrop{ display:none !important; opacity:0 !important; pointer-events:none !important; }
+#sidebarWrap{
+  transition: transform .7s cubic-bezier(.22,1,.36,1) !important;
+  box-shadow: -35px 0 90px rgba(0,0,0,.7) !important;
+}
+#sidebar{
+  transition: all .7s cubic-bezier(.22,1,.36,1) !important;
+  box-shadow: inset 0 0 70px rgba(124,58,237,.18), -25px 0 70px rgba(0,0,0,.55) !important;
+}
+#sidebarToggle{
+  transition: all .55s cubic-bezier(.34,1.56,.64,1) !important;
+  box-shadow: 0 12px 30px rgba(124,58,237,.85), 0 0 0 3px rgba(167,139,250,.35) !important;
+}
+#sidebarWrap.open #sidebarToggle{
+  transform: rotate(180deg) scale(1.1);
+}
 </style>
 
 <script>
-/* رجّع الزرار لمكانه الصح + سحبة فخمة */
+/* افتح واقفل القايمة بس - من غير اي شبورة */
 (function(){
   var wrap = document.getElementById('sidebarWrap');
   var back = document.getElementById('backdrop');
   var btn = document.getElementById('sidebarToggle');
-  if(!wrap || !back || !btn) return;
+  if(!wrap || !btn) return;
 
-  // 1. رجّع الزرار جوة مكانه الاصلي
-  if(btn.parentNode !== wrap){
-    wrap.appendChild(btn);
+  // اقتل الشبورة نهائيا
+  if(back){
+    back.style.display = 'none';
+    back.onclick = null;
+    back.remove();
   }
-  // رجّع شكله الاصلي بالظبط
+
+  // تأكد ان الزرار جوة مكانه الصح
+  if(btn.parentNode !== wrap) wrap.appendChild(btn);
   btn.style.position = 'absolute';
   btn.style.top = '108px';
   btn.style.right = '-19px';
   btn.style.left = 'auto';
   btn.style.zIndex = '60';
-  btn.style.position = 'absolute';
 
-  function closeSide(){
-    wrap.classList.remove('open');
-    back.classList.remove('show');
-    btn.innerHTML = '☰';
-  }
   function openSide(){
     wrap.classList.add('open');
-    back.classList.add('show');
     btn.innerHTML = '✕';
   }
+  function closeSide(){
+    wrap.classList.remove('open');
+    btn.innerHTML = '☰';
+  }
+
+  // دي اهم حتة - الزرار يفتح ويقفل بس
   window.toggleSidebar = function(e){
-    if(e) e.stopPropagation();
+    if(e){ e.preventDefault(); e.stopPropagation(); }
     if(wrap.classList.contains('open')) closeSide();
     else openSide();
   };
   btn.onclick = window.toggleSidebar;
-  back.onclick = function(e){ e.stopPropagation(); closeSide(); };
 
-  // 2. سحبة بصباعك - اسحب يمين يقفل، اسحب شمال يفتح
+  // سحبة بصباعك: يمين يقفل، من الحافة يفتح
   var startX = 0, currentX = 0, dragging = false;
-  document.addEventListener('touchstart', function(e){
-    startX = e.touches[0].clientX;
-    dragging = true;
-  }, {passive:true});
-  document.addEventListener('touchmove', function(e){
-    if(!dragging) return;
-    currentX = e.touches[0].clientX;
-  }, {passive:true});
+  document.addEventListener('touchstart', function(e){ startX = e.touches[0].clientX; dragging = true; }, {passive:true});
+  document.addEventListener('touchmove', function(e){ if(dragging) currentX = e.touches[0].clientX; }, {passive:true});
   document.addEventListener('touchend', function(){
-    if(!dragging) return;
-    dragging = false;
+    if(!dragging) return; dragging = false;
     var diff = currentX - startX;
-    // في العربي: اسحب لليمين يقفل
     if(wrap.classList.contains('open') && diff > 70) closeSide();
-    // اسحب من الحافة الشمال يفتح
     if(!wrap.classList.contains('open') && startX < 25 && diff < -70) openSide();
   }, {passive:true});
 
-  document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeSide(); });
+  // دوس على اي تبويبة في القايمة تقفل لوحدها بفخامة
+  wrap.querySelectorAll('.side').forEach(function(item){
+    item.addEventListener('click', function(){ setTimeout(closeSide, 250); });
+  });
 })();
 </script>
 </html>
