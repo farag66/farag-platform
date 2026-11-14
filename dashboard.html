@@ -1130,4 +1130,108 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   setInterval(inject, 800);
 })();
 </script>
+<script>
+/* ===== Social Posting - اختر نص من المخزن - اضافة بس من غير ما نغير حاجة ===== */
+(function(){
+  function getTexts(){
+    try{
+      if(window.DB && DB.get){
+        var a = DB.get('farag_media_textonly', null);
+        if(a && a.length) return a;
+      }
+    }catch(e){}
+    try{ return JSON.parse(localStorage.getItem('farag_media_textonly') || '[]'); }catch(e){ return []; }
+  }
+
+  function injectSocialTextPicker(){
+    if(document.getElementById('sp-text-picker')) return;
+
+    // دور على تبويبة Social Posting من غير ما نغير فيها حاجة
+    var all = Array.from(document.querySelectorAll('div, section, main'));
+    var socialBox = null;
+    for(var i=0;i<all.length;i++){
+      var t = all[i].innerText || '';
+      if(t.includes('Social Posting') || t.includes('سوشيال') || t.includes('Social')){
+        // خد اكبر بوكس فيه زرار نشر و textarea
+        if(all[i].querySelector('textarea') && all[i].querySelector('button')){
+          socialBox = all[i];
+          break;
+        }
+      }
+    }
+    if(!socialBox){
+      // لو ملقيناش بالاسم، دور على اي بوكس فيه textarea بتاعة النشر
+      var textareas = document.querySelectorAll('textarea');
+      for(var j=0;j<textareas.length;j++){
+        var p = textareas[j].closest('div');
+        if(p && !p.closest('#ct-final-wrap') && !p.querySelector('#sp-text-picker')){
+          // ده غالبا بوكس النشر، بس متضيفش لو ده بوكس Media & Content
+          if(!p.innerHTML.includes('ct-final-text') && !p.innerHTML.includes('ct-textonly')){
+            socialBox = p;
+            break;
+          }
+        }
+      }
+    }
+    if(!socialBox) return;
+
+    // لاقينا بوكس النشر - هنضيف فوق الـ textarea بتاعته اختيار بس
+    var ta = socialBox.querySelector('textarea');
+    if(!ta) return;
+
+    var wrap = document.createElement('div');
+    wrap.id = 'sp-text-picker';
+    wrap.style.cssText = 'background:#14132a;border:1px solid #3b3b5c;border-radius:14px;padding:10px;margin-bottom:10px';
+    wrap.innerHTML = '<b style="color:#fff;font-size:13px">📝 اختر نص من المخزن</b>'
+      + '<div style="font-size:11px;color:#cbd5e1;margin-top:2px">اختار نص من اللي حفظته في Media & Content - نص فقط، وهيتحط لوحده في خانة النشر</div>'
+      + '<div style="display:flex;gap:6px;margin-top:8px">'
+      + '<select id="sp-text-select" style="flex:1;padding:11px;border:1px solid #3b3b5c;border-radius:12px;background:#1e1b4b;color:#fff;font-size:13px"><option value="">-- اختر نص من المخزن --</option></select>'
+      + '<button id="sp-text-refresh" style="background:#e0e7ff;color:#3730a3;border:none;padding:10px 14px;border-radius:12px;font-weight:800;cursor:pointer;white-space:nowrap">🔄 تحديث</button>'
+      + '</div>';
+
+    ta.parentNode.insertBefore(wrap, ta);
+
+    function fillSelect(){
+      var sel = document.getElementById('sp-text-select');
+      if(!sel) return;
+      var arr = getTexts();
+      var cur = sel.value;
+      sel.innerHTML = '<option value="">-- اختر نص من المخزن ('+arr.length+' نص) --</option>';
+      arr.forEach(function(x, idx){
+        var o = document.createElement('option');
+        o.value = idx;
+        o.textContent = (x.name || 'نص بدون اسم') + ' - ' + String(x.text||'').substring(0,35);
+        sel.appendChild(o);
+      });
+      sel.value = cur;
+    }
+    fillSelect();
+
+    document.getElementById('sp-text-refresh').onclick = fillSelect;
+
+    document.getElementById('sp-text-select').onchange = function(){
+      var arr = getTexts();
+      var idx = parseInt(this.value);
+      if(isNaN(idx)) return;
+      var x = arr[idx];
+      if(!x) return;
+      // حط النص في خانة النشر الاصلية - من غير ما نغير اي حاجة تانيه فيها
+      var target = socialBox.querySelector('textarea');
+      if(target){
+        target.value = x.text;
+        target.dispatchEvent(new Event('input', {bubbles:true}));
+        target.dispatchEvent(new Event('change', {bubbles:true}));
+        target.focus();
+      }
+      alert('✅ اتحط النص:\n' + (x.name || ''));
+    };
+
+    // حدّث القايمة كل ما ترجع للتبويبة
+    setInterval(fillSelect, 3000);
+    console.log('✅ اختر نص من المخزن اتضاف في Social Posting');
+  }
+
+  setInterval(injectSocialTextPicker, 1000);
+})();
+</script>
 </html>
