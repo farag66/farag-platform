@@ -1390,4 +1390,68 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   background: transparent !important;
 }
 </style>
+<style>
+/* ===== غمّق اي حباية / بادج فاتحة في كل التبويبات - عشان الكتابة تبان ===== */
+
+/* اخضر فاتح -> اخضر غامق */
+#app [style*="background:#dcfce7"],
+#app [style*="background:#d1fae5"],
+#app [style*="background:#a7f3d0"],
+#app [style*="background:#bbf7d0"],
+#app [style*="background:#86efac"],
+#app [style*="background:#ecfdf5"] {
+  background: #14532d !important;
+  background-color: #14532d !important;
+  color: #fff !important;
+  border-color: #22c55e !important;
+}
+
+/* اصفر فاتح -> بني غامق */
+#app [style*="background:#fef3c7"],
+#app [style*="background:#fef9c3"],
+#app [style*="background:#fde68a"],
+#app [style*="background:#fde68a"],
+#app [style*="background:#fefce8"] {
+  background: #92400e !important;
+  background-color: #92400e !important;
+  color: #fff !important;
+  border-color: #f59e0b !important;
+}
+
+/* احمر فاتح -> احمر غامق */
+#app [style*="background:#fee2e2"],
+#app [style*="background:#fecaca"],
+#app [style*="background:#fef2f2"] {
+  background: #7f1d1d !important;
+  background-color: #7f1d1d !important;
+  color: #fff !important;
+}
+
+/* ازرق / بنفسجي فاتح -> غامق */
+#app [style*="background:#e0e7ff"],
+#app [style*="background:#dbeafe"],
+#app [style*="background:#ede9fe"],
+#app [style*="background:#e0f2fe"] {
+  background: #312e81 !important;
+  background-color: #312e81 !important;
+  color: #fff !important;
+}
+
+/* الكتابة اللي جوة الحبايات دي - كانت غامقة على فاتح، دلوقتي لازم تبقى بيضا */
+#app [style*="background:#dcfce7"] *,
+#app [style*="background:#fef3c7"] *,
+#app [style*="background:#fee2e2"] *,
+#app [style*="background:#e0e7ff"] * {
+  color: #fff !important;
+}
+
+/* اي بادج صغيرة مدورة - خلّي كتابتها اتخن عشان تبان */
+#app span[style*="border-radius:99px"],
+#app span[style*="border-radius:999px"],
+#app div[style*="border-radius:99px"] {
+  font-weight: 900 !important;
+  color: #fff !important;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6) !important;
+}
+</style>
 </html>
