@@ -1537,4 +1537,52 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   }
 }
 </style>
+<style>
+/* ===== موبايل صح - بيستهدف السايد بار الحقيقي مش #app ===== */
+@media (max-width: 768px) {
+  body > div[style*="display:flex"] {
+    flex-direction: column !important;
+    display: block !important;
+  }
+  /* السايد بار الحقيقي - يبقى شريط فوق مش واخد الشاشة */
+  .sidebar-wrap, .sidebar {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    padding: 8px !important;
+    gap: 6px !important;
+  }
+  .sidebar-wrap span, .sidebar span {
+    display: none !important;
+  }
+  .sidebar button {
+    min-width: 46px !important;
+    width: 46px !important;
+    height: 46px !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+  }
+  /* المحتوى ياخد الشاشة كلها */
+  #app {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 10px !important;
+    display: block !important;
+  }
+  /* كروت Media & Content - واحد تحت واحد */
+  #app div[style*="grid-template-columns"],
+  .stats-grid, .icons-grid, .charts-grid {
+    grid-template-columns: 1fr !important;
+  }
+  #app input, #app select, #app textarea {
+    width: 100% !important;
+    font-size: 16px !important;
+  }
+}
+</style>
 </html>
