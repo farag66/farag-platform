@@ -1032,79 +1032,84 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
 })();
 </script>
 <script>
-/* ===== Media & Content - زرار (نص فقط) جنب زرار الاضافة - طريقة مضمونة ===== */
+/* ===== Media & Content - صندوق (نص فقط) لوحده - منفصل تماما ===== */
 (function(){
-  // امسح اي observer قديم لو موجود
-  if(window._textOnlyObs){ try{ window._textOnlyObs.disconnect(); }catch(e){} }
+  // حفظ / قراءة - بيشتغل مع DB ولو مش موجود بيشتغل مع localStorage
+  function getTexts(){
+    try{ if(window.DB && DB.get) { var a = DB.get('farag_media_textonly', null); if(a) return a; } }catch(e){}
+    try{ return JSON.parse(localStorage.getItem('farag_media_textonly') || '[]'); }catch(e){ return []; }
+  }
+  function setTexts(a){
+    try{ if(window.DB && DB.set) DB.set('farag_media_textonly', a); }catch(e){}
+    try{ localStorage.setItem('farag_media_textonly', JSON.stringify(a)); }catch(e){}
+  }
 
-  window.ctTextOnlyAdd2 = function(){
-    var t = prompt('📝 اكتب نص البوست فقط (من غير صورة ولا فيديو):');
-    if(!t || !t.trim()) return;
-    var arr = [];
-    try{ arr = JSON.parse(localStorage.getItem('farag_media_textonly') || '[]'); }catch(e){ arr = []; }
-    // حاول مع DB لو موجود، ولو مش موجود استخدم localStorage
-    if(window.DB && typeof DB.get === 'function'){
-      try{ arr = DB.get('farag_media_textonly', []); }catch(e){}
-    }
-    arr.unshift({ id: Date.now(), text: t.trim(), time: new Date().toLocaleString('ar-EG') });
-    try{ if(window.DB) DB.set('farag_media_textonly', arr); }catch(e){}
-    try{ localStorage.setItem('farag_media_textonly', JSON.stringify(arr)); }catch(e){}
-    alert('✅ اتحفظ نص البوست\n\nهتلاقيه في Media & Content تحت، في قسم (نص فقط)');
-    ctTextOnlyShowList();
+  window.saveTextOnlyPost = function(){
+    var inp = document.getElementById('ct-alone-textarea');
+    if(!inp) return;
+    var t = inp.value.trim();
+    if(!t){ alert('اكتب نص البوست الاول'); return; }
+    var arr = getTexts();
+    arr.unshift({ id: Date.now(), text: t, time: new Date().toLocaleString('ar-EG') });
+    setTexts(arr);
+    inp.value = '';
+    renderTextOnlyList();
+    alert('✅ اتحفظ نص البوست');
+  };
+  window.delTextOnlyPost = function(id){
+    if(!confirm('هتمسح النص ده؟')) return;
+    setTexts(getTexts().filter(function(x){ return x.id != id; }));
+    renderTextOnlyList();
+  };
+  window.copyTextOnlyPost = function(id){
+    var x = getTexts().find(function(v){ return v.id == id; });
+    if(!x) return;
+    var ta = document.getElementById('copy-txt-'+id);
+    if(ta){ ta.select(); document.execCommand('copy'); alert('📋 اتنسخ نص البوست'); }
+    else { prompt('انسخ النص:', x.text); }
   };
 
-  window.ctTextOnlyShowList = function(){
-    var box = document.getElementById('ct-textonly-list');
+  window.renderTextOnlyList = function(){
+    var box = document.getElementById('ct-alone-list');
     if(!box) return;
-    var arr = [];
-    try{ if(window.DB) arr = DB.get('farag_media_textonly', []); }catch(e){}
-    if(!arr.length){ try{ arr = JSON.parse(localStorage.getItem('farag_media_textonly')||'[]'); }catch(e){} }
-    if(!arr.length){ box.innerHTML = '<div style="text-align:center;color:#94a3b8;padding:10px;font-size:12px">لسه مفيش نصوص محفوظة - دوس (📝 نص فقط) اللي فوق</div>'; return; }
+    var arr = getTexts();
+    if(!arr.length){
+      box.innerHTML = '<div style="text-align:center;color:#94a3b8;padding:12px;font-size:12px">لسه مفيش نصوص محفوظة</div>';
+      return;
+    }
     box.innerHTML = arr.map(function(x){
-      return '<div style="background:#0f0f1f;border:1px solid #3b3b5c;border-radius:14px;padding:10px;margin-top:8px"><div style="color:#fff;font-size:13px;line-height:1.8;white-space:pre-wrap">'+String(x.text).replace(/</g,'&lt;')+'</div><div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:11px;color:#94a3b8">'+(x.time||'')+'</span><button onclick="navigator.clipboard.writeText(document.getElementById(\'txt-'+x.id+'\').value);alert(\'📋 اتنسخ\')" style="background:#e0e7ff;color:#3730a3;border:none;padding:6px 12px;border-radius:99px;font-weight:800;cursor:pointer">📋 نسخ</button></div><textarea id="txt-'+x.id+'" style="display:none">'+String(x.text).replace(/</g,'&lt;')+'</textarea></div>';
+      return '<div style="background:#0f0f1f;border:1px solid #3b3b5c;border-radius:14px;padding:10px;margin-top:8px">'
+        + '<div style="color:#fff;font-size:13px;line-height:1.8;white-space:pre-wrap">'+String(x.text).replace(/</g,'&lt;')+'</div>'
+        + '<div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="font-size:11px;color:#94a3b8">'+(x.time||'')+'</span><div style="display:flex;gap:6px"><button onclick="copyTextOnlyPost('+x.id+')" style="background:#e0e7ff;color:#3730a3;border:none;padding:6px 14px;border-radius:99px;font-weight:800;cursor:pointer">📋 نسخ</button><button onclick="delTextOnlyPost('+x.id+')" style="background:#fee2e2;color:#991b1b;border:none;padding:6px 14px;border-radius:99px;font-weight:800;cursor:pointer">🗑️ مسح</button></div></div>'
+        + '<textarea id="copy-txt-'+x.id+'" style="position:absolute;left:-9999px;opacity:0">'+String(x.text).replace(/</g,'&lt;')+'</textarea></div>';
     }).join('');
   };
 
-  // حط الزرار جنب زرار الاضافة الاصلي
-  function injectBtn(){
+  // حط الصندوق في اخر صفحة Media & Content - لوحدها
+  function injectAlone(){
     var app = document.getElementById('app');
     if(!app) return;
-    // لو احنا مش في Media & Content متعملش حاجة
-    if(!app.innerHTML.includes('Media & Content')) return;
-    if(document.getElementById('ct-btn-textonly')) { ctTextOnlyShowList(); return; }
-
-    // دور على زرار (اضف صورة) الاصلي
-    var btns = app.querySelectorAll('button, div');
-    var addBtn = null;
-    for(var i=0;i<btns.length;i++){
-      if(btns[i].textContent && btns[i].textContent.includes('اضف صورة')){
-        addBtn = btns[i];
-        break;
-      }
+    // اتأكد اننا في Media & Content بس
+    if(app.innerHTML.indexOf('Media & Content') === -1) return;
+    if(document.getElementById('ct-alone-wrap')){
+      renderTextOnlyList();
+      return;
     }
-    if(!addBtn) return;
-
-    // اعمل زرار نص فقط جنبه
-    var b = document.createElement('button');
-    b.id = 'ct-btn-textonly';
-    b.textContent = '📝 نص فقط';
-    b.onclick = ctTextOnlyAdd2;
-    b.style.cssText = 'background:#0ea5e9;color:#fff;border:none;padding:12px 18px;border-radius:99px;font-weight:900;cursor:pointer;margin-right:8px;white-space:nowrap';
-    addBtn.parentNode.insertBefore(b, addBtn.nextSibling);
-
-    // اعمل مكان عرض النصوص المحفوظة تحت الزرار
-    if(!document.getElementById('ct-textonly-list')){
-      var list = document.createElement('div');
-      list.id = 'ct-textonly-list';
-      list.style.cssText = 'margin-top:10px';
-      addBtn.parentNode.parentNode.insertBefore(list, addBtn.parentNode.nextSibling);
-    }
-    ctTextOnlyShowList();
+    var div = document.createElement('div');
+    div.id = 'ct-alone-wrap';
+    div.style.cssText = 'background:#14132a;border:1px solid #3b3b5c;border-radius:22px;padding:14px;margin-top:16px';
+    div.innerHTML = '<b style="color:#fff;font-size:16px">📝 نص فقط - بوست نصي لوحده</b>'
+      + '<div style="font-size:12px;color:#cbd5e1;margin-top:4px;line-height:1.7">ده صندوق منفصل لوحده - اكتب نص البوست واحفظه هنا، من غير صورة ولا فيديو ولا بوست كامل - ومش بيأثر على اي حاجة تانية في الصفحة</div>'
+      + '<textarea id="ct-alone-textarea" placeholder="اكتب نص البوست هنا... مثال: العرض النهارده خصم 20% ❤️" style="width:100%;min-height:100px;padding:12px;border:1px solid #3b3b5c;border-radius:12px;margin-top:10px;background:#1e1b4b;color:#fff;font-size:14px"></textarea>'
+      + '<button onclick="saveTextOnlyPost()" style="width:100%;margin-top:10px;background:#22c55e;color:#fff;border:none;padding:13px;border-radius:99px;font-weight:900;cursor:pointer;font-size:15px">💾 حفظ نص البوست</button>'
+      + '<div id="ct-alone-list" style="margin-top:10px"></div>';
+    app.appendChild(div);
+    renderTextOnlyList();
   }
 
-  // جرب كل شوية لحد ما صفحة Media تفتح، ومن غير ما نكسر اي render
-  setInterval(injectBtn, 800);
-  console.log('✅ زرار (نص فقط) هيظهر جنب زرار الاضافة');
+  // كل ثانية جرب تحط الصندوق - عشان يظهر اول ما تفتح Media & Content
+  setInterval(injectAlone, 1000);
+  console.log('✅ صندوق (نص فقط) لوحده اتركب');
 })();
 </script>
 </html>
