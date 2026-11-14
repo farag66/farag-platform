@@ -1311,4 +1311,83 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   text-shadow: 0 1px 2px rgba(0,0,0,0.8) !important;
 }
 </style>
+<style>
+/* ===== كل الخلفيات البيضا تبقى غامقة - في كل التبويبات ===== */
+
+/* اي حاجة خلفيتها ابيض او اوف وايت او فاتحة */
+#app div[style*="background:#fff"],
+#app div[style*="background: #fff"],
+#app div[style*="background:#ffffff"],
+#app div[style*="background:#f8fafc"],
+#app div[style*="background:#f1f5f9"],
+#app div[style*="background:#fef3c7"],
+#app div[style*="background:#dcfce7"],
+#app div[style*="background:#fee2e2"],
+#app div[style*="background:#e0e7ff"],
+#app div[style*="background:#eff6ff"],
+#app div[style*="background:#fff7ed"],
+#app div[style*="background:#f0fdf4"],
+#app div[style*="background:#fdf2f8"],
+#app section[style*="background:#fff"],
+#app main[style*="background:#fff"] {
+  background: #14132a !important;
+  background-color: #14132a !important;
+  color: #fff !important;
+  border-color: #3b3b5c !important;
+}
+
+/* اي كارت ابيض عموما - حتى لو من غير style مباشر */
+#app .card, #app .box, #app .panel {
+  background: #14132a !important;
+  background-color: #14132a !important;
+  color: #fff !important;
+  border-color: #3b3b5c !important;
+}
+
+/* الكتابة اللي جوه الخلفيات اللي كانت بيضا - كانت اسود فمش هتبان */
+#app div[style*="background:#fff"] *,
+#app div[style*="background:#f8fafc"] *,
+#app div[style*="background:#f1f5f9"] *,
+#app div[style*="background:#fef3c7"] *,
+#app div[style*="background:#dcfce7"] *,
+#app div[style*="background:#fee2e2"] *,
+#app div[style*="background:#e0e7ff"] * {
+  color: #fff !important;
+}
+
+/* الكتابة الرمادي الغامق اللي جوه - افتحها شوية عشان تبان */
+#app div[style*="color:#666"],
+#app div[style*="color:#888"],
+#app div[style*="color:#999"],
+#app div[style*="color:#64748b"],
+#app div[style*="color:#475569"] {
+  color: #cbd5e1 !important;
+}
+
+/* خانات الكتابة اللي كانت بيضا */
+#app input[style*="background:#fff"],
+#app textarea[style*="background:#fff"],
+#app select[style*="background:#fff"],
+#app input[style*="background:#f8fafc"],
+#app textarea[style*="background:#f8fafc"] {
+  background: #1e1b4b !important;
+  background-color: #1e1b4b !important;
+  color: #fff !important;
+  border-color: #3b3b5c !important;
+}
+
+/* زرار Add Button الفاتح اللي تحت - غمقه هو كمان */
+#app button[style*="background:#f1f5f9"],
+#app button[style*="background:#fff"] {
+  background: #2e2d4d !important;
+  background-color: #2e2d4d !important;
+  color: #fff !important;
+  border-color: #7c3aed !important;
+}
+
+/* الصور جوة الكروت - سيبها زي ما هي، متغمقهاش */
+#app img {
+  background: transparent !important;
+}
+</style>
 </html>
