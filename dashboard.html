@@ -1454,4 +1454,87 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   text-shadow: 0 1px 2px rgba(0,0,0,0.6) !important;
 }
 </style>
+<style>
+/* ===== موبايل بس - Media & Content + الداشبورد كله يبقى موبايل مش كمبيوتر ===== */
+@media (max-width: 768px) {
+
+  /* الغي تقسيمة الكمبيوتر - خلي كل حاجة فوق بعض */
+  #app {
+    display: block !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* السايد بار - اخفيه وخليه فوق بشكل افقي، مش واخد الشاشة كلها */
+  #app > div:first-child,
+  #app aside,
+  #app nav,
+  #app [class*="sidebar"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+    min-height: auto !important;
+    position: relative !important;
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    padding: 10px !important;
+    gap: 6px !important;
+    white-space: nowrap !important;
+  }
+
+  /* اخفي الكلام الكتير جوه السايد بار على الموبايل - خلي الايقونات بس */
+  #app > div:first-child span,
+  #app aside span,
+  #app nav span {
+    display: none !important;
+  }
+  #app > div:first-child button,
+  #app aside button,
+  #app nav button {
+    min-width: 48px !important;
+    width: 48px !important;
+    height: 48px !important;
+    padding: 0 !important;
+    flex-shrink: 0 !important;
+    font-size: 20px !important;
+  }
+
+  /* المحتوى - ياخد الشاشة كلها */
+  #app > div:last-child,
+  #app main,
+  #app [class*="content"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 12px !important;
+  }
+
+  /* Media & Content - الكروت تبقى واحد تحت واحد مش 3 جنب بعض */
+  #app div[style*="grid-template-columns"],
+  #app div[style*="grid-template-columns:repeat"] {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  /* خانات الاضافة - كل خانة سطر لوحده */
+  #app input, #app select, #app textarea, #app button {
+    width: 100% !important;
+    max-width: 100% !important;
+    font-size: 16px !important;
+  }
+
+  /* العناوين تكبر وتبان */
+  #app h1 { font-size: 20px !important; }
+  #app h2 { font-size: 18px !important; }
+  #app h3 { font-size: 16px !important; }
+
+  /* الكارت الواحد - ياخد العرض كله */
+  #app div[style*="background:#14132a"] {
+    width: 100% !important;
+  }
+}
+</style>
 </html>
