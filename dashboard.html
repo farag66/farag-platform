@@ -1234,4 +1234,41 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   setInterval(injectSocialTextPicker, 1000);
 })();
 </script>
+<script>
+/* ===== Comment Analytics - توصيل الايقونة للصفحة الحقيقية renderCA - اخر حاجة ===== */
+(function(){
+  // استنى لحد ما كل الـ go اللي قبله يتعرفوا
+  var tries = 0;
+  var timer = setInterval(function(){
+    tries++;
+    if(typeof window.go !== 'function' || typeof window.renderCA !== 'function'){
+      if(tries > 30) clearInterval(timer);
+      return;
+    }
+    clearInterval(timer);
+
+    var _oldGoCA = window.go;
+    window.go = function(p, el){
+      var k = String(p || '').toLowerCase().replace(/[^a-z]/g, '');
+      // ايقونة Comment Analytics بس - analytics / commentanalytics
+      if(k === 'analytics' || k === 'commentanalytics' || k === 'commentanalytic' || k === 'analyticscomment'){
+        try{ if(typeof renderMenu === 'function') renderMenu(p); }catch(e){}
+        try{
+          var sw = document.getElementById('sidebarWrap');
+          var bd = document.getElementById('backdrop');
+          if(window.innerWidth <= 768){
+            if(sw) sw.classList.remove('open');
+            if(bd) bd.classList.remove('show');
+          }
+        }catch(e){}
+        try{ renderCA(); }catch(e){ alert('في مشكلة في Comment Analytics: ' + e.message); }
+        window.scrollTo(0,0);
+        return;
+      }
+      return _oldGoCA(p, el);
+    };
+    console.log('✅ Comment Analytics اتوصلت لـ renderCA');
+  }, 300);
+})();
+</script>
 </html>
