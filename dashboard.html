@@ -1031,4 +1031,45 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   console.log('✅ اتغمقت خلفية Add Buttons بس');
 })();
 </script>
+<script>
+/* ===== Media & Content - اضافة اختيار (نص فقط) جنب الـ 3 الموجودين - من غير تغييرهم ===== */
+(function(){
+  // 1. احفظ اللي موجود - النص فقط
+  window.ctTextOnlyAdd = function(){
+    var t = prompt('📝 اكتب نص البوست فقط (من غير صورة ولا فيديو):');
+    if(!t || !t.trim()) return;
+    var arr = DB.get('farag_media_textonly', []);
+    arr.unshift({ id: Date.now(), text: t.trim(), time: new Date().toLocaleString('ar-EG') });
+    DB.set('farag_media_textonly', arr);
+    alert('✅ اتحفظ نص البوست في Media & Content\n\nهتلاقيه في فلتر (نص فقط)');
+    if(typeof renderMedia === 'function') renderMedia();
+    if(typeof renderMC2 === 'function') renderMC2();
+  };
+
+  // 2. راقب القايمة بتاعة (اضف صورة / فيديو / بوست) و ضيف اختيار رابع بس
+  var _obs = new MutationObserver(function(){
+    // دور على القايمة اللي فيها (بوست كامل)
+    var els = document.querySelectorAll('*');
+    for(var i=0;i<els.length;i++){
+      var el = els[i];
+      if(el.textContent && el.textContent.includes('بوست كامل') && !document.getElementById('ct-opt-textonly')){
+        // لقى القايمة - ضيف الاختيار الرابع تحتها
+        var parent = el.parentElement;
+        if(!parent) continue;
+        var opt = document.createElement('div');
+        opt.id = 'ct-opt-textonly';
+        opt.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;border-top:1px solid rgba(255,255,255,.08)';
+        opt.onclick = function(){ ctTextOnlyAdd(); };
+        opt.innerHTML = '<span style="font-size:18px;font-weight:800;color:#fff">📝 نص فقط</span><span style="width:22px;height:22px;border:2px solid #fff;border-radius:50%;display:block"></span>';
+        // حطها بعد (بوست كامل) على طول
+        if(parent.nextSibling) parent.parentNode.insertBefore(opt, parent.nextSibling);
+        else parent.parentNode.appendChild(opt);
+        break;
+      }
+    }
+  });
+  _obs.observe(document.body, { childList:true, subtree:true });
+  console.log('✅ اختيار (نص فقط) هيظهر جنب الـ 3 الموجودين - من غير ما نغيرهم');
+})();
+</script>
 </html>
