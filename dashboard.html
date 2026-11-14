@@ -1112,5 +1112,121 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
   console.log('✅ صندوق (نص فقط) لوحده اتركب');
 })();
 </script>
-<script>alert('✅ اللصق شغال - الكود بيوصل للصفحة');</script>
+<script>
+/* ===== TEST - صندوق نص فقط - بيظهر في اي صفحة عشان نتأكد ===== */
+(function(){
+  function addBox(){
+    var app = document.getElementById('app');
+    if(!app) {
+      // لو مفيش #app، جرب تحطه في body على طول
+      app = document.body;
+    }
+    if(document.getElementById('ct-test-box')) return;
+    var div = document.createElement('div');
+    div.id = 'ct-test-box';
+    div.style.cssText = 'background:#dc2626;color:#fff;padding:16px;border-radius:16px;margin:16px;text-align:center;font-weight:900;font-size:16px;position:relative;z-index:9999';
+    div.innerHTML = '📝 لو شايف البوكس الاحمر ده، يبقى الكود شغال<br><span style="font-size:12px;font-weight:400">ابعتلي سكرين وقولي شفته في انهي صفحة</span><br><textarea placeholder="اكتب نص البوست هنا" style="width:100%;padding:10px;border-radius:12px;margin-top:10px;color:#000"></textarea>';
+    app.appendChild(div);
+  }
+  setInterval(addBox, 1000);
+})();
+</script>
+<script>
+/* ===== Media & Content - اضافة (نص فقط) جوه نفس قايمة صورة / فيديو / بوست كامل ===== */
+(function(){
+  function getTexts(){
+    try{ if(window.DB && DB.get){ var a = DB.get('farag_media_textonly', null); if(a) return a; } }catch(e){}
+    try{ return JSON.parse(localStorage.getItem('farag_media_textonly') || '[]'); }catch(e){ return []; }
+  }
+  function setTexts(a){
+    try{ if(window.DB && DB.set) DB.set('farag_media_textonly', a); }catch(e){}
+    try{ localStorage.setItem('farag_media_textonly', JSON.stringify(a)); }catch(e){}
+  }
+
+  // حفظ نص فقط - بيشتغل مع زرار (حفظ في المخزن) الاصلي
+  window.saveTextOnlyFromForm = function(){
+    var nameInput = document.querySelector('input[placeholder*="اسم العنصر"]');
+    var txt = document.getElementById('ct-textonly-area');
+    if(!txt) return;
+    var t = txt.value.trim();
+    var nm = nameInput ? nameInput.value.trim() : '';
+    if(!t){ alert('اكتب نص البوست الاول في خانة (نص البوست)'); return; }
+    var arr = getTexts();
+    arr.unshift({ id: Date.now(), name: nm || 'نص بدون اسم', text: t, time: new Date().toLocaleString('ar-EG') });
+    setTexts(arr);
+    txt.value = '';
+    renderTextOnlySaved();
+    alert('✅ اتحفظ نص البوست لوحده\n\nالاسم: ' + (nm || 'نص بدون اسم'));
+  };
+
+  window.renderTextOnlySaved = function(){
+    var box = document.getElementById('ct-textonly-saved');
+    if(!box) return;
+    var arr = getTexts();
+    if(!arr.length){ box.innerHTML = '<div style="text-align:center;color:#94a3b8;padding:8px;font-size:12px">لسه مفيش نصوص محفوظة</div>'; return; }
+    box.innerHTML = arr.slice(0,5).map(function(x){
+      return '<div style="background:#0f0f1f;border:1px solid #3b3b5c;border-radius:12px;padding:8px;margin-top:6px"><b style="color:#fff;font-size:12px">'+String(x.name).replace(/</g,'&lt;')+'</b><div style="color:#cbd5e1;font-size:12px;line-height:1.7;white-space:pre-wrap">'+String(x.text).replace(/</g,'&lt;')+'</div><button onclick="navigator.clipboard.writeText(document.getElementById(\'c-'+x.id+'\').value);alert(\'📋 اتنسخ\')" style="background:#e0e7ff;color:#3730a3;border:none;padding:5px 12px;border-radius:99px;font-weight:800;cursor:pointer;margin-top:4px">📋 نسخ</button><textarea id="c-'+x.id+'" style="display:none">'+String(x.text).replace(/</g,'&lt;')+'</textarea></div>';
+    }).join('');
+  };
+
+  function inject(){
+    // دور على قايمة النوع - اللي فيها اختيار (صورة)
+    var selects = document.querySelectorAll('select');
+    var typeSelect = null;
+    for(var i=0;i<selects.length;i++){
+      if(selects[i].innerHTML.includes('صورة')){
+        typeSelect = selects[i];
+        break;
+      }
+    }
+    if(!typeSelect) return;
+    if(document.getElementById('ct-textonly-area')) return; // اتضاف خلاص
+
+    // 1. ضيف اختيار (نص فقط) جوه نفس القايمة - من غير ما تمس الـ 3 القدام
+    if(!typeSelect.innerHTML.includes('نص فقط')){
+      var opt = document.createElement('option');
+      opt.value = 'textonly';
+      opt.textContent = '📝 نص فقط';
+      typeSelect.appendChild(opt);
+    }
+
+    // 2. اعمل خانة نص البوست - بتظهر بس لما تختار (نص فقط)
+    var area = document.createElement('textarea');
+    area.id = 'ct-textonly-area';
+    area.placeholder = '📝 اكتب نص البوست هنا... (هيظهر بس لما تختار نص فقط من القايمة اللي فوق)';
+    area.style.cssText = 'width:100%;min-height:90px;padding:12px;border:1px solid #3b3b5c;border-radius:12px;margin-top:10px;background:#1e1b4b;color:#fff;font-size:14px;display:none';
+    typeSelect.parentNode.parentNode.appendChild(area);
+
+    // 3. اعمل مكان النصوص المحفوظة - تحت الخانة
+    var saved = document.createElement('div');
+    saved.id = 'ct-textonly-saved';
+    saved.style.cssText = 'margin-top:8px';
+    typeSelect.parentNode.parentNode.appendChild(saved);
+    renderTextOnlySaved();
+
+    // 4. لما تختار (نص فقط) اظهر الخانة، ولما تختار غيرها اخفيها
+    typeSelect.addEventListener('change', function(){
+      var isText = this.value === 'textonly' || this.options[this.selectedIndex].text.includes('نص فقط');
+      area.style.display = isText ? 'block' : 'none';
+      if(isText) area.focus();
+      // غيّر زرار الحفظ الاصلي - لما يكون نص فقط، يحفظ نص فقط
+      var saveBtn = Array.from(document.querySelectorAll('button')).find(function(b){ return b.textContent.includes('حفظ في المخزن'); });
+      if(saveBtn && isText){
+        if(!saveBtn.dataset.textonlyHooked){
+          saveBtn.dataset.textonlyHooked = '1';
+          var origClick = saveBtn.onclick;
+          saveBtn.addEventListener('click', function(e){
+            var sel = typeSelect;
+            var isT = sel.value === 'textonly' || sel.options[sel.selectedIndex].text.includes('نص فقط');
+            if(isT){ e.preventDefault(); e.stopImmediatePropagation(); saveTextOnlyFromForm(); }
+          }, true);
+        }
+      }
+    });
+    console.log('✅ اختيار (نص فقط) اتضاف جوه قايمة Media & Content');
+  }
+
+  setInterval(inject, 800);
+})();
+</script>
 </html>
