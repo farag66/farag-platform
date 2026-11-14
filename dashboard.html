@@ -1032,44 +1032,79 @@ go = function(p,el){ let k=(p||'').toLowerCase(); if(k.includes('payment')||k.in
 })();
 </script>
 <script>
-/* ===== Media & Content - اضافة اختيار (نص فقط) جنب الـ 3 الموجودين - من غير تغييرهم ===== */
+/* ===== Media & Content - زرار (نص فقط) جنب زرار الاضافة - طريقة مضمونة ===== */
 (function(){
-  // 1. احفظ اللي موجود - النص فقط
-  window.ctTextOnlyAdd = function(){
+  // امسح اي observer قديم لو موجود
+  if(window._textOnlyObs){ try{ window._textOnlyObs.disconnect(); }catch(e){} }
+
+  window.ctTextOnlyAdd2 = function(){
     var t = prompt('📝 اكتب نص البوست فقط (من غير صورة ولا فيديو):');
     if(!t || !t.trim()) return;
-    var arr = DB.get('farag_media_textonly', []);
+    var arr = [];
+    try{ arr = JSON.parse(localStorage.getItem('farag_media_textonly') || '[]'); }catch(e){ arr = []; }
+    // حاول مع DB لو موجود، ولو مش موجود استخدم localStorage
+    if(window.DB && typeof DB.get === 'function'){
+      try{ arr = DB.get('farag_media_textonly', []); }catch(e){}
+    }
     arr.unshift({ id: Date.now(), text: t.trim(), time: new Date().toLocaleString('ar-EG') });
-    DB.set('farag_media_textonly', arr);
-    alert('✅ اتحفظ نص البوست في Media & Content\n\nهتلاقيه في فلتر (نص فقط)');
-    if(typeof renderMedia === 'function') renderMedia();
-    if(typeof renderMC2 === 'function') renderMC2();
+    try{ if(window.DB) DB.set('farag_media_textonly', arr); }catch(e){}
+    try{ localStorage.setItem('farag_media_textonly', JSON.stringify(arr)); }catch(e){}
+    alert('✅ اتحفظ نص البوست\n\nهتلاقيه في Media & Content تحت، في قسم (نص فقط)');
+    ctTextOnlyShowList();
   };
 
-  // 2. راقب القايمة بتاعة (اضف صورة / فيديو / بوست) و ضيف اختيار رابع بس
-  var _obs = new MutationObserver(function(){
-    // دور على القايمة اللي فيها (بوست كامل)
-    var els = document.querySelectorAll('*');
-    for(var i=0;i<els.length;i++){
-      var el = els[i];
-      if(el.textContent && el.textContent.includes('بوست كامل') && !document.getElementById('ct-opt-textonly')){
-        // لقى القايمة - ضيف الاختيار الرابع تحتها
-        var parent = el.parentElement;
-        if(!parent) continue;
-        var opt = document.createElement('div');
-        opt.id = 'ct-opt-textonly';
-        opt.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:14px 16px;cursor:pointer;border-top:1px solid rgba(255,255,255,.08)';
-        opt.onclick = function(){ ctTextOnlyAdd(); };
-        opt.innerHTML = '<span style="font-size:18px;font-weight:800;color:#fff">📝 نص فقط</span><span style="width:22px;height:22px;border:2px solid #fff;border-radius:50%;display:block"></span>';
-        // حطها بعد (بوست كامل) على طول
-        if(parent.nextSibling) parent.parentNode.insertBefore(opt, parent.nextSibling);
-        else parent.parentNode.appendChild(opt);
+  window.ctTextOnlyShowList = function(){
+    var box = document.getElementById('ct-textonly-list');
+    if(!box) return;
+    var arr = [];
+    try{ if(window.DB) arr = DB.get('farag_media_textonly', []); }catch(e){}
+    if(!arr.length){ try{ arr = JSON.parse(localStorage.getItem('farag_media_textonly')||'[]'); }catch(e){} }
+    if(!arr.length){ box.innerHTML = '<div style="text-align:center;color:#94a3b8;padding:10px;font-size:12px">لسه مفيش نصوص محفوظة - دوس (📝 نص فقط) اللي فوق</div>'; return; }
+    box.innerHTML = arr.map(function(x){
+      return '<div style="background:#0f0f1f;border:1px solid #3b3b5c;border-radius:14px;padding:10px;margin-top:8px"><div style="color:#fff;font-size:13px;line-height:1.8;white-space:pre-wrap">'+String(x.text).replace(/</g,'&lt;')+'</div><div style="display:flex;justify-content:space-between;margin-top:6px"><span style="font-size:11px;color:#94a3b8">'+(x.time||'')+'</span><button onclick="navigator.clipboard.writeText(document.getElementById(\'txt-'+x.id+'\').value);alert(\'📋 اتنسخ\')" style="background:#e0e7ff;color:#3730a3;border:none;padding:6px 12px;border-radius:99px;font-weight:800;cursor:pointer">📋 نسخ</button></div><textarea id="txt-'+x.id+'" style="display:none">'+String(x.text).replace(/</g,'&lt;')+'</textarea></div>';
+    }).join('');
+  };
+
+  // حط الزرار جنب زرار الاضافة الاصلي
+  function injectBtn(){
+    var app = document.getElementById('app');
+    if(!app) return;
+    // لو احنا مش في Media & Content متعملش حاجة
+    if(!app.innerHTML.includes('Media & Content')) return;
+    if(document.getElementById('ct-btn-textonly')) { ctTextOnlyShowList(); return; }
+
+    // دور على زرار (اضف صورة) الاصلي
+    var btns = app.querySelectorAll('button, div');
+    var addBtn = null;
+    for(var i=0;i<btns.length;i++){
+      if(btns[i].textContent && btns[i].textContent.includes('اضف صورة')){
+        addBtn = btns[i];
         break;
       }
     }
-  });
-  _obs.observe(document.body, { childList:true, subtree:true });
-  console.log('✅ اختيار (نص فقط) هيظهر جنب الـ 3 الموجودين - من غير ما نغيرهم');
+    if(!addBtn) return;
+
+    // اعمل زرار نص فقط جنبه
+    var b = document.createElement('button');
+    b.id = 'ct-btn-textonly';
+    b.textContent = '📝 نص فقط';
+    b.onclick = ctTextOnlyAdd2;
+    b.style.cssText = 'background:#0ea5e9;color:#fff;border:none;padding:12px 18px;border-radius:99px;font-weight:900;cursor:pointer;margin-right:8px;white-space:nowrap';
+    addBtn.parentNode.insertBefore(b, addBtn.nextSibling);
+
+    // اعمل مكان عرض النصوص المحفوظة تحت الزرار
+    if(!document.getElementById('ct-textonly-list')){
+      var list = document.createElement('div');
+      list.id = 'ct-textonly-list';
+      list.style.cssText = 'margin-top:10px';
+      addBtn.parentNode.parentNode.insertBefore(list, addBtn.parentNode.nextSibling);
+    }
+    ctTextOnlyShowList();
+  }
+
+  // جرب كل شوية لحد ما صفحة Media تفتح، ومن غير ما نكسر اي render
+  setInterval(injectBtn, 800);
+  console.log('✅ زرار (نص فقط) هيظهر جنب زرار الاضافة');
 })();
 </script>
 </html>
